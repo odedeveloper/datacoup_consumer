@@ -5,27 +5,25 @@ class LoginScreen extends GetWidget<LoginController> {
   const LoginScreen({super.key});
 
   void login() async {
-    if (controller.emailTextContoller.text == "" &&
-        controller.loginByPhone.value == false) {
-      Get.snackbar("Email Address Required", "Please enter your email address",
-          margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-      return;
-    } else if (controller.phoneNumberTextContoller.text == "" &&
-        controller.loginByPhone.value == true) {
-      Get.snackbar("Phone Number Required", "Please enter your mobile number",
-          margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-      return;
-    } else if (controller.passwordTextContoller.text == "") {
-      Get.snackbar("Password Required", "Please enter your password",
-          margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-      return;
-    }
+    MethodResponse? result = await controller.verifyLogInRequest();
 
-    final result = await controller.login();
-    if (result) {
-      Get.offAllNamed(AppRoutes.home);
+    if (result.isSuccess) {
+      try {
+        String? result = await controller.login();
+        if (result != null || result == "") {
+          Get.snackbar("Login Error", result!,
+              margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
+          return;
+        } else {
+          Get.offAllNamed(AppRoutes.home);
+        }
+      } catch (e) {
+        Get.snackbar("Login Error", "Please try again",
+            margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
+      }
     } else {
-      Get.snackbar("Error", "Login Incorrect");
+      Get.snackbar("Login Error", result.errorMessage,
+          margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
     }
   }
 
@@ -50,6 +48,7 @@ class LoginScreen extends GetWidget<LoginController> {
                         children: [
                           TextButton(
                             onPressed: () {
+                              controller.clearState();
                               controller.updateLoginMode(false);
                             },
                             child: Text(
@@ -64,6 +63,7 @@ class LoginScreen extends GetWidget<LoginController> {
                           ),
                           TextButton(
                             onPressed: () {
+                              controller.clearState();
                               controller.updateLoginMode(true);
                             },
                             child: Text(
@@ -85,6 +85,7 @@ class LoginScreen extends GetWidget<LoginController> {
                     () => Align(
                       alignment: Alignment.topLeft,
                       child: CustomLoginTextField(
+                        loginController: controller,
                         controller: controller.loginByPhone.value
                             ? controller.phoneNumberTextContoller
                             : controller.emailTextContoller,
@@ -100,6 +101,7 @@ class LoginScreen extends GetWidget<LoginController> {
                     () => Align(
                       alignment: Alignment.topLeft,
                       child: CustomLoginTextField(
+                        loginController: controller,
                         controller: controller.passwordTextContoller,
                         label: "Password",
                         showEye: true,

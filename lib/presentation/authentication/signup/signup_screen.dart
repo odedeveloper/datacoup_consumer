@@ -1,5 +1,5 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/home/profile/edit_profile/edit_profile_screen.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SignupScreen extends GetWidget<SignupController> {
   const SignupScreen({super.key});
@@ -10,49 +10,22 @@ class SignupScreen extends GetWidget<SignupController> {
 
     if (result.isSuccess) {
       try {
-        await controller.signUp();
-        Get.toNamed(AppRoutes.verifyOtp);
+        String? result = await controller.signUp();
+        if (result != null || result == "") {
+          Get.snackbar("Signup Error", result!,
+              margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
+          return;
+        } else {
+          Get.toNamed(AppRoutes.verifyOtp);
+        }
       } catch (e) {
-        Get.snackbar(
-            "Email Address Required", "Please enter your email address",
+        Get.snackbar("SignUp Error", "Please try again",
             margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
       }
     } else {
       Get.snackbar("SignUp Error", result.errorMessage,
           margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
     }
-
-    // if (controller.emailTextContoller.text == "" &&
-    //     controller.loginByPhone.value == false) {
-    //   Get.snackbar("Email Address Required", "Please enter your email address",
-    //       margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-    //   return;
-    // } else if (controller.phoneNumberTextContoller.text == "" &&
-    //     controller.loginByPhone.value == true) {
-    //   Get.snackbar("Phone Number Required", "Please enter your mobile number",
-    //       margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-    //   return;
-    // } else if (controller.passwordTextContoller.text == "") {
-    //   Get.snackbar("Password Required", "Please enter your password",
-    //       margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-    //   return;
-    // } else if (controller.confirmpasswordTextContoller.text == "") {
-    //   Get.snackbar("Password Required", "Please enter your password",
-    //       margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-    //   return;
-    // } else if (controller.confirmpasswordTextContoller.text !=
-    //     controller.passwordTextContoller.text) {
-    //   Get.snackbar("Password Mismatch", "Please enter correct password",
-    //       margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
-    //   return;
-    // }
-
-    // final result = await controller.signUp();
-    // if (result) {
-    //   Get.offAllNamed(AppRoutes.home);
-    // } else {
-    //   Get.snackbar("Error", "Login Incorrect");
-    // }
   }
 
   @override
@@ -82,6 +55,7 @@ class SignupScreen extends GetWidget<SignupController> {
                         children: [
                           TextButton(
                             onPressed: () {
+                              controller.clearState();
                               controller.updateLoginMode(false);
                             },
                             child: Text(
@@ -96,6 +70,7 @@ class SignupScreen extends GetWidget<SignupController> {
                           ),
                           TextButton(
                             onPressed: () {
+                              controller.clearState();
                               controller.updateLoginMode(true);
                             },
                             child: Text(
@@ -117,6 +92,7 @@ class SignupScreen extends GetWidget<SignupController> {
                     () => Align(
                       alignment: Alignment.topLeft,
                       child: CustomLoginTextField(
+                        signupController: controller,
                         controller: controller.loginByPhone.value
                             ? controller.phoneNumberTextContoller
                             : controller.emailTextContoller,
@@ -131,6 +107,7 @@ class SignupScreen extends GetWidget<SignupController> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: CustomLoginTextField(
+                      signupController: controller,
                       controller: controller.passwordTextContoller,
                       label: "Password",
                     ),
@@ -139,6 +116,7 @@ class SignupScreen extends GetWidget<SignupController> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: CustomLoginTextField(
+                      signupController: controller,
                       controller: controller.confirmpasswordTextContoller,
                       label: "Confirm Password",
                       showData: true,
@@ -160,8 +138,13 @@ class SignupScreen extends GetWidget<SignupController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Obx(
-                      () => controller.signupState.value == LoginState.loading
-                          ? const Center(child: CircularProgressIndicator())
+                      () => controller.signupState.value == SignUpState.loading
+                          ? const Center(
+                              child: SpinKitThreeBounce(
+                              size: 25,
+                              duration: Duration(milliseconds: 800),
+                              color: Colors.grey,
+                            ))
                           : RoundedElevatedButton(
                               title: "CONTINUE",
                               onClicked: signUp,

@@ -1,11 +1,12 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/home/profile/edit_profile/edit_profile_screen.dart';
-import 'package:datacoup/presentation/widgets/otp_input_widget.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class VerifyOTPScreen extends GetWidget<SignupController> {
   const VerifyOTPScreen({super.key});
 
-  void verifyOtp() async {}
+  void verifyOtp() async {
+    controller.verifyOTPRequest();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,12 @@ class VerifyOTPScreen extends GetWidget<SignupController> {
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Obx(
                     () => controller.signupState.value == LoginState.loading
-                        ? const Center(child: CircularProgressIndicator())
+                        ? const Center(
+                            child: SpinKitThreeBounce(
+                            size: 25,
+                            duration: Duration(milliseconds: 800),
+                            color: Colors.grey,
+                          ))
                         : RoundedElevatedButton(
                             title: "Verify OTP",
                             onClicked: verifyOtp,

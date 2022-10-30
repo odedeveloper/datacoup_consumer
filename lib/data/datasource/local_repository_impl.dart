@@ -28,15 +28,4 @@ class LocalRepositoryImpl extends LocalRepositoryInterface {
     sharedPreferences.setBool(_prefDarkTheme, darkmode!);
   }
 
-  @override
-  Future<User?> getUser() {
-    // TODO: implement getUser
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<User?> saveUser(User? user) {
-    // TODO: implement saveUser
-    throw UnimplementedError();
-  }
 }

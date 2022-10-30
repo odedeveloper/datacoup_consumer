@@ -1,10 +1,11 @@
 class LoginRequest {
   final String? username;
-  final String? email;
+  final String? credentials;
+
   final String? password;
   LoginRequest({
     this.username,
-    this.email,
+    this.credentials,
     this.password,
   });
 }

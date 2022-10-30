@@ -74,29 +74,37 @@ class SignupController extends GetxController {
     passwordTextContoller.text = '';
     confirmpasswordTextContoller.text = '';
     loginByPhone.value = false;
-    update();
+    selectedCountryCode("1");
   }
 
-  Future<bool> signUp() async {
+  Future<String?> signUp() async {
     final email = emailTextContoller.text;
+    final mobileNumber = phoneNumberTextContoller.text;
     final password = passwordTextContoller.text;
 
     try {
       signupState(SignUpState.loading);
-      LoginResponse? loginResponse = await apiRepositoryInterface.login(
-        LoginRequest(email: email, password: password),
+      String data = loginByPhone.value
+          ? ("+${selectedCountryCode.value}$mobileNumber")
+          : email;
+      String? res = await apiRepositoryInterface.signUp(
+        LoginRequest(credentials: data, password: password),
       );
+      signupState(SignUpState.initail);
+      return res;
+    } on CognitoClientException catch (e) {
+      signupState(SignUpState.initail);
 
-      if (loginResponse != null) {
-        signupState(SignUpState.initail);
-        return true;
+      if (e.code == 'NetworkError') {
+        return StringConst.INTERNET_NOT_AVAILABLE;
       } else {
-        signupState(SignUpState.initail);
-        return false;
+        return e.message!;
       }
     } on AuthException catch (_) {
       signupState(SignUpState.initail);
-      return false;
+      return null;
+    } catch (e) {
+      return StringConst.UNKNOWN_ERROR_OCCURRED;
     }
   }
 
@@ -141,6 +149,16 @@ class SignupController extends GetxController {
     if (passwordTextContoller.text != confirmpasswordTextContoller.text) {
       return MethodResponse(
           errorMessage: StringConst.PASWWORD_MATCH_CONFIRM_PASSWORD);
+    }
+    return MethodResponse(isSuccess: true);
+  }
+
+  Future<MethodResponse> verifyOTPRequest() async {
+    if (enteredOtp.value == '' || enteredOtp.value.isEmpty) {
+      return MethodResponse(errorMessage: StringConst.ENTER_OTP_PROCEED);
+    }
+    if (enteredOtp.value.length < 6) {
+      return MethodResponse(errorMessage: StringConst.VALID_OTP);
     }
     return MethodResponse(isSuccess: true);
   }

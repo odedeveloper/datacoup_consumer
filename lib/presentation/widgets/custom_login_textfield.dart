@@ -1,25 +1,26 @@
 import 'dart:developer';
-
-import 'package:country_picker/country_picker.dart';
 import 'package:datacoup/export.dart';
 
 class CustomLoginTextField extends StatelessWidget {
-  CustomLoginTextField(
+  const CustomLoginTextField(
       {super.key,
       this.controller,
       this.onEyeTap,
       this.showEye = false,
       this.showData = false,
+      this.signupController,
+      this.loginController,
       this.forPhoneNumber = false,
       this.label});
   final TextEditingController? controller;
+  final LoginController? loginController;
+  final SignupController? signupController;
   final String? label;
   final bool? showEye;
   final bool? forPhoneNumber;
   final bool? showData;
   final VoidCallback? onEyeTap;
 
-  final statecontroller = Get.find<LoginController>();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,14 +45,26 @@ class CustomLoginTextField extends StatelessWidget {
                   ? Expanded(
                       child: Obx(
                       () => InputDecorator(
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 15),
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.only(top: 15),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondary
+                                    .withOpacity(0.2)),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.cyan),
+                          ),
                         ),
                         child: InkWell(
                           onTap: () => _showCountryPicker(context),
                           child: Center(
                             child: Text(
-                              "+${statecontroller.selectedCountryCode.value}",
+                              loginController != null
+                                  ? "+${loginController!.selectedCountryCode.value}"
+                                  : "+${signupController!.selectedCountryCode.value}",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Theme.of(context).colorScheme.secondary,
@@ -81,11 +94,21 @@ class CustomLoginTextField extends StatelessWidget {
                   ),
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(top: 15),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .secondary
+                              .withOpacity(0.2)),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.cyan),
+                    ),
                     suffixIcon: showEye!
                         ? IconButton(
                             onPressed: onEyeTap,
                             icon: Icon(
-                              statecontroller.showPassword.value
+                              loginController!.showPassword.value
                                   ? Icons.visibility_off
                                   : Icons.visibility_rounded,
                               color: darkGreyColor,
@@ -131,7 +154,11 @@ class CustomLoginTextField extends StatelessWidget {
         ),
         onSelect: (Country country) {
           log('Select country: ${country.phoneCode}');
-          statecontroller.updateCountryCode(country.phoneCode);
+          if (loginController != null) {
+            loginController!.updateCountryCode(country.phoneCode);
+          } else {
+            signupController!.updateCountryCode(country.phoneCode);
+          }
         });
   }
 }

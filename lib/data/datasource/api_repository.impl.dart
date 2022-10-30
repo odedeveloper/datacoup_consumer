@@ -63,37 +63,37 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   }
 
   @override
-  Future<LoginResponse?> login(LoginRequest login) async {
+  Future<String?> login(LoginRequest login) async {
     try {
-      _cognitoUser =
-          CognitoUser(login.email, _userPool!, storage: _userPool!.storage);
+      _cognitoUser = CognitoUser(login.credentials, _userPool!,
+          storage: _userPool!.storage);
 
       final authDetails = AuthenticationDetails(
-          username: login.email, password: login.password);
+          username: login.credentials, password: login.password);
 
       _session = await _cognitoUser!.authenticateUser(authDetails);
 
       await saveTokensToDeviceStorage(_session!);
-
-      LoginResponse? loginResponse = await fetchUserProfile();
-
-      return loginResponse;
+    } on CognitoClientException catch (e) {
+      return e.message.toString();
     } catch (e) {
       log("error while login $e");
-      throw AuthException();
+      return null;
     }
+    return null;
   }
 
   @override
-  Future<LoginResponse?> signUp(LoginRequest login) async {
+  Future<String?> signUp(LoginRequest login) async {
     try {
-      await _userPool!.signUp(login.email!, login.password!);
-      LoginResponse? loginResponse = await fetchUserProfile();
-      return loginResponse;
+      await _userPool!.signUp(login.credentials!, login.password!);
+    } on CognitoClientException catch (e) {
+      return e.message.toString();
     } catch (e) {
       log("error while Signup $e");
-      throw AuthException();
+      return null;
     }
+    return null;
   }
 
   saveTokensToDeviceStorage(CognitoUserSession session) {

@@ -1,8 +1,9 @@
-import 'package:country_picker/country_picker.dart';
 import 'export.dart';
 
 Future<void> main() async {
   await GetStorage.init();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
