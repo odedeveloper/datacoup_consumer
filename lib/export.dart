@@ -47,4 +47,3 @@ export 'package:datacoup/presentation/authentication/signup/signup_controller.da
 export 'package:datacoup/presentation/authentication/signup/signup_binding.dart';
 export 'package:datacoup/presentation/authentication/signup/signup_screen.dart';
 export 'package:datacoup/presentation/authentication/auth_widgets/auth_header.dart';
-export 'package:datacoup/presentation/authentication/auth_widgets/auth_by_widget.dart';

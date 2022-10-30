@@ -9,11 +9,13 @@ class CacheImageWidget extends StatelessWidget {
   final Widget? errorWidget;
   final BoxFit? cFit;
   final bool? fromAsset;
+  final Color? color;
   const CacheImageWidget({
     Key? key,
     this.imageUrl,
     this.imgheight,
     this.imgwidth,
+    this.color,
     this.errorWidget,
     this.fromAsset = false,
     this.cFit,
@@ -28,6 +30,7 @@ class CacheImageWidget extends StatelessWidget {
             width: imgwidth ?? double.infinity,
             height: imgheight,
             fit: cFit ?? BoxFit.fill,
+            color: color,
           )
         : ExtendedImage.network(
             imageUrl!,

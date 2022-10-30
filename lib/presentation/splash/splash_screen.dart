@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/utils/constants/responsive.dart';
 
 class SplashScreen extends GetWidget<SplachController> {
   SplashScreen({super.key});

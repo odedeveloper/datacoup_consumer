@@ -20,7 +20,7 @@ class SplachController extends GetxController {
     if (isDark != null) {
       Get.changeThemeMode(isDark ? ThemeMode.dark : ThemeMode.light);
     } else {
-      Get.changeThemeMode(ThemeMode.light);
+      Get.changeThemeMode(ThemeMode.dark);
     }
   }
 

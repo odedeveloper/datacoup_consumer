@@ -12,7 +12,7 @@ class AssetConst {
   static const String PRIVACY_LOGO = 'assets/images/privacy.png';
   static const String FAQ_LOGO = 'assets/images/ask.png';
   static const String LEGACY_LOGO = 'assets/images/balance.png';
-  static const String VERIFY_EMAIL_LOGO = 'assets/images/emails.png';
+  static const String verifyEmailLogo = 'assets/images/emails.png';
   static const String VERIFY_MOBILE_LOGO = 'assets/images/smartphone.png';
   static const String LOGO_GIF = "assets/images/logo.gif";
   static const String YOUTUBE_LOGO = "assets/images/youtube-logo.png";

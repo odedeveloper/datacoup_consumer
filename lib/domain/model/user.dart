@@ -91,3 +91,10 @@ class User {
         "isAdmin": isAdmin,
       };
 }
+
+
+class MethodResponse {
+  bool isSuccess;
+  String errorMessage;
+  MethodResponse({this.isSuccess = false, this.errorMessage = ""});
+}

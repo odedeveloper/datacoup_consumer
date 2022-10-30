@@ -21,7 +21,7 @@ class LoginScreen extends GetWidget<LoginController> {
       return;
     }
 
-    final result = await controller.signUp();
+    final result = await controller.login();
     if (result) {
       Get.offAllNamed(AppRoutes.home);
     } else {
@@ -42,7 +42,59 @@ class LoginScreen extends GetWidget<LoginController> {
                 children: [
                   const AuthenticationHeader(),
                   SizedBox(height: height(context)! * 0.1),
-                  AuthenticatByWidget(),
+                  Obx(
+                    () => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              controller.updateLoginMode(false);
+                            },
+                            child: Text(
+                              "Email",
+                              style: themeTextStyle(
+                                context: context,
+                                tColor: controller.loginByPhone.value
+                                    ? lightGreyColor
+                                    : darkSkyBlueColor,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              controller.updateLoginMode(true);
+                            },
+                            child: Text(
+                              "Phone",
+                              style: themeTextStyle(
+                                context: context,
+                                tColor: !controller.loginByPhone.value
+                                    ? lightGreyColor
+                                    : darkSkyBlueColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height(context)! * 0.03),
+                  Obx(
+                    () => Align(
+                      alignment: Alignment.topLeft,
+                      child: CustomLoginTextField(
+                        controller: controller.loginByPhone.value
+                            ? controller.phoneNumberTextContoller
+                            : controller.emailTextContoller,
+                        label: controller.loginByPhone.value
+                            ? "Phone Number"
+                            : "Email",
+                        forPhoneNumber: controller.loginByPhone.value,
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 10),
                   Obx(
                     () => Align(

@@ -84,6 +84,18 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     }
   }
 
+  @override
+  Future<LoginResponse?> signUp(LoginRequest login) async {
+    try {
+      await _userPool!.signUp(login.email!, login.password!);
+      LoginResponse? loginResponse = await fetchUserProfile();
+      return loginResponse;
+    } catch (e) {
+      log("error while Signup $e");
+      throw AuthException();
+    }
+  }
+
   saveTokensToDeviceStorage(CognitoUserSession session) {
     GetStorage deviceStorage = GetStorage();
 

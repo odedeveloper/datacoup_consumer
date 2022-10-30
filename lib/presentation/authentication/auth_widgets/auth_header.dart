@@ -32,6 +32,7 @@ class AuthenticationHeader extends StatelessWidget {
             context: context,
             fontFamily: AssetConst.ralewayFont,
             fontStyle: FontStyle.italic,
+            tColor: Theme.of(context).colorScheme.secondary,
             fweight: FontWeight.w700,
             letterSpacing: 1,
           ),
