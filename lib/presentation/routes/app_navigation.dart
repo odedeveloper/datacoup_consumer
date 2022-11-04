@@ -1,5 +1,6 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/authentication/signup/verify_otp_screen.dart';
+import 'package:datacoup/presentation/news/news_binding.dart';
 
 class AppRoutes {
   static const String splash = "/splash";
@@ -35,8 +36,9 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => const HomeScreen(),
-      bindings: [MainBinding(), HomeBinding()],
+      bindings: [MainBinding(), HomeBinding(), NewsBindings()],
     ),
+
     // GetPage(
     //   name: AppRoutes.editProfile,
     //   page: () => const EditProfileScreen(),

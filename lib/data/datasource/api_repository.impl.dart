@@ -141,4 +141,29 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     await Future.delayed(const Duration(seconds: 2));
     return products;
   }
+
+  @override
+  Future<NewsModel?> getNews({
+    required String? type,
+    required int? count,
+    required String? lastEvaluatedKey,
+    required Location? location,
+  }) async {
+    try {
+      final response = await DioInstance().dio.get(
+            newsVideoListUrl(
+              type: type,
+              count: count,
+              lastEvaluatedKey: lastEvaluatedKey,
+              location: location,
+            ),
+          );
+
+      NewsModel? newsModel = NewsModel.fromJson(response.data);
+      return newsModel;
+    } catch (e) {
+      log("error to get news type =$type, =$e");
+      return null;
+    }
+  }
 }

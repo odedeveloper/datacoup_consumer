@@ -1,6 +1,5 @@
 import 'package:datacoup/export.dart';
 
-
 class HomeScreen extends GetWidget<HomeController> {
   const HomeScreen({super.key});
 
@@ -14,7 +13,7 @@ class HomeScreen extends GetWidget<HomeController> {
               () => IndexedStack(
                 index: controller.onIndexSelected.value,
                 children: [
-                  ProductScreen(),
+                  const NewsScreen(),
                   Center(
                     child: Text("${controller.onIndexSelected.value}"),
                   ),
@@ -54,72 +53,40 @@ class AppBottomNavgationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          bottomNavButtons(
-            onClicked: () => onIndexSelected(0),
-            iconData: Icons.home_filled,
-            color: controller.onIndexSelected.value == 0
-                ? Colors.red
-                : Colors.grey,
-          ),
-          bottomNavButtons(
-            onClicked: () => onIndexSelected(1),
-            iconData: Icons.shopify_rounded,
-            color: controller.onIndexSelected.value == 1
-                ? Colors.red
-                : Colors.grey,
-          ),
-          Stack(
-            children: [
-              bottomNavButtons(
-                onClicked: () => onIndexSelected(2),
-                iconData: Icons.shopping_basket,
-                color: controller.onIndexSelected.value == 2
-                    ? Colors.red
-                    : Colors.grey,
-              ),
-              Positioned(
-                right: 0,
-                child: Obx(() {
-                  return cartController.totalItems.value == 0
-                      ? const SizedBox.shrink()
-                      : CircleAvatar(
-                          radius: 10,
-                          backgroundColor: Colors.pinkAccent,
-                          child:
-                              Text(cartController.totalItems.value.toString()),
-                        );
-                }),
-              )
-            ],
-          ),
-          bottomNavButtons(
-            onClicked: () => onIndexSelected(3),
-            iconData: Icons.favorite_border,
-            color: controller.onIndexSelected.value == 3
-                ? Colors.red
-                : Colors.grey,
-          ),
-          InkWell(
-            onTap: () => onIndexSelected(4),
-            child: Obx(
-              () {
-                final user = controller.user?.value;
-                return user?.profileImage == null
-                    ? const SizedBox.shrink()
-                    : CircleAvatar(
-                        radius: 15,
-                        backgroundImage: NetworkImage(user!.profileImage!),
-                      );
-              },
-            ),
-          ),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        bottomNavButtons(
+          onClicked: () => onIndexSelected(0),
+          iconData: FontAwesomeIcons.house,
+          color:
+              controller.onIndexSelected.value == 0 ? Colors.red : Colors.grey,
+        ),
+        bottomNavButtons(
+          onClicked: () => onIndexSelected(1),
+          iconData: FontAwesomeIcons.solidHeart,
+          color:
+              controller.onIndexSelected.value == 1 ? Colors.red : Colors.grey,
+        ),
+        bottomNavButtons(
+          onClicked: () => onIndexSelected(2),
+          iconData: FontAwesomeIcons.solidLightbulb,
+          color:
+              controller.onIndexSelected.value == 2 ? Colors.red : Colors.grey,
+        ),
+        bottomNavButtons(
+          onClicked: () => onIndexSelected(3),
+          iconData: FontAwesomeIcons.play,
+          color:
+              controller.onIndexSelected.value == 3 ? Colors.red : Colors.grey,
+        ),
+        bottomNavButtons(
+          onClicked: () => onIndexSelected(4),
+          iconData: FontAwesomeIcons.solidUser,
+          color:
+              controller.onIndexSelected.value == 4 ? Colors.red : Colors.grey,
+        ),
+      ],
     );
   }
 
@@ -129,9 +96,10 @@ class AppBottomNavgationBar extends StatelessWidget {
           required Color color}) =>
       IconButton(
         onPressed: onClicked,
-        icon: Icon(
+        icon: FaIcon(
           iconData,
           color: color,
+          size: 22,
         ),
       );
 }

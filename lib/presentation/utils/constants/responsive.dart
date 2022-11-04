@@ -1,6 +1,8 @@
 import 'package:datacoup/presentation/utils/constants/image.dart';
 import 'package:flutter/material.dart';
 
+const kBorderRadius = 10.0;
+
 double? height(BuildContext context) {
   double? size = MediaQuery.of(context).size.height;
   return size;
@@ -57,7 +59,7 @@ themeTextStyle(
         Color? tColor,
         TextOverflow? ovrflow = TextOverflow.ellipsis}) =>
     TextStyle(
-      color: tColor ?? Theme.of(context).secondaryHeaderColor,
+      color: tColor ?? Theme.of(context).primaryColor,
       fontSize:
           fsize != null ? fontSize(context)! * fsize : kmediumFont(context),
       fontStyle: fontStyle,

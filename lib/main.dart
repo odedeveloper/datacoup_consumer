@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: appName,
-      // themeMode: ThemeMode.dark,
-      theme: Themes.light,
-      darkTheme: Themes.dark,
+      themeMode: ThemeMode.light,
+      theme: MyThemeData.lightTheme,
+      darkTheme: MyThemeData.darkTheme,
       initialRoute: AppRoutes.splash,
       getPages: AppPages.pages,
       initialBinding: MainBinding(),

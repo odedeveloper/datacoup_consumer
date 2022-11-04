@@ -10,11 +10,13 @@ class CacheImageWidget extends StatelessWidget {
   final BoxFit? cFit;
   final bool? fromAsset;
   final Color? color;
+  final BlendMode? colorBlendMode;
   const CacheImageWidget({
     Key? key,
     this.imageUrl,
     this.imgheight,
     this.imgwidth,
+    this.colorBlendMode,
     this.color,
     this.errorWidget,
     this.fromAsset = false,
@@ -37,10 +39,10 @@ class CacheImageWidget extends StatelessWidget {
             width: imgwidth ?? double.infinity,
             height: imgheight,
             fit: cFit ?? BoxFit.fill,
-
             cache: true,
             retries: 5,
-
+            color: color,
+            colorBlendMode: colorBlendMode,
             //cancelToken: cancellationToken,
           );
     //     // Image(

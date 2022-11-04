@@ -10,6 +10,15 @@ const String home = 'home';
 // ignore_for_file: constant_identifier_names
 
 class StringConst {
+  // api ends
+  static const String newsOfTheDay = 'News_of_the_day';
+  static const String videoOfTheDay = 'Video_of_the_day';
+  static const String socialFeedtype = 'Feed';
+
+  static const String videoOftheDayTitle = 'Video of the day';
+  static const String trendingVideosTitle = 'Trending Videos';
+  static const String socialMediaTitle = 'Social Feeds';
+
   //name of pages
   static const String HOME = 'home';
   static const String FAVOURITE = 'favourite';

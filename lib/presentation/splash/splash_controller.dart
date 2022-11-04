@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:datacoup/export.dart';
 
 class SplachController extends GetxController {
@@ -20,18 +22,18 @@ class SplachController extends GetxController {
     if (isDark != null) {
       Get.changeThemeMode(isDark ? ThemeMode.dark : ThemeMode.light);
     } else {
-      Get.changeThemeMode(ThemeMode.dark);
+      Get.changeThemeMode(ThemeMode.light);
     }
   }
 
   void validateSession() async {
     await apiRepositoryInterface.cogintoRegister();
-    // bool result = await apiRepositoryInterface.checkAuthenticated();
-    // log("user valid $result");
-    // if (result) {
-    //   Get.offNamed(AppRoutes.home);
-    // } else {
-    // }
-    Get.offNamed(AppRoutes.login);
+    bool result = await apiRepositoryInterface.checkAuthenticated();
+    log("user valid $result");
+    if (result) {
+      Get.offNamed(AppRoutes.home);
+    } else {
+      Get.offNamed(AppRoutes.login);
+    }
   }
 }

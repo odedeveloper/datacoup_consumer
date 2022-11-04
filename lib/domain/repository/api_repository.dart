@@ -9,4 +9,10 @@ abstract class ApiRepositoryInterface {
   Future<void> logout(String? token);
   Future<List<Product>?> getProduct();
   Future<bool> checkAuthenticated();
+  Future<NewsModel?> getNews({
+    required String? type,
+    required int? count,
+    required String? lastEvaluatedKey,
+    required Location? location,
+  });
 }

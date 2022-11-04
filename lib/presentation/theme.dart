@@ -1,36 +1,46 @@
-import 'package:datacoup/presentation/utils/constants/colors.dart';
+import 'package:datacoup/presentation/utils/constants/image.dart';
 import 'package:flutter/material.dart';
 
-class Themes {
-  static final light = ThemeData.light().copyWith(
-    primaryColor: darkSkyBlueColor,
-    primaryColorLight: mediumGreyColor,
-    primaryColorDark: darkBlueGreyColor,
-    highlightColor: whiteColor,
-    cardColor: extraLightGreyColor,
-    dividerColor: extraLightGreyColor,
-    canvasColor: whiteColor,
-    secondaryHeaderColor: darkBlueGreyColor,
-    buttonTheme: const ButtonThemeData().copyWith(buttonColor: redOpacityColor),
-    backgroundColor: lightBlueGreyColor,
-    splashColor: mediumGreyColor,
-    splashFactory: InkRipple.splashFactory,
-    colorScheme:
-        ColorScheme.fromSwatch().copyWith(secondary: darkBlueGreyColor),
+class MyThemeData {
+  static final darkTheme = ThemeData(
+    fontFamily: AssetConst.ralewayFont,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: const Color(0xFF1a1c1e),
+    primaryColor: Colors.white,
+    secondaryHeaderColor: const Color(0xFF2f3338),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(color: Color(0xffFFFFFF)),
+      centerTitle: false,
+      backgroundColor: Color(0xFF2f3338),
+    ),
+    bottomSheetTheme:
+        const BottomSheetThemeData(backgroundColor: Color(0xff37474F)),
+    bottomNavigationBarTheme:
+        const BottomNavigationBarThemeData(backgroundColor: Color(0xff37474F)),
+    iconTheme: const IconThemeData(color: Color(0xffFFFFFF)),
+    listTileTheme: const ListTileThemeData(iconColor: Colors.white),
+    unselectedWidgetColor: Colors.white,
   );
-  static final dark = ThemeData.dark().copyWith(
-    primaryColor: lightBlueGreyColor,
-    primaryColorLight: lightBlueGreyColor,
-    primaryColorDark: lightBlueGreyColor,
-    highlightColor: darkSkyBlueColor,
-    dividerColor: extraLightBlackColor,
-    cardColor: redOpacityColor,
-    canvasColor: redOpacityColor,
-    secondaryHeaderColor: darkSkyBlueColor,
-    buttonTheme: const ButtonThemeData().copyWith(buttonColor: redOpacityColor),
-    backgroundColor: lightBlackColor,
-    splashColor: mediumBlueGreyColor,
-    splashFactory: InkRipple.splashFactory,
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
+
+  static final lightTheme = ThemeData(
+    fontFamily: AssetConst.ralewayFont,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: Colors.white,
+    primaryColor: Colors.black,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    secondaryHeaderColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+        iconTheme: IconThemeData(color: Color(0xff222222)),
+        centerTitle: false,
+        backgroundColor: Colors.white),
+    bottomSheetTheme:
+        const BottomSheetThemeData(backgroundColor: Color(0xffDEE4E7)),
+    bottomNavigationBarTheme:
+        const BottomNavigationBarThemeData(backgroundColor: Color(0xffDEE4E7)),
+    iconTheme: const IconThemeData(color: Color(0xff222222)),
+    // floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    //   backgroundColor: Colors.red,
+    // ),
   );
 }
