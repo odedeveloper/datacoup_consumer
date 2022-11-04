@@ -1,6 +1,7 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/authentication/signup/verify_otp_screen.dart';
 import 'package:datacoup/presentation/news/news_binding.dart';
+import 'package:datacoup/presentation/videos/videos_screen.dart';
 
 class AppRoutes {
   static const String splash = "/splash";
@@ -9,6 +10,7 @@ class AppRoutes {
   static const String verifyOtp = "/verifyOtp";
   static const String home = "/home";
   static const String editProfile = "/editProfile";
+  static const String videoScreen = "/videoScreen";
 }
 
 class AppPages {
@@ -38,7 +40,10 @@ class AppPages {
       page: () => const HomeScreen(),
       bindings: [MainBinding(), HomeBinding(), NewsBindings()],
     ),
-
+    GetPage(
+      name: AppRoutes.videoScreen,
+      page: () => const VideoScreen(),
+    ),
     // GetPage(
     //   name: AppRoutes.editProfile,
     //   page: () => const EditProfileScreen(),

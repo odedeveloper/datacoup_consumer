@@ -14,12 +14,15 @@ class NewsController extends GetxController {
   RxString selectedState = ''.obs;
   RxString selectedzipCode = ''.obs;
   RxString selectedkeyInterest = 'Awareness_Article'.obs;
+  RxString selectedkeyInterestforVideo = 'Awareness_Article'.obs;
   RxInt newsOfDayCount = 5.obs;
   RxBool newsOfDayLoader = true.obs;
   RxBool videoOfDayLoader = true.obs;
+  RxBool interestVideoLoader = true.obs;
   RxBool trendingVideoLoader = true.obs;
   RxBool socialMediaLoader = true.obs;
   RxBool interestNewsLoader = true.obs;
+  String? lastEvaluatedKey;
 
   List<String> keyInterestAreas = [
     "Awareness_Article",
@@ -29,11 +32,8 @@ class NewsController extends GetxController {
     "Protect yourself_Article"
   ];
 
-  Future<NewsModel?> getAllNews({
-    required String? type,
-    required int? count,
-    required String? lastEvaluatedKey,
-  }) async {
+  Future<NewsModel?> getAllNews(
+      {required String? type, required int? count}) async {
     try {
       Location location = Location(
         country: [selectedcountry.value],
@@ -46,6 +46,10 @@ class NewsController extends GetxController {
           count: count,
           lastEvaluatedKey: lastEvaluatedKey,
           location: location);
+
+      // if (newsModel!.lastEvaluatedKey != null) {
+      //   lastEvaluatedKey = newsModel.lastEvaluatedKey;
+      // }
 
       return newsModel;
     } catch (e) {

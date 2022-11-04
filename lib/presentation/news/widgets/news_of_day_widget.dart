@@ -22,7 +22,6 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
     newsModel = await newsController.getAllNews(
       type: StringConst.newsOfTheDay,
       count: newsController.newsOfDayCount.value,
-      lastEvaluatedKey: null,
     );
     newsController.newsOfDayLoader(false);
   }
@@ -46,8 +45,8 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                       colorBlendMode: BlendMode.darken,
                     ),
                     Positioned(
-                      top: 30,
-                      left: 20,
+                      top: height(context)! * 0.05,
+                      left: width(context)! * 0.05,
                       child: SizedBox(
                         width: width(context)! * 0.6,
                         child: Column(
@@ -77,20 +76,27 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                               style: themeTextStyle(
                                 context: context,
                                 tColor: whiteColor,
-                                fsize: ksmallFont(context),
-                                fweight: FontWeight.w500,
+                                fweight: FontWeight.w600,
                               ),
                             ),
-                            SizedBox(height: height(context)! * 0.04),
+                            SizedBox(height: height(context)! * 0.05),
                             Row(
                               children: [
-                                Text(
-                                  "Learn more",
-                                  style: themeTextStyle(
-                                    context: context,
-                                    tColor: whiteColor,
-                                    fsize: ksmallFont(context),
-                                    fweight: FontWeight.bold,
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(WebViewWidget(
+                                      url: data.content!.link,
+                                      showAppbar: true,
+                                    ));
+                                  },
+                                  child: Text(
+                                    "Learn more",
+                                    style: themeTextStyle(
+                                      context: context,
+                                      tColor: whiteColor,
+                                      fsize: ksmallFont(context),
+                                      fweight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(width: 10),

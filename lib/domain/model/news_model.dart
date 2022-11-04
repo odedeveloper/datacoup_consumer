@@ -7,16 +7,20 @@ String newsModelToJson(NewsModel data) => json.encode(data.toJson());
 class NewsModel {
   NewsModel({
     this.items,
+    this.lastEvaluatedKey,
   });
 
   List<Item>? items;
+  String? lastEvaluatedKey;
 
   factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
         items: List<Item>.from(json["Items"].map((x) => Item.fromJson(x))),
+        lastEvaluatedKey: json["LastEvaluatedKey"],
       );
 
   Map<String, dynamic> toJson() => {
         "Items": List<dynamic>.from(items!.map((x) => x.toJson())),
+        "LastEvaluatedKey": lastEvaluatedKey,
       };
 }
 

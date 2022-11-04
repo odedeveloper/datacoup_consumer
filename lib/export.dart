@@ -27,8 +27,6 @@ export 'package:datacoup/presentation/home/cart/cart_screen.dart';
 export 'package:datacoup/presentation/home/home_binding.dart';
 export 'package:datacoup/presentation/home/home_controller.dart';
 export 'package:datacoup/presentation/home/home_screen.dart';
-export 'package:datacoup/presentation/home/products/product_controller.dart';
-export 'package:datacoup/presentation/home/products/products_screen.dart';
 export 'package:datacoup/presentation/home/profile/edit_profile/edit_profile_screen.dart';
 export 'package:datacoup/presentation/home/profile/profile_controller.dart';
 export 'package:datacoup/presentation/home/profile/profile_screen.dart';

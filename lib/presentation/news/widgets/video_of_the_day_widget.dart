@@ -23,7 +23,7 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
       newsModel = await newsController.getAllNews(
         type: StringConst.videoOfTheDay,
         count: newsController.newsOfDayCount.value,
-        lastEvaluatedKey: null,
+        
       );
       newsController.videoOfDayLoader(false);
     });
@@ -61,7 +61,9 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
                             ),
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed("videoScreen");
+                            },
                             child: Text(
                               "View More",
                               style: themeTextStyle(
@@ -81,32 +83,40 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
                         itemCount: newsModel!.items!.length,
                         itemBuilder: (context, index) {
                           final data = newsModel!.items![index];
-                          return Stack(
-                            children: [
-                              CacheImageWidget(
-                                imageUrl: data.headerMultimedia,
-                                color: Colors.black38,
-                                colorBlendMode: BlendMode.darken,
-                              ),
-                              Positioned(
-                                bottom: 10.0,
-                                left: 20,
-                                child: SizedBox(
-                                  width: width(context)! * 0.9,
-                                  child: Text(
-                                    data.title!,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: themeTextStyle(
-                                      context: context,
-                                      tColor: whiteColor,
-                                      fsize: ksmallFont(context),
-                                      fweight: FontWeight.bold,
+                          return InkWell(
+                            onTap: () {
+                              Get.to(WebViewWidget(
+                                url: data.content!.link,
+                                showAppbar: true,
+                              ));
+                            },
+                            child: Stack(
+                              children: [
+                                CacheImageWidget(
+                                  imageUrl: data.headerMultimedia,
+                                  color: Colors.black38,
+                                  colorBlendMode: BlendMode.darken,
+                                ),
+                                Positioned(
+                                  bottom: 10.0,
+                                  left: 20,
+                                  child: SizedBox(
+                                    width: width(context)! * 0.9,
+                                    child: Text(
+                                      data.title!,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: themeTextStyle(
+                                        context: context,
+                                        tColor: whiteColor,
+                                        fsize: ksmallFont(context),
+                                        fweight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           );
                         },
                       ),

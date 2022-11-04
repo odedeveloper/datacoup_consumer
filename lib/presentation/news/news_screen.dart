@@ -30,7 +30,7 @@ class NewsScreen extends StatelessWidget {
               child: const TrendingVideosWidget(),
             ),
             SizedBox(
-              height: height(context)! * 0.8,
+              height: height(context)! * 0.75,
               child: const SocialMediaFeedWidget(),
             ),
           ],

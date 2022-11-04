@@ -22,7 +22,7 @@ class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
     newsModel = await newsController.getAllNews(
       type: StringConst.socialFeedtype,
       count: newsController.newsOfDayCount.value,
-      lastEvaluatedKey: null,
+    
     );
     newsController.socialMediaLoader(false);
   }

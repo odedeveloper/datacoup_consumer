@@ -14,9 +14,8 @@ class NewsScreenAppBar extends StatelessWidget {
       leading: Row(
         children: [
           const SizedBox(width: 10),
-          FaIcon(
+          const FaIcon(
             FontAwesomeIcons.locationDot,
-            color: darkGreyColor,
             size: 22,
           ),
           const SizedBox(width: 5),

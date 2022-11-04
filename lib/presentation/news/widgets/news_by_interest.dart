@@ -24,7 +24,6 @@ class _NewsByInterestState extends State<NewsByInterest> {
     newsModel = await newsController.getAllNews(
       type: newsController.selectedkeyInterest.value,
       count: newsController.newsOfDayCount.value,
-      lastEvaluatedKey: null,
     );
     newsController.interestNewsLoader(false);
   }

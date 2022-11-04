@@ -1,8 +1,8 @@
 import 'package:datacoup/export.dart';
 
 class NewsCardWidget extends StatelessWidget {
-  const NewsCardWidget({super.key, required this.data});
-
+  const NewsCardWidget({super.key, required this.data, this.imageHeight});
+  final double? imageHeight;
   final Item? data;
 
   String timeAgo(DateTime d) {
@@ -30,71 +30,79 @@ class NewsCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width(context)! * 0.45,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kBorderRadius),
-          color: Theme.of(context).appBarTheme.backgroundColor,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black45,
-              spreadRadius: 0.2,
-              blurRadius: 0.2,
-            )
-          ]),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
+    return InkWell(
+      onTap: () {
+        Get.to(WebViewWidget(
+          url: data!.content!.link,
+          showAppbar: true,
+        ));
+      },
+      child: Container(
+        width: width(context)! * 0.45,
+        decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kBorderRadius),
-            child: CacheImageWidget(
-              imageUrl: data!.headerMultimedia,
-              imgheight: height(context)! * 0.11,
+            color: Theme.of(context).appBarTheme.backgroundColor,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black45,
+                spreadRadius: 0.2,
+                blurRadius: 0.2,
+              )
+            ]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(kBorderRadius),
+              child: CacheImageWidget(
+                imageUrl: data!.headerMultimedia,
+                imgheight: imageHeight ?? height(context)! * 0.11,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  data!.title!,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: themeTextStyle(
-                    context: context,
-                    fsize: kminiFont(context),
-                    fweight: FontWeight.w600,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    data!.title!,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: themeTextStyle(
+                      context: context,
+                      fsize: kminiFont(context),
+                      fweight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  timeAgo(data!.timeStamp!),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: themeTextStyle(
-                    context: context,
-                    fweight: FontWeight.w600,
-                    fsize: kminiFont(context),
-                    tColor: Theme.of(context).primaryColor.withOpacity(0.4),
+                  const SizedBox(height: 5),
+                  Text(
+                    timeAgo(data!.timeStamp!),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: themeTextStyle(
+                      context: context,
+                      fweight: FontWeight.w600,
+                      fsize: kminiFont(context),
+                      tColor: Theme.of(context).primaryColor.withOpacity(0.4),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  "by ${data!.content!.creator}",
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: themeTextStyle(
-                    context: context,
-                    fweight: FontWeight.w500,
-                    fsize: kminiFont(context),
-                    tColor: Theme.of(context).primaryColor.withOpacity(0.4),
+                  const SizedBox(height: 5),
+                  Text(
+                    "by ${data!.content!.creator}",
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: themeTextStyle(
+                      context: context,
+                      fweight: FontWeight.w500,
+                      fsize: kminiFont(context),
+                      tColor: Theme.of(context).primaryColor.withOpacity(0.4),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
