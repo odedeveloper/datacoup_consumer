@@ -84,7 +84,7 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Get.to(WebViewWidget(
+                                    Get.to(()=>WebViewWidget(
                                       url: data.content!.link,
                                       showAppbar: true,
                                     ));

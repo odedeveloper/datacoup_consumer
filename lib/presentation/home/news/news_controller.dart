@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:datacoup/export.dart';
 
 class NewsController extends GetxController {
@@ -15,6 +14,10 @@ class NewsController extends GetxController {
   RxString selectedzipCode = ''.obs;
   RxString selectedkeyInterest = 'Awareness_Article'.obs;
   RxString selectedkeyInterestforVideo = 'Awareness_Article'.obs;
+  RxString selectedkeyInterestforReelVideo = 'Awareness_Article'.obs;
+  RxString selectedReelVideoType = 'Videos'.obs;
+  RxString selectedReelVideoChannels = 'YouTube'.obs;
+  RxString selectedReelVideoTrending = ''.obs;
   RxInt newsOfDayCount = 5.obs;
   RxBool newsOfDayLoader = true.obs;
   RxBool videoOfDayLoader = true.obs;
@@ -22,7 +25,11 @@ class NewsController extends GetxController {
   RxBool trendingVideoLoader = true.obs;
   RxBool socialMediaLoader = true.obs;
   RxBool interestNewsLoader = true.obs;
+  RxBool favouriteLoader = true.obs;
+  RxBool reelVideosLoader = true.obs;
   String? lastEvaluatedKey;
+
+  RxList<Item> allFavouriteNewsItem = <Item>[].obs;
 
   List<String> keyInterestAreas = [
     "Awareness_Article",
@@ -31,6 +38,11 @@ class NewsController extends GetxController {
     "Security_Article",
     "Protect yourself_Article"
   ];
+
+  List<String> favouriteTypes = ["Articles", "Photos", "Videos"];
+  List<String> reelVideosTypes = ["Videos"];
+  List<String> reelVideosChannels = ["YouTube"];
+  List<String> reelVideosTrendingTypes = ["GDPA", "CCPA"];
 
   Future<NewsModel?> getAllNews(
       {required String? type, required int? count}) async {
@@ -55,6 +67,28 @@ class NewsController extends GetxController {
     } catch (e) {
       log("$e");
       return null;
+    }
+  }
+
+  Future getAllFavouriteNes({required bool? type, required int? count}) async {
+    try {
+      NewsModel? newsModel = await apiRepositoryInterface.getFavouriteNews(
+        type: type,
+        count: count,
+        lastEvaluatedKey: lastEvaluatedKey,
+      );
+
+      // if (newsModel!.lastEvaluatedKey != null) {
+      //   lastEvaluatedKey = newsModel.lastEvaluatedKey;
+      // }
+      for (var element in newsModel!.items!) {
+        if (element.isFavourite == false) {
+          element.isFavourite = true;
+        }
+      }
+      allFavouriteNewsItem.addAll(newsModel.items!);
+    } catch (e) {
+      log("$e");
     }
   }
 }

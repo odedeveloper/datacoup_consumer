@@ -33,7 +33,6 @@ class _TrendingVideosWidgetState extends State<TrendingVideosWidget> {
       newsModel = await newsController.getAllNews(
         type: getRandomCategory(),
         count: newsController.newsOfDayCount.value,
-        
       );
       newsController.trendingVideoLoader(false);
     });
@@ -71,12 +70,21 @@ class _TrendingVideosWidgetState extends State<TrendingVideosWidget> {
         Expanded(
           child: Obx(
             () => newsController.trendingVideoLoader.value
-                ? const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: ShimmerBox(
-                        height: double.infinity,
-                        width: double.infinity,
-                        radius: 0),
+                ? ListView.separated(
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 10),
+                    padding:
+                        const EdgeInsets.only(left: 12, right: 12, bottom: 27),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    itemBuilder: (context, index) => Container(
+                      width: width(context)! * 0.5,
+                      padding: const EdgeInsets.all(8.0),
+                      child: const ShimmerBox(
+                          height: double.infinity,
+                          width: double.infinity,
+                          radius: 12),
+                    ),
                   )
                 : newsModel == null
                     ? Center(

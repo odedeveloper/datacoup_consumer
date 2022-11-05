@@ -32,6 +32,7 @@ class Item {
     this.headerMultimedia,
     this.source,
     this.timeStamp,
+    this.isFavourite = false,
     this.description,
     this.newsId,
     this.title,
@@ -43,6 +44,7 @@ class Item {
   String? headerMultimedia;
   String? source;
   DateTime? timeStamp;
+  bool? isFavourite;
   String? description;
   String? newsId;
   String? title;

@@ -118,6 +118,7 @@ class NewsScreenAppBar extends StatelessWidget {
                         backgroundColor: Colors.grey,
                         child: CircleAvatar(
                           radius: 16,
+                          backgroundColor: Colors.grey,
                           backgroundImage: NetworkImage(user!.profileImage!),
                         ),
                       ),

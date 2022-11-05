@@ -21,7 +21,14 @@ class ProfileScreen extends StatelessWidget {
       final user = controller.user?.value;
       return Scaffold(
         appBar: AppBar(
-          title: const Text("Profile"),
+          centerTitle: true,
+          title: Text(
+            "Profile",
+            style: themeTextStyle(
+              context: context,
+              fweight: FontWeight.bold,
+            ),
+          ),
         ),
         body: user?.profileImage != null
             ? Center(

@@ -1,6 +1,8 @@
 import 'package:datacoup/export.dart';
 import 'dart:io';
 
+import 'package:datacoup/presentation/home/quiz/quiz_screen.dart';
+
 class HomeScreen extends GetWidget<HomeController> {
   const HomeScreen({super.key});
 
@@ -15,13 +17,9 @@ class HomeScreen extends GetWidget<HomeController> {
                 index: controller.onIndexSelected.value,
                 children: [
                   const NewsScreen(),
-                  Center(
-                    child: Text("${controller.onIndexSelected.value}"),
-                  ),
-                  const CartScreen(),
-                  Center(
-                    child: Text("${controller.onIndexSelected.value}"),
-                  ),
+                  const FavouriteScreen(),
+                  const QuizScreen(),
+                  const VideoReelsScreen(),
                   ProfileScreen(),
                 ],
               ),
@@ -45,7 +43,6 @@ class AppBottomNavgationBar extends StatelessWidget {
   final int index;
   final ValueChanged<int> onIndexSelected;
   final controller = Get.find<HomeController>();
-  final cartController = Get.find<CartController>();
   AppBottomNavgationBar({
     Key? key,
     required this.index,
@@ -54,9 +51,19 @@ class AppBottomNavgationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      decoration: BoxDecoration(
+          color: Theme.of(context).appBarTheme.backgroundColor,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black45,
+              blurRadius: 0.3,
+              spreadRadius: 0.3,
+              offset: Offset(0.3, 0.8),
+            ),
+          ]),
       padding: Platform.isAndroid
-          ? EdgeInsets.zero
+          ? const EdgeInsets.only(top: 5, bottom: 2)
           : const EdgeInsets.only(top: 5, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -65,35 +72,35 @@ class AppBottomNavgationBar extends StatelessWidget {
             onClicked: () => onIndexSelected(0),
             iconData: FontAwesomeIcons.house,
             color: controller.onIndexSelected.value == 0
-                ? Colors.red
+                ? deepOrangeColor
                 : Colors.grey,
           ),
           bottomNavButtons(
             onClicked: () => onIndexSelected(1),
             iconData: FontAwesomeIcons.solidHeart,
             color: controller.onIndexSelected.value == 1
-                ? Colors.red
+                ? deepOrangeColor
                 : Colors.grey,
           ),
           bottomNavButtons(
             onClicked: () => onIndexSelected(2),
             iconData: FontAwesomeIcons.solidLightbulb,
             color: controller.onIndexSelected.value == 2
-                ? Colors.red
+                ? deepOrangeColor
                 : Colors.grey,
           ),
           bottomNavButtons(
             onClicked: () => onIndexSelected(3),
             iconData: FontAwesomeIcons.play,
             color: controller.onIndexSelected.value == 3
-                ? Colors.red
+                ? deepOrangeColor
                 : Colors.grey,
           ),
           bottomNavButtons(
             onClicked: () => onIndexSelected(4),
             iconData: FontAwesomeIcons.solidUser,
             color: controller.onIndexSelected.value == 4
-                ? Colors.red
+                ? deepOrangeColor
                 : Colors.grey,
           ),
         ],

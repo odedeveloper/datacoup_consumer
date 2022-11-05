@@ -15,4 +15,9 @@ abstract class ApiRepositoryInterface {
     required String? lastEvaluatedKey,
     required Location? location,
   });
+  Future<NewsModel?> getFavouriteNews({
+    required bool? type,
+    required int? count,
+    required String? lastEvaluatedKey,
+  });
 }

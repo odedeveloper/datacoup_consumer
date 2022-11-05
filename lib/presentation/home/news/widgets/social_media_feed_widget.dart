@@ -22,7 +22,6 @@ class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
     newsModel = await newsController.getAllNews(
       type: StringConst.socialFeedtype,
       count: newsController.newsOfDayCount.value,
-    
     );
     newsController.socialMediaLoader(false);
   }
@@ -73,8 +72,33 @@ class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
                               itemBuilder: (context, index) {
                                 return ClipRRect(
                                   borderRadius: BorderRadius.circular(12),
-                                  child: WebViewWidget(
-                                    url: newsModel!.items![index].content!.link,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.to(
+                                        () => WebViewWidget(
+                                          showAppbar: true,
+                                          url: newsModel!.items![index].content!
+                                                      .creator ==
+                                                  "Twitter"
+                                              ? 'https://twitter.com/${newsModel!.items![index].content!.link}'
+                                              : newsModel!
+                                                  .items![index].content!.link,
+                                        ),
+                                      );
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        WebViewWidget(
+                                          url: newsModel!.items![index].content!
+                                                      .creator ==
+                                                  "Twitter"
+                                              ? 'https://twitter.com/${newsModel!.items![index].content!.link}'
+                                              : newsModel!
+                                                  .items![index].content!.link,
+                                        ),
+                                        Container(color: Colors.transparent)
+                                      ],
+                                    ),
                                   ),
                                 );
                               },

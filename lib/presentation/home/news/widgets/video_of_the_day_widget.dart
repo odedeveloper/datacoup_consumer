@@ -23,7 +23,6 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
       newsModel = await newsController.getAllNews(
         type: StringConst.videoOfTheDay,
         count: newsController.newsOfDayCount.value,
-        
       );
       newsController.videoOfDayLoader(false);
     });
@@ -85,10 +84,10 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
                           final data = newsModel!.items![index];
                           return InkWell(
                             onTap: () {
-                              Get.to(WebViewWidget(
-                                url: data.content!.link,
-                                showAppbar: true,
-                              ));
+                              Get.to(() => WebViewWidget(
+                                    url: data.content!.link,
+                                    showAppbar: true,
+                                  ));
                             },
                             child: Stack(
                               children: [

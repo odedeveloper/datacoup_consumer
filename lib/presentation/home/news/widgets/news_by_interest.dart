@@ -48,7 +48,7 @@ class _NewsByInterestState extends State<NewsByInterest> {
                   await loadData();
                 },
                 child: Container(
-                  width: width(context)! * 0.35,
+                  width: width(context)! * 0.3,
                   decoration: BoxDecoration(
                       color: newsController.selectedkeyInterest.value ==
                               newsController.keyInterestAreas[index]
@@ -68,8 +68,8 @@ class _NewsByInterestState extends State<NewsByInterest> {
                           .replaceAll("_Article", ""),
                       style: themeTextStyle(
                         context: context,
-                        fsize: kminiFont(context)! + 1,
-                        fweight: FontWeight.bold,
+                        fsize: kminiFont(context),
+                        fweight: FontWeight.w700,
                         tColor: newsController.selectedkeyInterest.value ==
                                 newsController.keyInterestAreas[index]
                             ? whiteColor
@@ -84,12 +84,20 @@ class _NewsByInterestState extends State<NewsByInterest> {
           Expanded(
             flex: 9,
             child: newsController.interestNewsLoader.value
-                ? const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: ShimmerBox(
-                        height: double.infinity,
-                        width: double.infinity,
-                        radius: 0),
+                ? ListView.separated(
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 10),
+                    padding:
+                        const EdgeInsets.only(left: 12, right: 12, bottom: 27),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 3,
+                    itemBuilder: (context, index) => SizedBox(
+                      width: width(context)! * 0.5,
+                      child: const ShimmerBox(
+                          height: double.infinity,
+                          width: double.infinity,
+                          radius: 12),
+                    ),
                   )
                 : newsModel == null
                     ? Center(

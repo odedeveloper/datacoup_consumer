@@ -1,5 +1,5 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/news/news_controller.dart';
+import 'package:datacoup/presentation/home/news/news_controller.dart';
 
 class NewsBindings extends Bindings {
   @override

@@ -166,4 +166,21 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       return null;
     }
   }
+
+  @override
+  Future<NewsModel?> getFavouriteNews(
+      {required bool? type,
+      required int? count,
+      required String? lastEvaluatedKey}) async {
+    try {
+      final response =
+          await DioInstance().dio.get(favouriteNewsUrl(count: count));
+
+      NewsModel? newsModel = NewsModel.fromJson(response.data);
+      return newsModel;
+    } catch (e) {
+      log("error to get fav and unfav news type =$type, =$e");
+      return null;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/authentication/signup/verify_otp_screen.dart';
-import 'package:datacoup/presentation/news/news_binding.dart';
+import 'package:datacoup/presentation/home/news/news_binding.dart';
 import 'package:datacoup/presentation/videos/videos_screen.dart';
 
 class AppRoutes {

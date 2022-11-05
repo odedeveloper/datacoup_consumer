@@ -9,9 +9,5 @@ class HomeBinding extends Bindings {
         apiRepositoryInterface: Get.find(),
       ),
     );
-
-    Get.lazyPut(
-      () => CartController(),
-    );
   }
 }
