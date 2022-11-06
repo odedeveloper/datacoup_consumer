@@ -183,4 +183,15 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       return null;
     }
   }
+
+  @override
+  Future<String?> postFavouriteNews({String? newsId, bool? isLiked}) async {
+    try {
+      final uri = isLiked! ? favouriteNews : unfavouriteNews;
+      await DioInstance().dio.post(uri, data: {'newsId': newsId});
+    } catch (e) {
+      log("error on post fav news $e");
+    }
+    return null;
+  }
 }

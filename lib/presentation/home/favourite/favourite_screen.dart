@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
@@ -17,10 +16,10 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     super.initState();
   }
 
-  loadData() async {
+  loadData({int? token}) async {
     await newsController.getAllFavouriteNes(
       type: true,
-      count: newsController.newsOfDayCount.value,
+      count: token ?? newsController.newsOfDayCount.value,
     );
     newsController.favouriteLoader(false);
   }
@@ -73,7 +72,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       itemCount: 8,
                       itemBuilder: (context, index) {
                         return SizedBox(
-                          height: height(context)! * 0.2,
+                          height: height(context)! * 0.3,
                           width: width(context)! * 0.5,
                           child: const ShimmerBox(
                               height: double.infinity,
@@ -82,13 +81,18 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                         );
                       },
                     )
-                  : MasonryGridView.count(
+                  : ListView.separated(
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 10,
+                      ),
                       itemCount: newsController.allFavouriteNewsItem.length,
                       padding: const EdgeInsets.all(12),
-                      crossAxisCount: 1,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
                       itemBuilder: (context, index) {
+                        // if (index ==
+                        //     newsController.allFavouriteNewsItem.length - 2) {
+                        //   loadData(
+                        //       token: newsController.newsOfDayCount.value + 5);
+                        // }
                         return NewsCardWidget(
                           data: newsController.allFavouriteNewsItem[index],
                           imageHeight: height(context)! * 0.2,

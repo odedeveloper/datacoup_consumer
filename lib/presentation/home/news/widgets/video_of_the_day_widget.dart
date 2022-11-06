@@ -34,8 +34,8 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
       () => newsController.videoOfDayLoader.value
           ? const Padding(
               padding: EdgeInsets.all(8.0),
-              child: ShimmerBox(
-                  height: double.infinity, width: double.infinity, radius: 0),
+              child:
+                  ShimmerBox(height: double.infinity, width: double.infinity),
             )
           : newsModel == null
               ? Center(
@@ -86,6 +86,7 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
                             onTap: () {
                               Get.to(() => WebViewWidget(
                                     url: data.content!.link,
+                                    data: data,
                                     showAppbar: true,
                                   ));
                             },

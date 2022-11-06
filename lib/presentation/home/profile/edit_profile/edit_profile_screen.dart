@@ -185,6 +185,116 @@ import 'package:datacoup/export.dart';
 //   }
 // }
 
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  final controller = Get.find<HomeController>();
+
+  @override
+  void initState() {
+    loadData();
+    super.initState();
+  }
+
+  loadData() {
+    controller.fnameTextContoller.text = controller.user!.value.firstName!;
+    controller.lnaemTextContoller.text = controller.user!.value.lastName!;
+    controller.emailTextContoller.text = controller.user!.value.email!;
+    controller.mobileTextContoller.text = controller.user!.value.mobile!;
+    controller.profileLoader(false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "Edit Profile",
+          style: themeTextStyle(
+            context: context,
+            fweight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: Obx(
+        () => controller.profileLoader.value
+            ? ListView.separated(
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 10),
+                padding: const EdgeInsets.all(12),
+                itemCount: 8,
+                itemBuilder: (context, index) => SizedBox(
+                  height: height(context)! * 0.15,
+                  width: double.infinity,
+                  child: const ShimmerBox(
+                      height: double.infinity,
+                      width: double.infinity,
+                      radius: 12),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 10),
+                      CircleAvatar(
+                        radius: width(context)! * 0.15,
+                        backgroundImage:
+                            NetworkImage(controller.user!.value.profileImage!),
+                        backgroundColor: Colors.grey,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "Select Profile Photo",
+                        style: themeTextStyle(
+                          context: context,
+                          tColor: redOpacityColor,
+                        ),
+                      ),
+                      const SizedBox(height: 50),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomLoginTextField(
+                              controller: controller.fnameTextContoller,
+                              label: "First Name",
+                            ),
+                          ),
+                          Expanded(
+                            child: CustomLoginTextField(
+                              controller: controller.lnaemTextContoller,
+                              label: "Last Name",
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      CustomLoginTextField(
+                        controller: controller.emailTextContoller,
+                        label: "Email",
+                      ),
+                      const SizedBox(height: 20),
+                      CustomLoginTextField(
+                        controller: controller.mobileTextContoller,
+                        label: "Phone Number",
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+      ),
+    );
+  }
+}
+
 class LightLabelWidget extends StatelessWidget {
   final String? label;
   final double? fontsize;

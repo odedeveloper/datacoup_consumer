@@ -33,7 +33,7 @@ class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
           ? const Padding(
               padding: EdgeInsets.all(8.0),
               child: ShimmerBox(
-                  height: double.infinity, width: double.infinity, radius: 0),
+                  height: double.infinity, width: double.infinity),
             )
           : newsModel == null
               ? Center(
@@ -77,6 +77,7 @@ class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
                                       Get.to(
                                         () => WebViewWidget(
                                           showAppbar: true,
+                                          data: newsModel!.items![index],
                                           url: newsModel!.items![index].content!
                                                       .creator ==
                                                   "Twitter"
@@ -89,6 +90,9 @@ class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
                                     child: Stack(
                                       children: [
                                         WebViewWidget(
+                                          showAppbar: false,
+                                          showFav: false,
+                                          data: newsModel!.items![index],
                                           url: newsModel!.items![index].content!
                                                       .creator ==
                                                   "Twitter"

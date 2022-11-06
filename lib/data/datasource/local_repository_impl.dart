@@ -6,8 +6,10 @@ const _idToken = "idToken";
 class LocalRepositoryImpl extends LocalRepositoryInterface {
   @override
   Future<void> clearAllData() async {
+    GetStorage deviceStorage = GetStorage();
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.clear();
+    deviceStorage.erase();
   }
 
   @override
@@ -27,5 +29,4 @@ class LocalRepositoryImpl extends LocalRepositoryInterface {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool(_prefDarkTheme, darkmode!);
   }
-
 }

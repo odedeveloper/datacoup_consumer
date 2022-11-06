@@ -30,8 +30,7 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
   Widget build(BuildContext context) {
     return Obx(
       () => newsController.newsOfDayLoader.value
-          ? const ShimmerBox(
-              height: double.infinity, width: double.infinity, radius: 0)
+          ? const ShimmerBox(height: double.infinity, width: double.infinity)
           : PageView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: newsModel!.items!.length,
@@ -84,10 +83,11 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Get.to(()=>WebViewWidget(
-                                      url: data.content!.link,
-                                      showAppbar: true,
-                                    ));
+                                    Get.to(() => WebViewWidget(
+                                          data: data,
+                                          url: data.content!.link,
+                                          showAppbar: true,
+                                        ));
                                   },
                                   child: Text(
                                     "Learn more",

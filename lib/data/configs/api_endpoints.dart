@@ -4,8 +4,8 @@ import 'package:datacoup/domain/model/news_model.dart';
 
 const String fetchUserProfileUrl = 'user/profile';
 const String createUserProfileUrl = 'user/profile';
-// const String favouriteNewsUrl = 'user/favourite';
-const String unFavouriteNewsUrl = 'user/unfavourite';
+const String favouriteNews = 'user/favourite';
+const String unfavouriteNews = 'user/unfavourite';
 
 String newsVideoListUrl(
     {String? type, int? count, String? lastEvaluatedKey, Location? location}) {
@@ -17,6 +17,6 @@ String newsVideoListUrl(
   }
 }
 
-String favouriteNewsUrl({ int? count, String? lastEvaluatedKey}) {
+String favouriteNewsUrl({int? count, String? lastEvaluatedKey}) {
   return "user/favourite?count=$count";
 }

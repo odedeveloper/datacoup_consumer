@@ -18,7 +18,7 @@ class NewsController extends GetxController {
   RxString selectedReelVideoType = 'Videos'.obs;
   RxString selectedReelVideoChannels = 'YouTube'.obs;
   RxString selectedReelVideoTrending = ''.obs;
-  RxInt newsOfDayCount = 5.obs;
+  RxInt newsOfDayCount = 50.obs;
   RxBool newsOfDayLoader = true.obs;
   RxBool videoOfDayLoader = true.obs;
   RxBool interestVideoLoader = true.obs;
@@ -68,6 +68,19 @@ class NewsController extends GetxController {
       log("$e");
       return null;
     }
+  }
+
+  Future likeAndUnlikeNews({bool? isLiked, Item? data}) async {
+    if (isLiked == true) {
+      data!.isFavourite = true;
+      allFavouriteNewsItem.insert(0, data);
+    } else {
+      data!.isFavourite = false;
+      allFavouriteNewsItem
+          .removeWhere((element) => element.newsId == data.newsId);
+    }
+    await apiRepositoryInterface.postFavouriteNews(
+        isLiked: isLiked, newsId: data.newsId);
   }
 
   Future getAllFavouriteNes({required bool? type, required int? count}) async {

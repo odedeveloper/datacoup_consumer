@@ -56,9 +56,9 @@ class AppBottomNavgationBar extends StatelessWidget {
           color: Theme.of(context).appBarTheme.backgroundColor,
           boxShadow: const [
             BoxShadow(
-              color: Colors.black45,
-              blurRadius: 0.3,
-              spreadRadius: 0.3,
+              color: Colors.black,
+              blurRadius: 0.5,
+              spreadRadius: 0.5,
               offset: Offset(0.3, 0.8),
             ),
           ]),

@@ -6,7 +6,16 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 class WebViewWidget extends StatelessWidget {
   final String? url;
   final bool? showAppbar;
-  const WebViewWidget({super.key, this.showAppbar = false, this.url});
+  final bool? showFav;
+  final Item? data;
+  WebViewWidget(
+      {super.key,
+      this.showFav = true,
+      this.showAppbar = false,
+      this.url,
+      required this.data});
+
+  final newsController = Get.find<NewsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +33,31 @@ class WebViewWidget extends StatelessWidget {
           log('page loaded on => $url');
         },
       ),
+      floatingActionButton: showFav!
+          ? Obx(
+              () => FloatingActionButton(
+                onPressed: () {
+                  newsController.likeAndUnlikeNews(
+                    data: data,
+                    isLiked: newsController.allFavouriteNewsItem
+                            .any((element) => element.newsId == data!.newsId)
+                        ? false
+                        : true,
+                  );
+                },
+                child: FaIcon(
+                  newsController.allFavouriteNewsItem
+                          .any((element) => element.newsId == data!.newsId)
+                      ? FontAwesomeIcons.solidHeart
+                      : FontAwesomeIcons.heart,
+                  color: newsController.allFavouriteNewsItem
+                          .any((element) => element.newsId == data!.newsId)
+                      ? redOpacityColor
+                      : Colors.white,
+                ),
+              ),
+            )
+          : null,
     );
   }
 }

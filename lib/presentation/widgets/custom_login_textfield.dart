@@ -35,7 +35,7 @@ class CustomLoginTextField extends StatelessWidget {
               context: context,
               letterSpacing: 0.9,
               fontFamily: AssetConst.ralewayFont,
-              tColor: Colors.grey[400],
+              tColor: Theme.of(context).primaryColor.withOpacity(0.6),
               fweight: FontWeight.w500,
             ),
           ),
@@ -49,13 +49,11 @@ class CustomLoginTextField extends StatelessWidget {
                           contentPadding: const EdgeInsets.only(top: 15),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondary
-                                    .withOpacity(0.2)),
+                                color: Theme.of(context).primaryColor),
                           ),
-                          focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.cyan),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor),
                           ),
                         ),
                         child: InkWell(
@@ -96,13 +94,12 @@ class CustomLoginTextField extends StatelessWidget {
                     contentPadding: const EdgeInsets.only(top: 15),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .secondary
-                              .withOpacity(0.2)),
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.2)),
                     ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.cyan),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor),
                     ),
                     suffixIcon: showEye!
                         ? IconButton(

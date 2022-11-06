@@ -7,6 +7,14 @@ class HomeController extends GetxController {
   Rx<User>? user = User.empty().obs;
   RxInt onIndexSelected = 0.obs;
   RxBool darkTheme = false.obs;
+  RxBool profileLoader = true.obs;
+
+  final fnameTextContoller = TextEditingController();
+  final lnaemTextContoller = TextEditingController();
+  final emailTextContoller = TextEditingController();
+  final mobileTextContoller = TextEditingController();
+  final phoneNumberTextContoller = TextEditingController();
+  final passwordTextContoller = TextEditingController();
 
   HomeController({
     required this.localRepositoryInterface,

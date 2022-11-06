@@ -20,4 +20,5 @@ abstract class ApiRepositoryInterface {
     required int? count,
     required String? lastEvaluatedKey,
   });
+  Future<String?> postFavouriteNews({String? newsId, bool? isLiked});
 }

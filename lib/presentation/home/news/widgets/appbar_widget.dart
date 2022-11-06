@@ -109,20 +109,36 @@ class NewsScreenAppBar extends StatelessWidget {
                     ),
               const SizedBox(width: 5),
               InkWell(
-                onTap: () {},
-                child: user?.profileImage == null
-                    ? const CircleAvatar(
-                        radius: 18, backgroundColor: Colors.grey)
-                    : CircleAvatar(
-                        radius: 18,
-                        backgroundColor: Colors.grey,
-                        child: CircleAvatar(
-                          radius: 16,
+                  onTap: () {},
+                  child: user!.profileImage == null
+                      ? CircleAvatar(
+                          radius: 18,
                           backgroundColor: Colors.grey,
-                          backgroundImage: NetworkImage(user!.profileImage!),
-                        ),
-                      ),
-              ),
+                          child: FaIcon(
+                            FontAwesomeIcons.solidUser,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        )
+                      : user.profileImage!.contains("jpg") ||
+                              user.profileImage!.contains("png")
+                          ? CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.grey,
+                              child: CircleAvatar(
+                                radius: 16,
+                                backgroundColor: Colors.grey,
+                                backgroundImage:
+                                    NetworkImage(user.profileImage!),
+                              ),
+                            )
+                          : CircleAvatar(
+                              radius: 18,
+                              backgroundColor: Colors.grey,
+                              child: FaIcon(
+                                FontAwesomeIcons.solidUser,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            )),
               const SizedBox(width: 10),
             ],
           );

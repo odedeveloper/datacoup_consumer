@@ -15,6 +15,8 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
 
   final vrController = Get.find<VideoReelsController>();
 
+  final newsController = Get.find<NewsController>();
+
   YoutubePlayerController? controller;
   YoutubePlayer? ytController;
   var player = const YoutubePlayer();
@@ -75,70 +77,92 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
       controller: controller!,
       aspectRatio: 9 / 16,
       builder: (context, player) {
-        return Scaffold(
-          backgroundColor: Colors.black,
-          body: Stack(
-            children: [
-              player,
-              Positioned(
-                left: 10.0,
-                bottom: 190.0,
-                child: textTile(
-                  context: context,
-                  data: widget.videoDetail!.content!.creator!,
-                ),
-              ),
-              Positioned(
-                left: 10.0,
-                bottom: 155.0,
-                child: textTile(
-                  context: context,
-                  data: timeAgo(widget.videoDetail!.timeStamp!),
-                ),
-              ),
-              Positioned(
-                left: 10.0,
-                bottom: 120.0,
-                child: textTile(
-                  context: context,
-                  data: widget.videoDetail!.newsType,
-                ),
-              ),
-              Container(
-                height: double.infinity,
-                width: double.infinity,
-                color: Colors.transparent,
-              ),
-              Positioned(
-                right: 10.0,
-                bottom: 150,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.heart,
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.black,
+            body: Stack(
+              children: [
+                player,
+                Positioned(
+                  left: 10.0,
+                  bottom: 190.0,
+                  child: textTile(
+                    context: context,
+                    data: widget.videoDetail!.content!.creator!,
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Obx(
-                  () => IconButton(
-                    onPressed: () {
-                      if (vrController.isVideoPlaying.value == true) {
-                        controller!.pauseVideo();
-                      } else {
-                        controller!.playVideo();
-                      }
-                    },
-                    icon: FaIcon(
-                      vrController.isVideoPlaying.value
-                          ? FontAwesomeIcons.pause
-                          : FontAwesomeIcons.play,
+                Positioned(
+                  left: 10.0,
+                  bottom: 155.0,
+                  child: textTile(
+                    context: context,
+                    data: timeAgo(widget.videoDetail!.timeStamp!),
+                  ),
+                ),
+                Positioned(
+                  left: 10.0,
+                  bottom: 120.0,
+                  child: textTile(
+                    context: context,
+                    data: widget.videoDetail!.newsType,
+                  ),
+                ),
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: Colors.transparent,
+                ),
+                Positioned(
+                    right: 20.0,
+                    bottom: 150,
+                    child: Obx(
+                      () => InkWell(
+                        onTap: () {
+                          newsController.likeAndUnlikeNews(
+                            data: widget.videoDetail,
+                            isLiked: newsController.allFavouriteNewsItem.any(
+                                    (element) =>
+                                        element.newsId ==
+                                        widget.videoDetail!.newsId)
+                                ? false
+                                : true,
+                          );
+                        },
+                        child: FaIcon(
+                          newsController.allFavouriteNewsItem.any((element) =>
+                                  element.newsId == widget.videoDetail!.newsId)
+                              ? FontAwesomeIcons.solidHeart
+                              : FontAwesomeIcons.heart,
+                          color: newsController.allFavouriteNewsItem.any(
+                                  (element) =>
+                                      element.newsId ==
+                                      widget.videoDetail!.newsId)
+                              ? redOpacityColor
+                              : Colors.white,
+                        ),
+                      ),
+                    )),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Obx(
+                    () => IconButton(
+                      onPressed: () {
+                        if (vrController.isVideoPlaying.value == true) {
+                          controller!.pauseVideo();
+                        } else {
+                          controller!.playVideo();
+                        }
+                      },
+                      icon: FaIcon(
+                        vrController.isVideoPlaying.value
+                            ? FontAwesomeIcons.pause
+                            : FontAwesomeIcons.play,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },

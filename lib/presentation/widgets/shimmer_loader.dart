@@ -1,14 +1,15 @@
+import 'package:datacoup/presentation/utils/constants/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerBox extends StatelessWidget {
-  final double height, width, radius;
-  const ShimmerBox(
-      {Key? key,
-      required this.height,
-      required this.width,
-      required this.radius})
-      : super(key: key);
+  final double? height, width, radius;
+  const ShimmerBox({
+    Key? key,
+    this.height,
+    this.width,
+    this.radius,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ShimmerBox extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.grey.shade300.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(radius ?? kBorderRadius),
         ),
         height: height,
         width: width,
