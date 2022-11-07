@@ -77,6 +77,7 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                             child: IconButton(
                               onPressed: () {
+                                controller.showSaveButton(false);
                                 Get.to(() => const EditProfileScreen());
                               },
                               icon: const FaIcon(
@@ -131,13 +132,8 @@ class ProfileScreen extends StatelessWidget {
                                           materialTapTargetSize:
                                               MaterialTapTargetSize.padded,
                                           onChanged: onThemeUpdated,
+                                          activeColor: deepOrangeColor,
                                           inactiveTrackColor: Colors.grey,
-                                          // activeThumbImage: const AssetImage(
-                                          //   "assets/images/light-mode.png",
-                                          // ),
-                                          // inactiveThumbImage: const AssetImage(
-                                          //   "assets/images/dark-mode.png",
-                                          // ),
                                         ),
                                       ),
                                     ),
@@ -163,19 +159,19 @@ class ProfileScreen extends StatelessWidget {
                               const SizedBox(height: 20),
                               tileWithIcon(
                                 context,
-                                icon: FontAwesomeIcons.language,
+                                icon: Icons.privacy_tip_outlined,
                                 title: "Policy and guidelines",
                               ),
                               const SizedBox(height: 20),
                               tileWithIcon(
                                 context,
-                                icon: FontAwesomeIcons.moon,
+                                icon: FontAwesomeIcons.fileLines,
                                 title: "Legal",
                               ),
                               const SizedBox(height: 20),
                               tileWithIcon(
                                 context,
-                                icon: FontAwesomeIcons.bell,
+                                icon: Icons.help_center_outlined,
                                 title: "Help",
                               ),
                               const SizedBox(height: 30),

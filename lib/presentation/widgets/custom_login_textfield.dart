@@ -10,11 +10,13 @@ class CustomLoginTextField extends StatelessWidget {
       this.showData = false,
       this.signupController,
       this.loginController,
+      this.onChanged,
       this.forPhoneNumber = false,
       this.label});
   final TextEditingController? controller;
   final LoginController? loginController;
   final SignupController? signupController;
+  final Function(String)? onChanged;
   final String? label;
   final bool? showEye;
   final bool? forPhoneNumber;
@@ -80,7 +82,7 @@ class CustomLoginTextField extends StatelessWidget {
                   : const SizedBox.shrink(),
               Expanded(
                 flex: 5,
-                child: TextField(
+                child: TextFormField(
                   controller: controller,
                   obscureText: showData!,
                   style: themeTextStyle(
@@ -90,6 +92,7 @@ class CustomLoginTextField extends StatelessWidget {
                     fontFamily: AssetConst.ralewayFont,
                     fontStyle: FontStyle.normal,
                   ),
+                  onChanged: onChanged,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(top: 15),
                     enabledBorder: UnderlineInputBorder(

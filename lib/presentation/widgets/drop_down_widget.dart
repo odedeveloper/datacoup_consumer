@@ -36,6 +36,12 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         hintStyle: themeTextStyle(context: context),
         isDense: true,
         contentPadding: const EdgeInsets.symmetric(horizontal: 18),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            width: 0.6,
+            color: Theme.of(context).primaryColor.withOpacity(0.4),
+          ),
+        ),
       ),
       child: DropdownButtonHideUnderline(
         child: Theme(

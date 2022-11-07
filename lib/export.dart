@@ -5,7 +5,6 @@ export 'package:datacoup/data/configs/app_settings_config.dart';
 export 'package:datacoup/data/configs/dio_utils.dart';
 export 'package:datacoup/data/datasource/api_repository.impl.dart';
 export 'package:datacoup/data/datasource/local_repository_impl.dart';
-export 'package:datacoup/data/in_memory_products.dart';
 export 'package:datacoup/domain/exception/auth_exception.dart';
 export 'package:datacoup/domain/model/news_model.dart';
 export 'package:datacoup/domain/model/product.dart';

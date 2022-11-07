@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:datacoup/export.dart';
 
 class HomeController extends GetxController {
@@ -8,13 +10,20 @@ class HomeController extends GetxController {
   RxInt onIndexSelected = 0.obs;
   RxBool darkTheme = false.obs;
   RxBool profileLoader = true.obs;
-
+  RxBool showSaveButton = false.obs;
   final fnameTextContoller = TextEditingController();
   final lnaemTextContoller = TextEditingController();
   final emailTextContoller = TextEditingController();
   final mobileTextContoller = TextEditingController();
   final phoneNumberTextContoller = TextEditingController();
   final passwordTextContoller = TextEditingController();
+  final zipCodeTextContoller = TextEditingController();
+  RxString selectedreturnGender = ''.obs;
+  RxString selectedreturnCountry = ''.obs;
+  RxString selectedreturnState = ''.obs;
+  File? profileImage;
+
+  List<String?> genderList = ["Male", "Female", "Other"];
 
   HomeController({
     required this.localRepositoryInterface,
@@ -51,7 +60,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> logOut() async {
-    final token = await localRepositoryInterface.getToken();
+    String token = GetStorage().read("idToken") ?? "";
     await apiRepositoryInterface.logout(token);
     await localRepositoryInterface.clearAllData();
   }

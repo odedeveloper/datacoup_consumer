@@ -25,6 +25,11 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
 
   @override
   Future<User?> getUserFromToken(String? token) async {
+    String? refToken = await LocalRepositoryImpl().getRefreshToken();
+    _cognitoUser = CognitoUser('', _userPool!, storage: _userPool!.storage);
+    CognitoRefreshToken refreshToken = CognitoRefreshToken(refToken);
+    _session = (await _cognitoUser!.refreshSession(refreshToken))!;
+    log("checkign time ${_session!.getIdToken().jwtToken}");
     if (token == _session!.getIdToken().jwtToken) {
       LoginResponse? loginResponse = await fetchUserProfile();
       return loginResponse!.user;
@@ -36,24 +41,20 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   // / Check if user's current session is valid
   @override
   Future<bool> checkAuthenticated() async {
-    GetStorage deviceStorage = GetStorage();
-
-    var idTokenExp = await deviceStorage.read("idTokenExp");
-    var idTokenIAT = await deviceStorage.read("idTokenIAT");
-    var accessTokenExp = await deviceStorage.read("accessTokenExp");
-    var accessTokenIAT = await deviceStorage.read("accessTokenIAT");
-
-    if (idTokenExp == null &&
-        idTokenIAT == null &&
-        accessTokenExp == null &&
-        accessTokenIAT == null) {
+    String? token = await LocalRepositoryImpl().getIdToken();
+    try {
+      User? user = await getUserFromToken(token);
+      if (user != null) {
+        return true;
+      } else {
+        logout(token);
+        return false;
+      }
+    } catch (e) {
+      logout(token);
+      log("error in checkAuthenticate $e");
       return false;
     }
-
-    final now = (DateTime.now().millisecondsSinceEpoch / 1000).floor();
-    final adjusted = now - calculateClockDrift(idTokenIAT, accessTokenIAT);
-
-    return adjusted < accessTokenExp && adjusted < idTokenExp;
   }
 
   int calculateClockDrift(int idTokenIAT, int accessTokenIAT) {
@@ -102,8 +103,11 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     deviceStorage.write("idToken", session.getIdToken().jwtToken);
     deviceStorage.write("idTokenExp", session.getIdToken().payload['exp']);
     deviceStorage.write("idTokenIAT", session.getIdToken().payload['iat']);
+    LocalRepositoryImpl().saveIdToken(idToken: session.getIdToken().jwtToken);
     if (session.getRefreshToken() != null) {
       deviceStorage.write("refreshToken", session.getRefreshToken()?.token);
+      LocalRepositoryImpl()
+          .saveRefreshToken(refToken: session.getRefreshToken()?.token);
     }
     deviceStorage.write("accessToken", session.getAccessToken().jwtToken);
     deviceStorage.write(
@@ -119,7 +123,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       if (response.statusCode != 503) {
         Map<String, dynamic> data = Map.from(response.data);
         User? user = User.fromJson(data);
-        String? token = await LocalRepositoryImpl().getToken();
+        String? token = GetStorage().read("idToken") ?? "";
         return LoginResponse(token: token, user: user);
       } else {
         return null;
@@ -132,14 +136,9 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
 
   @override
   Future<void> logout(String? token) async {
+    await LocalRepositoryImpl().clearAllData();
     log("removing token from server $token");
     return;
-  }
-
-  @override
-  Future<List<Product>?> getProduct() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return products;
   }
 
   @override

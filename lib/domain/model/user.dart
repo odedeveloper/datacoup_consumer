@@ -31,6 +31,7 @@ class User {
     this.state,
     this.zipCode,
     this.isAdmin,
+    this.profileImageChange = false,
   });
 
   String? odenId;
@@ -45,6 +46,7 @@ class User {
   String? state;
   String? zipCode;
   bool? isAdmin;
+  bool? profileImageChange;
 
   factory User.empty() => User(
         odenId: null,
@@ -91,7 +93,6 @@ class User {
         "isAdmin": isAdmin,
       };
 }
-
 
 class MethodResponse {
   bool isSuccess;

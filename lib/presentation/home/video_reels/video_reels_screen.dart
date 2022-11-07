@@ -52,80 +52,87 @@ class _VideoReelsScreenState extends State<VideoReelsScreen> {
                       width: double.infinity,
                       radius: 12),
                 )
-              : Stack(
-                  children: [
-                    newsModel!.items!.isEmpty
-                        ? Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                FaIcon(
-                                  FontAwesomeIcons.faceFrownOpen,
-                                  size: width(context)! * 0.15,
+              : newsModel == null
+                  ? Center(
+                      child: Text(
+                        "No Data Founde",
+                        style: themeTextStyle(context: context),
+                      ),
+                    )
+                  : Stack(
+                      children: [
+                        newsModel!.items!.isEmpty
+                            ? Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.faceFrownOpen,
+                                      size: width(context)! * 0.15,
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Text(
+                                      "No Videos Found for \n${newsController.selectedkeyInterestforReelVideo.value.replaceAll("_Article", "")}",
+                                      textAlign: TextAlign.center,
+                                      style: themeTextStyle(
+                                        context: context,
+                                        fsize: klargeFont(context),
+                                        fweight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
                                 ),
-                                const SizedBox(height: 20),
-                                Text(
-                                  "No Videos Found for \n${newsController.selectedkeyInterestforReelVideo.value.replaceAll("_Article", "")}",
-                                  textAlign: TextAlign.center,
-                                  style: themeTextStyle(
-                                    context: context,
-                                    fsize: klargeFont(context),
-                                    fweight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
-                        : GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 2,
-                              crossAxisSpacing: 2,
-                              childAspectRatio: 1 / 2,
-                            ),
-                            scrollDirection: Axis.vertical,
-                            itemCount: newsModel!.items!.length,
-                            itemBuilder: (context, index) {
-                              final data = newsModel!.items![index];
-                              return InkWell(
-                                onTap: () {
-                                  Get.to(
-                                    () => VideoPlayerWidget(
-                                      startIndex: index,
-                                      items: newsModel!.items!,
+                              )
+                            : GridView.builder(
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  mainAxisSpacing: 2,
+                                  crossAxisSpacing: 2,
+                                  childAspectRatio: 1 / 2,
+                                ),
+                                scrollDirection: Axis.vertical,
+                                itemCount: newsModel!.items!.length,
+                                itemBuilder: (context, index) {
+                                  final data = newsModel!.items![index];
+                                  return InkWell(
+                                    onTap: () {
+                                      Get.to(
+                                        () => VideoPlayerWidget(
+                                          startIndex: index,
+                                          items: newsModel!.items!,
+                                        ),
+                                      );
+                                    },
+                                    child: CacheImageWidget(
+                                      imageUrl: data.headerMultimedia,
                                     ),
                                   );
                                 },
-                                child: CacheImageWidget(
-                                  imageUrl: data.headerMultimedia,
-                                ),
-                              );
-                            },
-                          ),
-                    Positioned(
-                      right: 10.0,
-                      bottom: 10.0,
-                      child: ActionChip(
-                        avatar: CircleAvatar(
-                            backgroundColor: Colors.grey.shade800,
-                            child: const FaIcon(
-                              FontAwesomeIcons.filter,
-                              size: 14,
-                            )),
-                        label: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Text(
-                            'Filter',
-                            style: themeTextStyle(
-                                context: context, tColor: Colors.black),
+                              ),
+                        Positioned(
+                          right: 10.0,
+                          bottom: 10.0,
+                          child: ActionChip(
+                            avatar: CircleAvatar(
+                                backgroundColor: Colors.grey.shade800,
+                                child: const FaIcon(
+                                  FontAwesomeIcons.filter,
+                                  size: 14,
+                                )),
+                            label: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Text(
+                                'Filter',
+                                style: themeTextStyle(
+                                    context: context, tColor: Colors.black),
+                              ),
+                            ),
+                            onPressed: filterBottomSheet,
                           ),
                         ),
-                        onPressed: filterBottomSheet,
-                      ),
+                      ],
                     ),
-                  ],
-                ),
         ),
       ),
     );

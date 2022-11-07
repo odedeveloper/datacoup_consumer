@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoginScreen extends GetWidget<LoginController> {
   const LoginScreen({super.key});
