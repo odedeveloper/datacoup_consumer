@@ -4,6 +4,7 @@ import 'package:datacoup/domain/model/news_model.dart';
 
 const String fetchUserProfileUrl = 'user/profile';
 const String createUserProfileUrl = 'user/profile';
+const String uploadImageUrl = 'user/profile/image';
 const String favouriteNews = 'user/favourite';
 const String unfavouriteNews = 'user/unfavourite';
 

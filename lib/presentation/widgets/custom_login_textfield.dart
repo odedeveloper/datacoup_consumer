@@ -10,6 +10,7 @@ class CustomLoginTextField extends StatelessWidget {
       this.showData = false,
       this.signupController,
       this.loginController,
+      this.enabledEdit = true,
       this.onChanged,
       this.forPhoneNumber = false,
       this.label});
@@ -17,111 +18,127 @@ class CustomLoginTextField extends StatelessWidget {
   final LoginController? loginController;
   final SignupController? signupController;
   final Function(String)? onChanged;
+
   final String? label;
   final bool? showEye;
+  final bool? enabledEdit;
   final bool? forPhoneNumber;
   final bool? showData;
   final VoidCallback? onEyeTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            label!,
-            style: themeTextStyle(
-              context: context,
-              letterSpacing: 0.9,
-              fontFamily: AssetConst.ralewayFont,
-              tColor: Theme.of(context).primaryColor.withOpacity(0.6),
-              fweight: FontWeight.w500,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label!,
+          style: themeTextStyle(
+            context: context,
+            letterSpacing: 0.9,
+            fontFamily: AssetConst.ralewayFont,
+            tColor: Theme.of(context).primaryColor.withOpacity(0.6),
+            fweight: FontWeight.w500,
           ),
-          Row(
-            children: [
-              forPhoneNumber!
-                  ? Expanded(
-                      child: Obx(
-                      () => InputDecorator(
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(top: 15),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColor),
-                          ),
+        ),
+        Row(
+          children: [
+            forPhoneNumber!
+                ? Expanded(
+                    child: Obx(
+                    () => InputDecorator(
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(top: 15),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Theme.of(context).primaryColor),
                         ),
-                        child: InkWell(
-                          onTap: () => _showCountryPicker(context),
-                          child: Center(
-                            child: Text(
-                              loginController != null
-                                  ? "+${loginController!.selectedCountryCode.value}"
-                                  : "+${signupController!.selectedCountryCode.value}",
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontFamily: AssetConst.quickSand,
-                                fontWeight: FontWeight.w500,
-                              ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Theme.of(context).primaryColor),
+                        ),
+                        disabledBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Theme.of(context).primaryColor),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Theme.of(context).primaryColor),
+                        ),
+                      ),
+                      child: InkWell(
+                        onTap: () => _showCountryPicker(context),
+                        child: Center(
+                          child: Text(
+                            loginController != null
+                                ? "+${loginController!.selectedCountryCode.value}"
+                                : "+${signupController!.selectedCountryCode.value}",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Theme.of(context).colorScheme.secondary,
+                              fontFamily: AssetConst.quickSand,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
                       ),
-                    ))
-                  : const SizedBox.shrink(), // contry code picker
-              forPhoneNumber!
-                  ? const SizedBox(width: 15)
-                  : const SizedBox.shrink(),
-              Expanded(
-                flex: 5,
-                child: TextFormField(
-                  controller: controller,
-                  obscureText: showData!,
-                  style: themeTextStyle(
-                    context: context,
-                    letterSpacing: 0.9,
-                    fweight: FontWeight.w500,
-                    fontFamily: AssetConst.ralewayFont,
-                    fontStyle: FontStyle.normal,
-                  ),
-                  onChanged: onChanged,
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.only(top: 15),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                          color:
-                              Theme.of(context).primaryColor.withOpacity(0.2)),
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor),
-                    ),
-                    suffixIcon: showEye!
-                        ? IconButton(
-                            onPressed: onEyeTap,
-                            icon: Icon(
-                              loginController!.showPassword.value
-                                  ? Icons.visibility_off
-                                  : Icons.visibility_rounded,
-                              color: darkGreyColor,
-                            ),
-                          )
-                        : null,
+                  ))
+                : const SizedBox.shrink(), // contry code picker
+            forPhoneNumber!
+                ? const SizedBox(width: 15)
+                : const SizedBox.shrink(),
+            Expanded(
+              flex: 5,
+              child: TextFormField(
+                controller: controller,
+                obscureText: showData!,
+                enabled: enabledEdit!,
+                style: themeTextStyle(
+                  context: context,
+                  letterSpacing: 0.9,
+                  fweight: FontWeight.w500,
+                  fontFamily: AssetConst.ralewayFont,
+                  fontStyle: FontStyle.normal,
+                ),
+                onChanged: onChanged,
+                decoration: InputDecoration(
+                  // contentPadding: const EdgeInsets.only(top: 15),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2)),
                   ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2)),
+                  ),
+                  disabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2)),
+                  ),
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor.withOpacity(0.2)),
+                  ),
+                  suffixIcon: showEye!
+                      ? IconButton(
+                          onPressed: onEyeTap,
+                          icon: Icon(
+                            loginController!.showPassword.value
+                                ? Icons.visibility_off
+                                : Icons.visibility_rounded,
+                            color: darkGreyColor,
+                          ),
+                        )
+                      : null,
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 

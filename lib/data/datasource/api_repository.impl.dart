@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:datacoup/export.dart';
@@ -34,7 +36,9 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       LoginResponse? loginResponse = await fetchUserProfile();
       return loginResponse!.user;
     } else {
-      return null;
+      await saveTokensToDeviceStorage(_session!);
+      LoginResponse? loginResponse = await fetchUserProfile();
+      return loginResponse!.user;
     }
   }
 
@@ -42,9 +46,10 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   @override
   Future<bool> checkAuthenticated() async {
     String? token = await LocalRepositoryImpl().getIdToken();
+    bool? result = await LocalRepositoryImpl().getuserLoggedIn();
     try {
       User? user = await getUserFromToken(token);
-      if (user != null) {
+      if (user != null && result == true) {
         return true;
       } else {
         logout(token);
@@ -73,7 +78,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
           username: login.credentials, password: login.password);
 
       _session = await _cognitoUser!.authenticateUser(authDetails);
-
+      await LocalRepositoryImpl().storeUserLogin(log: true);
       await saveTokensToDeviceStorage(_session!);
     } on CognitoClientException catch (e) {
       return e.message.toString();
@@ -192,5 +197,38 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       log("error on post fav news $e");
     }
     return null;
+  }
+
+  @override
+  Future<User?> createUpdateUser(User user) async {
+    try {
+      final response = await DioInstance()
+          .dio
+          .post(createUserProfileUrl, data: userToJson(user));
+      User updateduser = User.fromJson(response.data);
+      return updateduser;
+    } catch (e) {
+      log("error to create or update user $e");
+      return null;
+    }
+  }
+
+  @override
+  Future<String?> uploadProfileImage(String filePath) async {
+    try {
+      File imageFile = File(filePath);
+      List<int> imageBytes = imageFile.readAsBytesSync();
+      String base64Image = base64.encode(imageBytes);
+
+      final response = await DioInstance().dio.put(uploadImageUrl, data: {
+        "fileData": base64Image,
+        "mimeType": "image/jpeg",
+      });
+      Map data = Map.from(response.data);
+      return data['data']['url'];
+    } catch (e) {
+      log("error to upload profile img $e");
+      return null;
+    }
   }
 }

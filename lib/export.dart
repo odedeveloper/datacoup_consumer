@@ -10,6 +10,7 @@ export 'package:datacoup/domain/model/news_model.dart';
 export 'package:datacoup/domain/model/product.dart';
 export 'package:datacoup/domain/model/product_cart.dart';
 export 'package:datacoup/domain/model/user.dart';
+export 'package:datacoup/presentation/home/quiz/quiz_screen.dart';
 export 'package:datacoup/domain/repository/api_repository.dart';
 export 'package:datacoup/domain/repository/local_storage_repository.dart';
 export 'package:datacoup/domain/request/login_request.dart';

@@ -47,5 +47,8 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo gallery access is required if you want to use one of your existing photos as your profile picture, this picture is visible to other users of the app</string>
+	
 </dict>
 </plist>

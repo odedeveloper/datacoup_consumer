@@ -5,6 +5,8 @@ abstract class ApiRepositoryInterface {
   Future<User?> getUserFromToken(String? token);
   Future<String?> login(LoginRequest login);
   Future<String?> signUp(LoginRequest login);
+  Future<User?> createUpdateUser(User user);
+  Future<String?> uploadProfileImage(String filePath);
   Future<LoginResponse?> fetchUserProfile();
   Future<void> logout(String? token);
   Future<bool> checkAuthenticated();

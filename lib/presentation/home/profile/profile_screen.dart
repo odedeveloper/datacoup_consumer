@@ -1,9 +1,31 @@
 import 'package:datacoup/export.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final controller = Get.find<HomeController>();
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() {
+    controller.profileLoader(true);
+    Future.delayed(const Duration(seconds: 5), () async {
+      controller.user!.value = User.empty();
+      LoginResponse? response =
+          await controller.apiRepositoryInterface.fetchUserProfile();
+      controller.user!(response!.user);
+      controller.profileLoader(false);
+    });
+  }
 
   Future<void> logout() async {
     await controller.logOut();
@@ -17,35 +39,36 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final user = controller.user?.value;
-      return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            "Profile",
-            style: themeTextStyle(
-              context: context,
-              fweight: FontWeight.bold,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "Profile",
+          style: themeTextStyle(
+            context: context,
+            fweight: FontWeight.bold,
           ),
         ),
-        body: user?.profileImage != null
-            ? Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Row(
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: GetBuilder<HomeController>(builder: (userController) {
+                return controller.profileLoader.value
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Row(
                         children: [
                           Expanded(
                             flex: 2,
                             child: CircleAvatar(
                               radius: 50,
-                              backgroundImage:
-                                  NetworkImage(user!.profileImage!),
+                              backgroundImage: NetworkImage(
+                                  controller.user!.value.profileImage!),
                               backgroundColor: Colors.grey,
                             ),
                           ),
@@ -59,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "${user.firstName!} ${user.lastName}",
+                                    "${controller.user!.value.firstName!} ${controller.user!.value.lastName}",
                                     style: themeTextStyle(
                                       context: context,
                                       fweight: FontWeight.bold,
@@ -67,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    user.email!,
+                                    controller.user!.value.email!,
                                     style: themeTextStyle(context: context),
                                   )
                                 ],
@@ -76,9 +99,13 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           Expanded(
                             child: IconButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 controller.showSaveButton(false);
-                                Get.to(() => const EditProfileScreen());
+                                controller.profileImage = null;
+                                await Get.to(() => const EditProfileScreen())!
+                                    .then((_) async {
+                                  loadData();
+                                });
                               },
                               icon: const FaIcon(
                                 FontAwesomeIcons.pen,
@@ -87,128 +114,114 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ],
+                      );
+              }),
+            ),
+            Expanded(
+              flex: 5,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "App Settings",
+                        style: themeTextStyle(
+                          context: context,
+                          fsize: klargeFont(context),
+                          tColor: darkSkyBlueColor,
+                          fweight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "App Settings",
-                                style: themeTextStyle(
-                                  context: context,
-                                  fsize: klargeFont(context),
-                                  tColor: darkSkyBlueColor,
-                                  fweight: FontWeight.bold,
+                      const SizedBox(height: 20),
+                      tileWithIcon(
+                        context,
+                        icon: FontAwesomeIcons.language,
+                        title: "Language",
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: tileWithIcon(
+                              context,
+                              icon: FontAwesomeIcons.moon,
+                              title: "Dark Mode",
+                            ),
+                          ),
+                          Expanded(
+                            child: Obx(
+                              () => Transform.scale(
+                                scale: 1.2,
+                                child: Switch(
+                                  value: controller.darkTheme.value,
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.padded,
+                                  onChanged: onThemeUpdated,
+                                  activeColor: deepOrangeColor,
+                                  inactiveTrackColor: Colors.grey,
                                 ),
                               ),
-                              const SizedBox(height: 20),
-                              tileWithIcon(
-                                context,
-                                icon: FontAwesomeIcons.language,
-                                title: "Language",
-                              ),
-                              const SizedBox(height: 20),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    flex: 5,
-                                    child: tileWithIcon(
-                                      context,
-                                      icon: FontAwesomeIcons.moon,
-                                      title: "Dark Mode",
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Obx(
-                                      () => Transform.scale(
-                                        scale: 1.2,
-                                        child: Switch(
-                                          value: controller.darkTheme.value,
-                                          materialTapTargetSize:
-                                              MaterialTapTargetSize.padded,
-                                          onChanged: onThemeUpdated,
-                                          activeColor: deepOrangeColor,
-                                          inactiveTrackColor: Colors.grey,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              tileWithIcon(
-                                context,
-                                icon: FontAwesomeIcons.bell,
-                                title: "Notifiaction",
-                              ),
-                              const SizedBox(height: 30),
-                              Text(
-                                "General",
-                                style: themeTextStyle(
-                                  context: context,
-                                  fsize: klargeFont(context),
-                                  tColor: darkSkyBlueColor,
-                                  fweight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              tileWithIcon(
-                                context,
-                                icon: Icons.privacy_tip_outlined,
-                                title: "Policy and guidelines",
-                              ),
-                              const SizedBox(height: 20),
-                              tileWithIcon(
-                                context,
-                                icon: FontAwesomeIcons.fileLines,
-                                title: "Legal",
-                              ),
-                              const SizedBox(height: 20),
-                              tileWithIcon(
-                                context,
-                                icon: Icons.help_center_outlined,
-                                title: "Help",
-                              ),
-                              const SizedBox(height: 30),
-                              Align(
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  width: width(context)! * 0.3,
-                                  child: RoundedElevatedButton(
-                                    onClicked: () => logout(),
-                                    title: "Logout",
-                                  ),
-                                ),
-                              ),
-                            ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      tileWithIcon(
+                        context,
+                        icon: FontAwesomeIcons.bell,
+                        title: "Notifiaction",
+                      ),
+                      const SizedBox(height: 30),
+                      Text(
+                        "General",
+                        style: themeTextStyle(
+                          context: context,
+                          fsize: klargeFont(context),
+                          tColor: darkSkyBlueColor,
+                          fweight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      tileWithIcon(
+                        context,
+                        icon: Icons.privacy_tip_outlined,
+                        title: "Policy and guidelines",
+                      ),
+                      const SizedBox(height: 20),
+                      tileWithIcon(
+                        context,
+                        icon: FontAwesomeIcons.fileLines,
+                        title: "Legal",
+                      ),
+                      const SizedBox(height: 20),
+                      tileWithIcon(
+                        context,
+                        icon: Icons.help_center_outlined,
+                        title: "Help",
+                      ),
+                      const SizedBox(height: 30),
+                      Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: width(context)! * 0.3,
+                          child: RoundedElevatedButton(
+                            onClicked: () => logout(),
+                            title: "Logout",
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            : ListView.separated(
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 10),
-                padding: const EdgeInsets.all(12),
-                itemCount: 8,
-                itemBuilder: (context, index) => SizedBox(
-                  height: height(context)! * 0.15,
-                  width: double.infinity,
-                  child: const ShimmerBox(
-                      height: double.infinity,
-                      width: double.infinity,
-                      radius: 12),
+                    ],
+                  ),
                 ),
               ),
-      );
-    });
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget tileWithIcon(BuildContext context, {String? title, IconData? icon}) {

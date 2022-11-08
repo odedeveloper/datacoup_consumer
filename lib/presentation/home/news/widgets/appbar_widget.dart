@@ -109,7 +109,11 @@ class NewsScreenAppBar extends StatelessWidget {
                     ),
               const SizedBox(width: 5),
               InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    controller.showSaveButton(false);
+                    controller.profileImage = null;
+                    Get.to(() => const EditProfileScreen());
+                  },
                   child: user!.profileImage == null
                       ? CircleAvatar(
                           radius: 18,
