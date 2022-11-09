@@ -16,15 +16,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     loadData();
   }
 
-  loadData() {
+  loadData() async {
     controller.profileLoader(true);
-    Future.delayed(const Duration(seconds: 5), () async {
-      controller.user!.value = User.empty();
-      LoginResponse? response =
-          await controller.apiRepositoryInterface.fetchUserProfile();
-      controller.user!(response!.user);
-      controller.profileLoader(false);
-    });
+    controller.user!.value = User.empty();
+    LoginResponse? response =
+        await controller.apiRepositoryInterface.fetchUserProfile();
+    controller.user!(response!.user);
+    controller.profileLoader(false);
+    controller.updatePressed(false);
   }
 
   Future<void> logout() async {
@@ -56,10 +55,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: GetBuilder<HomeController>(builder: (userController) {
-                return controller.profileLoader.value
-                    ? const Center(
-                        child: CircularProgressIndicator(),
+              child: Obx(
+                () => controller.user!.value.profileImage == null
+                    ? SizedBox(
+                        height: height(context)! * 0.2,
+                        width: double.infinity,
+                        child: const ShimmerBox(
+                            height: double.infinity,
+                            width: double.infinity,
+                            radius: 12),
                       )
                     : Row(
                         children: [
@@ -104,7 +108,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 controller.profileImage = null;
                                 await Get.to(() => const EditProfileScreen())!
                                     .then((_) async {
-                                  loadData();
+                                  if (controller.updatePressed.value == true) {
+                                    loadData();
+                                  }
                                 });
                               },
                               icon: const FaIcon(
@@ -114,9 +120,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ],
-                      );
-              }),
+                      ),
+              ),
             ),
+            const Divider(thickness: 2),
+            const SizedBox(height: 20),
             Expanded(
               flex: 5,
               child: Padding(

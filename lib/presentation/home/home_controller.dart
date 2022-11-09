@@ -13,6 +13,7 @@ class HomeController extends GetxController {
   RxBool profileImageChange = false.obs;
   RxBool profileLoader = true.obs;
   RxBool showSaveButton = false.obs;
+  RxBool updatePressed = false.obs;
   final TextEditingController? fnameTextContoller = TextEditingController();
   final TextEditingController? lnaemTextContoller = TextEditingController();
   final TextEditingController? emailTextContoller = TextEditingController();
@@ -65,6 +66,9 @@ class HomeController extends GetxController {
     LoginResponse? loginResponse =
         await apiRepositoryInterface.fetchUserProfile();
     user!(loginResponse!.user);
+    zipCodeTextContoller!.text = loginResponse.user!.zipCode!;
+    selectedreturnCountry!(loginResponse.user!.country);
+    selectedreturnState!(loginResponse.user!.state);
   }
 
   Future<void> updateUser() async {

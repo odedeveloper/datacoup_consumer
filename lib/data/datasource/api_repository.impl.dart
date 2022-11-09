@@ -48,9 +48,22 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     String? token = await LocalRepositoryImpl().getIdToken();
     bool? result = await LocalRepositoryImpl().getuserLoggedIn();
     try {
-      User? user = await getUserFromToken(token);
-      if (user != null && result == true) {
-        return true;
+      String? token = GetStorage().read("idToken");
+      if (token != null) {
+        LoginResponse? loginResponse = await fetchUserProfile();
+        if (loginResponse != null) {
+          // token valid
+          return true;
+        } else {
+          // token Exipre and going to refresh Token
+          User? user = await getUserFromToken(token);
+          if (user != null && result == true) {
+            return true;
+          } else {
+            logout(token);
+            return false;
+          }
+        }
       } else {
         logout(token);
         return false;

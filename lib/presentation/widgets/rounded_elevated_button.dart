@@ -2,8 +2,10 @@ import 'package:datacoup/export.dart';
 
 class RoundedElevatedButton extends StatelessWidget {
   final String? title;
+  final Color? color;
   final VoidCallback? onClicked;
-  const RoundedElevatedButton({Key? key, this.onClicked, this.title})
+  const RoundedElevatedButton(
+      {Key? key, this.color, this.onClicked, this.title})
       : super(key: key);
 
   @override
@@ -13,7 +15,8 @@ class RoundedElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onClicked,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(redOpacityColor),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(color ?? redOpacityColor),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(18.0),

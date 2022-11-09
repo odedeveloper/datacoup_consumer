@@ -31,89 +31,103 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
     return Obx(
       () => newsController.newsOfDayLoader.value
           ? const ShimmerBox(height: double.infinity, width: double.infinity)
-          : PageView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: newsModel!.items!.length,
-              itemBuilder: (context, index) {
-                final data = newsModel!.items![index];
-                return Stack(
-                  children: [
-                    CacheImageWidget(
-                      imageUrl: data.headerMultimedia,
-                      color: Colors.black54,
-                      colorBlendMode: BlendMode.darken,
+          : Column(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: Row(
+                      children: [
+                        Text(
+                          StringConst.newsOftheDayTitle,
+                          style: themeTextStyle(
+                            context: context,
+                            fsize: ksmallFont(context),
+                            fweight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
-                    Positioned(
-                      top: height(context)! * 0.05,
-                      left: width(context)! * 0.05,
-                      child: SizedBox(
-                        width: width(context)! * 0.6,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12, vertical: 5),
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius:
-                                    BorderRadius.circular(kBorderRadius + 5),
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: PageView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: newsModel!.items!.length,
+                    itemBuilder: (context, index) {
+                      final data = newsModel!.items![index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(kBorderRadius),
+                          child: Stack(
+                            children: [
+                              CacheImageWidget(
+                                imageUrl: data.headerMultimedia,
+                                color: Colors.black54,
+                                colorBlendMode: BlendMode.darken,
                               ),
-                              child: Text(
-                                "News of the day",
-                                style: themeTextStyle(
-                                  context: context,
-                                  tColor: whiteColor,
-                                  fsize: kminiFont(context),
-                                  fweight: FontWeight.w500,
+                              Positioned(
+                                top: height(context)! * 0.05,
+                                left: width(context)! * 0.05,
+                                child: SizedBox(
+                                  width: width(context)! * 0.6,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        data.title!,
+                                        style: themeTextStyle(
+                                          context: context,
+                                          tColor: whiteColor,
+                                          fweight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      SizedBox(height: height(context)! * 0.02),
+                                      Text(
+                                        data.description!,
+                                        style: themeTextStyle(
+                                          context: context,
+                                          tColor: whiteColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: height(context)! * 0.01),
-                            Text(
-                              data.title!,
-                              style: themeTextStyle(
-                                context: context,
-                                tColor: whiteColor,
-                                fweight: FontWeight.w600,
-                              ),
-                            ),
-                            SizedBox(height: height(context)! * 0.05),
-                            Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
+                              Positioned(
+                                right: 10.0,
+                                bottom: 10.0,
+                                child: ElevatedButton(
+                                  onPressed: () {
                                     Get.to(() => WebViewWidget(
                                           data: data,
                                           url: data.content!.link,
                                           showAppbar: true,
                                         ));
                                   },
-                                  child: Text(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 10,
+                                    backgroundColor: Colors.transparent,
+                                    shape: const StadiumBorder(
+                                        side: BorderSide(color: Colors.grey)),
+                                  ),
+                                  child: const Text(
                                     "Learn more",
-                                    style: themeTextStyle(
-                                      context: context,
-                                      tColor: whiteColor,
-                                      fsize: ksmallFont(context),
-                                      fweight: FontWeight.bold,
-                                    ),
+                                    style: TextStyle(color: Colors.white),
                                   ),
                                 ),
-                                const SizedBox(width: 10),
-                                FaIcon(
-                                  FontAwesomeIcons.arrowRight,
-                                  color: whiteColor,
-                                  size: kmediumFont(context),
-                                ),
-                              ],
-                            )
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                );
-              },
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
     );
   }

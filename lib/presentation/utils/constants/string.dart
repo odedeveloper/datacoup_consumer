@@ -16,8 +16,12 @@ class StringConst {
   static const String socialFeedtype = 'Feed';
 
   static const String videoOftheDayTitle = 'Video of the day';
+  static const String newsOftheDayTitle = 'News of the day';
   static const String trendingVideosTitle = 'Trending Videos';
   static const String socialMediaTitle = 'Social Feeds';
+
+  static const String locationBoxTitle =
+      'Here you can change the location and then can watch the relevant content';
 
   //name of pages
   static const String HOME = 'home';

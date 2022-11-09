@@ -35,7 +35,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     controller.mobileTextContoller!.text = loginResponse!.user!.mobile!;
     controller.zipCodeTextContoller!.text = loginResponse!.user!.zipCode!;
     controller.dobTextContoller!.text = loginResponse!.user!.dob!;
-    
 
     if (loginResponse!.user!.gender == null ||
         loginResponse!.user!.gender == "") {
@@ -82,6 +81,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   updateUserDetails() async {
+    controller.updatePressed(true);
     controller.profileLoader(true);
     await controller.updateUser();
     loadData();

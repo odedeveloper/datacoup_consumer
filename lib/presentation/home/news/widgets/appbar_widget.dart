@@ -1,3 +1,4 @@
+import 'package:csc_picker/csc_picker.dart';
 import 'package:datacoup/export.dart';
 import 'package:intl/intl.dart';
 
@@ -6,70 +7,215 @@ class NewsScreenAppBar extends StatelessWidget {
 
   final controller = Get.find<HomeController>();
 
+  void openDialog(BuildContext context) {
+    Get.dialog(
+      AlertDialog(
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CacheImageWidget(
+              fromAsset: true,
+              imageUrl: AssetConst.locationLogo,
+              imgheight: height(context)! * 0.07,
+              imgwidth: width(context)! * 0.15,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              StringConst.locationBoxTitle,
+              textAlign: TextAlign.center,
+              style: themeTextStyle(
+                context: context,
+                fsize: klargeFont(context),
+                fweight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      "Country",
+                      style: themeTextStyle(
+                        context: context,
+                        tColor: Theme.of(context).primaryColor.withOpacity(0.6),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      "   State",
+                      style: themeTextStyle(
+                        context: context,
+                        tColor: Theme.of(context).primaryColor.withOpacity(0.6),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: CSCPicker(
+                showCities: false,
+                currentCountry: controller.selectedreturnCountry!.value,
+                stateDropdownLabel: controller.selectedreturnState!.value,
+                dropdownDecoration: BoxDecoration(
+                  color: Theme.of(context).appBarTheme.backgroundColor,
+                  borderRadius: BorderRadius.circular(kBorderRadius),
+                  boxShadow: const [
+                    BoxShadow(spreadRadius: 0.4, blurRadius: 0.4)
+                  ],
+                ),
+                disabledDropdownDecoration: BoxDecoration(
+                  color: Theme.of(context).appBarTheme.backgroundColor,
+                  borderRadius: BorderRadius.circular(kBorderRadius),
+                  boxShadow: const [
+                    BoxShadow(spreadRadius: 0.4, blurRadius: 0.4)
+                  ],
+                ),
+                flagState: CountryFlag.DISABLE,
+                disableCountry: false,
+                selectedItemStyle: themeTextStyle(context: context),
+                onCountryChanged: (value) {
+                  controller.selectedreturnCountry!(value);
+                },
+                onStateChanged: (value) {
+                  controller.selectedreturnState!(value);
+                },
+                onCityChanged: (value) {},
+              ),
+            ),
+            const SizedBox(height: 20),
+            CustomLoginTextField(
+              controller: controller.zipCodeTextContoller,
+              label: "Zip-code",
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        controller.selectedreturnCountry!(
+                            controller.user!.value.country);
+                        controller
+                            .selectedreturnState!(controller.user!.value.state);
+                        Get.back();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shape: const StadiumBorder(
+                            side: BorderSide(color: Colors.grey)),
+                      ),
+                      child: const Text(
+                        "Cancle",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: RoundedElevatedButton(
+                      onClicked: () {
+                        Get.back();
+                      },
+                      color: deepOrangeColor,
+                      title: "Apply",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      elevation: 20,
-      leadingWidth: 100,
-      leading: Row(
-        children: [
-          const SizedBox(width: 10),
-          const FaIcon(
-            FontAwesomeIcons.locationDot,
-            size: 22,
-          ),
-          const SizedBox(width: 5),
-          SizedBox(
-            width: 60,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Countrysfsfjalsfjslajflk",
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: themeTextStyle(
-                    context: context,
-                    fsize: kminiFont(context)! - 2,
-                    fweight: FontWeight.w500,
-                  ),
+    return Obx(() {
+      final user = controller.user?.value;
+
+      return AppBar(
+        elevation: 10,
+        leadingWidth: 100,
+        leading: user?.firstName == null
+            ? const Center(
+                child: SpinKitThreeBounce(
+                size: 25,
+                duration: Duration(milliseconds: 800),
+                color: Colors.grey,
+              ))
+            : InkWell(
+                onTap: () => openDialog(context),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    const FaIcon(
+                      FontAwesomeIcons.locationDot,
+                      size: 22,
+                    ),
+                    const SizedBox(width: 5),
+                    SizedBox(
+                      width: 60,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            controller.user!.value.country!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: themeTextStyle(
+                              context: context,
+                              fsize: kminiFont(context)! - 2,
+                              fweight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            controller.user!.value.state!,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: themeTextStyle(
+                              context: context,
+                              fsize: kminiFont(context)! - 2,
+                              fweight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            controller.zipCodeTextContoller!.text,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            style: themeTextStyle(
+                              context: context,
+                              fsize: kminiFont(context)! - 2,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  "city",
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: themeTextStyle(
-                    context: context,
-                    fsize: kminiFont(context)! - 2,
-                    fweight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "Zi sfsdfasf sdfsfdp",
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: themeTextStyle(
-                    context: context,
-                    fsize: kminiFont(context)! - 2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      centerTitle: true,
-      title: CacheImageWidget(
-        fromAsset: true,
-        imageUrl: AssetConst.logoPng,
-        imgheight: height(context)! * 0.05,
-        imgwidth: width(context)! * 0.12,
-      ),
-      actions: [
-        Obx(() {
-          final user = controller.user?.value;
-          return Row(
+              ),
+        centerTitle: true,
+        title: CacheImageWidget(
+          fromAsset: true,
+          imageUrl: AssetConst.logoPng,
+          imgheight: height(context)! * 0.05,
+          imgwidth: width(context)! * 0.12,
+        ),
+        actions: [
+          Row(
             children: [
               user?.firstName == null
                   ? const Center(
@@ -145,9 +291,9 @@ class NewsScreenAppBar extends StatelessWidget {
                             )),
               const SizedBox(width: 10),
             ],
-          );
-        })
-      ],
-    );
+          ),
+        ],
+      );
+    });
   }
 }

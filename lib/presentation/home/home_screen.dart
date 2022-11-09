@@ -13,11 +13,11 @@ class HomeScreen extends GetWidget<HomeController> {
             child: Obx(
               () => IndexedStack(
                 index: controller.onIndexSelected.value,
-                children: [
-                  const NewsScreen(),
-                  const FavouriteScreen(),
-                  const QuizScreen(),
-                  const VideoReelsScreen(),
+                children: const [
+                  NewsScreen(),
+                  FavouriteScreen(),
+                  QuizScreen(),
+                  VideoReelsScreen(),
                   ProfileScreen(),
                 ],
               ),

@@ -13,20 +13,20 @@ class NewsScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: height(context)! * 0.25,
+              height: height(context)! * 0.3,
               child: const NewsOfTheDayWidget(),
             ),
             const SizedBox(height: 5),
             SizedBox(
-              height: height(context)! * 0.32,
+              height: height(context)! * 0.3,
               child: const NewsByInterest(),
             ),
             SizedBox(
-              height: height(context)! * 0.3,
+              height: height(context)! * 0.31,
               child: const VideoOfTheDayWidget(),
             ),
             SizedBox(
-              height: height(context)! * 0.32,
+              height: height(context)! * 0.3,
               child: const TrendingVideosWidget(),
             ),
             SizedBox(
