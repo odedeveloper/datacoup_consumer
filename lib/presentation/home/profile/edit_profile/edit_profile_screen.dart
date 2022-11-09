@@ -97,6 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           title: Text(
             "Edit Profile",
             style: themeTextStyle(
+              fsize: klargeFont(context),
               context: context,
               fweight: FontWeight.bold,
             ),

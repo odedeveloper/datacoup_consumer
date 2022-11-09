@@ -36,6 +36,7 @@ class _VideoReelsScreenState extends State<VideoReelsScreen> {
         title: Text(
           "Videos",
           style: themeTextStyle(
+            fsize: klargeFont(context),
             context: context,
             fweight: FontWeight.bold,
           ),

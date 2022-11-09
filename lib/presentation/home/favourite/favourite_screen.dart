@@ -33,6 +33,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
           "Favourites",
           style: themeTextStyle(
             context: context,
+            fsize: klargeFont(context),
             fweight: FontWeight.bold,
           ),
         ),

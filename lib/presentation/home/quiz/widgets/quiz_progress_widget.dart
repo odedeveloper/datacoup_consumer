@@ -7,50 +7,63 @@ class QuizProgressWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      itemCount: 5,
-      itemBuilder: (context, index) => tickBody(),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+          ticks!,
+          (index) => tick1(index: index),
+        ),
+      ),
     );
   }
 
-  Widget tickBody() {
-    return Row(
-      children: [
-        tick1(),
-        spacer(),
-        line(),
-        spacer(),
-      ],
-    );
-  }
-
-  Widget tick(bool isChecked) {
+  Widget tick(bool isChecked, int index) {
     return isChecked
-        ? const Icon(
-            Icons.check_circle,
+        ? Material(
+            elevation: 2.0,
             color: Colors.blue,
-          )
+            shape: const CircleBorder(),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
+                child: Text(
+                  "${index + 1}",
+                ),
+              ),
+            ))
+        // const Icon(
+        //     Icons.check_circle,
+        //     color: Colors.blue,
+        //   )
         : const Icon(
             Icons.radio_button_unchecked,
             color: Colors.blue,
           );
   }
 
-  Widget tick1() {
-    return ticks! > 0 ? tick(true) : tick(false);
-  }
-
-  Widget tick2() {
-    return ticks! > 1 ? tick(true) : tick(false);
-  }
-
-  Widget tick3() {
-    return ticks! > 2 ? tick(true) : tick(false);
-  }
-
-  Widget tick4() {
-    return ticks! > 3 ? tick(true) : tick(false);
+  Widget tick1({int? index}) {
+    if (index == ticks! - 1) {
+      return ticks! > index!
+          ? Row(
+              children: [
+                tick(true, index),
+                spacer(),
+              ],
+            )
+          : tick(false, index);
+    } else {
+      return ticks! > index!
+          ? Row(
+              children: [
+                tick(true, index),
+                spacer(),
+                line(),
+              ],
+            )
+          : tick(false, index);
+    }
   }
 
   Widget spacer() {

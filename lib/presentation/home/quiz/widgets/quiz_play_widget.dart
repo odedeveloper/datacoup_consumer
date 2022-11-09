@@ -15,7 +15,7 @@ class QuizPlayWidget extends StatelessWidget {
           child: Column(
             children: [
               const Expanded(
-                child: Center(child: QuizProgressWidget(ticks: 4)),
+                child: QuizProgressWidget(ticks: 5),
               ),
               Expanded(
                 child: Center(

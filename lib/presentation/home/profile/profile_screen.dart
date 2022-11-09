@@ -45,6 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           "Profile",
           style: themeTextStyle(
             context: context,
+            fsize: klargeFont(context),
             fweight: FontWeight.bold,
           ),
         ),

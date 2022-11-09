@@ -67,7 +67,7 @@ class StringConst {
 
   static const String APP_SETTINGS = "App Settings";
   static const String QNA_PROFILE_PAGE_TEXT =
-      "Currently you know many important bits of data security and privacy. But there is still some important bits left ";
+      "Currently you know many important bits of data security and privacy.\nBut there is still some important bits left.";
   // error messages
   static const String INVALID_ACCESS_TOKEN_MESSAGE = "Invalid Access Token";
   static const String ACCESS_TOKEN_NOT_FOUND_MESSAGE = "Access Token not found";

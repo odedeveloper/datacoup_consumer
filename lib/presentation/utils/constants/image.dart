@@ -22,6 +22,11 @@ class AssetConst {
   static const String correctAnswerLogo = "assets/images/correct-answers.png";
   static const String wrongAnswerLogo = "assets/images/wrong-answers.png";
 
+  static const String digitalNovice = "assets/images/digital-novice.png";
+  static const String digitalWarrior = "assets/images/digital-warrior.png";
+  static const String digitalMaster = "assets/images/digital-master.png";
+  static const String digitalLegend = "assets/images/digital-legend.png";
+
   static const String circle = "assets/images/circles.png";
   static const Map<String, String> badge = {
     "Digital Novice": "assets/images/digital-novice.png",
