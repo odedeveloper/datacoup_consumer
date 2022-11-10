@@ -1,9 +1,10 @@
 import 'package:datacoup/export.dart';
 
-import 'quiz_progress_widget.dart';
+class QuizPlayWidget extends GetWidget<QuizController> {
+  final QuizItem? quizItem;
+  QuizPlayWidget({super.key, this.quizItem});
 
-class QuizPlayWidget extends StatelessWidget {
-  const QuizPlayWidget({super.key});
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,49 +19,68 @@ class QuizPlayWidget extends StatelessWidget {
                 child: QuizProgressWidget(ticks: 5),
               ),
               Expanded(
-                child: Center(
-                  child: Text(
-                    "What is the Colour of Apple?",
-                    textAlign: TextAlign.center,
-                    style: themeTextStyle(
-                      context: context,
-                      fsize: kmaxExtraLargeFont(context),
-                      fweight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Expanded(
                 flex: 5,
-                child: Column(
-                  children: List.generate(
-                    4,
-                    (index) => Container(
-                      padding: const EdgeInsets.all(18),
-                      margin: EdgeInsets.all(height(context)! * 0.01),
-                      width: double.infinity,
-                      height: height(context)! * 0.07,
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(kBorderRadius + 12),
-                          color: Theme.of(context).appBarTheme.backgroundColor,
-                          boxShadow: const [
-                            BoxShadow(spreadRadius: 0.3, blurRadius: 0.2)
-                          ]),
-                      child: Center(
-                        child: Text(
-                          "Option $index",
-                          style: themeTextStyle(
-                            context: context,
-                            fsize: klargeFont(context),
+                child: PageView.builder(
+                  controller: pageController,
+                  itemCount: quizItem!.questions!.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Expanded(
+                          child: Center(
+                            child: Text(
+                              quizItem!.questions![index].question!,
+                              textAlign: TextAlign.center,
+                              style: themeTextStyle(
+                                context: context,
+                                fsize: kmaxExtraLargeFont(context),
+                                fweight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
+                        const SizedBox(height: 20),
+                        Expanded(
+                          flex: 5,
+                          child: Column(
+                            children: List.generate(
+                                quizItem!.questions![index].options!.length,
+                                (i) {
+                              final data =
+                                  quizItem!.questions![index].options![i];
+                              return Container(
+                                padding: const EdgeInsets.all(18),
+                                margin: EdgeInsets.all(height(context)! * 0.01),
+                                width: double.infinity,
+                                height: height(context)! * 0.07,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        kBorderRadius + 12),
+                                    color: Theme.of(context)
+                                        .appBarTheme
+                                        .backgroundColor,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          spreadRadius: 0.3, blurRadius: 0.2)
+                                    ]),
+                                child: Center(
+                                  child: Text(
+                                    data.item!,
+                                    style: themeTextStyle(
+                                      context: context,
+                                      fsize: klargeFont(context),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                          ),
+                        )
+                      ],
+                    );
+                  },
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -86,7 +106,11 @@ class QuizPlayWidget extends StatelessWidget {
                 width: width(context)! * 0.25,
                 height: height(context)! * 0.04,
                 child: RoundedElevatedButton(
-                  onClicked: () {},
+                  onClicked: () {
+                    pageController.nextPage(
+                        duration: const Duration(seconds: 1),
+                        curve: Curves.easeInOut);
+                  },
                   title: "Next",
                 ),
               ),

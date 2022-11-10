@@ -6,4 +6,12 @@ class QuizController extends GetxController {
   QuizController(
       {required this.localRepositoryInterface,
       required this.apiRepositoryInterface});
+
+  QuizModel? quizModel;
+  RxBool quizListLoader = true.obs;
+
+  Future<void> getAllQuiz({String? odenId, String? topic}) async {
+    quizModel =
+        await apiRepositoryInterface.getQuizzies(odenId: odenId, topic: topic);
+  }
 }

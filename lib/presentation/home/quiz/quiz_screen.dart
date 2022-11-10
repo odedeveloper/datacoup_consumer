@@ -1,7 +1,18 @@
 import 'package:datacoup/export.dart';
 
-class QuizScreen extends StatelessWidget {
+class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
+
+  @override
+  State<QuizScreen> createState() => _QuizScreenState();
+}
+
+class _QuizScreenState extends State<QuizScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +117,7 @@ class QuizScreen extends StatelessWidget {
                 width: width(context)! * 0.5,
                 child: RoundedElevatedButton(
                   onClicked: () {
-                    Get.to(() => const AllQuizWidget());
+                    Get.toNamed(AppRoutes.allQuizScreen);
                   },
                   title: "Take Quiz",
                 ),

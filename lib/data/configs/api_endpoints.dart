@@ -21,3 +21,11 @@ String newsVideoListUrl(
 String favouriteNewsUrl({int? count, String? lastEvaluatedKey}) {
   return "user/favourite?count=$count";
 }
+
+String getActivityUrl(String odenId, String topic) {
+  if (topic == '') {
+    return 'QnA/getActivity?odenId=$odenId';
+  } else {
+    return 'QnA/getActivity?odenId=$odenId&topic=$topic';
+  }
+}

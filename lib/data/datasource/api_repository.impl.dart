@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
 
+import 'package:datacoup/domain/model/quiz_model.dart';
 import 'package:datacoup/export.dart';
 
 class ApiRepositoryImpl extends ApiRepositoryInterface {
@@ -65,11 +66,15 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
           }
         }
       } else {
-        logout(token);
-        return false;
+        User? user = await getUserFromToken(token);
+        if (user != null && result == true) {
+          return true;
+        } else {
+          logout(token);
+          return false;
+        }
       }
     } catch (e) {
-      logout(token);
       log("error in checkAuthenticate $e");
       return false;
     }
@@ -139,8 +144,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     try {
       final response = await DioInstance().dio.get(fetchUserProfileUrl);
       if (response.statusCode != 503) {
-        Map<String, dynamic> data = Map.from(response.data);
-        User? user = User.fromJson(data);
+        User? user = User.fromJson(response.data);
         String? token = GetStorage().read("idToken") ?? "";
         return LoginResponse(token: token, user: user);
       } else {
@@ -241,6 +245,19 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       return data['data']['url'];
     } catch (e) {
       log("error to upload profile img $e");
+      return null;
+    }
+  }
+
+  @override
+  Future<QuizModel?> getQuizzies({String? odenId, String? topic}) async {
+    try {
+      final response =
+          await DioInstance().dio.get(getActivityUrl(odenId!, topic = ''));
+      QuizModel quizModel = QuizModel.fromJson(response.data);
+      return quizModel;
+    } catch (e) {
+      log("errror on geting QNA $e");
       return null;
     }
   }
