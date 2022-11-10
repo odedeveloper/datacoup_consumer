@@ -24,4 +24,5 @@ abstract class ApiRepositoryInterface {
   });
   Future<String?> postFavouriteNews({String? newsId, bool? isLiked});
   Future<QuizModel?> getQuizzies({String? odenId, String? topic});
+  Future<void> submitQuizActivity({String? odenId, List<Option>? option});
 }

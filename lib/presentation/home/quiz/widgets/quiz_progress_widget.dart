@@ -1,6 +1,7 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/home/quiz/quiz_controller.dart';
 
-class QuizProgressWidget extends StatelessWidget {
+class QuizProgressWidget extends GetWidget<QuizController> {
   final int? ticks;
 
   const QuizProgressWidget({super.key, this.ticks});
@@ -19,28 +20,59 @@ class QuizProgressWidget extends StatelessWidget {
     );
   }
 
-  Widget tick(bool isChecked, int index) {
-    return isChecked
-        ? Material(
-            elevation: 2.0,
-            color: Colors.blue,
-            shape: const CircleBorder(),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  "${index + 1}",
-                ),
+  Widget tick(int index) {
+    return Obx(() {
+      bool res = controller.progressList.contains(index);
+      return res
+          ? Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.25), // border color
+                shape: BoxShape.circle,
               ),
-            ))
-        // const Icon(
-        //     Icons.check_circle,
-        //     color: Colors.blue,
-        //   )
-        : const Icon(
-            Icons.radio_button_unchecked,
-            color: Colors.blue,
-          );
+              child: Padding(
+                padding: const EdgeInsets.all(2), // border width
+                child: Container(
+                    // or ClipRRect if you need to clip the content
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.green, // inner circle color
+                    ),
+                    child: Center(
+                      child: Text(
+                        "$index",
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ) // inner content
+                    ),
+              ),
+            )
+          : Container(
+              width: 28,
+              height: 28,
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.25), // border color
+                shape: BoxShape.circle,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(2), // border width
+                child: Container(
+                    // or ClipRRect if you need to clip the content
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey, // inner circle color
+                    ),
+                    child: Center(
+                      child: Text(
+                        "$index",
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ) // inner content
+                    ),
+              ),
+            );
+    });
   }
 
   Widget tick1({int? index}) {
@@ -48,21 +80,21 @@ class QuizProgressWidget extends StatelessWidget {
       return ticks! > index!
           ? Row(
               children: [
-                tick(true, index),
+                tick(index),
                 spacer(),
               ],
             )
-          : tick(false, index);
+          : tick(index);
     } else {
       return ticks! > index!
           ? Row(
               children: [
-                tick(true, index),
+                tick(index),
                 spacer(),
                 line(),
               ],
             )
-          : tick(false, index);
+          : tick(index);
     }
   }
 

@@ -70,12 +70,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Expanded(
                             flex: 2,
-                            child: CircleAvatar(
-                              radius: 50,
-                              backgroundImage: NetworkImage(
-                                  controller.user!.value.profileImage!),
-                              backgroundColor: Colors.grey,
-                            ),
+                            child: controller.user!.value.profileImage!
+                                        .contains("jpg") ||
+                                    controller.user!.value.profileImage!
+                                        .contains("png")
+                                ? CircleAvatar(
+                                    radius: 50,
+                                    backgroundColor: Colors.grey,
+                                    backgroundImage: NetworkImage(
+                                        controller.user!.value.profileImage!),
+                                  )
+                                : CircleAvatar(
+                                    radius: 50,
+                                    backgroundColor: Colors.grey,
+                                    child: FaIcon(
+                                      FontAwesomeIcons.solidUser,
+                                      size: 40,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
                           ),
                           Expanded(
                             flex: 6,

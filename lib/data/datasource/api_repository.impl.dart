@@ -46,7 +46,6 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   // / Check if user's current session is valid
   @override
   Future<bool> checkAuthenticated() async {
-    String? token = await LocalRepositoryImpl().getIdToken();
     bool? result = await LocalRepositoryImpl().getuserLoggedIn();
     try {
       String? token = GetStorage().read("idToken");
@@ -66,6 +65,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
           }
         }
       } else {
+        // for new user creating new token
         User? user = await getUserFromToken(token);
         if (user != null && result == true) {
           return true;
@@ -88,23 +88,26 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
 
   @override
   Future<String?> login(LoginRequest login) async {
+    _cognitoUser =
+        CognitoUser(login.credentials, _userPool!, storage: _userPool!.storage);
+
+    final authDetails = AuthenticationDetails(
+        username: login.credentials, password: login.password);
+
     try {
-      _cognitoUser = CognitoUser(login.credentials, _userPool!,
-          storage: _userPool!.storage);
-
-      final authDetails = AuthenticationDetails(
-          username: login.credentials, password: login.password);
-
       _session = await _cognitoUser!.authenticateUser(authDetails);
       await LocalRepositoryImpl().storeUserLogin(log: true);
       await saveTokensToDeviceStorage(_session!);
+      return "success";
     } on CognitoClientException catch (e) {
       return e.message.toString();
     } catch (e) {
+      _session = await _cognitoUser!.authenticateUser(authDetails);
+      await LocalRepositoryImpl().storeUserLogin(log: true);
+      await saveTokensToDeviceStorage(_session!);
       log("error while login $e");
-      return null;
+      return "success";
     }
-    return null;
   }
 
   @override
@@ -152,6 +155,9 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       }
     } catch (e) {
       log("error on fetch user profile $e");
+      if (e is IOException) {
+        log("no Internet");
+      }
       throw UnimplementedError();
     }
   }
@@ -259,6 +265,29 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     } catch (e) {
       log("errror on geting QNA $e");
       return null;
+    }
+  }
+
+  @override
+  Future<void> submitQuizActivity(
+      {String? odenId, List<Option>? option, int? score, int? quizId}) async {
+    try {
+      final response = await DioInstance().dio.post(
+        submitQuizActivityUrl,
+        data: {
+          'selectedAnswers': option,
+          'score': score,
+          'quizId': quizId,
+          'odenId': odenId
+        },
+      );
+      if (response.statusCode == 200) {
+        log("${response.data["status"]}");
+      } else {
+        log("${response.data["status"]} * ${response.statusCode}");
+      }
+    } catch (e) {
+      log("error on post QNA activity $e");
     }
   }
 }

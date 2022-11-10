@@ -9,7 +9,7 @@ class LoginScreen extends GetWidget<LoginController> {
     if (result.isSuccess) {
       try {
         String? result = await controller.login();
-        if (result != null || result == "") {
+        if (result == null || result == "") {
           Get.snackbar("Login Error", result!,
               margin: const EdgeInsets.only(top: 20, left: 10, right: 10));
           return;

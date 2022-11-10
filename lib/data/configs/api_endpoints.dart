@@ -7,6 +7,7 @@ const String createUserProfileUrl = 'user/profile';
 const String uploadImageUrl = 'user/profile/image';
 const String favouriteNews = 'user/favourite';
 const String unfavouriteNews = 'user/unfavourite';
+const String submitQuizActivityUrl = 'QnA/submitActivity';
 
 String newsVideoListUrl(
     {String? type, int? count, String? lastEvaluatedKey, Location? location}) {

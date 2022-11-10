@@ -20,9 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.splash,
       getPages: AppPages.pages,
       initialBinding: MainBinding(),
-      localizationsDelegates: const [
-        CountryLocalizations.delegate,
-      ],
+      localizationsDelegates: const [CountryLocalizations.delegate],
     );
   }
 }

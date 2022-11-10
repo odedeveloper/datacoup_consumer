@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/home/quiz/quiz_controller.dart';
 import 'package:datacoup/presentation/home/quiz/widgets/quiz_play_widget.dart';
 
 class AllQuizWidget extends StatefulWidget {
@@ -20,8 +19,7 @@ class _AllQuizWidgetState extends State<AllQuizWidget> {
   }
 
   loadData() async {
-    await quizController.getAllQuiz(
-        odenId: homeController.user!.value.odenId, topic: "");
+    await quizController.getAllQuiz(odenId: "", topic: "");
     quizController.quizListLoader(false);
   }
 
