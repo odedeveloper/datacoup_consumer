@@ -18,7 +18,7 @@ class NewsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             SizedBox(
-              height: height(context)! * 0.3,
+              height: height(context)! * 0.32,
               child: const NewsByInterest(),
             ),
             SizedBox(

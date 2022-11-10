@@ -1,6 +1,7 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/authentication/signup/verify_otp_screen.dart';
 import 'package:datacoup/presentation/home/news/news_binding.dart';
+import 'package:datacoup/presentation/home/quiz/quiz_binding.dart';
 import 'package:datacoup/presentation/videos/videos_screen.dart';
 
 class AppRoutes {
@@ -40,21 +41,21 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => const HomeScreen(),
-      bindings: [MainBinding(), HomeBinding(), NewsBindings()],
+      bindings: [MainBinding(), HomeBinding(), NewsBindings(), QuizBinding()],
     ),
     GetPage(
       name: AppRoutes.videoScreen,
       page: () => const VideoScreen(),
     ),
-    // GetPage(
-    //   name: AppRoutes.quizScreen,
-    //   page: () => const QuizScreen(),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.allQuizScreen,
-    //   page: () => const AllQuizWidget(),
-    //   binding: QuizBinding(),
-    // ),
+    GetPage(
+      name: AppRoutes.quizScreen,
+      page: () => const QuizScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.allQuizScreen,
+      page: () => const AllQuizWidget(),
+      binding: QuizBinding(),
+    ),
     // GetPage(
     //   name: AppRoutes.editProfile,
     //   page: () => const EditProfileScreen(),

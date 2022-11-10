@@ -55,8 +55,12 @@ class _AllQuizWidgetState extends State<AllQuizWidget> {
                       elevation: 10.0,
                       color: Theme.of(context).appBarTheme.backgroundColor,
                       child: ListTile(
-                        onTap: () =>
-                            Get.to(() => QuizPlayWidget(quizItem: data)),
+                        onTap: () {
+                          quizController.showNextButtom(false);
+                          quizController.options!.clear();
+                          quizController.progressList.clear();
+                          Get.to(() => QuizPlayWidget(quizItem: data));
+                        },
                         title: Text(
                           data.topic!,
                           style: themeTextStyle(

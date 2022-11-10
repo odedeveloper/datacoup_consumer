@@ -155,22 +155,23 @@ class QuizPlayWidget extends GetWidget<QuizController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      controller.options!.isNotEmpty &&
-                              controller.options!.isEmpty
-                          ? SizedBox(
-                              width: width(context)! * 0.25,
-                              height: height(context)! * 0.04,
-                              child: RoundedElevatedButton(
-                                onClicked: () {
-                                  pageController.previousPage(
-                                      duration: const Duration(seconds: 1),
-                                      curve: Curves.easeInOut);
-                                },
-                                color: Colors.blueGrey,
-                                title: "Back",
-                              ),
-                            )
-                          : const SizedBox(),
+                      // controller.options!.isNotEmpty &&
+                      //         controller.options!.isEmpty
+                      //     ? SizedBox(
+                      //         width: width(context)! * 0.25,
+                      //         height: height(context)! * 0.04,
+                      //         child: RoundedElevatedButton(
+                      //           onClicked: () {
+                      //             pageController.previousPage(
+                      //                 duration: const Duration(seconds: 1),
+                      //                 curve: Curves.easeInOut);
+                      //           },
+                      //           color: Colors.blueGrey,
+                      //           title: "Back",
+                      //         ),
+                      //       )
+                      //     : const
+                      const SizedBox(),
                       controller.options!.isNotEmpty
                           ? SizedBox(
                               width: width(context)! * 0.25,

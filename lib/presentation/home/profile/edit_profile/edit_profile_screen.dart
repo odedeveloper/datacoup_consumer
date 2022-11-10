@@ -144,29 +144,44 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             InkWell(
                               onTap: () => _showPicker(context),
-                              child: Material(
-                                borderRadius: BorderRadius.circular(
-                                    width(context)! * 0.17),
-                                elevation: 10,
-                                child: CircleAvatar(
-                                  radius: width(context)! * 0.17,
-                                  backgroundColor: Theme.of(context)
-                                      .appBarTheme
-                                      .backgroundColor,
-                                  child: CircleAvatar(
-                                    radius: width(context)! * 0.16,
-                                    backgroundImage: controller.profileImage !=
-                                            null
-                                        ? FileImage(controller.profileImage!)
-                                            as ImageProvider
-                                        : NetworkImage(
-                                            loginResponse!.user!.profileImage!),
-                                    backgroundColor: Theme.of(context)
-                                        .appBarTheme
-                                        .backgroundColor,
-                                  ),
-                                ),
-                              ),
+                              child: controller.user!.value.profileImage!
+                                          .contains("jpg") ||
+                                      controller.user!.value.profileImage!
+                                          .contains("png")
+                                  ? Material(
+                                      borderRadius: BorderRadius.circular(
+                                          width(context)! * 0.17),
+                                      elevation: 10,
+                                      child: CircleAvatar(
+                                        radius: width(context)! * 0.17,
+                                        backgroundColor: Theme.of(context)
+                                            .appBarTheme
+                                            .backgroundColor,
+                                        child: CircleAvatar(
+                                          radius: width(context)! * 0.16,
+                                          backgroundImage: controller
+                                                      .profileImage !=
+                                                  null
+                                              ? FileImage(
+                                                      controller.profileImage!)
+                                                  as ImageProvider
+                                              : NetworkImage(loginResponse!
+                                                  .user!.profileImage!),
+                                          backgroundColor: Theme.of(context)
+                                              .appBarTheme
+                                              .backgroundColor,
+                                        ),
+                                      ),
+                                    )
+                                  : CircleAvatar(
+                                      radius: 65,
+                                      backgroundColor: Colors.grey,
+                                      child: FaIcon(
+                                        FontAwesomeIcons.solidUser,
+                                        size: 40,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                    ),
                             ),
                             Positioned(
                               bottom: 0.0,

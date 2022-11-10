@@ -67,7 +67,7 @@ class User {
         odenId: json["odenId"],
         firstName: json["firstName"],
         lastName: json["lastName"],
-        mobile: json["mobile"],
+        mobile: json["phone"],
         email: json["email"],
         profileImage: json["profileImage"],
         gender: json["gender"],
