@@ -215,9 +215,9 @@ Future<String> editEmailPhone(bool isByEmail, String value) async {
           .post(EDIT_EMAIL_PHONE, data: {"type": 'email', "email": value});
     }
     Map<String, dynamic> data = Map.from(response.data);
-    print(data);
+    print(data['Attributes']['emailVerified']);
 
-    return data['status'];
+    return data['Attributes']['emailVerified'];
   } catch (error) {
     print('EDIT DETAILS ERROR -_-');
     print(error);

@@ -70,22 +70,21 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                 GetBuilder<EditEmailPhoneController>(builder: (controller) {
                   return TextButton(
                       onPressed: () async {
-                        // if (isSecondVerification) {
-                        //   //TODO: check otp for second verification
-                        //   // update loading paramter to true
-                        //   _controller.generateOtp();
-                        // } else {
                         controller.updateOtp(otp);
                         MethodResponse result =
                             await controller.verifyOTPRequest();
                         if (result.isSuccess) {
-                          bool editDetailsConfirmed;
+                          String editDetailsConfirmed;
                           try {
                             editDetailsConfirmed =
                                 await controller.editDetails();
-                            if (editDetailsConfirmed) {
-                              //TODO:call create profile
+                            if (editDetailsConfirmed == 'True') {
+                              await controller.createUserProfile();
 
+                              // Get.to(HomeScreen());
+                              Get.back();
+                              Get.back();
+                              Get.back();
                               Get.back();
                             } else {
                               if (isEmail) {
@@ -133,18 +132,22 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                     GetBuilder<EditEmailPhoneController>(builder: (controller) {
                       return TextButton(
                         onPressed: () async {
-                          // try {
-                          //   // await _controller.sendCode(_userService);
-                          //   //TODO: re use verification api and generate otp
-                          //   showSnackBar(
-                          //     context,
-                          //     msg: "OTP_HAS_BEEN_SENT_SUCCESSFULLY",
-                          //     backgroundColor: Colors.greenAccent,
-                          //   );
-                          // } catch (e) {
-                          //   showSnackBar(context,
-                          //       msg: _controller.errorMessage);
-                          // }
+                          try {
+                            String response =
+                                await controller.secondVerification(
+                                    true,
+                                    isEmail
+                                        ? controller.emailController.text
+                                        : controller.countryCode +
+                                            controller.mobileController.text);
+                            showSnackBar(
+                              context,
+                              msg: "OTP_HAS_BEEN_SENT_SUCCESSFULLY",
+                              backgroundColor: Colors.greenAccent,
+                            );
+                          } catch (e) {
+                            showSnackBar(context, msg: controller.errorMessage);
+                          }
                           // _controller.sendCode(_userService);
                         },
                         child: const Text("Resend Code",

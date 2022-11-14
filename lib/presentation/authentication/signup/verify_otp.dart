@@ -79,11 +79,6 @@ class VerifyOtp extends StatelessWidget {
                         )
                       : TextButton(
                           onPressed: () async {
-                            // if (isSecondVerification) {
-                            //   //TODO: check otp for second verification
-                            //   // update loading paramter to true
-                            //   _controller.generateOtp();
-                            // } else {
                             controller.updateOtp(otp);
                             MethodResponse result =
                                 await controller.verifyOTPRequest();
@@ -100,7 +95,6 @@ class VerifyOtp extends StatelessWidget {
                                     await controller.updateIsPhoneVerified(
                                         accountConfirmed);
                                   }
-                                  //TODO: updatemeial and call create profile
 
                                   Get.back();
                                 } else if (accountConfirmed) {
