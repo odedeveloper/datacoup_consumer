@@ -30,6 +30,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
     Future openDialog(bool isByEmail) => showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               title: Column(
                 children: [
                   Center(

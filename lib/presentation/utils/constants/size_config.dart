@@ -6,11 +6,10 @@ class SizeConfig {
   static const double _originalWidth = 392.7272;
   static const double _originalHeight = 781.0909;
 
-  late double deviceWidth;
-  late double deviceHeight;
-  late double widthScale;
-  late double heightScale; 
-  
+  double deviceWidth = 0.0;
+  double deviceHeight = 0.0;
+  double widthScale = 0.0;
+  double heightScale = 0.0;
 
   factory SizeConfig() {
     return _instance;

@@ -9,15 +9,15 @@ class LogoContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: height * SizeConfig().heightScale,
+        height: height * SizeConfig().heightScale!,
         width: double.infinity,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 30 * SizeConfig().heightScale),
+            SizedBox(height: 30 * SizeConfig().heightScale!),
             Image.asset(AssetConst.LOGO_PNG,
-                height: 80 * SizeConfig().heightScale),
-            SizedBox(height: 30 * SizeConfig().heightScale),
+                height: 80 * SizeConfig().heightScale!),
+            SizedBox(height: 30 * SizeConfig().heightScale!),
             Text("DATACOUP NEWS",
                 style: themeTextStyle(
                   context: context,
@@ -25,7 +25,7 @@ class LogoContainer extends StatelessWidget {
                   letterSpacing: 1.2,
                   fsize: kextraLargeFont(context),
                 )),
-            SizedBox(height: 15 * SizeConfig().heightScale),
+            SizedBox(height: 15 * SizeConfig().heightScale!),
             Text(
               title,
               style: themeTextStyle(
