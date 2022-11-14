@@ -64,6 +64,6 @@ themeTextStyle(
           fsize != null ? fontSize(context)! * fsize : kmediumFont(context),
       fontStyle: fontStyle,
       fontWeight: fweight,
-      fontFamily: fontFamily ?? AssetConst.ralewayFont,
+      fontFamily: fontFamily ?? AssetConst.RALEWAY_FONT,
       letterSpacing: letterSpacing,
     );

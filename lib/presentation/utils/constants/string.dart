@@ -1,28 +1,15 @@
-const String appName = "DataCoup News";
-const String appDesc = "Because Privacy matters";
-const String createAccountDesc = "Create a new account";
-const String userVerifyDesc =
-    "We will send a confirmation code on the above {} to verify your account";
-const String selectProfilePhoto = "Select Profile Photo";
-const String splashTitle = "Your daily dose of privacy";
-const String home = 'home';
-
 // ignore_for_file: constant_identifier_names
 
 class StringConst {
-  // api ends
+
   static const String newsOfTheDay = 'News_of_the_day';
   static const String videoOfTheDay = 'Video_of_the_day';
   static const String socialFeedtype = 'Feed';
 
-  static const String videoOftheDayTitle = 'Video of the day';
+   static const String videoOftheDayTitle = 'Video of the day';
   static const String newsOftheDayTitle = 'News of the day';
   static const String trendingVideosTitle = 'Trending Videos';
   static const String socialMediaTitle = 'Social Feeds';
-
-  static const String locationBoxTitle =
-      'Here you can change the location and then can watch the relevant content';
-
   //name of pages
   static const String HOME = 'home';
   static const String FAVOURITE = 'favourite';
@@ -35,11 +22,6 @@ class StringConst {
   static const String PHOTOS = 'Photos';
   static const String VIDEOS = 'Videos';
   static const String ARTICLE = 'Articles';
-
-  static const String verifyEmailAddress = 'Verify email address';
-  static const String verifyPhoneNumer = 'Verify phone number';
-  static const String verifyEmailAddressDesc =
-      "Please enter the number code send to your {}";
 
   //text used in app
   static const String CONTINUE = "CONTINUE";
@@ -67,7 +49,7 @@ class StringConst {
 
   static const String APP_SETTINGS = "App Settings";
   static const String QNA_PROFILE_PAGE_TEXT =
-      "Currently you know many important bits of data security and privacy.\nBut there is still some important bits left.";
+      "Currently you know many important bits of data security and privacy. But there is still some important bits left ";
   // error messages
   static const String INVALID_ACCESS_TOKEN_MESSAGE = "Invalid Access Token";
   static const String ACCESS_TOKEN_NOT_FOUND_MESSAGE = "Access Token not found";
@@ -81,15 +63,21 @@ class StringConst {
   static const String VALID_EMAIL = "Please enter valid email.";
   static const String ENTER_MOBILE_PROCEED =
       "Please enter mobile no. to proceed.";
+  static const String ENTER_USERNAME_PROCEED =
+      "Please enter username to proceed.";
   static const String SELECT_COUNTRY_CODE = "Please select country code.";
   static const String ENTER_MOBILE = "Please enter mobile no.";
   static const String ENTER_EMAIL = "Please enter email.";
   static const String MOBILE_LENGTH = "Mobile no. should be of 10 digits.";
   static const String CHECK_MOBILE_LENGTH =
       "Minimum Mobile no. length should be of 8 digits.";
+  static const String CHECK_USERNAME_LENGTH =
+      "Minimum Username length should be of 8 characters.";
   static const String VALID_MOBILE = "Please enter valid mobile no.";
+  static const String VALID_USERNAME = "Please enter valid username.";
   static const String ENTER_OTP_PROCEED = "Please enter OTP to proceed.";
   static const String VALID_OTP = "Please enter valid OTP.";
+  static const String INVALID_OTP = "Invalid OTP entered.";
   static const String ENTER_PASSWORD_PROCEED =
       "Please enter password to proceed.";
   static const String PASSWORD_LENGTH = "Password should be of 8 characters.";

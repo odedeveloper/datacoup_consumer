@@ -2,7 +2,7 @@ import 'package:datacoup/export.dart';
 
 class LoginResponse {
   final String? token;
-  final User? user;
+  final UserModel? user;
   final String? resMessage;
   LoginResponse({
     this.token,

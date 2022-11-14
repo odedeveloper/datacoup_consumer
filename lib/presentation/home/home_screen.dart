@@ -1,6 +1,8 @@
 import 'package:datacoup/export.dart';
 import 'dart:io';
 
+import 'package:datacoup/presentation/home/quiz/qna/qna_profile.dart';
+
 class HomeScreen extends GetWidget<HomeController> {
   const HomeScreen({super.key});
 
@@ -13,12 +15,12 @@ class HomeScreen extends GetWidget<HomeController> {
             child: Obx(
               () => IndexedStack(
                 index: controller.onIndexSelected.value,
-                children: const [
-                  NewsScreen(),
-                  FavouriteScreen(),
-                  QuizScreen(),
-                  VideoReelsScreen(),
-                  ProfileScreen(),
+                children: [
+                  const NewsScreen(),
+                  const FavouriteScreen(),
+                  QnaProfile(),
+                  const VideoReelsScreen(),
+                  const ProfileScreen(),
                 ],
               ),
             ),

@@ -1,19 +1,16 @@
 name: datacoup
 description: A new Flutter project.
 
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
-
+  sdk: ">=2.18.2 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
 
   cupertino_icons: ^1.0.2
   get: ^4.6.5
@@ -34,19 +31,22 @@ dependencies:
   like_button: ^2.0.5
   image_cropper: ^3.0.1
   image_picker: ^0.8.6
+  amplify_flutter: ^0.6.10
+  amplify_auth_cognito: ^0.6.10
+  country_code_picker: ^2.0.2
+  flutter_svg: ^1.1.6
+  carousel_slider: ^4.1.1
+  global_configuration: ^2.0.0-nullsafety.1
+  amplify_core: ^0.6.10
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
   flutter_lints: ^2.0.0
 
-
 flutter:
-
   uses-material-design: true
-
 
   assets:
     - assets/images/

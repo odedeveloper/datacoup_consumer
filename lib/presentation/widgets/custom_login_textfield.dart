@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:datacoup/export.dart';
 
 class CustomLoginTextField extends StatelessWidget {
@@ -8,15 +7,15 @@ class CustomLoginTextField extends StatelessWidget {
       this.onEyeTap,
       this.showEye = false,
       this.showData = false,
-      this.signupController,
-      this.loginController,
+      // this.signupController,
+      // this.loginController,
       this.enabledEdit = true,
       this.onChanged,
       this.forPhoneNumber = false,
       this.label});
   final TextEditingController? controller;
-  final LoginController? loginController;
-  final SignupController? signupController;
+  // final LoginController? loginController;
+  // final SignUpController? signupController;
   final Function(String)? onChanged;
 
   final String? label;
@@ -38,58 +37,58 @@ class CustomLoginTextField extends StatelessWidget {
           style: themeTextStyle(
             context: context,
             letterSpacing: 0.9,
-            fontFamily: AssetConst.ralewayFont,
+            fontFamily: AssetConst.RALEWAY_FONT,
             tColor: Theme.of(context).primaryColor.withOpacity(0.6),
             fweight: FontWeight.w500,
           ),
         ),
         Row(
           children: [
-            forPhoneNumber!
-                ? Expanded(
-                    child: Obx(
-                    () => InputDecorator(
-                      decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.only(top: 15),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Theme.of(context).primaryColor),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Theme.of(context).primaryColor),
-                        ),
-                        disabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Theme.of(context).primaryColor),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Theme.of(context).primaryColor),
-                        ),
-                      ),
-                      child: InkWell(
-                        onTap: () => _showCountryPicker(context),
-                        child: Center(
-                          child: Text(
-                            loginController != null
-                                ? "+${loginController!.selectedCountryCode.value}"
-                                : "+${signupController!.selectedCountryCode.value}",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontFamily: AssetConst.quickSand,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ))
-                : const SizedBox.shrink(), // contry code picker
-            forPhoneNumber!
-                ? const SizedBox(width: 15)
-                : const SizedBox.shrink(),
+            // forPhoneNumber!
+            //     ? Expanded(
+            //         child: Obx(
+            //         () => InputDecorator(
+            //           decoration: InputDecoration(
+            //             contentPadding: const EdgeInsets.only(top: 15),
+            //             enabledBorder: UnderlineInputBorder(
+            //               borderSide:
+            //                   BorderSide(color: Theme.of(context).primaryColor),
+            //             ),
+            //             focusedBorder: UnderlineInputBorder(
+            //               borderSide:
+            //                   BorderSide(color: Theme.of(context).primaryColor),
+            //             ),
+            //             disabledBorder: UnderlineInputBorder(
+            //               borderSide:
+            //                   BorderSide(color: Theme.of(context).primaryColor),
+            //             ),
+            //             border: UnderlineInputBorder(
+            //               borderSide:
+            //                   BorderSide(color: Theme.of(context).primaryColor),
+            //             ),
+            //           ),
+            //           child: InkWell(
+            //             onTap: () => _showCountryPicker(context),
+            //             child: Center(
+            //               child: Text(
+            //                 loginController != null
+            //                     ? "+${loginController!.selectedCountryCode.value}"
+            //                     : "+${signupController!.selectedCountryCode.value}",
+            //                 style: TextStyle(
+            //                   fontSize: 15,
+            //                   color: Theme.of(context).colorScheme.secondary,
+            //                   fontFamily: AssetConst.QUICKSAND_FONT,
+            //                   fontWeight: FontWeight.w500,
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ))
+            //     : const SizedBox.shrink(), // contry code picker
+            // forPhoneNumber!
+            //     ? const SizedBox(width: 15)
+            //     : const SizedBox.shrink(),
             Expanded(
               flex: 5,
               child: TextFormField(
@@ -100,7 +99,7 @@ class CustomLoginTextField extends StatelessWidget {
                   context: context,
                   letterSpacing: 0.9,
                   fweight: FontWeight.w500,
-                  fontFamily: AssetConst.ralewayFont,
+                  fontFamily: AssetConst.RALEWAY_FONT,
                   fontStyle: FontStyle.normal,
                 ),
                 onChanged: onChanged,
@@ -122,17 +121,17 @@ class CustomLoginTextField extends StatelessWidget {
                     borderSide: BorderSide(
                         color: Theme.of(context).primaryColor.withOpacity(0.2)),
                   ),
-                  suffixIcon: showEye!
-                      ? IconButton(
-                          onPressed: onEyeTap,
-                          icon: Icon(
-                            loginController!.showPassword.value
-                                ? Icons.visibility_off
-                                : Icons.visibility_rounded,
-                            color: darkGreyColor,
-                          ),
-                        )
-                      : null,
+                  // suffixIcon: showEye!
+                  //     ? IconButton(
+                  //         onPressed: onEyeTap,
+                  //         icon: Icon(
+                  //           loginController!.showPassword.value
+                  //               ? Icons.visibility_off
+                  //               : Icons.visibility_rounded,
+                  //           color: darkGreyColor,
+                  //         ),
+                  //       )
+                  //     : null,
                 ),
               ),
             ),
@@ -170,12 +169,12 @@ class CustomLoginTextField extends StatelessWidget {
           ),
         ),
         onSelect: (Country country) {
-          log('Select country: ${country.phoneCode}');
-          if (loginController != null) {
-            loginController!.updateCountryCode(country.phoneCode);
-          } else {
-            signupController!.updateCountryCode(country.phoneCode);
-          }
+          // log('Select country: ${country.phoneCode}');
+          // if (loginController != null) {
+          //   loginController!.updateCountryCode(country.phoneCode);
+          // } else {
+          //   signupController!.updateCountryCode(country.phoneCode);
+          // }
         });
   }
 }

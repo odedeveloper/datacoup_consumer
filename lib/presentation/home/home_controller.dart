@@ -7,7 +7,7 @@ class HomeController extends GetxController {
   final LocalRepositoryInterface localRepositoryInterface;
   final ApiRepositoryInterface apiRepositoryInterface;
 
-  Rx<User>? user = User.empty().obs;
+  Rx<UserModel>? user = UserModel.empty().obs;
   RxInt onIndexSelected = 0.obs;
   RxBool darkTheme = false.obs;
   RxBool profileImageChange = false.obs;
@@ -80,17 +80,22 @@ class HomeController extends GetxController {
       }
       LoginResponse? loginResponse =
           await apiRepositoryInterface.fetchUserProfile();
-      User user = User(
-        email: emailTextContoller?.text ?? loginResponse!.user!.email,
-        firstName: fnameTextContoller?.text ?? loginResponse!.user!.firstName,
-        lastName: lnaemTextContoller?.text ?? loginResponse!.user!.lastName,
-        gender: selectedreturnGender?.value ?? loginResponse!.user!.gender,
-        country: selectedreturnCountry?.value ?? loginResponse!.user!.country,
-        dob: dobTextContoller?.text ?? loginResponse!.user!.dob,
-        mobile: mobileTextContoller?.text ?? loginResponse!.user!.mobile,
-        state: selectedreturnState?.value ?? loginResponse!.user!.state,
-        profileImage: newProfileImageUrl ?? loginResponse!.user!.profileImage,
-        zipCode: zipCodeTextContoller?.text ?? loginResponse!.user!.zipCode!,
+      UserModel user = UserModel(
+        bestScore: loginResponse!.user!.bestScore,
+        emailVerified: loginResponse.user!.emailVerified,
+        odenId: loginResponse.user!.odenId,
+        phoneVerified: loginResponse.user!.phoneVerified,
+        primary: loginResponse.user!.primary,
+        email: emailTextContoller?.text ?? loginResponse.user!.email,
+        firstName: fnameTextContoller?.text ?? loginResponse.user!.firstName,
+        lastName: lnaemTextContoller?.text ?? loginResponse.user!.lastName,
+        gender: selectedreturnGender?.value ?? loginResponse.user!.gender,
+        country: selectedreturnCountry?.value ?? loginResponse.user!.country,
+        dob: dobTextContoller?.text ?? loginResponse.user!.dob,
+        phone: mobileTextContoller?.text ?? loginResponse.user!.phone,
+        state: selectedreturnState?.value ?? loginResponse.user!.state,
+        profileImage: newProfileImageUrl ?? loginResponse.user!.profileImage,
+        zipCode: zipCodeTextContoller?.text ?? loginResponse.user!.zipCode,
       );
       await apiRepositoryInterface.createUpdateUser(user);
     } catch (e) {

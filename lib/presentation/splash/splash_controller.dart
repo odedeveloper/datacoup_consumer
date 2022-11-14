@@ -17,6 +17,11 @@ class SplachController extends GetxController {
     super.onReady();
   }
 
+  getProperDataLoad() async {
+    final authController = Get.find<AuthenticationController>();
+    await authController.initializeUser();
+  }
+
   void validateTheme() async {
     final isDark = await localRepositoryInterface.isDarkMode();
     if (isDark != null) {
@@ -27,6 +32,7 @@ class SplachController extends GetxController {
   }
 
   void validateSession() async {
+    await getProperDataLoad();
     await apiRepositoryInterface.cogintoRegister();
     bool result = await apiRepositoryInterface.checkAuthenticated();
     log("user valid $result");

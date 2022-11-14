@@ -47,14 +47,14 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                 children: [
                   ActionChip(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
-                    label: const Text("Artices"),
+                    label: const Text("Articles"),
                     onPressed: () {},
                   ),
-                  ActionChip(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    label: const Text("Photos"),
-                    onPressed: () {},
-                  ),
+                  // ActionChip(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 24),
+                  //   label: const Text("Photos"),
+                  //   onPressed: () {},
+                  // ),
                   ActionChip(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     label: const Text("Videos"),

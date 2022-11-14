@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class MyThemeData {
   static final darkTheme = ThemeData(
-    fontFamily: AssetConst.ralewayFont,
+    fontFamily: AssetConst.RALEWAY_FONT,
     brightness: Brightness.light,
     scaffoldBackgroundColor: const Color(0xFF1a1c1e),
     primaryColor: Colors.white,
@@ -24,7 +24,7 @@ class MyThemeData {
   );
 
   static final lightTheme = ThemeData(
-    fontFamily: AssetConst.ralewayFont,
+    fontFamily: AssetConst.RALEWAY_FONT,
     brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
     primaryColor: Colors.black,

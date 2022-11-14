@@ -18,7 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   loadData() async {
     controller.profileLoader(true);
-    controller.user!.value = User.empty();
+    controller.user!.value = UserModel.empty();
     LoginResponse? response =
         await controller.apiRepositoryInterface.fetchUserProfile();
     controller.user!(response!.user);
@@ -80,13 +80,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     backgroundImage: NetworkImage(
                                         controller.user!.value.profileImage!),
                                   )
-                                : CircleAvatar(
+                                : const CircleAvatar(
                                     radius: 50,
                                     backgroundColor: Colors.grey,
                                     child: FaIcon(
                                       FontAwesomeIcons.solidUser,
                                       size: 40,
-                                      color: Theme.of(context).primaryColor,
+                                      color: deepOrangeColor,
                                     ),
                                   ),
                           ),

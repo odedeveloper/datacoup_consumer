@@ -7,13 +7,15 @@ class WebViewWidget extends StatelessWidget {
   final String? url;
   final bool? showAppbar;
   final bool? showFav;
+  final String? title;
   final Item? data;
   WebViewWidget(
       {super.key,
       this.showFav = true,
+      this.title,
       this.showAppbar = false,
       this.url,
-      required this.data});
+      this.data});
 
   final newsController = Get.find<NewsController>();
 
@@ -21,7 +23,11 @@ class WebViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // InAppWebViewController? webViewController;
     return Scaffold(
-      appBar: showAppbar! ? AppBar() : null,
+      appBar: showAppbar!
+          ? AppBar(
+              title: title != null ? Text(title!) : null,
+            )
+          : null,
       body: InAppWebView(
         initialUrlRequest: URLRequest(url: Uri.tryParse(url!)),
         initialOptions:

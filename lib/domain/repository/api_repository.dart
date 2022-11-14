@@ -1,12 +1,12 @@
-import 'package:datacoup/domain/model/quiz_model.dart';
 import 'package:datacoup/export.dart';
 
 abstract class ApiRepositoryInterface {
   Future<CognitoUserPool> cogintoRegister();
-  Future<User?> getUserFromToken(String? token);
+  Future<void> generateNewToken();
+  Future<UserModel?> getUserFromToken(String? token);
   Future<String?> login(LoginRequest login);
   Future<String?> signUp(LoginRequest login);
-  Future<User?> createUpdateUser(User user);
+  Future<UserModel?> createUpdateUser(UserModel? user);
   Future<String?> uploadProfileImage(String filePath);
   Future<LoginResponse?> fetchUserProfile();
   Future<void> logout(String? token);
@@ -23,6 +23,4 @@ abstract class ApiRepositoryInterface {
     required String? lastEvaluatedKey,
   });
   Future<String?> postFavouriteNews({String? newsId, bool? isLiked});
-  Future<QuizModel?> getQuizzies({String? odenId, String? topic});
-  Future<void> submitQuizActivity({String? odenId, List<Option>? option});
 }

@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
 
-import 'package:datacoup/domain/model/quiz_model.dart';
 import 'package:datacoup/export.dart';
 
 class ApiRepositoryImpl extends ApiRepositoryInterface {
@@ -27,7 +26,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   }
 
   @override
-  Future<User?> getUserFromToken(String? token) async {
+  Future<UserModel?> getUserFromToken(String? token) async {
     String? refToken = await LocalRepositoryImpl().getRefreshToken();
     _cognitoUser = CognitoUser('', _userPool!, storage: _userPool!.storage);
     CognitoRefreshToken refreshToken = CognitoRefreshToken(refToken);
@@ -56,7 +55,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
           return true;
         } else {
           // token Exipre and going to refresh Token
-          User? user = await getUserFromToken(token);
+          UserModel? user = await getUserFromToken(token);
           if (user != null && result == true) {
             return true;
           } else {
@@ -66,7 +65,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
         }
       } else {
         // for new user creating new token
-        User? user = await getUserFromToken(token);
+        UserModel? user = await getUserFromToken(token);
         if (user != null && result == true) {
           return true;
         } else {
@@ -145,9 +144,9 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   @override
   Future<LoginResponse?> fetchUserProfile() async {
     try {
-      final response = await DioInstance().dio.get(fetchUserProfileUrl);
+      final response = await DioInstance().dio.get(FETCH_PROFILE_URL);
       if (response.statusCode != 503) {
-        User? user = User.fromJson(response.data);
+        UserModel? user = UserModel.fromJson(response.data);
         String? token = GetStorage().read("idToken") ?? "";
         return LoginResponse(token: token, user: user);
       } else {
@@ -214,7 +213,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   @override
   Future<String?> postFavouriteNews({String? newsId, bool? isLiked}) async {
     try {
-      final uri = isLiked! ? favouriteNews : unfavouriteNews;
+      final uri = isLiked! ? FAVOURITE_NEWS : UNFAVOURITE_NEWS;
       await DioInstance().dio.post(uri, data: {'newsId': newsId});
     } catch (e) {
       log("error on post fav news $e");
@@ -223,12 +222,12 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   }
 
   @override
-  Future<User?> createUpdateUser(User user) async {
+  Future<UserModel?> createUpdateUser(UserModel? user) async {
     try {
       final response = await DioInstance()
           .dio
-          .post(createUserProfileUrl, data: userToJson(user));
-      User updateduser = User.fromJson(response.data);
+          .post(CREATE_PROFILE_URL, data: userModelToJson(user!));
+      UserModel updateduser = UserModel.fromJson(response.data);
       return updateduser;
     } catch (e) {
       log("error to create or update user $e");
@@ -243,7 +242,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       List<int> imageBytes = imageFile.readAsBytesSync();
       String base64Image = base64.encode(imageBytes);
 
-      final response = await DioInstance().dio.put(uploadImageUrl, data: {
+      final response = await DioInstance().dio.put(UPLOAD_PROFILE_IMG_URL, data: {
         "fileData": base64Image,
         "mimeType": "image/jpeg",
       });
@@ -255,25 +254,14 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     }
   }
 
-  @override
-  Future<QuizModel?> getQuizzies({String? odenId, String? topic}) async {
-    try {
-      final response =
-          await DioInstance().dio.get(getActivityUrl(odenId!, topic = ''));
-      QuizModel quizModel = QuizModel.fromJson(response.data);
-      return quizModel;
-    } catch (e) {
-      log("errror on geting QNA $e");
-      return null;
-    }
-  }
+  
 
   @override
   Future<void> submitQuizActivity(
-      {String? odenId, List<Option>? option, int? score, int? quizId}) async {
+      {String? odenId, List? option, int? score, int? quizId}) async {
     try {
       final response = await DioInstance().dio.post(
-        submitQuizActivityUrl,
+     SUBMIT_ACTIVITY   ,
         data: {
           'selectedAnswers': option,
           'score': score,
@@ -290,4 +278,10 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       log("error on post QNA activity $e");
     }
   }
+  
+  @override
+  Future<void> generateNewToken() async{
+    
+  }
+
 }

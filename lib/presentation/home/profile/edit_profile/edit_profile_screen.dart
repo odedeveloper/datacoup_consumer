@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:csc_picker/csc_picker.dart';
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/widgets/drop_down_widget.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -32,7 +31,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     controller.fnameTextContoller!.text = loginResponse!.user!.firstName!;
     controller.lnaemTextContoller!.text = loginResponse!.user!.lastName!;
     controller.emailTextContoller!.text = loginResponse!.user!.email!;
-    controller.mobileTextContoller!.text = loginResponse!.user!.mobile!;
+    controller.mobileTextContoller!.text = loginResponse!.user!.phone!;
     controller.zipCodeTextContoller!.text = loginResponse!.user!.zipCode!;
     controller.dobTextContoller!.text = loginResponse!.user!.dob!;
 
@@ -68,7 +67,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             loginResponse!.user!.profileImageChange &&
         controller.lnaemTextContoller!.text == loginResponse!.user!.lastName &&
         controller.emailTextContoller!.text == loginResponse!.user!.email &&
-        controller.mobileTextContoller!.text == loginResponse!.user!.mobile &&
+        controller.mobileTextContoller!.text == loginResponse!.user!.phone &&
         controller.selectedreturnGender!.value == loginResponse!.user!.gender &&
         controller.selectedreturnCountry!.value ==
             loginResponse!.user!.country &&
@@ -110,6 +109,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       "Update",
                       style: themeTextStyle(
                         context: context,
+                        tColor: deepOrangeColor,
                         fweight: FontWeight.w600,
                       ),
                     ),
@@ -144,44 +144,47 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           children: [
                             InkWell(
                               onTap: () => _showPicker(context),
-                              child: controller.user!.value.profileImage!
-                                          .contains("jpg") ||
-                                      controller.user!.value.profileImage!
-                                          .contains("png")
-                                  ? Material(
-                                      borderRadius: BorderRadius.circular(
-                                          width(context)! * 0.17),
-                                      elevation: 10,
-                                      child: CircleAvatar(
-                                        radius: width(context)! * 0.17,
-                                        backgroundColor: Theme.of(context)
-                                            .appBarTheme
-                                            .backgroundColor,
-                                        child: CircleAvatar(
-                                          radius: width(context)! * 0.16,
-                                          backgroundImage: controller
-                                                      .profileImage !=
-                                                  null
-                                              ? FileImage(
-                                                      controller.profileImage!)
-                                                  as ImageProvider
-                                              : NetworkImage(loginResponse!
-                                                  .user!.profileImage!),
-                                          backgroundColor: Theme.of(context)
-                                              .appBarTheme
-                                              .backgroundColor,
-                                        ),
-                                      ),
-                                    )
-                                  : CircleAvatar(
+                              child: controller.profileImage != null
+                                  ? CircleAvatar(
                                       radius: 65,
                                       backgroundColor: Colors.grey,
-                                      child: FaIcon(
-                                        FontAwesomeIcons.solidUser,
-                                        size: 40,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
+                                      backgroundImage:
+                                          FileImage(controller.profileImage!),
+                                    )
+                                  : controller.user!.value.profileImage!
+                                              .contains("jpg") ||
+                                          controller.user!.value.profileImage!
+                                              .contains("png")
+                                      ? Material(
+                                          borderRadius: BorderRadius.circular(
+                                              width(context)! * 0.17),
+                                          elevation: 10,
+                                          child: CircleAvatar(
+                                            radius: width(context)! * 0.17,
+                                            backgroundColor: deepOrangeColor,
+                                            child: CircleAvatar(
+                                              radius: width(context)! * 0.16,
+                                              backgroundImage: controller
+                                                          .profileImage !=
+                                                      null
+                                                  ? FileImage(controller
+                                                          .profileImage!)
+                                                      as ImageProvider
+                                                  : NetworkImage(loginResponse!
+                                                      .user!.profileImage!),
+                                              backgroundColor: deepOrangeColor,
+                                            ),
+                                          ),
+                                        )
+                                      : const CircleAvatar(
+                                          radius: 65,
+                                          backgroundColor: Colors.grey,
+                                          child: FaIcon(
+                                            FontAwesomeIcons.solidUser,
+                                            size: 60,
+                                            color: deepOrangeColor,
+                                          ),
+                                        ),
                             ),
                             Positioned(
                               bottom: 0.0,
@@ -191,9 +194,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 child: Container(
                                   padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .appBarTheme
-                                          .backgroundColor!,
+                                      color: deepOrangeColor,
                                       boxShadow: const [
                                         BoxShadow(
                                             blurRadius: 0.4, spreadRadius: 0.4)
@@ -249,7 +250,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             style: themeTextStyle(
                               context: context,
                               letterSpacing: 0.9,
-                              fontFamily: AssetConst.ralewayFont,
+                              fontFamily: AssetConst.RALEWAY_FONT,
                               tColor: Theme.of(context)
                                   .primaryColor
                                   .withOpacity(0.6),
@@ -462,7 +463,7 @@ class LightLabelWidget extends StatelessWidget {
             context: context,
             letterSpacing: 0.9,
             fsize: fontsize,
-            fontFamily: AssetConst.ralewayFont,
+            fontFamily: AssetConst.RALEWAY_FONT,
             tColor: Colors.grey[400],
             fweight: FontWeight.w500,
           ),

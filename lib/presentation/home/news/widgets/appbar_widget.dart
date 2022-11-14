@@ -1,4 +1,3 @@
-import 'package:csc_picker/csc_picker.dart';
 import 'package:datacoup/export.dart';
 import 'package:intl/intl.dart';
 
@@ -18,13 +17,13 @@ class NewsScreenAppBar extends StatelessWidget {
           children: [
             CacheImageWidget(
               fromAsset: true,
-              imageUrl: AssetConst.locationLogo,
+              imageUrl: AssetConst.LOCATION,
               imgheight: height(context)! * 0.07,
               imgwidth: width(context)! * 0.15,
             ),
             const SizedBox(height: 20),
             Text(
-              StringConst.locationBoxTitle,
+              StringConst.LOCATION,
               textAlign: TextAlign.center,
               style: themeTextStyle(
                 context: context,
@@ -210,7 +209,7 @@ class NewsScreenAppBar extends StatelessWidget {
         centerTitle: true,
         title: CacheImageWidget(
           fromAsset: true,
-          imageUrl: AssetConst.logoPng,
+          imageUrl: AssetConst.LOGO_PNG,
           imgheight: height(context)! * 0.05,
           imgwidth: width(context)! * 0.12,
         ),
@@ -260,33 +259,37 @@ class NewsScreenAppBar extends StatelessWidget {
                     controller.profileImage = null;
                     Get.to(() => const EditProfileScreen());
                   },
-                  child: user!.profileImage == null
-                      ? CircleAvatar(
+                  child: controller.user == null ||
+                          controller.user!.value.firstName == null
+                      ? const CircleAvatar(
                           radius: 18,
                           backgroundColor: Colors.grey,
                           child: FaIcon(
                             FontAwesomeIcons.solidUser,
-                            color: Theme.of(context).primaryColor,
+                            color: deepOrangeColor,
+                            size: 16,
                           ),
                         )
-                      : user.profileImage!.contains("jpg") ||
-                              user.profileImage!.contains("png")
+                      : controller.user!.value.profileImage!.contains("jpg") ||
+                              controller.user!.value.profileImage!
+                                  .contains("png")
                           ? CircleAvatar(
                               radius: 18,
                               backgroundColor: Colors.grey,
                               child: CircleAvatar(
                                 radius: 16,
                                 backgroundColor: Colors.grey,
-                                backgroundImage:
-                                    NetworkImage(user.profileImage!),
+                                backgroundImage: NetworkImage(
+                                    controller.user!.value.profileImage!),
                               ),
                             )
-                          : CircleAvatar(
+                          : const CircleAvatar(
                               radius: 18,
                               backgroundColor: Colors.grey,
                               child: FaIcon(
                                 FontAwesomeIcons.solidUser,
-                                color: Theme.of(context).primaryColor,
+                                color: deepOrangeColor,
+                                size: 16,
                               ),
                             )),
               const SizedBox(width: 10),
