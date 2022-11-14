@@ -21,7 +21,7 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: 20 * SizeConfig().widthScale),
               child: Column(children: [
-                SizedBox(height: 100 * SizeConfig().heightScale),
+                SizedBox(height: 200 * SizeConfig().heightScale),
                 Container(
                   decoration: BoxDecoration(
                     color: blueGreyLight,

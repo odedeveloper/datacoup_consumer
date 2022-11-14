@@ -81,7 +81,7 @@ class EditEmailPhone extends StatelessWidget {
                                   const SizedBox(height: 20),
                                   Container(
                                       alignment: Alignment.center,
-                                      height: 30 * SizeConfig().heightScale,
+                                      height: 60,
                                       child:
                                           GetBuilder<EditEmailPhoneController>(
                                               builder: (controller) {

@@ -14,7 +14,7 @@ class Login extends StatelessWidget {
               child: SingleChildScrollView(
                   child: Column(children: [
         Container(
-            height: 350 * SizeConfig().heightScale!,
+            height: 350 * SizeConfig().heightScale,
             width: double.infinity,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
@@ -22,7 +22,7 @@ class Login extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 30 * SizeConfig().heightScale!),
+                SizedBox(height: 30 * SizeConfig().heightScale),
                 Image.asset(AssetConst.LOGO_PNG,
                     height: 80 * SizeConfig().heightScale),
                 SizedBox(height: 50 * SizeConfig().heightScale),

@@ -501,7 +501,8 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                                     AssetConst
                                                                         .RALEWAY_FONT)),
                                                       ],
-                                                    ))
+                                                    ),
+                                                  )
                                         : const SizedBox(),
                                   ],
                                 ),
@@ -525,7 +526,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                   fontWeight: FontWeight.w500)),
                                           Container(
                                             alignment: Alignment.center,
-                                            height: 30,
+                                            height: 50,
                                             child: TextFormField(
                                               readOnly: true,
                                               onTap: () {
@@ -569,7 +570,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                       ),
                                     ),
                                     !controller.isUpdating.value &&
-                                            controller.user!.phone!.isNotEmpty
+                                            controller.user!.phone != ""
                                         ? controller.user!.phoneVerified ==
                                                 'True'
                                             ? Flexible(
@@ -596,48 +597,57 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                   ],
                                                 ),
                                               )
-                                            : TextButton(
-                                                onPressed: () async {
-                                                  // api to send otp
+                                            : controller.user!.phone != ""
+                                                ? const SizedBox.shrink()
+                                                : TextButton(
+                                                    onPressed: () async {
+                                                      // api to send otp
 
-                                                  String response =
-                                                      await controller
-                                                          .secondVerification(
-                                                              false,
-                                                              controller.user!
-                                                                  .phone!);
-                                                  Get.to(() => (VerifyOtp(
-                                                        isEmail: false,
-                                                        isSecondVerification:
-                                                            true,
-                                                      )));
-                                                },
-                                                style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all<Color>(
-                                                                redOpacityColor),
-                                                    shape: MaterialStateProperty
-                                                        .all<RoundedRectangleBorder>(
+                                                      String response =
+                                                          await controller
+                                                              .secondVerification(
+                                                                  false,
+                                                                  controller
+                                                                      .user!
+                                                                      .phone!);
+                                                      Get.to(() => (VerifyOtp(
+                                                            isEmail: false,
+                                                            isSecondVerification:
+                                                                true,
+                                                          )));
+                                                    },
+                                                    style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all<Color>(
+                                                                    redOpacityColor),
+                                                        shape: MaterialStateProperty.all<
+                                                                RoundedRectangleBorder>(
                                                             RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              18.0),
-                                                      // side: BorderSide(color: Colors.red)
-                                                    ))),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: const [
-                                                    Text("Verify",
-                                                        style: TextStyle(
-                                                            letterSpacing: 0.9,
-                                                            fontSize: 14,
-                                                            color: Colors.white,
-                                                            fontFamily: AssetConst
-                                                                .RALEWAY_FONT)),
-                                                  ],
-                                                ))
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      18.0),
+                                                          // side: BorderSide(color: Colors.red)
+                                                        ))),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: const [
+                                                        Text("Verify",
+                                                            style: TextStyle(
+                                                                letterSpacing:
+                                                                    0.9,
+                                                                fontSize: 14,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontFamily:
+                                                                    AssetConst
+                                                                        .RALEWAY_FONT)),
+                                                      ],
+                                                    ),
+                                                  )
                                         : const SizedBox(),
                                   ],
                                 ),
