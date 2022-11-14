@@ -17,6 +17,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
   final imagePickerController = Get.put(ImagePickerController());
 
   final controller = Get.find<UserProfileController>();
+  final homeController = Get.find<HomeController>();
 
   @override
   void initState() {
@@ -896,6 +897,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                 TextButton(
                                     onPressed: () {
                                       if (controller.isUpdating.value) {
+                                        homeController.updatePressed(true);
                                         controller.updateUserUsingController();
                                       } else {
                                         controller.updateIsUpdating(true);

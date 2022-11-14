@@ -133,8 +133,8 @@ class _QnaProfileState extends State<QnaProfile> {
                                     : const SizedBox.shrink(),
                               ),
                               Positioned(
-                                top: MediaQuery.of(context).size.height * 0.26,
-                                left: MediaQuery.of(context).size.width * 0.26,
+                                top: height(context)! * 0.23,
+                                left: MediaQuery.of(context).size.width * 0.3,
                                 child: controller.bestScore == ''
                                     ? Container(
                                         padding: const EdgeInsets.all(5),
@@ -146,8 +146,8 @@ class _QnaProfileState extends State<QnaProfile> {
                                           "You haven't taken any quiz yet",
                                           style: TextStyle(
                                             // letterSpacing: 1.7,
-                                            color: Theme.of(context)
-                                                .primaryColorDark,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             fontSize: width(context)! * 0.025,
                                             fontWeight: FontWeight.w800,
                                             fontFamily:
