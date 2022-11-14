@@ -44,7 +44,7 @@ class ResetPassword extends StatelessWidget {
               backgroundColor: lightBlueGreyColor,
               elevation: 0,
             ),
-            backgroundColor: Theme.of(context).backgroundColor,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             body: Stack(children: [
               SingleChildScrollView(child:
                   GetBuilder<ForgotPasswordController>(builder: (controller) {

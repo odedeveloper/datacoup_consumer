@@ -92,7 +92,7 @@ class QuizHistoryResult extends StatelessWidget {
                 margin:
                     const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).backgroundColor.withOpacity(0.5),
+                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                     children: List.generate(3, (index) {

@@ -18,7 +18,7 @@ class VerifyOtp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.symmetric(

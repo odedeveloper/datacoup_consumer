@@ -15,7 +15,7 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.symmetric(

@@ -13,7 +13,7 @@ class ExploreQuizListItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 2),
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(5)),
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).scaffoldBackgroundColor,
             boxShadow: const [
               BoxShadow(blurRadius: 1, spreadRadius: 0.1),
             ]),

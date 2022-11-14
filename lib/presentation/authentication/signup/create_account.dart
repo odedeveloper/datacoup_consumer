@@ -9,7 +9,7 @@ class CreateAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Stack(children: [
         SingleChildScrollView(
             child: GetBuilder<SignUpController>(builder: (controller) {

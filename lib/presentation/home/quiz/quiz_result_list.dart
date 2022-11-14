@@ -52,7 +52,7 @@ class QuizResultListItem extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color: Theme.of(context).backgroundColor),
+                          color: Theme.of(context).scaffoldBackgroundColor),
                       child: Text("Ques - ${(questionIndex + 1).toString()}",
                           // textAlign: alignment,
                           style: TextStyle(
@@ -163,7 +163,7 @@ class ActivityResultListItem extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Theme.of(context).backgroundColor),
+                        color: Theme.of(context).scaffoldBackgroundColor),
                     child: Text("Ques - ${(questionIndex + 1).toString()}",
                         // textAlign: alignment,
                         style: TextStyle(
