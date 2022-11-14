@@ -43,8 +43,8 @@ class DioInstance {
   }
 
 // to get token..
-  Future<String> fetchAuthToken() async {
-    String token = GetStorage().read("idToken");
+  Future<String?> fetchAuthToken() async {
+    String token = GetStorage().read("idToken") ?? "";
     log("token*** $token");
     return token.toString();
   }
