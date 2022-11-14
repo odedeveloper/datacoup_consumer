@@ -9,7 +9,8 @@ class SizeConfig {
   late double deviceWidth;
   late double deviceHeight;
   late double widthScale;
-  late double heightScale;
+  late double heightScale; 
+  
 
   factory SizeConfig() {
     return _instance;

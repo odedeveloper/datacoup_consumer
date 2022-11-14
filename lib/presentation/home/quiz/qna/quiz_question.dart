@@ -70,7 +70,7 @@ class QuizQuestion extends StatelessWidget {
                           width: 40,
                         )
                       ]),
-                      SizedBox(height: 20 * SizeConfig().heightScale),
+                      const SizedBox(height: 20),
                       SizedBox(
                         height: 10,
                         child: LinearProgressIndicator(

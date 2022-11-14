@@ -63,7 +63,7 @@ class QuizResultListItem extends StatelessWidget {
                           )),
                     ),
                   ]),
-              SizedBox(height: 10 * SizeConfig().heightScale),
+              const SizedBox(height: 10),
               Center(
                 child: Text(
                   quizController.quiz.questions[questionIndex].question,
@@ -75,7 +75,7 @@ class QuizResultListItem extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 10 * SizeConfig().heightScale),
+              const SizedBox(height: 10),
               Column(
                 children: [
                   ...(quizController.quiz.questions[questionIndex].options).map(
@@ -87,7 +87,7 @@ class QuizResultListItem extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 10 * SizeConfig().heightScale),
+              const SizedBox(height: 10),
               if (quizController.quiz.questions[questionIndex].message != '')
                 Center(
                   child: Container(
@@ -174,7 +174,7 @@ class ActivityResultListItem extends StatelessWidget {
                         )),
                   ),
                 ]),
-            SizedBox(height: 10 * SizeConfig().heightScale),
+            const SizedBox(height: 10),
             Center(
               child: Text(
                 _quizController.quiz.questions[questionIndex].question,
@@ -186,7 +186,7 @@ class ActivityResultListItem extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10 * SizeConfig().heightScale),
+            const SizedBox(height: 10),
             Column(
               children: [
                 ...(_quizController.quiz.questions[questionIndex].options).map(
@@ -199,7 +199,7 @@ class ActivityResultListItem extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10 * SizeConfig().heightScale),
+            const SizedBox(height: 10),
             if (_quizController.quiz.questions[questionIndex].message != '')
               Center(
                 child: Container(

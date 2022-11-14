@@ -96,33 +96,35 @@ class Login extends StatelessWidget {
                   fontWeight: FontWeight.w500)),
           const SizedBox(height: 10),
           Container(
-              alignment: Alignment.center,
-              height: 30 * SizeConfig().heightScale,
-              child: GetBuilder<LoginController>(
-                  builder: (controller) => (TextFormField(
-                        obscureText: controller.passwordHidden,
-                        autofocus: false,
-                        controller: controller.passwordController,
-                        scrollPadding: EdgeInsets.zero,
-                        style: TextStyle(
-                          color: darkGreyColor,
-                          letterSpacing: 0.9,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: AssetConst.RALEWAY_FONT,
-                          fontStyle: FontStyle.normal,
-                          fontSize: 16,
-                        ),
-                        decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(bottom: 18),
-                            suffixIcon: InkWell(
-                                onTap: () {
-                                  controller.updatePasswordHiddens(
-                                      !controller.passwordHidden);
-                                },
-                                child: Icon(controller.passwordHidden
-                                    ? Icons.visibility_off
-                                    : Icons.visibility))),
-                      )))),
+            alignment: Alignment.center,
+            height: 30 * SizeConfig().heightScale,
+            child: GetBuilder<LoginController>(
+              builder: (controller) => (TextFormField(
+                obscureText: controller.passwordHidden,
+                autofocus: false,
+                controller: controller.passwordController,
+                scrollPadding: EdgeInsets.zero,
+                style: TextStyle(
+                  color: darkGreyColor,
+                  letterSpacing: 0.9,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: AssetConst.RALEWAY_FONT,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 16,
+                ),
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.only(bottom: 18),
+                    suffixIcon: InkWell(
+                        onTap: () {
+                          controller.updatePasswordHiddens(
+                              !controller.passwordHidden);
+                        },
+                        child: Icon(controller.passwordHidden
+                            ? Icons.visibility_off
+                            : Icons.visibility))),
+              )),
+            ),
+          ),
           Row(
             children: [
               GetBuilder<LoginController>(
@@ -195,7 +197,7 @@ class Login extends StatelessWidget {
                                   acontroller.updateLoggedIn(true);
                                   acontroller.updateAuthInProgress(false);
                                   acontroller.updateLoggedIn(true);
-                                  Get.offAll(() => const HomeScreen());
+                                  Get.offAllNamed(AppRoutes.home);
                                 } else {
                                   acontroller.updateAuthInProgress(false);
                                   acontroller.updateLoggedIn(false);

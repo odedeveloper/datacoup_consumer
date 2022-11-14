@@ -34,8 +34,9 @@ Future<String> setUsername(String username) async {
 Future<String> getPrimaryFromCognito(String username) async {
   try {
     // await Amplify.Auth.signOut();
-    Response response =
-        await DioInstance().dio.get(getPrimaryFromCognitoUrl(username));
+    Response response = await Dio().get(GlobalConfiguration().get("baseURL") +
+        getPrimaryFromCognitoUrl(username));
+    // await DioInstance().dio.get(getPrimaryFromCognitoUrl(username));
     // await Dio.get(getPrimaryFromCognitoUrl(username));
 
     if (response.statusCode != 503) {

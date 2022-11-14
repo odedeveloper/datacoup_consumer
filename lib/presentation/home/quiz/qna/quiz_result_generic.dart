@@ -72,11 +72,11 @@ class QuizHistoryResult extends StatelessWidget {
                   child: ClipRRect(
                     // borderRadius: BorderRadius.circular(75),
                     child: Image.asset(AssetConst.QUIZ_RESULT,
-                        width: 150, height: 200 * SizeConfig().heightScale),
+                        width: 150, height: 200),
                   ),
                 ),
               ]),
-              SizedBox(height: 20 * SizeConfig().heightScale),
+              const SizedBox(height: 20),
               Container(
                   child: Text("Results of ${controller.quiz.topic} Quiz",
                       style: TextStyle(
@@ -86,7 +86,7 @@ class QuizHistoryResult extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontFamily: AssetConst.QUICKSAND_FONT,
                       ))),
-              SizedBox(height: 10 * SizeConfig().widthScale),
+              const SizedBox(height: 10),
               Container(
                 padding: const EdgeInsets.all(15),
                 margin:
@@ -140,7 +140,7 @@ class QuizHistoryResult extends StatelessWidget {
                   ));
                 })),
               ),
-              SizedBox(height: 20 * SizeConfig().widthScale),
+              const SizedBox(height: 20),
               Center(
                   child: Text("Here is what you got right and wrong.",
                       style: TextStyle(
@@ -150,7 +150,7 @@ class QuizHistoryResult extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontFamily: AssetConst.QUICKSAND_FONT,
                       ))),
-              SizedBox(height: 10 * SizeConfig().widthScale),
+              const SizedBox(height: 10),
               Center(
                   child: Column(
                 children: [
@@ -162,7 +162,7 @@ class QuizHistoryResult extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontFamily: AssetConst.QUICKSAND_FONT,
                       )),
-                  SizedBox(height: 10 * SizeConfig().widthScale),
+                  const SizedBox(height: 10),
                   Transform.rotate(
                     angle: -pi / 2,
                     child: Container(
@@ -198,7 +198,7 @@ class QuizHistoryResult extends StatelessWidget {
                   ),
                 ],
               )),
-              SizedBox(height: 15 * SizeConfig().widthScale),
+              const SizedBox(height: 15),
               const QuizHistoryResultList(isQuizHistoryResult: true),
             ]),
           )),

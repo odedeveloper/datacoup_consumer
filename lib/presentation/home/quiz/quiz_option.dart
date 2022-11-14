@@ -34,7 +34,7 @@ class Answer extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 16.0, fontWeight: FontWeight.w500),
                 )),
-            SizedBox(width: 10 * SizeConfig().widthScale),
+            const SizedBox(width: 10),
             Expanded(
               child: Text(
                 answerText,

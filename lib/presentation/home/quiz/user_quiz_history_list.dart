@@ -82,7 +82,7 @@ class QuizHistoryListItem extends StatelessWidget {
 
                 style: TextStyle(
                   color: Theme.of(context).primaryColorDark,
-                  fontSize: SizeConfig().deviceWidth * 0.038,
+                  fontSize: width(context)! * 0.038,
                   fontWeight: FontWeight.w800,
                   fontFamily: AssetConst.QUICKSAND_FONT,
                 )),
@@ -90,7 +90,7 @@ class QuizHistoryListItem extends StatelessWidget {
                 // textAlign: alignment,
                 style: TextStyle(
                   color: Theme.of(context).primaryColorDark,
-                  fontSize: SizeConfig().deviceWidth * 0.038,
+                  fontSize: width(context)! * 0.038,
                   fontWeight: FontWeight.w800,
                   fontFamily: AssetConst.QUICKSAND_FONT,
                 )),
@@ -98,7 +98,7 @@ class QuizHistoryListItem extends StatelessWidget {
                 // textAlign: alignment,
                 style: TextStyle(
                   color: Theme.of(context).primaryColorDark,
-                  fontSize: SizeConfig().deviceWidth * 0.038,
+                  fontSize: width(context)! * 0.038,
                   fontWeight: FontWeight.w800,
                   fontFamily: AssetConst.QUICKSAND_FONT,
                 )),
@@ -106,7 +106,7 @@ class QuizHistoryListItem extends StatelessWidget {
                 // textAlign: alignment,
                 style: TextStyle(
                   color: Theme.of(context).primaryColorDark,
-                  fontSize: SizeConfig().deviceWidth * 0.038,
+                  fontSize: width(context)! * 0.038,
                   fontWeight: FontWeight.w800,
                   fontFamily: AssetConst.QUICKSAND_FONT,
                 )),
@@ -141,7 +141,7 @@ class UserHistoryList extends StatelessWidget {
                   ? Center(
                       child: Text('You have not taken any Quiz yet!',
                           style: TextStyle(
-                              fontSize: SizeConfig().deviceWidth * 0.025,
+                              fontSize: width(context)! * 0.025,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               color: mediumGreyColor)),
                     )
