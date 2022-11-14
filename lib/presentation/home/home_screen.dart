@@ -8,12 +8,26 @@ class HomeScreen extends GetWidget<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: Obx(
-              () => IndexedStack(
+    return Obx(
+      () => Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 56),
+          child: NewsScreenAppBar(
+            title: controller.onIndexSelected.value == 1
+                ? "favourite".tr
+                : controller.onIndexSelected.value == 2
+                    ? "quizzes".tr
+                    : controller.onIndexSelected.value == 3
+                        ? "videos".tr
+                        : controller.onIndexSelected.value == 4
+                            ? 'profile'.tr
+                            : null,
+          ),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: IndexedStack(
                 index: controller.onIndexSelected.value,
                 children: const [
                   NewsScreen(),
@@ -25,16 +39,16 @@ class HomeScreen extends GetWidget<HomeController> {
                 ],
               ),
             ),
-          ),
-          Obx(
-            () => AppBottomNavgationBar(
-              index: controller.onIndexSelected.value,
-              onIndexSelected: (value) {
-                controller.updateIndexSelected(value);
-              },
-            ),
-          )
-        ],
+            Obx(
+              () => AppBottomNavgationBar(
+                index: controller.onIndexSelected.value,
+                onIndexSelected: (value) {
+                  controller.updateIndexSelected(value);
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

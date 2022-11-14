@@ -6,9 +6,9 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 56),
-          child: NewsScreenAppBar()),
+      // appBar: PreferredSize(
+      //     preferredSize: const Size(double.infinity, 56),
+      //     child: NewsScreenAppBar()),
       body: SingleChildScrollView(
         child: Column(
           children: [

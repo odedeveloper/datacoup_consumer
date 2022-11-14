@@ -1,4 +1,7 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/authentication/account/update_account.dart';
+import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
+import 'package:flutter/cupertino.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -26,6 +29,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
     controller.updatePressed(false);
   }
 
+  void _logout(BuildContext context) {
+    showCupertinoDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return CupertinoAlertDialog(
+            title: const Text('Log out'),
+            content: const Text('Are you sure you want to logout?'),
+            actions: [
+              // The "Yes" button
+              CupertinoDialogAction(
+                onPressed: () {
+                  logout();
+                },
+                isDefaultAction: true,
+                isDestructiveAction: true,
+                child: const Text('Yes'),
+              ),
+              // The "No" button
+              CupertinoDialogAction(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                isDefaultAction: false,
+                isDestructiveAction: false,
+                child: const Text('No'),
+              )
+            ],
+          );
+        });
+  }
+
   Future<void> logout() async {
     await controller.logOut();
     Get.offAllNamed(AppRoutes.splash);
@@ -39,17 +73,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Profile",
-          style: themeTextStyle(
-            context: context,
-            fsize: klargeFont(context),
-            fweight: FontWeight.bold,
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: Text(
+      //     "Profile",
+      //     style: themeTextStyle(
+      //       context: context,
+      //       fsize: klargeFont(context),
+      //       fweight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Column(
@@ -118,9 +152,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Expanded(
                             child: IconButton(
                               onPressed: () async {
+                                Get.put(UserProfileController());
                                 controller.showSaveButton(false);
                                 controller.profileImage = null;
-                                await Get.to(() => const EditProfileScreen())!
+                                await Get.to(() => const UpdateAccount())!
                                     .then((_) async {
                                   if (controller.updatePressed.value == true) {
                                     loadData();
@@ -157,10 +192,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      tileWithIcon(
-                        context,
-                        icon: FontAwesomeIcons.language,
-                        title: "Language",
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 4,
+                            child: tileWithIcon(
+                              context,
+                              icon: FontAwesomeIcons.language,
+                              title: "Language",
+                            ),
+                          ),
+                          Expanded(
+                            child: GetBuilder<HomeController>(
+                              builder: (controller) {
+                                return DropdownButton(
+                                  dropdownColor:
+                                      Theme.of(context).scaffoldBackgroundColor,
+                                  value: controller.language,
+                                  underline: Container(),
+                                  icon: const Icon(Icons.arrow_drop_down),
+                                  items: controller.supportedLanguages.map(
+                                    (val) {
+                                      return DropdownMenuItem(
+                                        value: val,
+                                        child: Text(
+                                          val,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 14,
+                                              color: val == controller.language
+                                                  ? deepOrangeColor
+                                                  : Colors.grey.shade300,
+                                              fontFamily:
+                                                  AssetConst.QUICKSAND_FONT),
+                                          textScaleFactor: 1.0,
+                                        ),
+                                      );
+                                    },
+                                  ).toList(),
+                                  onChanged: (value) {
+                                    controller.updateLanguage(value.toString());
+                                  },
+                                );
+                              },
+                            ),
+                          )
+                        ],
                       ),
                       const SizedBox(height: 20),
                       Row(
@@ -190,12 +267,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20),
-                      tileWithIcon(
-                        context,
-                        icon: FontAwesomeIcons.bell,
-                        title: "Notifiaction",
-                      ),
+                      // const SizedBox(height: 20),
+                      // tileWithIcon(
+                      //   context,
+                      //   icon: FontAwesomeIcons.bell,
+                      //   title: "Notifiaction",
+                      // ),
                       const SizedBox(height: 30),
                       Text(
                         "General",
@@ -207,22 +284,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                      tileWithIcon(
-                        context,
-                        icon: Icons.privacy_tip_outlined,
-                        title: "Policy and guidelines",
+                      InkWell(
+                        onTap: () {
+                          Get.to(WebViewWidget(
+                            showAppbar: true,
+                            title: "Privacy Policy",
+                            showFav: false,
+                            url: PRIVACY_URL,
+                          ));
+                        },
+                        child: tileWithIcon(
+                          context,
+                          icon: Icons.privacy_tip_outlined,
+                          title: "Policy and guidelines",
+                        ),
                       ),
                       const SizedBox(height: 20),
-                      tileWithIcon(
-                        context,
-                        icon: FontAwesomeIcons.fileLines,
-                        title: "Legal",
+                      InkWell(
+                        onTap: () {
+                          Get.to(WebViewWidget(
+                            showAppbar: true,
+                            title: "Terms and Conditions",
+                            showFav: false,
+                            url: TERMS_URL,
+                          ));
+                        },
+                        child: tileWithIcon(
+                          context,
+                          icon: FontAwesomeIcons.fileLines,
+                          title: "Legal",
+                        ),
                       ),
                       const SizedBox(height: 20),
-                      tileWithIcon(
-                        context,
-                        icon: Icons.help_center_outlined,
-                        title: "Help",
+                      InkWell(
+                        onTap: () {
+                          Get.to(WebViewWidget(
+                            showAppbar: true,
+                            title: "Help",
+                            showFav: false,
+                            url: HELP_URL,
+                          ));
+                        },
+                        child: tileWithIcon(
+                          context,
+                          icon: Icons.help_center_outlined,
+                          title: "Help",
+                        ),
                       ),
                       const SizedBox(height: 30),
                       Align(
@@ -230,7 +337,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: SizedBox(
                           width: width(context)! * 0.3,
                           child: RoundedElevatedButton(
-                            onClicked: () => logout(),
+                            onClicked: () => _logout(context),
                             title: "Logout",
                           ),
                         ),

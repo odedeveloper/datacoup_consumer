@@ -63,10 +63,11 @@ class QuizHistoryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        margin: const EdgeInsets.all(3),
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(5)),
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: InkWell(
           onTap: () async {
@@ -125,7 +126,7 @@ class UserHistoryList extends StatelessWidget {
         child: GetBuilder<QnaHomePageController>(builder: (controller) {
       return Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(

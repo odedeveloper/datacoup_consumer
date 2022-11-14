@@ -13,20 +13,25 @@ class QnaHomePageController extends GetxController {
 
   String odenId = "";
 
-  @override
-  onInit() {
-    loadUserDataFirst();
-    super.onInit();
-  }
+  // @override
+  // onInit() {
+  //   loadUserDataFirst();
+  //   super.onInit();
+  // }
 
   loadUserDataFirst() async {
     quizMainLoader(true);
-    await ApiRepositoryImpl().fetchUserProfile().then(
-      (_) async {
-        quizMainLoader(false);
-        odenId = Get.find<HomeController>().user!.value.odenId!;
-        await fetchUserHistory(odenId, '');
-        await fetchBestScore(odenId);
+    Future.delayed(
+      const Duration(seconds: 4),
+      () async {
+        await ApiRepositoryImpl().fetchUserProfile().then(
+          (_) async {
+            quizMainLoader(false);
+            odenId = Get.find<HomeController>().user!.value.odenId!;
+            await fetchUserHistory(odenId, '');
+            await fetchBestScore(odenId);
+          },
+        );
       },
     );
   }

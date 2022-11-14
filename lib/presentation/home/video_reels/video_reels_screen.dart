@@ -31,17 +31,17 @@ class _VideoReelsScreenState extends State<VideoReelsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Videos",
-          style: themeTextStyle(
-            fsize: klargeFont(context),
-            context: context,
-            fweight: FontWeight.bold,
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: Text(
+      //     "Videos",
+      //     style: themeTextStyle(
+      //       fsize: klargeFont(context),
+      //       context: context,
+      //       fweight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
       body: SafeArea(
         child: Obx(
           () => newsController.reelVideosLoader.value

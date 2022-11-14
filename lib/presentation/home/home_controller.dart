@@ -14,6 +14,12 @@ class HomeController extends GetxController {
   RxBool profileLoader = true.obs;
   RxBool showSaveButton = false.obs;
   RxBool updatePressed = false.obs;
+  String language = "English";
+  List<String> supportedLanguages = ["English", "Hindi"];
+  final Map<String, Locale> _locales = {
+    "English": const Locale('en', 'US'),
+    "Hindi": const Locale('hi', 'IN')
+  };
   final TextEditingController? fnameTextContoller = TextEditingController();
   final TextEditingController? lnaemTextContoller = TextEditingController();
   final TextEditingController? emailTextContoller = TextEditingController();
@@ -34,6 +40,13 @@ class HomeController extends GetxController {
     required this.localRepositoryInterface,
     required this.apiRepositoryInterface,
   });
+
+  updateLanguage(String value) {
+    language = value;
+    Get.updateLocale(_locales[value]!);
+    GetStorage().write("Language", value);
+    update();
+  }
 
   @override
   void onReady() {

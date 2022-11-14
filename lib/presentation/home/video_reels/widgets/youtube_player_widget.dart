@@ -113,35 +113,49 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
                   color: Colors.transparent,
                 ),
                 Positioned(
-                    right: 20.0,
-                    bottom: 150,
-                    child: Obx(
-                      () => InkWell(
-                        onTap: () {
-                          newsController.likeAndUnlikeNews(
-                            data: widget.videoDetail,
-                            isLiked: newsController.allFavouriteNewsItem.any(
-                                    (element) =>
-                                        element.newsId ==
-                                        widget.videoDetail!.newsId)
-                                ? false
-                                : true,
-                          );
-                        },
-                        child: FaIcon(
-                          newsController.allFavouriteNewsItem.any((element) =>
-                                  element.newsId == widget.videoDetail!.newsId)
-                              ? FontAwesomeIcons.solidHeart
-                              : FontAwesomeIcons.heart,
-                          color: newsController.allFavouriteNewsItem.any(
+                  right: 20.0,
+                  bottom: 210,
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () {
+                        newsController.likeAndUnlikeNews(
+                          data: widget.videoDetail,
+                          isLiked: newsController.allFavouriteNewsItem.any(
                                   (element) =>
                                       element.newsId ==
                                       widget.videoDetail!.newsId)
-                              ? redOpacityColor
-                              : Colors.white,
-                        ),
+                              ? false
+                              : true,
+                        );
+                      },
+                      child: FaIcon(
+                        newsController.allFavouriteNewsItem.any((element) =>
+                                element.newsId == widget.videoDetail!.newsId)
+                            ? FontAwesomeIcons.solidHeart
+                            : FontAwesomeIcons.heart,
+                        color: newsController.allFavouriteNewsItem.any(
+                                (element) =>
+                                    element.newsId ==
+                                    widget.videoDetail!.newsId)
+                            ? redOpacityColor
+                            : Colors.white,
                       ),
-                    )),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 10.0,
+                  bottom: 150,
+                  child: IconButton(
+                    onPressed: () {
+                      controller!.toggleFullScreen();
+                    },
+                    icon: const FaIcon(
+                      FontAwesomeIcons.expand,
+                      color: deepOrangeColor,
+                    ),
+                  ),
+                ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Obx(
@@ -157,6 +171,7 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
                         vrController.isVideoPlaying.value
                             ? FontAwesomeIcons.pause
                             : FontAwesomeIcons.play,
+                        color: deepOrangeColor,
                       ),
                     ),
                   ),

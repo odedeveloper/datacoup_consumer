@@ -1,10 +1,13 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/authentication/account/update_account.dart';
 import 'package:intl/intl.dart';
 
 class NewsScreenAppBar extends StatelessWidget {
-  NewsScreenAppBar({Key? key}) : super(key: key);
+  NewsScreenAppBar({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   final controller = Get.find<HomeController>();
+  final newsController = Get.find<NewsController>();
 
   void openDialog(BuildContext context) {
     Get.dialog(
@@ -107,6 +110,7 @@ class NewsScreenAppBar extends StatelessWidget {
                             controller.user!.value.country);
                         controller
                             .selectedreturnState!(controller.user!.value.state);
+
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
@@ -123,7 +127,11 @@ class NewsScreenAppBar extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: RoundedElevatedButton(
-                      onClicked: () {
+                      onClicked: () async {
+                        newsController.selectedcountry(
+                            controller.selectedreturnCountry!.value);
+                        newsController.selectedState(
+                            controller.selectedreturnState!.value);
                         Get.back();
                       },
                       color: deepOrangeColor,
@@ -207,12 +215,21 @@ class NewsScreenAppBar extends StatelessWidget {
                 ),
               ),
         centerTitle: true,
-        title: CacheImageWidget(
-          fromAsset: true,
-          imageUrl: AssetConst.LOGO_PNG,
-          imgheight: height(context)! * 0.05,
-          imgwidth: width(context)! * 0.12,
-        ),
+        title: title != null
+            ? Text(
+                title!,
+                style: themeTextStyle(
+                  context: context,
+                  fsize: klargeFont(context),
+                  fweight: FontWeight.bold,
+                ),
+              )
+            : CacheImageWidget(
+                fromAsset: true,
+                imageUrl: AssetConst.LOGO_PNG,
+                imgheight: height(context)! * 0.05,
+                imgwidth: width(context)! * 0.12,
+              ),
         actions: [
           Row(
             children: [
@@ -257,7 +274,7 @@ class NewsScreenAppBar extends StatelessWidget {
                   onTap: () {
                     controller.showSaveButton(false);
                     controller.profileImage = null;
-                    Get.to(() => const EditProfileScreen());
+                    Get.to(() => const UpdateAccount());
                   },
                   child: controller.user == null ||
                           controller.user!.value.firstName == null

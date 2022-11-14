@@ -25,7 +25,17 @@ class WebViewWidget extends StatelessWidget {
     return Scaffold(
       appBar: showAppbar!
           ? AppBar(
-              title: title != null ? Text(title!) : null,
+              centerTitle: true,
+              title: title != null
+                  ? Text(
+                      title!,
+                      style: themeTextStyle(
+                        context: context,
+                        fsize: klargeFont(context),
+                        fweight: FontWeight.bold,
+                      ),
+                    )
+                  : null,
             )
           : null,
       body: InAppWebView(

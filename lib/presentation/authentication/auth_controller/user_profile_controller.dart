@@ -38,7 +38,7 @@ class UserProfileController extends GetxController {
 
   @override
   onInit() {
-    fetchUserProfile();
+    loadUpdatedUserData();
     super.onInit();
   }
 

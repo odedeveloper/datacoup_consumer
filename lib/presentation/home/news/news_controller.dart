@@ -44,6 +44,8 @@ class NewsController extends GetxController {
   List<String> reelVideosChannels = ["YouTube"];
   List<String> reelVideosTrendingTypes = ["GDPA", "CCPA"];
 
+ 
+
   Future<NewsModel?> getAllNews(
       {required String? type, required int? count}) async {
     try {
