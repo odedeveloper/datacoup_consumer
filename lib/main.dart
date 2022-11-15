@@ -29,6 +29,8 @@ Future<void> configureAmplify() async {
   }
 }
 
+
+
 class MyApp extends StatelessWidget {
   MyApp({super.key});
 
