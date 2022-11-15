@@ -186,14 +186,13 @@ class ForgotPasswordController extends GetxController {
       print(generatedOtp);
 
       String response = await resetPasswordApi(isByEmail, user, generatedOtp);
-      if (response != 'success') {
-        errorMessage = response;
-      }
+      print('error in forgot password');
+      print(response);
+      errorMessage = response;
       formProcessing = false;
       update();
     } catch (e) {
       errorMessage = e.toString();
-
       formProcessing = false;
       update();
       rethrow;

@@ -166,7 +166,7 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                     child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
-                            "Did not receive the code?${isEmail ? "Check the mail in your spam filter , or" : "Wait for some time ,"}",
+                            "Did not receive the code? ${isEmail ? "Check the mail in your spam filter , or" : "Wait for some time ,"}",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 letterSpacing: 0.9,

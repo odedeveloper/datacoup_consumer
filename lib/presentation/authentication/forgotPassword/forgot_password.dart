@@ -108,7 +108,13 @@ class ForgotPassword extends StatelessWidget {
                                             controller.isByEmail);
                                     if (result.isSuccess) {
                                       await controller.forgotPassword();
-                                      Get.to(() => const ResetPassword());
+                                      if (controller.errorMessage ==
+                                          'Verification sent') {
+                                        Get.to(() => const ResetPassword());
+                                      } else {
+                                        showSnackBar(context,
+                                            msg: controller.errorMessage);
+                                      }
                                     } else {
                                       showSnackBar(context,
                                           msg: result.errorMessage);
