@@ -44,7 +44,15 @@ class NewsController extends GetxController {
   List<String> reelVideosChannels = ["YouTube"];
   List<String> reelVideosTrendingTypes = ["GDPA", "CCPA"];
 
- 
+  Future refreshAll() async {
+    NewsByInterestState().loadData();
+    NewsOfTheDayWidgetState().loadNewofDay();
+    SocialMediaFeedWidgetState().laodData();
+    TrendingVideosWidgetState().laodData();
+    VideoOfTheDayWidgetState().laodData();
+    VideoReelsScreenState().loadData();
+    VideoScreenState().laodData();
+  }
 
   Future<NewsModel?> getAllNews(
       {required String? type, required int? count}) async {

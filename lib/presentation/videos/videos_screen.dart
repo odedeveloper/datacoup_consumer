@@ -4,10 +4,10 @@ class VideoScreen extends StatefulWidget {
   const VideoScreen({super.key});
 
   @override
-  State<VideoScreen> createState() => _VideoScreenState();
+  State<VideoScreen> createState() => VideoScreenState();
 }
 
-class _VideoScreenState extends State<VideoScreen> {
+class VideoScreenState extends State<VideoScreen> {
   final newsController = Get.find<NewsController>();
 
   NewsModel? newsModel;

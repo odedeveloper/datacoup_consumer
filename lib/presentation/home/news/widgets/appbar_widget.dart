@@ -66,8 +66,8 @@ class NewsScreenAppBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: CSCPicker(
                 showCities: false,
-                currentCountry: controller.selectedreturnCountry!.value,
-                stateDropdownLabel: controller.selectedreturnState!.value,
+                currentCountry: newsController.selectedcountry.value,
+                stateDropdownLabel: newsController.selectedState.value,
                 dropdownDecoration: BoxDecoration(
                   color: Theme.of(context).appBarTheme.backgroundColor,
                   borderRadius: BorderRadius.circular(kBorderRadius),
@@ -87,9 +87,11 @@ class NewsScreenAppBar extends StatelessWidget {
                 selectedItemStyle: themeTextStyle(context: context),
                 onCountryChanged: (value) {
                   controller.selectedreturnCountry!(value);
+                  newsController.selectedcountry(value);
                 },
                 onStateChanged: (value) {
                   controller.selectedreturnState!(value);
+                  newsController.selectedState(value);
                 },
                 onCityChanged: (value) {},
               ),
@@ -107,11 +109,12 @@ class NewsScreenAppBar extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        controller.selectedreturnCountry!(
-                            controller.user!.value.country);
-                        controller
-                            .selectedreturnState!(controller.user!.value.state);
-
+                        newsController
+                            .selectedcountry(controller.user!.value.country);
+                        newsController
+                            .selectedState(controller.user!.value.state);
+                        newsController
+                            .selectedzipCode(controller.user!.value.zipCode);
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
@@ -133,7 +136,10 @@ class NewsScreenAppBar extends StatelessWidget {
                             controller.selectedreturnCountry!.value);
                         newsController.selectedState(
                             controller.selectedreturnState!.value);
+                        newsController.selectedzipCode(
+                            controller.zipCodeTextContoller!.text);
                         Get.back();
+                        newsController.refreshAll();
                       },
                       color: deepOrangeColor,
                       title: "Apply",
@@ -165,7 +171,9 @@ class NewsScreenAppBar extends StatelessWidget {
                 color: Colors.grey,
               ))
             : InkWell(
-                onTap: () => openDialog(context),
+                onTap: () async {
+                  openDialog(context);
+                },
                 child: Row(
                   children: [
                     const SizedBox(width: 10),
@@ -181,7 +189,7 @@ class NewsScreenAppBar extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.user!.value.country!,
+                            newsController.selectedcountry.value,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: themeTextStyle(
@@ -191,7 +199,7 @@ class NewsScreenAppBar extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            controller.user!.value.state!,
+                            newsController.selectedState.value,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: themeTextStyle(
@@ -201,7 +209,7 @@ class NewsScreenAppBar extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            controller.zipCodeTextContoller!.text,
+                            newsController.selectedzipCode.value,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: themeTextStyle(

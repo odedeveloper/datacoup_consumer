@@ -4,10 +4,10 @@ class NewsByInterest extends StatefulWidget {
   const NewsByInterest({Key? key}) : super(key: key);
 
   @override
-  State<NewsByInterest> createState() => _NewsByInterestState();
+  State<NewsByInterest> createState() => NewsByInterestState();
 }
 
-class _NewsByInterestState extends State<NewsByInterest> {
+class NewsByInterestState extends State<NewsByInterest> {
   final newsController = Get.find<NewsController>();
 
   NewsModel? newsModel;
