@@ -5,10 +5,10 @@ class TrendingVideosWidget extends StatefulWidget {
   const TrendingVideosWidget({super.key});
 
   @override
-  State<TrendingVideosWidget> createState() => _TrendingVideosWidgetState();
+  State<TrendingVideosWidget> createState() => TrendingVideosWidgetState();
 }
 
-class _TrendingVideosWidgetState extends State<TrendingVideosWidget> {
+class TrendingVideosWidgetState extends State<TrendingVideosWidget> {
   final newsController = Get.find<NewsController>();
   final ScrollController _horizontal = ScrollController();
   NewsModel? newsModel;

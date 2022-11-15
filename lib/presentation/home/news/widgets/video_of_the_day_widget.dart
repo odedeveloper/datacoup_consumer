@@ -4,10 +4,10 @@ class VideoOfTheDayWidget extends StatefulWidget {
   const VideoOfTheDayWidget({super.key});
 
   @override
-  State<VideoOfTheDayWidget> createState() => _VideoOfTheDayWidgetState();
+  State<VideoOfTheDayWidget> createState() => VideoOfTheDayWidgetState();
 }
 
-class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
+class VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
   final newsController = Get.find<NewsController>();
 
   NewsModel? newsModel;
@@ -19,6 +19,7 @@ class _VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
   }
 
   laodData() async {
+    newsController.videoOfDayLoader(true);
     Future.delayed(const Duration(seconds: 1), () async {
       newsModel = await newsController.getAllNews(
         type: StringConst.videoOfTheDay,

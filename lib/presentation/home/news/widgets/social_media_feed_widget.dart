@@ -4,10 +4,10 @@ class SocialMediaFeedWidget extends StatefulWidget {
   const SocialMediaFeedWidget({super.key});
 
   @override
-  State<SocialMediaFeedWidget> createState() => _SocialMediaFeedWidgetState();
+  State<SocialMediaFeedWidget> createState() => SocialMediaFeedWidgetState();
 }
 
-class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
+class SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
   final newsController = Get.find<NewsController>();
   NewsModel? newsModel;
   final pageController = PageController();
@@ -19,6 +19,7 @@ class _SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
   }
 
   laodData() async {
+    newsController.socialMediaLoader(true);
     newsModel = await newsController.getAllNews(
       type: StringConst.socialFeedtype,
       count: newsController.newsOfDayCount.value,

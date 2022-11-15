@@ -76,12 +76,16 @@ class HomeController extends GetxController {
   }
 
   void loadUser() async {
+    final newsController = Get.find<NewsController>();
     LoginResponse? loginResponse =
         await apiRepositoryInterface.fetchUserProfile();
     user!(loginResponse!.user);
     zipCodeTextContoller!.text = loginResponse.user!.zipCode!;
     selectedreturnCountry!(loginResponse.user!.country);
     selectedreturnState!(loginResponse.user!.state);
+    newsController.selectedState(loginResponse.user!.state);
+    newsController.selectedcountry(loginResponse.user!.country);
+    newsController.selectedzipCode(loginResponse.user!.zipCode);
   }
 
   Future<void> updateUser() async {

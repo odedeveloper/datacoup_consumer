@@ -4,10 +4,10 @@ class NewsOfTheDayWidget extends StatefulWidget {
   const NewsOfTheDayWidget({super.key});
 
   @override
-  State<NewsOfTheDayWidget> createState() => _NewsOfTheDayWidgetState();
+  State<NewsOfTheDayWidget> createState() => NewsOfTheDayWidgetState();
 }
 
-class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
+class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
   final newsController = Get.find<NewsController>();
 
   NewsModel? newsModel;
@@ -19,6 +19,7 @@ class _NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
   }
 
   loadNewofDay() async {
+     newsController.newsOfDayLoader(true);
     newsModel = await newsController.getAllNews(
       type: StringConst.newsOfTheDay,
       count: newsController.newsOfDayCount.value,
