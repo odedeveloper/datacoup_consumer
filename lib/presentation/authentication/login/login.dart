@@ -202,6 +202,10 @@ class Login extends StatelessWidget {
                                   acontroller.updateAuthInProgress(false);
                                   acontroller.updateLoggedIn(false);
                                 }
+                              } on CognitoClientException catch (exception) {
+                                acontroller.updateAuthInProgress(false);
+                                acontroller.updateLoggedIn(false);
+                                showSnackBar(context, msg: exception.message!);
                               } catch (e) {
                                 log("auth error $e");
                                 acontroller.updateAuthInProgress(false);
