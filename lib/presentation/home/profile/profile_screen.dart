@@ -71,6 +71,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future openDialog() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Column(
+                children: [
+                  Image.asset(AssetConst.FAQ_LOGO),
+                  const SizedBox(height: 10),
+                  Center(
+                      child: CustomText(
+                    'Please contact: ',
+                    fontFamily: AssetConst.QUICKSAND_FONT,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColorLight,
+                    alignment: TextAlign.center,
+                  )),
+                ],
+              ),
+              content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [Text('technology@odeinfinity.com')]),
+              actionsAlignment: MainAxisAlignment.spaceEvenly,
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: darkSkyBlueColor,
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                    ),
+                    child: CustomText("OK",
+                        color: whiteColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700)),
+              ],
+            ));
     return Scaffold(
       // appBar: AppBar(
       //   centerTitle: true,
@@ -318,12 +357,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: 20),
                       InkWell(
                         onTap: () {
-                          Get.to(WebViewWidget(
-                            showAppbar: true,
-                            title: "Help",
-                            showFav: false,
-                            url: HELP_URL,
-                          ));
+                          openDialog();
+                          // Get.to(WebViewWidget(
+                          //   showAppbar: true,
+                          //   title: "Help",
+                          //   showFav: false,
+                          //   url: HELP_URL,
+                          // ));
                         },
                         child: tileWithIcon(
                           context,
