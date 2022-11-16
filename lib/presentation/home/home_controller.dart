@@ -14,6 +14,7 @@ class HomeController extends GetxController {
   RxBool profileLoader = true.obs;
   RxBool showSaveButton = false.obs;
   RxBool updatePressed = false.obs;
+  RxBool editEmailOrPhonePressed = false.obs;
   String language = "English";
   List<String> supportedLanguages = ["English", "Hindi"];
   final Map<String, Locale> _locales = {

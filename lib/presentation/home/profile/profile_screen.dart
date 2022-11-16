@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/account/update_account.dart';
 import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -156,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 controller.showSaveButton(false);
                                 controller.profileImage = null;
                                 // UpdateAccount
-                                await Get.to(() => const UpdateAccount())!
+                                await Get.to(() => const EditProfileScreen())!
                                     .then((_) async {
                                   if (controller.updatePressed.value == true) {
                                     loadData();
