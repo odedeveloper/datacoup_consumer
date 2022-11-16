@@ -38,6 +38,8 @@ class SignUpController extends GetxController {
   String bestScore = '';
   String errorMessage = '';
   String otp = '';
+  bool confirmPasswordHidden = true;
+  bool passwordHidden = true;
 
   String deviceImagePath = '';
   String generatedOTP = '';
@@ -93,6 +95,16 @@ class SignUpController extends GetxController {
 
   updateIsPayload(bool value) {
     isPayloadVerified = value;
+    update();
+  }
+
+  updateConfirmPasswordHidden(bool value) {
+    confirmPasswordHidden = value;
+    update();
+  }
+
+  updatePasswordHidden(bool value) {
+    passwordHidden = value;
     update();
   }
 

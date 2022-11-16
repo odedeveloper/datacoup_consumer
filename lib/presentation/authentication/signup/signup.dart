@@ -192,7 +192,7 @@ class SignUp extends StatelessWidget {
               child: GetBuilder<SignUpController>(builder: (controller) {
                 return TextFormField(
                   controller: controller.passwordController,
-                  obscureText: false,
+                  obscureText: controller.passwordHidden,
                   scrollPadding: EdgeInsets.zero,
                   style: TextStyle(
                     color: darkGreyColor,
@@ -202,9 +202,16 @@ class SignUp extends StatelessWidget {
                     fontStyle: FontStyle.normal,
                     fontSize: 17,
                   ),
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 18),
-                  ),
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.only(bottom: 18),
+                      suffixIcon: InkWell(
+                          onTap: () {
+                            controller.updatePasswordHidden(
+                                !controller.passwordHidden);
+                          },
+                          child: Icon(controller.passwordHidden
+                              ? Icons.visibility_off
+                              : Icons.visibility))),
                 );
               })),
           SizedBox(height: 25 * SizeConfig().heightScale),
@@ -221,7 +228,7 @@ class SignUp extends StatelessWidget {
               child: GetBuilder<SignUpController>(builder: (controller) {
                 return TextFormField(
                   controller: controller.confirmPasswordController,
-                  obscureText: true,
+                  obscureText: controller.confirmPasswordHidden,
                   scrollPadding: EdgeInsets.zero,
                   style: TextStyle(
                     color: darkGreyColor,
@@ -231,9 +238,16 @@ class SignUp extends StatelessWidget {
                     fontStyle: FontStyle.normal,
                     fontSize: 16,
                   ),
-                  decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.only(bottom: 18),
-                  ),
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.only(bottom: 18),
+                      suffixIcon: InkWell(
+                          onTap: () {
+                            controller.updateConfirmPasswordHidden(
+                                !controller.confirmPasswordHidden);
+                          },
+                          child: Icon(controller.confirmPasswordHidden
+                              ? Icons.visibility_off
+                              : Icons.visibility))),
                 );
               })),
           SizedBox(height: 45 * SizeConfig().heightScale),
