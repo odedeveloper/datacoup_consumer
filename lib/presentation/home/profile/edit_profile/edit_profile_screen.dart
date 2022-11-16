@@ -7,7 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+  bool isAfterProfile = false;
+  EditProfileScreen({this.isAfterProfile = false, super.key});
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -146,6 +147,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              if (widget.isAfterProfile) {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              } else {
+                Navigator.pop(context);
+              }
+            },
+            icon: Icon(Icons.arrow_back_ios),
+            //replace with our own icon data.
+          ),
           centerTitle: true,
           title: Text(
             "Edit Profile",

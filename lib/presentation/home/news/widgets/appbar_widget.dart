@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/authentication/account/update_account.dart';
 import 'package:intl/intl.dart';
 
 class NewsScreenAppBar extends StatelessWidget {
@@ -283,7 +284,7 @@ class NewsScreenAppBar extends StatelessWidget {
                     controller.showSaveButton(false);
                     controller.profileImage = null;
                     // UpdateAccount
-                    Get.to(() => const EditProfileScreen());
+                    Get.to(() => const UpdateAccount());
                   },
                   child: controller.user == null ||
                           controller.user!.value.firstName == null

@@ -135,8 +135,10 @@ class SignUpController extends GetxController {
     isByEmail = value;
     if (isByEmail) {
       emailController.text = '';
+      phoneController.text = '';
     } else {
       phoneController.text = '';
+      emailController.text = '';
     }
     passwordController.text = '';
     confirmPasswordController.text = '';

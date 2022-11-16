@@ -194,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 controller.showSaveButton(false);
                                 controller.profileImage = null;
                                 // UpdateAccount
-                                await Get.to(() => const EditProfileScreen())!
+                                await Get.to(() => EditProfileScreen())!
                                     .then((_) async {
                                   if (controller.updatePressed.value == true) {
                                     loadData();
