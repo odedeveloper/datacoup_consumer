@@ -106,12 +106,23 @@ class ForgotPassword extends StatelessWidget {
                                     MethodResponse result =
                                         await controller.verifyForgotRequest(
                                             controller.isByEmail);
+                                    print(result);
+                                    print(result.isSuccess);
+                                    print(result.errorMessage);
                                     if (result.isSuccess) {
-                                      await controller.forgotPassword();
-                                      Get.to(() => const ResetPassword());
+                                      String response =
+                                          await controller.forgotPassword();
+                                      print('response');
+                                      print(response);
+                                      if (response != 'Verification sent') {
+                                        showSnackBar(context,
+                                            msg: controller.errorMessage);
+                                      } else {
+                                        Get.to(() => const ResetPassword());
+                                      }
                                     } else {
                                       showSnackBar(context,
-                                          msg: result.errorMessage);
+                                          msg: controller.errorMessage);
                                     }
                                   } catch (e) {
                                     showSnackBar(context,
