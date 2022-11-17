@@ -176,11 +176,13 @@ class LoginController extends GetxController {
 
   Future<bool> login(UserService userService) async {
     try {
-      // SignInResult res;
-      print('PHONE ERROR');
-      print(usernameController.text);
+      String getPrimaryUsername = usernameController.text;
+      if (usernameController.text[0] == '+') {
+        getPrimaryUsername = usernameController.text.split('+')[1];
+        print(getPrimaryUsername);
+      }
       String primaryFromCognitoResponse =
-          await getPrimaryFromCognito(usernameController.text);
+          await getPrimaryFromCognito(getPrimaryUsername);
 
       if (primaryFromCognitoResponse == "No account found") {
         updateErrorMessage(primaryFromCognitoResponse);

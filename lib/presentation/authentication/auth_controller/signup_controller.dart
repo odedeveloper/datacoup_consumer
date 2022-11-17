@@ -519,7 +519,7 @@ class SignUpController extends GetxController {
       user.firstName = firstNameController.text.trim();
       user.lastName = lastNameController.text.trim();
       user.email = emailController.text.trim().toLowerCase();
-      user.phone = phoneController.text.trim();
+      user.phone = countryCode + phoneController.text.trim();
       user.dob = dobController.text.trim();
       user.country = country;
       user.state = state;
