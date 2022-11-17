@@ -1,7 +1,6 @@
 // import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'dart:developer';
 
-
 import 'package:datacoup/presentation/authentication/auth_controller/authentication_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

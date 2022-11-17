@@ -1,10 +1,7 @@
 import 'dart:math';
 import 'package:datacoup/data/configs/app_setting_controller.dart';
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/account/update_account.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/navigation_controller.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
-import 'package:datacoup/presentation/widgets/custom_text.dart';
+
 import 'package:flutter/cupertino.dart';
 
 class Account extends StatelessWidget {
@@ -66,7 +63,8 @@ class Account extends StatelessWidget {
                           ? const ShimmerBox(
                               height: 110, width: 110, radius: 55)
                           : controller.user!.profileImage!.contains(".jpg") ||
-                                  controller.user!.profileImage!.contains(".png")
+                                  controller.user!.profileImage!
+                                      .contains(".png")
                               ? Image.network(
                                   controller.user!.profileImage!,
                                   errorBuilder: (context, error, map) {
@@ -148,7 +146,7 @@ class Account extends StatelessWidget {
                             onPressed: () async {
                               controller.isUpdating(false);
                               controller.loadUpdatedUserData();
-                              await Get.to(() => UpdateAccount())!.then(
+                              await Get.to(() => const UpdateAccount())!.then(
                                   (value) => controller.fetchUserProfile());
                             },
                           ),

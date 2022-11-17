@@ -46,13 +46,20 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
   @override
   Future<bool> checkAuthenticated() async {
     bool? result = await LocalRepositoryImpl().getuserLoggedIn();
+    String? token = GetStorage().read("idToken");
     try {
-      String? token = GetStorage().read("idToken");
       if (token != null) {
         LoginResponse? loginResponse = await fetchUserProfile();
+        bool isRememberMe = GetStorage().read("RememberMe") ?? false;
+
         if (loginResponse != null) {
           // token valid
-          return true;
+          if (isRememberMe == true) {
+            return true;
+          } else {
+            logout(token);
+            return false;
+          }
         } else {
           // token Exipre and going to refresh Token
           UserModel? user = await getUserFromToken(token);
@@ -157,7 +164,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       if (e is IOException) {
         log("no Internet");
       }
-      throw UnimplementedError();
+      return null;
     }
   }
 
@@ -242,7 +249,8 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       List<int> imageBytes = imageFile.readAsBytesSync();
       String base64Image = base64.encode(imageBytes);
 
-      final response = await DioInstance().dio.put(UPLOAD_PROFILE_IMG_URL, data: {
+      final response =
+          await DioInstance().dio.put(UPLOAD_PROFILE_IMG_URL, data: {
         "fileData": base64Image,
         "mimeType": "image/jpeg",
       });
@@ -254,14 +262,12 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     }
   }
 
-  
-
   @override
   Future<void> submitQuizActivity(
       {String? odenId, List? option, int? score, int? quizId}) async {
     try {
       final response = await DioInstance().dio.post(
-     SUBMIT_ACTIVITY   ,
+        SUBMIT_ACTIVITY,
         data: {
           'selectedAnswers': option,
           'score': score,
@@ -278,10 +284,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       log("error on post QNA activity $e");
     }
   }
-  
-  @override
-  Future<void> generateNewToken() async{
-    
-  }
 
+  @override
+  Future<void> generateNewToken() async {}
 }

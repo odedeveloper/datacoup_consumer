@@ -9,7 +9,7 @@ class LocalRepositoryImpl extends LocalRepositoryInterface {
   @override
   Future<void> clearAllData() async {
     GetStorage deviceStorage = GetStorage();
-    saveDarkMode(false);
+    // saveDarkMode(false);
     deviceStorage.erase();
   }
 

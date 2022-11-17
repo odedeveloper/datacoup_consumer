@@ -2,13 +2,13 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/widgets/drop_down_widget.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+  bool isAfterProfile = false;
+  EditProfileScreen({this.isAfterProfile = false, super.key});
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -87,11 +87,78 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     controller.showSaveButton(false);
   }
 
+  Future openDialog(bool isByEmail) => showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          title: Column(
+            children: [
+              Center(
+                  child: CustomText(
+                'You will recieve an OTP on your changed ${isByEmail ? 'Email.' : 'Mobile Number.'} \n Do you wish to edit your ${isByEmail ? 'Email' : 'Mobile Number'}?',
+                fontFamily: AssetConst.QUICKSAND_FONT,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).primaryColorLight,
+                alignment: TextAlign.center,
+              )),
+            ],
+          ),
+          actionsAlignment: MainAxisAlignment.spaceEvenly,
+          actions: [
+            GetBuilder<UserProfileController>(builder: (userProfilecontroller) {
+              return TextButton(
+                  onPressed: () async {
+                    controller.editEmailOrPhonePressed(true);
+                    await Get.to(() => EditEmailPhone(
+                          isEmail: isByEmail,
+                        ));
+                    Get.back();
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: darkSkyBlueColor,
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                  ),
+                  child: CustomText("Edit",
+                      color: whiteColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700));
+            }),
+            TextButton(
+                onPressed: () {
+                  controller.editEmailOrPhonePressed(false);
+                  Get.back();
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: redOpacityColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                ),
+                child: CustomText("Cancel",
+                    color: whiteColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700)),
+          ],
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              if (widget.isAfterProfile) {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              } else {
+                Navigator.pop(context);
+              }
+            },
+            icon: Icon(Icons.arrow_back_ios),
+            //replace with our own icon data.
+          ),
           centerTitle: true,
           title: Text(
             "Edit Profile",
@@ -231,16 +298,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ],
                         ),
                         const SizedBox(height: 20),
-                        CustomLoginTextField(
-                          controller: controller.emailTextContoller,
-                          label: "Email",
-                          onChanged: (p0) => showUpdageButton(),
+                        InkWell(
+                          onTap: () async {
+                            await openDialog(true).then(
+                              (value) {
+                                if (controller.editEmailOrPhonePressed.value ==
+                                    true) {
+                                  loadData();
+                                }
+                              },
+                            );
+                          },
+                          child: CustomLoginTextField(
+                            controller: controller.emailTextContoller,
+                            label: "Email",
+                            enabledEdit: false,
+                            // onChanged: (p0) => showUpdageButton(),
+                          ),
                         ),
                         const SizedBox(height: 20),
-                        CustomLoginTextField(
-                          controller: controller.mobileTextContoller,
-                          label: "Phone Number",
-                          onChanged: (p0) => showUpdageButton(),
+                        InkWell(
+                          onTap: () async {
+                            await openDialog(false).then(
+                              (value) {
+                                if (controller.editEmailOrPhonePressed.value ==
+                                    true) {
+                                  loadData();
+                                }
+                              },
+                            );
+                          },
+                          child: CustomLoginTextField(
+                            controller: controller.mobileTextContoller,
+                            label: "Phone Number",
+                            enabledEdit: false,
+                            // onChanged: (p0) => showUpdageButton(),
+                          ),
                         ),
                         const SizedBox(height: 20),
                         Align(

@@ -38,6 +38,8 @@ class SignUpController extends GetxController {
   String bestScore = '';
   String errorMessage = '';
   String otp = '';
+  bool confirmPasswordHidden = true;
+  bool passwordHidden = true;
 
   String deviceImagePath = '';
   String generatedOTP = '';
@@ -96,6 +98,16 @@ class SignUpController extends GetxController {
     update();
   }
 
+  updateConfirmPasswordHidden(bool value) {
+    confirmPasswordHidden = value;
+    update();
+  }
+
+  updatePasswordHidden(bool value) {
+    passwordHidden = value;
+    update();
+  }
+
   updateOtp(String value) {
     otp = value;
     update();
@@ -123,8 +135,10 @@ class SignUpController extends GetxController {
     isByEmail = value;
     if (isByEmail) {
       emailController.text = '';
+      phoneController.text = '';
     } else {
       phoneController.text = '';
+      emailController.text = '';
     }
     passwordController.text = '';
     confirmPasswordController.text = '';
@@ -505,7 +519,7 @@ class SignUpController extends GetxController {
       user.firstName = firstNameController.text.trim();
       user.lastName = lastNameController.text.trim();
       user.email = emailController.text.trim().toLowerCase();
-      user.phone = phoneController.text.trim();
+      user.phone = countryCode + phoneController.text.trim();
       user.dob = dobController.text.trim();
       user.country = country;
       user.state = state;

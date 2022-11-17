@@ -4,7 +4,6 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:datacoup/amplifyconfiguration.dart';
 import 'package:datacoup/languages.dart';
-import 'package:global_configuration/global_configuration.dart';
 
 import 'export.dart';
 
@@ -19,7 +18,6 @@ Future<void> main() async {
 
 Future<void> configureAmplify() async {
   // AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
-
   Amplify.addPlugins([AmplifyAuthCognito()]);
   try {
     await Amplify.configure(amplifyconfig);
@@ -28,8 +26,6 @@ Future<void> configureAmplify() async {
     log('Amplify is configured.');
   }
 }
-
-// jhgkjgkhhjk
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});

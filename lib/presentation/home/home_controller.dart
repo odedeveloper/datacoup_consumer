@@ -14,6 +14,7 @@ class HomeController extends GetxController {
   RxBool profileLoader = true.obs;
   RxBool showSaveButton = false.obs;
   RxBool updatePressed = false.obs;
+  RxBool editEmailOrPhonePressed = false.obs;
   String language = "English";
   List<String> supportedLanguages = ["English", "Hindi"];
   final Map<String, Locale> _locales = {
@@ -90,6 +91,7 @@ class HomeController extends GetxController {
 
   Future<void> updateUser() async {
     try {
+      final newsController = Get.find<NewsController>();
       String? newProfileImageUrl;
       if (profileImageChange.value == true) {
         newProfileImageUrl =
@@ -114,6 +116,12 @@ class HomeController extends GetxController {
         profileImage: newProfileImageUrl ?? loginResponse.user!.profileImage,
         zipCode: zipCodeTextContoller?.text ?? loginResponse.user!.zipCode,
       );
+      newsController.selectedcountry(
+          selectedreturnCountry?.value ?? loginResponse.user!.country);
+      newsController.selectedState(
+          selectedreturnState?.value ?? loginResponse.user!.state);
+      newsController.selectedzipCode(
+          zipCodeTextContoller?.text ?? loginResponse.user!.zipCode);
       await apiRepositoryInterface.createUpdateUser(user);
     } catch (e) {
       log("Failed to update user $e");

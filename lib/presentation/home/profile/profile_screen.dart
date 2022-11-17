@@ -1,7 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/account/update_account.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
-import 'package:datacoup/presentation/widgets/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -195,7 +192,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Get.put(UserProfileController());
                                 controller.showSaveButton(false);
                                 controller.profileImage = null;
-                                await Get.to(() => const UpdateAccount())!
+                                // UpdateAccount
+                                await Get.to(() => EditProfileScreen())!
                                     .then((_) async {
                                   if (controller.updatePressed.value == true) {
                                     loadData();

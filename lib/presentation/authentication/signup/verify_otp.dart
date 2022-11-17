@@ -1,6 +1,5 @@
 import 'package:datacoup/export.dart';
 
-import '../auth_controller/authentication_service.dart';
 
 final _userService = UserService(userPool);
 

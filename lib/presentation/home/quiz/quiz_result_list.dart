@@ -5,7 +5,7 @@ import 'package:datacoup/presentation/home/quiz/quiz_result_option.dart';
 class QuizResultListItem extends StatelessWidget {
   final int questionIndex;
   QuizResultListItem(this.questionIndex, {Key? key}) : super(key: key);
-  final _quizController = Get.put(QuizController());
+  final quizController = Get.put(QuizController());
 
   @override
   Widget build(BuildContext context) {

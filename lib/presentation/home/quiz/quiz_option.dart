@@ -6,7 +6,8 @@ class Answer extends StatelessWidget {
   final bool isSelected;
   final void Function() answerTap;
   const Answer(
-      {required this.answerText,
+      {super.key,
+      required this.answerText,
       required this.isSelected,
       required this.answerTap,
       required this.index});

@@ -74,7 +74,6 @@ Future<UserModel?> fetchUserProfileApi(String deviceId) async {
 Future<UserModel> createUserProfileApi(UserModel userModel,
     {String username = ''}) async {
   try {
-    print(userModel.country! + userModel.phone!);
     Response response;
 
     response = await DioInstance().dio.post(
@@ -83,7 +82,7 @@ Future<UserModel> createUserProfileApi(UserModel userModel,
         "email": userModel.email,
         "firstName": userModel.firstName,
         "lastName": userModel.lastName,
-        'phone': userModel.country! + userModel.phone!,
+        'phone': userModel.phone,
         'country': userModel.country,
         'state': userModel.state,
         'zipCode': userModel.zipCode,

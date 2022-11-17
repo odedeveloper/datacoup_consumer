@@ -1,6 +1,5 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/authentication/account/update_account.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
 import 'package:intl/intl.dart';
 
 class NewsScreenAppBar extends StatelessWidget {
@@ -284,6 +283,7 @@ class NewsScreenAppBar extends StatelessWidget {
                     Get.put(UserProfileController());
                     controller.showSaveButton(false);
                     controller.profileImage = null;
+                    // UpdateAccount
                     Get.to(() => const UpdateAccount());
                   },
                   child: controller.user == null ||
