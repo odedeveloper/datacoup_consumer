@@ -1,7 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/authentication_service.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
+
 
 final _userService = UserService(userPool);
 

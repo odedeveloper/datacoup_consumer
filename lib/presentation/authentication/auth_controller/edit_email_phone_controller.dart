@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:datacoup/data/datasource/user_account_api.dart';
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
 
 final RegExp _mobileNumberRegExp = RegExp(r'^[0-9]*$');
 final RegExp _emailRegExp = RegExp(

@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/authentication_service.dart';
 
 final _userService = new UserService(userPool);
 

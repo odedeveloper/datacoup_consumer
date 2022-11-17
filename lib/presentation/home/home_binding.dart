@@ -1,6 +1,5 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/authentication/auth_controller/location_controller.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
 
 class HomeBinding extends Bindings {
   @override

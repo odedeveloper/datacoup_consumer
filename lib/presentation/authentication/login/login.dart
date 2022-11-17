@@ -2,8 +2,6 @@ import 'dart:developer';
 
 import 'package:datacoup/export.dart';
 
-import '../auth_controller/authentication_service.dart';
-
 final _userService = UserService(userPool);
 
 class Login extends StatelessWidget {
@@ -135,7 +133,8 @@ class Login extends StatelessWidget {
                         value: controller.rememberMe,
                         fillColor: MaterialStateProperty.all(darkSkyBlueColor),
                         onChanged: (value) {
-                          controller.updateRememberMe(value!);
+                          controller.rememberMe = value!;
+                          controller.updateRememberMe(controller.rememberMe);
                         },
                       ),
                       InkWell(
@@ -201,19 +200,24 @@ class Login extends StatelessWidget {
                                 } else {
                                   acontroller.updateAuthInProgress(false);
                                   acontroller.updateLoggedIn(false);
+                                  bcontroller.updateRememberMe(false);
                                 }
                               } on CognitoClientException catch (exception) {
                                 acontroller.updateAuthInProgress(false);
                                 acontroller.updateLoggedIn(false);
+                                bcontroller.updateRememberMe(false);
                                 showSnackBar(context, msg: exception.message!);
                               } catch (e) {
                                 log("auth error $e");
                                 acontroller.updateAuthInProgress(false);
                                 acontroller.updateLoggedIn(false);
+                                bcontroller.updateRememberMe(false);
                                 showSnackBar(context,
                                     msg: bcontroller.errorMessage);
                               }
                             } else {
+                              bcontroller.updateRememberMe(false);
+
                               showSnackBar(context, msg: result.errorMessage);
                             }
                           },

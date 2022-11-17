@@ -1,8 +1,6 @@
 import 'package:datacoup/export.dart';
 import 'dart:io';
 
-import 'package:datacoup/presentation/home/quiz/qna/qna_profile.dart';
-
 class HomeScreen extends GetWidget<HomeController> {
   const HomeScreen({super.key});
 
