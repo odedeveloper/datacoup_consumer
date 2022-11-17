@@ -1,10 +1,7 @@
 import 'dart:io';
 
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/account/edit_email_phone.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
-import 'package:datacoup/presentation/authentication/signup/verify_otp.dart';
-import 'package:datacoup/presentation/widgets/custom_text.dart';
+
 
 class UpdateAccount extends StatefulWidget {
   const UpdateAccount({Key? key}) : super(key: key);

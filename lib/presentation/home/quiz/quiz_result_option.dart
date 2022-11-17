@@ -60,7 +60,7 @@ class QuizResultOption extends StatelessWidget {
                         color: Theme.of(context).primaryColor),
                   ),
           ),
-          SizedBox(width: 10 ),
+          const SizedBox(width: 10),
           Expanded(
             child: Text(
               controller

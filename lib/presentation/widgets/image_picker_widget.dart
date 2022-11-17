@@ -46,7 +46,7 @@ showImagePickerModal(BuildContext context) async {
               InkWell(
                 onTap: () async {
                   await controller.getImageFromDevice(ImageSource.gallery);
-                  Navigator.pop(context, controller.imagePath);
+                  Navigator.of(context).pop(controller.imagePath);
                 },
                 child: ListTile(
                   leading: const Icon(Icons.photo),

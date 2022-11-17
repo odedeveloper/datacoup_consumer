@@ -1,8 +1,5 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/signup/verify_otp.dart';
-
-import '../auth_controller/authentication_service.dart';
 
 final _userService = UserService(userPool);
 

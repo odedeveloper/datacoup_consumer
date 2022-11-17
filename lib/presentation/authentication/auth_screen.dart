@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/signup/verify_otp.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);

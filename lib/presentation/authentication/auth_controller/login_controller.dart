@@ -1,13 +1,6 @@
 // import 'package:amazon_cognito_identity_dart_2/cognito.dart';
-import 'package:amazon_cognito_identity_dart_2/cognito.dart';
 import 'package:datacoup/data/datasource/user_account_api.dart';
-import 'package:datacoup/domain/model/user.dart';
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/authentication_service.dart';
-
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 final RegExp _mobileNumberRegExp = RegExp(r'^[0-9]*$');
 final RegExp _emailRegExp = RegExp(
@@ -39,7 +32,7 @@ class LoginController extends GetxController {
   @override
   onInit() {
     bool isRememberMe = GetStorage().read("RememberMe") ?? false;
-    updateRememberMe(isRememberMe);
+    // updateRememberMe(isRememberMe);
     super.onInit();
   }
 
@@ -122,7 +115,7 @@ class LoginController extends GetxController {
 
   updateRememberMe(bool value) {
     rememberMe = value;
-    GetStorage().write("RememberMe", value);
+    GetStorage().write("RememberMe", rememberMe);
     update();
   }
 

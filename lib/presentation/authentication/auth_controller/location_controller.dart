@@ -1,6 +1,4 @@
-import 'package:datacoup/presentation/home/news/feed_controller.dart';
 import 'package:datacoup/presentation/home/news/news_controller.dart';
-import 'package:datacoup/presentation/home/news/news_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

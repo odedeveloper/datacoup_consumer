@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProfileScreen extends StatefulWidget {
