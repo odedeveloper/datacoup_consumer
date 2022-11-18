@@ -9,7 +9,7 @@ import 'export.dart';
 
 Future<void> main() async {
   await GetStorage.init();
-  GlobalConfiguration().loadFromMap(appSettingsDev);
+  GlobalConfiguration().loadFromMap(appSettingsProd);
   await configureAmplify();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
