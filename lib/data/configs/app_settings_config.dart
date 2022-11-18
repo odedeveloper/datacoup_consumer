@@ -1,7 +1,7 @@
 final Map<String, dynamic> appSettingsDev = {
-  "baseURL": "https://6zk2wgqcj0.execute-api.us-east-1.amazonaws.com/prod/",
-  "awsUserPoolId": 'us-east-1_fYEt9i1WK',
-  "awsClientId": '3t1p8tcn6a3kvhl29jq51uh1gs',
+  "baseURL": "https://2wqkg74rri.execute-api.us-east-1.amazonaws.com/prod/",
+  "awsUserPoolId": 'us-east-1_Lk9NcVB1v',
+  "awsClientId": '3dh4ohe0nr823docil8vqdl267',
   "awsPoolUrl": 'dev-ode-coconut.auth.us-east-1',
 };
 

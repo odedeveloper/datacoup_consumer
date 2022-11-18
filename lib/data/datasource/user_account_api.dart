@@ -34,8 +34,19 @@ Future<String> setUsername(String username) async {
 Future<String> getPrimaryFromCognito(String username) async {
   try {
     // await Amplify.Auth.signOut();
-    Response response = await Dio().get(GlobalConfiguration().get("baseURL") +
-        getPrimaryFromCognitoUrl(username));
+
+    Response response;
+    if (username.startsWith(new RegExp(r'[0-9]')) &&
+        username.indexOf('+') != 0) {
+      response = await Dio().post(
+          GlobalConfiguration().get("baseURL") + GET_PRIMARY_FROM_CONGITO,
+          data: {'username': '+$username'});
+    } else {
+      response = await Dio().post(
+          GlobalConfiguration().get("baseURL") + GET_PRIMARY_FROM_CONGITO,
+          data: {'username': username});
+    }
+
     // await DioInstance().dio.get(getPrimaryFromCognitoUrl(username));
     // await Dio.get(getPrimaryFromCognitoUrl(username));
 
@@ -160,8 +171,13 @@ Future<String> resetPasswordApi(bool isEmail, String value, String otp) async {
       response = await DioInstance().dio.post(RESET_PASSWORD,
           data: {"email": value, "type": 'email', "OTP": otp});
     } else {
-      response = await DioInstance().dio.post(RESET_PASSWORD,
-          data: {"phone": value, "type": 'phone', "OTP": otp});
+      if (value.startsWith('+')) {
+        response = await DioInstance().dio.post(RESET_PASSWORD,
+            data: {"phone": value, "type": 'phone', "OTP": otp});
+      } else {
+        response = await DioInstance().dio.post(RESET_PASSWORD,
+            data: {"phone": '+$value', "type": 'phone', "OTP": otp});
+      }
     }
     if (response.statusCode != 503) {
       Map<String, dynamic> data = Map.from(response.data);
@@ -184,8 +200,13 @@ Future<String> verificationByOtp(bool isEmail, String value, String otp) async {
       response = await DioInstance().dio.post(DO_VERIFICATION,
           data: {"email": value, "type": 'email', "OTP": otp});
     } else {
-      response = await DioInstance().dio.post(DO_VERIFICATION,
-          data: {"phone": value, "type": 'phone', "OTP": otp});
+      if (!value.startsWith("+")) {
+        response = await DioInstance().dio.post(DO_VERIFICATION,
+            data: {"phone": '+$value', "type": 'phone', "OTP": otp});
+      } else {
+        response = await DioInstance().dio.post(DO_VERIFICATION,
+            data: {"phone": value, "type": 'phone', "OTP": otp});
+      }
     }
     if (response.statusCode != 503) {
       Map<String, dynamic> data = Map.from(response.data);
@@ -205,9 +226,14 @@ Future<String> editEmailPhone(bool isByEmail, String value) async {
   try {
     Response response;
     if (!isByEmail) {
-      response = await DioInstance()
-          .dio
-          .post(EDIT_EMAIL_PHONE, data: {"type": 'phone', "phone": value});
+      if (value.startsWith('+')) {
+        response = await DioInstance()
+            .dio
+            .post(EDIT_EMAIL_PHONE, data: {"type": 'phone', "phone": value});
+      } else {
+        response = await DioInstance().dio.post(EDIT_EMAIL_PHONE,
+            data: {"type": 'phone', "phone": '+$value'});
+      }
     } else {
       response = await DioInstance()
           .dio
