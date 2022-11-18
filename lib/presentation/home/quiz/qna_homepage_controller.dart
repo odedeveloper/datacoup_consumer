@@ -70,7 +70,7 @@ class QnaHomePageController extends GetxController {
     // try {
     dynamic data = await getBestScore(odenId);
 
-    if (data.isNotEmpty) {
+    if (data != null) {
       bestScore = data['score'];
 
       badge = data['badge'];

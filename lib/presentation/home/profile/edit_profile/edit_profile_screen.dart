@@ -156,7 +156,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 Navigator.pop(context);
               }
             },
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             //replace with our own icon data.
           ),
           centerTitle: true,
@@ -510,6 +510,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       img = await _cropImage(imageFile: img);
       controller.profileImage = img;
       Get.back();
+    } on PlatformException catch (ple) {
+      log("error on pic platform ${ple.message}");
+      if (ple.message!.contains("The user did not allow photo access")) {
+        Get.back();
+        Get.snackbar("Permission Denied",
+            "You have denied the Camera/Library Permission.");
+      }
     } catch (e) {
       log("error to load profile image from $source $e");
     }

@@ -20,8 +20,7 @@ Future<List<ActivityItemModel>> getHistory(String odenId, String topic) async {
   }
 }
 
-
-Future<Map<String, dynamic>> getBestScore(String odenId) async {
+Future<Map<String, dynamic>?> getBestScore(String odenId) async {
   try {
     res.Response response =
         await DioInstance().dio.get(getBestScoreUrl(odenId));
@@ -31,7 +30,7 @@ Future<Map<String, dynamic>> getBestScore(String odenId) async {
     return data;
   } catch (error) {
     print(error);
-    rethrow;
+    return null;
   }
 }
 
