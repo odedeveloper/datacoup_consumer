@@ -55,7 +55,9 @@ class Item {
             ? null
             : Location.fromJson(json["location"]),
         newsType: json["newsType"],
-        headerMultimedia: json["headerMultimedia"],
+        headerMultimedia: json.containsKey('headerMultimedia')
+            ? json["headerMultimedia"]
+            : '',
         source: json["source"],
         timeStamp: DateTime.parse(json["timeStamp"]),
         description: json["description"],

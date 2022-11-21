@@ -37,197 +37,192 @@ class NewsCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return data!.newsType == "Feed" &&
-            data!.content != null &&
-            data!.description != null &&
-            data!.headerMultimedia != null &&
-            data!.isFavourite != null &&
-            data!.location != null &&
-            data!.newsId != null &&
-            data!.newsType != null &&
-            data!.source != null &&
-            data!.timeStamp != null &&
-            data!.title != null &&
-            data != null
-        ? Container(
-            width: width(context)! * 0.45,
-            height: height(context)! * 0.3,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(kBorderRadius),
-              color: Colors.grey,
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black45,
-                  spreadRadius: 0.2,
-                  blurRadius: 0.2,
-                )
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: InkWell(
-                onTap: () {
-                  Get.to(
-                    () => WebViewWidget(
-                      showAppbar: true,
-                      data: data,
-                      url: data!.content!.creator == "Twitter"
-                          ? 'https://twitter.com/${data!.content!.link}'
-                          : data!.content!.link,
-                    ),
-                  );
-                },
-                child: Stack(
-                  children: [
-                    WebViewWidget(
-                      data: data!,
-                      showAppbar: false,
-                      showFav: false,
-                      url: data!.content!.creator == "Twitter"
-                          ? 'https://twitter.com/${data!.content!.link}'
-                          : data!.content!.link,
-                    ),
-                    Container(color: Colors.transparent),
-                    Positioned(
-                      right: 0.0,
-                      bottom: 0.0,
-                      child: showFavButton!
-                          ? IconButton(
-                              onPressed: () {
-                                newsController.likeAndUnlikeNews(
-                                  data: data,
-                                  isLiked: newsController.allFavouriteNewsItem
-                                          .any((element) =>
-                                              element.newsId == data!.newsId)
-                                      ? false
-                                      : true,
-                                );
-                              },
-                              icon: FaIcon(
-                                data!.isFavourite!
-                                    ? FontAwesomeIcons.solidHeart
-                                    : FontAwesomeIcons.heart,
-                                color: data!.isFavourite!
-                                    ? redOpacityColor
-                                    : Theme.of(context).primaryColor,
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          )
-        : InkWell(
-            onTap: () {
-              Get.to(() => WebViewWidget(
-                    url: data!.content!.link,
-                    data: data,
-                    showAppbar: true,
-                  ));
-            },
-            child: Container(
-              width: width(context)! * 0.45,
-              decoration: BoxDecoration(
+    print('----____----');
+    print(data!.headerMultimedia);
+    return !(data != null && data!.headerMultimedia != null)
+        ? Container()
+        : data!.newsType == "Feed"
+            ? Container(
+                width: width(context)! * 0.45,
+                height: height(context)! * 0.3,
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(kBorderRadius),
-                  color: Theme.of(context).appBarTheme.backgroundColor,
+                  color: Colors.grey,
                   boxShadow: const [
                     BoxShadow(
                       color: Colors.black45,
                       spreadRadius: 0.2,
                       blurRadius: 0.2,
                     )
-                  ]),
-              child: Stack(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(
+                        () => WebViewWidget(
+                          showAppbar: true,
+                          data: data,
+                          url: data!.content!.creator == "Twitter"
+                              ? 'https://twitter.com/${data!.content!.link}'
+                              : data!.content!.link,
+                        ),
+                      );
+                    },
+                    child: Stack(
+                      children: [
+                        WebViewWidget(
+                          data: data!,
+                          showAppbar: false,
+                          showFav: false,
+                          url: data!.content!.creator == "Twitter"
+                              ? 'https://twitter.com/${data!.content!.link}'
+                              : data!.content!.link,
+                        ),
+                        Container(color: Colors.transparent),
+                        Positioned(
+                          right: 0.0,
+                          bottom: 0.0,
+                          child: showFavButton!
+                              ? IconButton(
+                                  onPressed: () {
+                                    newsController.likeAndUnlikeNews(
+                                      data: data,
+                                      isLiked: newsController
+                                              .allFavouriteNewsItem
+                                              .any((element) =>
+                                                  element.newsId ==
+                                                  data!.newsId)
+                                          ? false
+                                          : true,
+                                    );
+                                  },
+                                  icon: FaIcon(
+                                    data!.isFavourite!
+                                        ? FontAwesomeIcons.solidHeart
+                                        : FontAwesomeIcons.heart,
+                                    color: data!.isFavourite!
+                                        ? redOpacityColor
+                                        : Theme.of(context).primaryColor,
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            : InkWell(
+                onTap: () {
+                  Get.to(() => WebViewWidget(
+                        url: data!.content!.link,
+                        data: data,
+                        showAppbar: true,
+                      ));
+                },
+                child: Container(
+                  width: width(context)! * 0.45,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(kBorderRadius),
+                      color: Theme.of(context).appBarTheme.backgroundColor,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black45,
+                          spreadRadius: 0.2,
+                          blurRadius: 0.2,
+                        )
+                      ]),
+                  child: Stack(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(kBorderRadius),
-                        child: CacheImageWidget(
-                          imageUrl: data!.headerMultimedia,
-                          imgheight: imageHeight ?? height(context)! * 0.11,
-                        ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            child: CacheImageWidget(
+                              imageUrl: data!.headerMultimedia,
+                              imgheight: imageHeight ?? height(context)! * 0.11,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data!.title!,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: themeTextStyle(
+                                    context: context,
+                                    fsize: kminiFont(context),
+                                    fweight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  timeAgo(data!.timeStamp!),
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: themeTextStyle(
+                                    context: context,
+                                    fweight: FontWeight.w600,
+                                    fsize: kminiFont(context),
+                                    tColor: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.4),
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  "by ${data!.content!.creator}",
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: themeTextStyle(
+                                    context: context,
+                                    fweight: FontWeight.w500,
+                                    fsize: kminiFont(context),
+                                    tColor: Theme.of(context)
+                                        .primaryColor
+                                        .withOpacity(0.4),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              data!.title!,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: themeTextStyle(
-                                context: context,
-                                fsize: kminiFont(context),
-                                fweight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              timeAgo(data!.timeStamp!),
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: themeTextStyle(
-                                context: context,
-                                fweight: FontWeight.w600,
-                                fsize: kminiFont(context),
-                                tColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.4),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              "by ${data!.content!.creator}",
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: themeTextStyle(
-                                context: context,
-                                fweight: FontWeight.w500,
-                                fsize: kminiFont(context),
-                                tColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.4),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      Positioned(
+                        right: 0.0,
+                        bottom: 0.0,
+                        child: showFavButton!
+                            ? IconButton(
+                                onPressed: () {
+                                  newsController.likeAndUnlikeNews(
+                                    data: data,
+                                    isLiked: newsController.allFavouriteNewsItem
+                                            .any((element) =>
+                                                element.newsId == data!.newsId)
+                                        ? false
+                                        : true,
+                                  );
+                                },
+                                icon: FaIcon(
+                                  data!.isFavourite!
+                                      ? FontAwesomeIcons.solidHeart
+                                      : FontAwesomeIcons.heart,
+                                  color: data!.isFavourite!
+                                      ? redOpacityColor
+                                      : Theme.of(context).primaryColor,
+                                ),
+                              )
+                            : const SizedBox.shrink(),
+                      )
                     ],
                   ),
-                  Positioned(
-                    right: 0.0,
-                    bottom: 0.0,
-                    child: showFavButton!
-                        ? IconButton(
-                            onPressed: () {
-                              newsController.likeAndUnlikeNews(
-                                data: data,
-                                isLiked: newsController.allFavouriteNewsItem
-                                        .any((element) =>
-                                            element.newsId == data!.newsId)
-                                    ? false
-                                    : true,
-                              );
-                            },
-                            icon: FaIcon(
-                              data!.isFavourite!
-                                  ? FontAwesomeIcons.solidHeart
-                                  : FontAwesomeIcons.heart,
-                              color: data!.isFavourite!
-                                  ? redOpacityColor
-                                  : Theme.of(context).primaryColor,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  )
-                ],
-              ),
-            ),
-          );
+                ),
+              );
   }
 }
