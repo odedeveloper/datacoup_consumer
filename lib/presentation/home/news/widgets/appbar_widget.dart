@@ -8,6 +8,17 @@ class NewsScreenAppBar extends StatelessWidget {
 
   final controller = Get.find<HomeController>();
   final newsController = Get.find<NewsController>();
+  final userProfileController = Get.find<UserProfileController>();
+
+  // loadData() async {
+  //   userProfileController.profileLoader(true);
+  //   userProfileController.user!.value = UserModel.empty();
+  //   LoginResponse? response =
+  //       await userProfileController.apiRepositoryInterface.fetchUserProfile();
+  //   userProfileController.user!(response!.user);
+  //   userProfileController.profileLoader(false);
+  //   userProfileController.updatePressed(false);
+  // }
 
   void openDialog(BuildContext context) {
     Get.dialog(
@@ -279,12 +290,21 @@ class NewsScreenAppBar extends StatelessWidget {
                     ),
               const SizedBox(width: 5),
               InkWell(
-                  onTap: () {
+                  onTap: () async {
                     Get.put(UserProfileController());
-                    controller.showSaveButton(false);
-                    controller.profileImage = null;
+                    userProfileController.isUpdating(false);
+                    userProfileController.loadUpdatedUserData();
+                    await Get.to(() => const UpdateAccount())!.then(
+                        (value) => userProfileController.fetchUserProfile());
+                    // controller.showSaveButton(false);
+                    // controller.profileImage = null;
                     // UpdateAccount
-                    Get.to(() => const UpdateAccount());
+                    // Get.to(() => const UpdateAccount());
+                    // await userProfileController.loadUpdatedUserData();
+                    // await Get.to(() => UpdateAccount());
+                    // !.then((_) async {
+                    //   loadData();
+                    // });
                   },
                   child: controller.user == null ||
                           controller.user!.value.firstName == null
