@@ -116,9 +116,11 @@ class NewsByInterestState extends State<NewsByInterest> {
                             const SizedBox(width: 10),
                         itemCount: newsModel!.items!.length,
                         itemBuilder: (context, index) {
-                          return NewsCardWidget(
-                            data: newsModel!.items![index],
-                          );
+                          return newsModel != null &&
+                                  newsModel!.items != null &&
+                                  newsModel!.items![index] != null
+                              ? NewsCardWidget(data: newsModel!.items![index])
+                              : Container();
                         },
                       ),
           ),

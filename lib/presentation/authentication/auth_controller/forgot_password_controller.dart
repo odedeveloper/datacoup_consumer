@@ -23,12 +23,18 @@ class ForgotPasswordController extends GetxController {
   bool isByEmail = true;
   String generatedOtp = '';
   String otp = '';
+  String countryCodeSearchValue = '';
 
   TextEditingController emailController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController otpController = TextEditingController();
+
+  updateCountryCodeSearchValue(String value) {
+    countryCodeSearchValue = value;
+    update();
+  }
 
   updateEmail(String value) {
     email = value;
@@ -51,7 +57,7 @@ class ForgotPasswordController extends GetxController {
   }
 
   updateCountryCode(String value) {
-    countryCode = value;
+    countryCode = '+$value';
     update();
   }
 

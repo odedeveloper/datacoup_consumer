@@ -37,7 +37,18 @@ class NewsCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return data!.newsType == "Feed"
+    return data!.newsType == "Feed" &&
+            data!.content != null &&
+            data!.description != null &&
+            data!.headerMultimedia != null &&
+            data!.isFavourite != null &&
+            data!.location != null &&
+            data!.newsId != null &&
+            data!.newsType != null &&
+            data!.source != null &&
+            data!.timeStamp != null &&
+            data!.title != null &&
+            data != null
         ? Container(
             width: width(context)! * 0.45,
             height: height(context)! * 0.3,

@@ -151,7 +151,7 @@ class SignUpController extends GetxController {
   }
 
   updateCountryCode(String value) {
-    countryCode = value;
+    countryCode = '+$value';
     update();
   }
 
