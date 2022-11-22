@@ -29,14 +29,14 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     return Scaffold(
       // appBar: AppBar(
       //   centerTitle: true,
-        // title: Text(
-        //   "Favourites",
-        //   style: themeTextStyle(
-        //     context: context,
-        //     fsize: klargeFont(context),
-        //     fweight: FontWeight.bold,
-        //   ),
-        // ),
+      // title: Text(
+      //   "Favourites",
+      //   style: themeTextStyle(
+      //     context: context,
+      //     fsize: klargeFont(context),
+      //     fweight: FontWeight.bold,
+      //   ),
+      // ),
       // ),
       body: Obx(
         () => newsController.allFavouriteNewsItem.isEmpty
@@ -74,6 +74,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                     flex: 10,
                     child: newsController.favouriteLoader.value
                         ? ListView.separated(
+                            physics: const ClampingScrollPhysics(),
                             separatorBuilder: (context, index) =>
                                 const SizedBox(height: 10),
                             padding: const EdgeInsets.all(12),
