@@ -376,6 +376,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: SizedBox(
                           width: width(context)! * 0.3,
                           child: RoundedElevatedButton(
+                            color: deepOrangeColor,
                             onClicked: () => _logout(context),
                             title: "Logout",
                           ),
