@@ -161,7 +161,7 @@ class NewsCardWidget extends StatelessWidget {
                                     fweight: FontWeight.w600,
                                   ),
                                 ),
-                                const SizedBox(height: 5),
+                                const SizedBox(height: 2),
                                 Text(
                                   timeAgo(data!.timeStamp!),
                                   maxLines: 3,
@@ -175,7 +175,7 @@ class NewsCardWidget extends StatelessWidget {
                                         .withOpacity(0.4),
                                   ),
                                 ),
-                                const SizedBox(height: 5),
+                                const SizedBox(height: 2),
                                 Text(
                                   "by ${data!.content!.creator}",
                                   maxLines: 3,
