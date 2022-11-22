@@ -33,6 +33,7 @@ class HomeController extends GetxController {
   RxString? selectedreturnGender = ''.obs;
   RxString? selectedreturnCountry = ''.obs;
   RxString? selectedreturnState = ''.obs;
+  String countryCode = '+91';
   File? profileImage;
 
   List<String?> genderList = ["Male", "Female", "Other"];
@@ -41,6 +42,11 @@ class HomeController extends GetxController {
     required this.localRepositoryInterface,
     required this.apiRepositoryInterface,
   });
+
+  updateCountryCode(value) {
+    countryCode = '+$value';
+    update();
+  }
 
   updateLanguage(String value) {
     language = value;

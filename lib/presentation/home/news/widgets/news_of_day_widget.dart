@@ -19,7 +19,7 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
   }
 
   loadNewofDay() async {
-     newsController.newsOfDayLoader(true);
+    newsController.newsOfDayLoader(true);
     newsModel = await newsController.getAllNews(
       type: StringConst.newsOfTheDay,
       count: newsController.newsOfDayCount.value,

@@ -170,11 +170,9 @@ class CustomLoginTextField extends StatelessWidget {
         ),
         onSelect: (Country country) {
           // log('Select country: ${country.phoneCode}');
-          // if (loginController != null) {
-          //   loginController!.updateCountryCode(country.phoneCode);
-          // } else {
-          //   signupController!.updateCountryCode(country.phoneCode);
-          // }
+          final controller = Get.find<HomeController>();
+
+          controller.updateCountryCode(country.phoneCode);
         });
   }
 }
