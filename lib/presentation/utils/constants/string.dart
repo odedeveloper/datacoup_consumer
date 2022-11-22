@@ -1,12 +1,11 @@
 // ignore_for_file: constant_identifier_names
 
 class StringConst {
-
   static const String newsOfTheDay = 'News_of_the_day';
   static const String videoOfTheDay = 'Video_of_the_day';
   static const String socialFeedtype = 'Feed';
 
-   static const String videoOftheDayTitle = 'Video of the day';
+  static const String videoOftheDayTitle = 'Video of the day';
   static const String newsOftheDayTitle = 'News of the day';
   static const String trendingVideosTitle = 'Trending Videos';
   static const String socialMediaTitle = 'Social Feeds';
@@ -66,15 +65,19 @@ class StringConst {
   static const String ENTER_USERNAME_PROCEED =
       "Please enter username to proceed.";
   static const String SELECT_COUNTRY_CODE = "Please select country code.";
-  static const String ENTER_MOBILE = "Please enter mobile no.";
+  static const String ENTER_MOBILE =
+      "Please enter mobile number with country code.";
   static const String ENTER_EMAIL = "Please enter email.";
   static const String MOBILE_LENGTH = "Mobile no. should be of 10 digits.";
   static const String CHECK_MOBILE_LENGTH =
       "Minimum Mobile no. length should be of 8 digits.";
   static const String CHECK_USERNAME_LENGTH =
       "Minimum Username length should be of 8 characters.";
-  static const String VALID_MOBILE = "Please enter valid mobile no.";
+  static const String VALID_MOBILE =
+      "Please enter valid mobile number with country code.";
   static const String VALID_USERNAME = "Please enter valid username.";
+  static const String ENTER_COUNTRY_CODE =
+      "Please enter country code with phone number.";
   static const String ENTER_OTP_PROCEED = "Please enter OTP to proceed.";
   static const String VALID_OTP = "Please enter valid OTP.";
   static const String INVALID_OTP = "Invalid OTP entered.";

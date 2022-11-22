@@ -200,23 +200,23 @@ class Login extends StatelessWidget {
                                 } else {
                                   acontroller.updateAuthInProgress(false);
                                   acontroller.updateLoggedIn(false);
-                                  bcontroller.updateRememberMe(false);
+                                  // bcontroller.updateRememberMe(false);
                                 }
                               } on CognitoClientException catch (exception) {
                                 acontroller.updateAuthInProgress(false);
                                 acontroller.updateLoggedIn(false);
-                                bcontroller.updateRememberMe(false);
+                                // bcontroller.updateRememberMe(false);
                                 showSnackBar(context, msg: exception.message!);
                               } catch (e) {
                                 log("auth error $e");
                                 acontroller.updateAuthInProgress(false);
                                 acontroller.updateLoggedIn(false);
-                                bcontroller.updateRememberMe(false);
+                                // bcontroller.updateRememberMe(false);
                                 showSnackBar(context,
                                     msg: bcontroller.errorMessage);
                               }
                             } else {
-                              bcontroller.updateRememberMe(false);
+                              // bcontroller.updateRememberMe(false);
 
                               showSnackBar(context, msg: result.errorMessage);
                             }

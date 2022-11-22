@@ -19,7 +19,7 @@ class AuthenticationController extends GetxController {
   initializeUser() async {
     try {
       bool? rememberStatus = GetStorage().read("RememberMe");
-      bool isRememberMe = rememberStatus ?? false;
+      bool isRememberMe = rememberStatus ?? true;
 
       if (isRememberMe == false) {
         updateLoggedIn(false);

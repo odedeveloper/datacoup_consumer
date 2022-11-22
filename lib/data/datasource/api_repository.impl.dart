@@ -50,7 +50,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
     try {
       if (token != null) {
         LoginResponse? loginResponse = await fetchUserProfile();
-        bool isRememberMe = GetStorage().read("RememberMe") ?? false;
+        bool isRememberMe = GetStorage().read("RememberMe") ?? true;
 
         if (loginResponse != null) {
           // token valid

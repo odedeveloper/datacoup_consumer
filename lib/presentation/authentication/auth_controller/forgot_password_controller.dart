@@ -170,8 +170,8 @@ class ForgotPasswordController extends GetxController {
       if (mobile == '' || mobile.isEmpty) {
         return MethodResponse(errorMessage: StringConst.ENTER_MOBILE);
       }
-      if (mobile.length < 8) {
-        return MethodResponse(errorMessage: StringConst.CHECK_MOBILE_LENGTH);
+      if (mobile.length < 10) {
+        return MethodResponse(errorMessage: StringConst.VALID_MOBILE);
       }
     }
     return MethodResponse(isSuccess: true);

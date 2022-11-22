@@ -21,7 +21,7 @@ class LoginController extends GetxController {
   // bool isByEmail = false;
   // bool isByMobile = false;
   // bool isByUsername = true;
-  bool rememberMe = false;
+  bool rememberMe = true;
   // TextEditingController emailController = TextEditingController();
   // TextEditingController mobileController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -31,7 +31,7 @@ class LoginController extends GetxController {
 
   @override
   onInit() {
-    bool isRememberMe = GetStorage().read("RememberMe") ?? false;
+    bool isRememberMe = GetStorage().read("RememberMe") ?? true;
     // updateRememberMe(isRememberMe);
     super.onInit();
   }
@@ -148,7 +148,20 @@ class LoginController extends GetxController {
     //     return MethodResponse(errorMessage: StringConst.VALID_USERNAME);
     //   }
     // }
-
+    bool flag = true;
+    for (var i = 0; i < username.length; i++) {
+      bool found = username[i].contains(RegExp(r'[0-9]'));
+      if (!found) {
+        flag = false;
+      }
+    }
+    if (flag) {
+      if (username.length < 10) {
+        print(username);
+        print(username.length);
+        return MethodResponse(errorMessage: StringConst.VALID_MOBILE);
+      }
+    }
     if (password == '' || password.isEmpty) {
       return MethodResponse(errorMessage: StringConst.ENTER_PASSWORD);
     }
@@ -161,9 +174,14 @@ class LoginController extends GetxController {
     return MethodResponse(isSuccess: true);
   }
 
+  updateUsername(value) {
+    username = value;
+  }
+
   updateUsernamePassword() {
     // updateEmail(emailController.text.toLowerCase());
     // updateMobile(mobileController.text);
+    updateUsername(usernameController.text);
     updatePassword(passwordController.text);
   }
 
