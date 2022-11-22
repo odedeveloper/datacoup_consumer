@@ -119,30 +119,35 @@ class SignUp extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: Row(
                           children: [
-                            Container(
-                              alignment: Alignment.topCenter,
-                              decoration: const BoxDecoration(
-                                  border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.grey,
-                                  width: 1.0,
-                                ),
-                              )),
-                              child: CountryCodePicker(
-                                backgroundColor: Colors.grey.shade600,
-                                dialogSize: const Size(320, 500),
-                                padding: EdgeInsets.zero,
-                                textStyle: const TextStyle(
-                                    fontSize: 15,
-                                    color: darkBlueGreyColor,
-                                    fontFamily: AssetConst.QUICKSAND_FONT,
-                                    fontWeight: FontWeight.w500),
-                                onChanged: (value) {
-                                  controller.updateCountryCode(value.dialCode!);
-                                },
-                                showFlagMain: false,
-                                initialSelection: controller.countryCode,
-                              ),
+                            InkWell(
+                              onTap: () {
+                                showCountryPicker(
+                                  context: context,
+                                  showPhoneCode:
+                                      true, // optional. Shows phone code before the country name.
+                                  onSelect: (Country country) {
+                                    controller
+                                        .updateCountryCode(country.phoneCode);
+                                  },
+                                );
+                              },
+                              child: Container(
+                                  margin: EdgeInsets.fromLTRB(2, 25, 2, 10),
+                                  padding: EdgeInsets.fromLTRB(2, 0, 2, 14),
+                                  alignment: Alignment.topCenter,
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                    bottom: BorderSide(
+                                      color: Colors.grey,
+                                      width: 1.0,
+                                    ),
+                                  )),
+                                  child: Text(controller.countryCode,
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: darkBlueGreyColor,
+                                          fontFamily: AssetConst.QUICKSAND_FONT,
+                                          fontWeight: FontWeight.w500))),
                             ),
                             Container(
                               width: 255 * SizeConfig().widthScale,

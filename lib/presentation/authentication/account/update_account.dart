@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:datacoup/export.dart';
 
-
 class UpdateAccount extends StatefulWidget {
   const UpdateAccount({Key? key}) : super(key: key);
 
@@ -19,8 +18,45 @@ class _UpdateAccountState extends State<UpdateAccount> {
   @override
   void initState() {
     controller.loadUserData();
+    // loadData();
     super.initState();
   }
+
+  // loadData() async {
+  //   controller.profileLoader(true);
+  //   loginResponse = await controller.apiRepositoryInterface.fetchUserProfile();
+  //   controller.fnameTextContoller!.text = loginResponse!.user!.firstName!;
+  //   controller.lnaemTextContoller!.text = loginResponse!.user!.lastName!;
+  //   controller.emailTextContoller!.text = loginResponse!.user!.email!;
+  //   controller.mobileTextContoller!.text = loginResponse!.user!.phone!;
+  //   controller.zipCodeTextContoller!.text = loginResponse!.user!.zipCode!;
+  //   controller.dobTextContoller!.text = loginResponse!.user!.dob!;
+  //   // controller.profileImage!.path = loginResponse!.user!.profileImage;
+
+  //   if (loginResponse!.user!.gender == null ||
+  //       loginResponse!.user!.gender == "") {
+  //     genderInitialData = "Select Gender";
+  //     controller.selectedreturnGender!("");
+  //   } else {
+  //     genderInitialData = loginResponse!.user!.gender;
+  //     controller.selectedreturnGender!(genderInitialData);
+  //   }
+
+  //   if (loginResponse!.user!.country != null ||
+  //       loginResponse!.user!.country != "") {
+  //     controller.selectedreturnCountry!(loginResponse!.user!.country!);
+  //   } else {
+  //     controller.selectedreturnCountry!("Select Country");
+  //   }
+
+  //   if (loginResponse!.user!.state != null ||
+  //       loginResponse!.user!.state != "") {
+  //     controller.selectedreturnState!(loginResponse!.user!.state!);
+  //   } else {
+  //     controller.selectedreturnState!("Select State");
+  //   }
+  //   controller.profileLoader(false);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +72,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                     fontFamily: AssetConst.QUICKSAND_FONT,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColorLight,
+                    color: blackColor,
                     alignment: TextAlign.center,
                   )),
                 ],
@@ -314,9 +350,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                             EdgeInsets.zero,
                                                         style: TextStyle(
                                                           letterSpacing: 0.9,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorLight,
+                                                          color: blackColor,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           fontFamily: AssetConst
@@ -381,9 +415,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                             EdgeInsets.zero,
                                                         style: TextStyle(
                                                           letterSpacing: 0.9,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorLight,
+                                                          color: blackColor,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           fontFamily: AssetConst
@@ -453,8 +485,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                                       .none),
                                                       style: TextStyle(
                                                         letterSpacing: 0.9,
-                                                        color: Theme.of(context)
-                                                            .primaryColorLight,
+                                                        color: blackColor,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         fontFamily: AssetConst
@@ -620,8 +651,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                           EdgeInsets.zero,
                                                       style: TextStyle(
                                                         letterSpacing: 0.9,
-                                                        color: Theme.of(context)
-                                                            .primaryColorLight,
+                                                        color: blackColor,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         fontFamily: AssetConst
@@ -797,8 +827,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                       .updatedUser!.gender!,
                                                   style: TextStyle(
                                                     letterSpacing: 0.9,
-                                                    color: Theme.of(context)
-                                                        .primaryColorLight,
+                                                    color: blackColor,
                                                     fontWeight: FontWeight.w500,
                                                     fontFamily: AssetConst
                                                         .QUICKSAND_FONT,
@@ -843,8 +872,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                               scrollPadding: EdgeInsets.zero,
                                               style: TextStyle(
                                                 letterSpacing: 0.9,
-                                                color: Theme.of(context)
-                                                    .primaryColorLight,
+                                                color: blackColor,
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily:
                                                     AssetConst.QUICKSAND_FONT,
@@ -946,8 +974,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                           .country!,
                                                   style: TextStyle(
                                                     letterSpacing: 0.9,
-                                                    color: Theme.of(context)
-                                                        .primaryColorLight,
+                                                    color: blackColor,
                                                     fontWeight: FontWeight.w500,
                                                     fontFamily: AssetConst
                                                         .QUICKSAND_FONT,
@@ -993,8 +1020,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                             scrollPadding: EdgeInsets.zero,
                                             style: TextStyle(
                                               letterSpacing: 0.9,
-                                              color: Theme.of(context)
-                                                  .primaryColorLight,
+                                              color: blackColor,
                                               fontWeight: FontWeight.w500,
                                               fontFamily:
                                                   AssetConst.QUICKSAND_FONT,

@@ -34,6 +34,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     controller.mobileTextContoller!.text = loginResponse!.user!.phone!;
     controller.zipCodeTextContoller!.text = loginResponse!.user!.zipCode!;
     controller.dobTextContoller!.text = loginResponse!.user!.dob!;
+    // controller.profileImage!.path = loginResponse!.user!.profileImage;
 
     if (loginResponse!.user!.gender == null ||
         loginResponse!.user!.gender == "") {

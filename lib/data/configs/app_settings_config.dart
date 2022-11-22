@@ -21,7 +21,7 @@ final Map<String, String> appSettingsStage = {
 
 final Map<String, String> appSettingsProd = {
   "baseURL": "https://lde99xk4m5.execute-api.us-east-1.amazonaws.com/prod/",
-  "awsUserPoolId": 'us-east-1_wj9qgmSyk',
-  "awsClientId": '2s41fqpus0v1ug61nmr70chjng',
+  "awsUserPoolId": 'us-east-1_epIT4x9JV',
+  "awsClientId": '60h0oai18k3g2k45s154m5o0vs',
   "awsPoolUrl": 'prod-ode-coconut.auth.us-east-1',
 };

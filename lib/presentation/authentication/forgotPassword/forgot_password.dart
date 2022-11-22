@@ -75,7 +75,7 @@ class ForgotPassword extends StatelessWidget {
                                         : lightGreyColor)))
                       ],
                     ),
-                    controller.isByEmail ? const ByEmail() : const ByMobile(),
+                    controller.isByEmail ? const ByEmail() : ByMobile(),
                     const SizedBox(height: 60),
                     Container(
                       alignment: Alignment.center,
