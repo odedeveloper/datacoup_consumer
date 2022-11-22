@@ -1,5 +1,5 @@
+import 'package:datacoup/export.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:flutter/material.dart';
 
 class CacheImageWidget extends StatelessWidget {
   final String? imageUrl;
@@ -26,25 +26,25 @@ class CacheImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return fromAsset!
-        ? ExtendedImage.asset(
-            imageUrl!,
-            width: imgwidth ?? double.infinity,
-            height: imgheight,
-            fit: cFit ?? BoxFit.fill,
-            color: color,
-          )
-        : ExtendedImage.network(
-            imageUrl!,
-            width: imgwidth ?? double.infinity,
-            height: imgheight,
-            fit: cFit ?? BoxFit.fill,
-            cache: true,
-            retries: 5,
-            color: color,
-            colorBlendMode: colorBlendMode,
-            //cancelToken: cancellationToken,
-          );
+    return  fromAsset!
+            ? ExtendedImage.asset(
+                imageUrl!,
+                width: imgwidth ?? double.infinity,
+                height: imgheight,
+                fit: cFit ?? BoxFit.fill,
+                color: color,
+              )
+            : ExtendedImage.network(
+                imageUrl!,
+                width: imgwidth ?? double.infinity,
+                height: imgheight,
+                fit: cFit ?? BoxFit.fill,
+                cache: true,
+                retries: 5,
+                color: color,
+                colorBlendMode: colorBlendMode,
+                //cancelToken: cancellationToken,
+              );
     //     // Image(
     //     //   image: NetworkImageWithRetry(
     //     //     imageUrl!,
