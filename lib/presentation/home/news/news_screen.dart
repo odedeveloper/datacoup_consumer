@@ -1,15 +1,13 @@
 import 'package:datacoup/export.dart';
 
-class NewsScreen extends StatelessWidget {
+class NewsScreen extends GetWidget<NewsController> {
   const NewsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: PreferredSize(
-      //     preferredSize: const Size(double.infinity, 56),
-      //     child: NewsScreenAppBar()),
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Column(
           children: [
             SizedBox(

@@ -19,7 +19,7 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
   }
 
   loadNewofDay() async {
-     newsController.newsOfDayLoader(true);
+    newsController.newsOfDayLoader(true);
     newsModel = await newsController.getAllNews(
       type: StringConst.newsOfTheDay,
       count: newsController.newsOfDayCount.value,
@@ -80,6 +80,8 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                                     children: [
                                       Text(
                                         data.title!,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
                                         style: themeTextStyle(
                                           context: context,
                                           tColor: whiteColor,
@@ -89,6 +91,8 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                                       SizedBox(height: height(context)! * 0.02),
                                       Text(
                                         data.description!,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
                                         style: themeTextStyle(
                                           context: context,
                                           tColor: whiteColor,

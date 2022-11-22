@@ -2,7 +2,9 @@ import 'package:datacoup/export.dart';
 import 'dart:io';
 
 class HomeScreen extends GetWidget<HomeController> {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final newsController = Get.find<NewsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,30 +24,33 @@ class HomeScreen extends GetWidget<HomeController> {
                             : null,
           ),
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: IndexedStack(
-                index: controller.onIndexSelected.value,
-                children: const [
-                  NewsScreen(),
-                  FavouriteScreen(),
-                  // Container(),
-                  QnaProfile(),
-                  VideoReelsScreen(),
-                  ProfileScreen(),
-                ],
+        body: RefreshIndicator(
+          onRefresh: newsController.refreshAll,
+          child: Column(
+            children: [
+              Expanded(
+                child: IndexedStack(
+                  index: controller.onIndexSelected.value,
+                  children: const [
+                    NewsScreen(),
+                    FavouriteScreen(),
+                    // Container(),
+                    QnaProfile(),
+                    VideoReelsScreen(),
+                    ProfileScreen(),
+                  ],
+                ),
               ),
-            ),
-            Obx(
-              () => AppBottomNavgationBar(
-                index: controller.onIndexSelected.value,
-                onIndexSelected: (value) {
-                  controller.updateIndexSelected(value);
-                },
-              ),
-            )
-          ],
+              Obx(
+                () => AppBottomNavgationBar(
+                  index: controller.onIndexSelected.value,
+                  onIndexSelected: (value) {
+                    controller.updateIndexSelected(value);
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
