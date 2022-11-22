@@ -87,10 +87,10 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                             : GridView.builder(
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
+                                  crossAxisCount: 2,
                                   mainAxisSpacing: 2,
                                   crossAxisSpacing: 2,
-                                  childAspectRatio: 1 / 2,
+                                  childAspectRatio: 1,
                                 ),
                                 scrollDirection: Axis.vertical,
                                 itemCount: newsModel!.items!.length,
