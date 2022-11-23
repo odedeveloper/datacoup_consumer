@@ -66,7 +66,7 @@ class StringConst {
       "Please enter username to proceed.";
   static const String SELECT_COUNTRY_CODE = "Please select country code.";
   static const String ENTER_MOBILE =
-      "Please enter mobile number with country code.";
+      "Please enter mobile number with country code without space.";
   static const String ENTER_EMAIL = "Please enter email.";
   static const String MOBILE_LENGTH = "Mobile no. should be of 10 digits.";
   static const String CHECK_MOBILE_LENGTH =
