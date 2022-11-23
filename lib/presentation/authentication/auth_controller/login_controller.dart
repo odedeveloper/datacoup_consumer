@@ -150,6 +150,11 @@ class LoginController extends GetxController {
     //   }
     // }
     bool flag = true;
+    if (username.contains(' ')) {
+      flag = false;
+      return MethodResponse(errorMessage: StringConst.VALID_USERNAME);
+    }
+
     for (var i = 0; i < username.length; i++) {
       bool found = username[i].contains(RegExp(r'[0-9]'));
       if (username[i] == ' ') {
