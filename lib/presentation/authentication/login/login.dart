@@ -206,6 +206,14 @@ class Login extends StatelessWidget {
                                 acontroller.updateAuthInProgress(false);
                                 acontroller.updateLoggedIn(false);
                                 // bcontroller.updateRememberMe(false);
+                                if (bcontroller
+                                            .usernameController.text.length >=
+                                        10 &&
+                                    exception.message!.contains('Incorrect') &&
+                                    bcontroller.isAllNumbers) {
+                                  showSnackBar(context,
+                                      msg: StringConst.VALID_MOBILE);
+                                }
                                 showSnackBar(context, msg: exception.message!);
                               } catch (e) {
                                 log("auth error $e");

@@ -17,6 +17,7 @@ class LoginController extends GetxController {
   String username = '';
   // String mobile = '';
   String errorMessage = '';
+  bool isAllNumbers = false;
   bool formProcessing = false;
   // bool isByEmail = false;
   // bool isByMobile = false;
@@ -151,10 +152,17 @@ class LoginController extends GetxController {
     bool flag = true;
     for (var i = 0; i < username.length; i++) {
       bool found = username[i].contains(RegExp(r'[0-9]'));
+      if (username[i] == ' ') {
+        flag = false;
+
+        return MethodResponse(errorMessage: StringConst.VALID_USERNAME);
+      }
       if (!found) {
         flag = false;
+        break;
       }
     }
+    isAllNumbers = flag;
     if (flag) {
       if (username.length < 10) {
         print(username);
