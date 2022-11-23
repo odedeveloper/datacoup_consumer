@@ -506,7 +506,7 @@ class SignUpController extends GetxController {
         profileImage: 'https://picsum.photos/id/1005/200/200',
         gender: 'Male',
         dob: DateTime.now().toString(),
-        primary: 'TODO:'
+        primary: 'phone:'
         // badge: ''
         );
     update();

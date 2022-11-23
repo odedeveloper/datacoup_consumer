@@ -56,7 +56,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
               : newsModel == null
                   ? Center(
                       child: Text(
-                        "No Data Founde",
+                        "No Data Found",
                         style: themeTextStyle(context: context),
                       ),
                     )
@@ -88,25 +88,39 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                                 gridDelegate:
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 1,
-                                  mainAxisSpacing: 2,
-                                  crossAxisSpacing: 2,
-                                  childAspectRatio: 1,
+                                  mainAxisSpacing: 1,
+                                  crossAxisSpacing: 1,
+                                  childAspectRatio: 2,
                                 ),
                                 scrollDirection: Axis.vertical,
                                 itemCount: newsModel!.items!.length,
                                 itemBuilder: (context, index) {
                                   final data = newsModel!.items![index];
-                                  return InkWell(
-                                    onTap: () {
-                                      Get.to(
-                                        () => VideoPlayerWidget(
-                                          startIndex: index,
-                                          items: newsModel!.items!,
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                    child: InkWell(
+                                      customBorder: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      // borderRadius: BorderRadius.circular(100),
+                                      onTap: () {
+                                        Get.to(
+                                          () => VideoPlayerWidget(
+                                            startIndex: index,
+                                            items: newsModel!.items!,
+                                          ),
+                                        );
+                                      },
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: CacheImageWidget(
+                                          imageUrl: data.headerMultimedia,
                                         ),
-                                      );
-                                    },
-                                    child: CacheImageWidget(
-                                      imageUrl: data.headerMultimedia,
+                                      ),
                                     ),
                                   );
                                 },

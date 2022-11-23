@@ -74,7 +74,7 @@ class StringConst {
   static const String CHECK_USERNAME_LENGTH =
       "Minimum Username length should be of 8 characters.";
   static const String VALID_MOBILE =
-      "Please enter valid mobile number with country code.";
+      "Please enter valid mobile number with country code without space.";
   static const String VALID_USERNAME = "Please enter valid username.";
   static const String ENTER_COUNTRY_CODE =
       "Please enter country code with phone number.";

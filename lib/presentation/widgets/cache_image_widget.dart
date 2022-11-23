@@ -11,6 +11,7 @@ class CacheImageWidget extends StatelessWidget {
   final bool? fromAsset;
   final Color? color;
   final BlendMode? colorBlendMode;
+
   const CacheImageWidget({
     Key? key,
     this.imageUrl,
@@ -26,25 +27,26 @@ class CacheImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  fromAsset!
-            ? ExtendedImage.asset(
-                imageUrl!,
-                width: imgwidth ?? double.infinity,
-                height: imgheight,
-                fit: cFit ?? BoxFit.fill,
-                color: color,
-              )
-            : ExtendedImage.network(
-                imageUrl!,
-                width: imgwidth ?? double.infinity,
-                height: imgheight,
-                fit: cFit ?? BoxFit.fill,
-                cache: true,
-                retries: 5,
-                color: color,
-                colorBlendMode: colorBlendMode,
-                //cancelToken: cancellationToken,
-              );
+    return fromAsset!
+        ? ExtendedImage.asset(
+            imageUrl!,
+            width: imgwidth ?? double.infinity,
+            height: imgheight,
+            fit: cFit ?? BoxFit.fill,
+            color: color,
+          )
+        : ExtendedImage.network(
+            imageUrl!,
+            width: imgwidth ?? double.infinity,
+            height: imgheight,
+            fit: cFit ?? BoxFit.fill,
+            cache: true,
+            retries: 5,
+            color: color,
+            colorBlendMode: colorBlendMode,
+
+            //cancelToken: cancellationToken,
+          );
     //     // Image(
     //     //   image: NetworkImageWithRetry(
     //     //     imageUrl!,
