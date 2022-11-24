@@ -8,6 +8,7 @@ import 'package:datacoup/languages.dart';
 import 'export.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   GlobalConfiguration().loadFromMap(appSettingsProd);
   await configureAmplify();

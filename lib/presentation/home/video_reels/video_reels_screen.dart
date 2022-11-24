@@ -101,7 +101,8 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                                         border: Border.all(color: Colors.grey),
                                         borderRadius:
                                             BorderRadius.circular(15)),
-                                    margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                    margin:
+                                        const EdgeInsets.fromLTRB(10, 5, 10, 5),
                                     child: InkWell(
                                       customBorder: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(15),

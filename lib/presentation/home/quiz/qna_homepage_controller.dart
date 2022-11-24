@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:datacoup/data/datasource/qna_api.dart';
 import 'package:datacoup/domain/model/activity_item_model.dart';
 import 'package:datacoup/export.dart';
@@ -67,15 +69,17 @@ class QnaHomePageController extends GetxController {
   }
 
   fetchBestScore(String odenId) async {
-    // try {
-    dynamic data = await getBestScore(odenId);
+    try {
+      Map<String, dynamic>? data = await getBestScore(odenId);
 
-    if (data != null) {
-      bestScore = data['score'];
+      if (data != null || data!.isNotEmpty) {
+        bestScore = data['score'];
 
-      badge = data['badge'];
+        badge = data['badge'];
+      }
+    } catch (e) {
+      log("$e");
     }
-
     isUpdating = false;
     isProcess = false;
     update();
