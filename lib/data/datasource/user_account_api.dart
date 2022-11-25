@@ -222,7 +222,7 @@ Future<String> verificationByOtp(bool isEmail, String value, String otp) async {
   } finally {}
 }
 
-Future<String> editEmailPhone(bool isByEmail, String value) async {
+editEmailPhone(bool isByEmail, String value) async {
   try {
     Response response;
     if (!isByEmail) {
@@ -240,9 +240,9 @@ Future<String> editEmailPhone(bool isByEmail, String value) async {
           .post(EDIT_EMAIL_PHONE, data: {"type": 'email', "email": value});
     }
     Map<String, dynamic> data = Map.from(response.data);
-    print(data['Attributes']['emailVerified']);
+    print(data['Attributes'][isByEmail ? 'emailVerified' : 'phoneVerified']);
 
-    return data['Attributes']['emailVerified'];
+    return data['Attributes'][isByEmail ? 'emailVerified' : 'phoneVerified'];
   } catch (error) {
     print('EDIT DETAILS ERROR -_-');
     print(error);

@@ -10,9 +10,72 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
 
   VerifyOtpEditEmailPassword({Key? key, required this.isEmail})
       : super(key: key);
+  final controller = Get.find<HomeController>();
+  String? genderInitialData = '';
+  LoginResponse? loginResponse;
+
+  loadData() async {
+    controller.profileLoader(true);
+    controller.user!.value = UserModel.empty();
+    LoginResponse? response =
+        await controller.apiRepositoryInterface.fetchUserProfile();
+    controller.user!(response!.user);
+    controller.profileLoader(false);
+    controller.updatePressed(false);
+  }
 
   @override
   Widget build(BuildContext context) {
+    Future openDialog() => showDialog(
+        context: context,
+        builder: (context) =>
+            GetBuilder<EditEmailPhoneController>(builder: (controller) {
+              return AlertDialog(
+                title: Column(
+                  children: [
+                    Center(
+                        child: CustomText(
+                      isEmail
+                          ? 'Your email has been successfully changed to:'
+                          : 'Your phone has been successfully changed to:',
+                      fontFamily: AssetConst.QUICKSAND_FONT,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).primaryColorLight,
+                      alignment: TextAlign.center,
+                    )),
+                  ],
+                ),
+                content: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Center(
+                    child: Text(isEmail
+                        ? controller.emailController.text
+                        : controller.countryCode +
+                            controller.mobileController.text),
+                  )
+                ]),
+                actionsAlignment: MainAxisAlignment.spaceEvenly,
+                actions: [
+                  TextButton(
+                      onPressed: () async {
+                        await loadData();
+                        Get.back();
+                        Get.back();
+                        Get.back();
+                        Get.back();
+                        Get.back();
+                      },
+                      style: TextButton.styleFrom(
+                        backgroundColor: darkSkyBlueColor,
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                      ),
+                      child: CustomText("OK",
+                          color: whiteColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700)),
+                ],
+              );
+            }));
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SingleChildScrollView(
@@ -35,13 +98,16 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                       height: 60 * SizeConfig().heightScale),
                 ),
                 SizedBox(height: 20 * SizeConfig().heightScale),
-                Text(isEmail ? "Verify email address" : "Verify mobile number",
-                    style: TextStyle(
-                        letterSpacing: 1,
-                        fontSize: 24,
-                        color: Theme.of(context).secondaryHeaderColor,
-                        fontFamily: AssetConst.RALEWAY_FONT,
-                        fontWeight: FontWeight.w600)),
+                Center(
+                  child: Text(
+                      isEmail ? "Verify email address" : "Verify mobile number",
+                      style: TextStyle(
+                          letterSpacing: 1,
+                          fontSize: 24,
+                          color: Theme.of(context).secondaryHeaderColor,
+                          fontFamily: AssetConst.RALEWAY_FONT,
+                          fontWeight: FontWeight.w600)),
+                ),
                 SizedBox(height: 20 * SizeConfig().heightScale),
                 Container(
                     alignment: Alignment.center,
@@ -78,13 +144,10 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                             editDetailsConfirmed =
                                 await controller.editDetails();
                             if (editDetailsConfirmed == 'True') {
-                              await controller.createUserProfile();
+                              await controller.createUserProfile(isEmail);
 
                               // Get.to(HomeScreen());
-                              Get.back();
-                              Get.back();
-                              Get.back();
-                              Get.back();
+                              openDialog();
                             } else {
                               if (isEmail) {
                                 showSnackBar(context,

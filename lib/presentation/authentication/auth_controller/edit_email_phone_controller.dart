@@ -112,15 +112,19 @@ class EditEmailPhoneController extends GetxController {
     }
   }
 
-  createUserProfile() async {
+  createUserProfile(bool isByEmail) async {
     try {
       UserModel user;
       user = Get.find<UserProfileController>().user!;
       if (isByEmail) {
         user.email = emailController.text;
+        user.emailVerified = 'True';
       } else {
         user.phone = countryCode + mobileController.text;
+        user.phoneVerified = 'True';
       }
+      print(user);
+      print(user.phone);
       await createUserProfileApi(user, username: user.odenId!);
       // await fetchUserProfileApi('hjh');
       //TODO: call fetchuserprofileapi after editing is completed.
@@ -140,7 +144,10 @@ class EditEmailPhoneController extends GetxController {
     String editDetailsResponse;
     try {
       editDetailsResponse = await editEmailPhone(
-          isByEmail, isByEmail ? emailController.text : mobileController.text);
+          isByEmail,
+          isByEmail
+              ? emailController.text
+              : countryCode + mobileController.text);
 
       print(editDetailsResponse);
 
