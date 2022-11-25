@@ -94,7 +94,7 @@ class EditEmailPhoneController extends GetxController {
   secondVerification(bool isByEmail, String value) async {
     generatedOtp = generateOtp();
     this.isByEmail = isByEmail;
-    String verificationRequestResponse;
+    String verificationRequestResponse = '';
 
     try {
       verificationRequestResponse =

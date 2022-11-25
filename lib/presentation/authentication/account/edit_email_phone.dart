@@ -222,7 +222,7 @@ class EditEmailPhone extends StatelessWidget {
                                     onPressed: () async {
                                       String response =
                                           await controller.secondVerification(
-                                              true,
+                                              isEmail,
                                               isEmail
                                                   ? controller
                                                       .emailController.text
@@ -230,9 +230,14 @@ class EditEmailPhone extends StatelessWidget {
                                                       controller
                                                           .mobileController
                                                           .text);
-                                      Get.to(() => (VerifyOtpEditEmailPassword(
-                                            isEmail: isEmail,
-                                          )));
+                                      if (response == 'Verification sent') {
+                                        Get.to(
+                                            () => (VerifyOtpEditEmailPassword(
+                                                  isEmail: isEmail,
+                                                )));
+                                      } else {
+                                        showSnackBar(context, msg: response);
+                                      }
                                       // try {
                                       //   await _controller
                                       //       .updateUserCredentials();
