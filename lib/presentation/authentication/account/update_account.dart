@@ -348,7 +348,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                             : null,
                                                         scrollPadding:
                                                             EdgeInsets.zero,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           letterSpacing: 0.9,
                                                           color: blackColor,
                                                           fontWeight:
@@ -413,7 +413,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                             : null,
                                                         scrollPadding:
                                                             EdgeInsets.zero,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           letterSpacing: 0.9,
                                                           color: blackColor,
                                                           fontWeight:
@@ -485,7 +485,8 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                                       .none),
                                                       style: TextStyle(
                                                         letterSpacing: 0.9,
-                                                        color: blackColor,
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         fontFamily: AssetConst
@@ -651,7 +652,8 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                           EdgeInsets.zero,
                                                       style: TextStyle(
                                                         letterSpacing: 0.9,
-                                                        color: blackColor,
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         fontFamily: AssetConst
@@ -804,12 +806,12 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                                       controller
                                                                           .updatedUser!
                                                                           .gender
-                                                                  ? mediumBlueGreyColor
+                                                                  ? Theme.of(
+                                                                          context)
+                                                                      .primaryColor
                                                                   : Theme.of(
                                                                           context)
-                                                                      .textTheme
-                                                                      .bodyText1!
-                                                                      .color!,
+                                                                      .primaryColor,
                                                               fontFamily: AssetConst
                                                                   .RALEWAY_FONT),
                                                           textScaleFactor: 1.0,
@@ -827,7 +829,8 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                       .updatedUser!.gender!,
                                                   style: TextStyle(
                                                     letterSpacing: 0.9,
-                                                    color: blackColor,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
                                                     fontWeight: FontWeight.w500,
                                                     fontFamily: AssetConst
                                                         .QUICKSAND_FONT,
@@ -872,7 +875,8 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                               scrollPadding: EdgeInsets.zero,
                                               style: TextStyle(
                                                 letterSpacing: 0.9,
-                                                color: blackColor,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily:
                                                     AssetConst.QUICKSAND_FONT,
@@ -932,13 +936,15 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                       stateSearchPlaceholder: "Search State",
                                                       countryDropdownLabel: "Country",
                                                       stateDropdownLabel: "State",
-                                                      selectedItemStyle: const TextStyle(
-                                                        color: Colors.black,
+                                                      selectedItemStyle: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
                                                         fontSize: 14,
                                                       ),
-                                                      dropdownHeadingStyle: const TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),
-                                                      dropdownItemStyle: const TextStyle(
-                                                        color: Colors.black,
+                                                      dropdownHeadingStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 17, fontWeight: FontWeight.bold),
+                                                      dropdownItemStyle: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .primaryColor,
                                                         fontSize: 14,
                                                       ),
                                                       dropdownDialogRadius: 10.0,
@@ -974,7 +980,8 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                           .country!,
                                                   style: TextStyle(
                                                     letterSpacing: 0.9,
-                                                    color: blackColor,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
                                                     fontWeight: FontWeight.w500,
                                                     fontFamily: AssetConst
                                                         .QUICKSAND_FONT,
@@ -1020,7 +1027,8 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                             scrollPadding: EdgeInsets.zero,
                                             style: TextStyle(
                                               letterSpacing: 0.9,
-                                              color: blackColor,
+                                              color: Theme.of(context)
+                                                  .primaryColor,
                                               fontWeight: FontWeight.w500,
                                               fontFamily:
                                                   AssetConst.QUICKSAND_FONT,

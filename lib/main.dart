@@ -17,7 +17,7 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
-Future<void> configureAmplify() async {
+Future<void> configureAmplify() async { 
   // AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
   Amplify.addPlugins([AmplifyAuthCognito()]);
   try {

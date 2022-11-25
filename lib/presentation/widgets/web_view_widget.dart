@@ -40,8 +40,13 @@ class WebViewWidget extends StatelessWidget {
           : null,
       body: InAppWebView(
         initialUrlRequest: URLRequest(url: Uri.tryParse(url!)),
-        initialOptions:
-            InAppWebViewGroupOptions(crossPlatform: InAppWebViewOptions()),
+        initialOptions: InAppWebViewGroupOptions(
+          crossPlatform: InAppWebViewOptions(
+            useShouldOverrideUrlLoading: true,
+            javaScriptEnabled: true,
+            javaScriptCanOpenWindowsAutomatically: true,
+          ),
+        ),
         onWebViewCreated: (InAppWebViewController controller) {
           // webViewController = controller;
         },

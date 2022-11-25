@@ -111,15 +111,17 @@ class Login extends StatelessWidget {
                   fontSize: 16,
                 ),
                 decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.only(bottom: 18),
-                    suffixIcon: InkWell(
-                        onTap: () {
-                          controller.updatePasswordHiddens(
-                              !controller.passwordHidden);
-                        },
-                        child: Icon(controller.passwordHidden
-                            ? Icons.visibility_off
-                            : Icons.visibility))),
+                  contentPadding: const EdgeInsets.only(bottom: 18),
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      controller
+                          .updatePasswordHiddens(!controller.passwordHidden);
+                    },
+                    child: Icon(controller.passwordHidden
+                        ? Icons.visibility_off
+                        : Icons.visibility),
+                  ),
+                ),
               )),
             ),
           ),

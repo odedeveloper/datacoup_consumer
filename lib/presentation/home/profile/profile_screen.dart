@@ -92,7 +92,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  children: [Text('technology@odeinfinity.com')]),
+                  children: const [
+                    SelectableText('technology@odeinfinity.com')
+                  ]),
               actionsAlignment: MainAxisAlignment.spaceEvenly,
               actions: [
                 TextButton(

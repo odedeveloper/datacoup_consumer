@@ -37,10 +37,8 @@ class NewsCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('----____----');
-    print(data!.headerMultimedia);
     return !(data != null && data!.headerMultimedia != null)
-        ? Container()
+        ? const SizedBox.shrink()
         : data!.newsType == "Feed"
             ? Container(
                 width: width(context)! * 0.45,
@@ -153,7 +151,7 @@ class NewsCardWidget extends StatelessWidget {
                               children: [
                                 Text(
                                   data!.title!,
-                                  maxLines: 3,
+                                  maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: themeTextStyle(
                                     context: context,
@@ -164,7 +162,7 @@ class NewsCardWidget extends StatelessWidget {
                                 const SizedBox(height: 2),
                                 Text(
                                   timeAgo(data!.timeStamp!),
-                                  maxLines: 3,
+                                  maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: themeTextStyle(
                                     context: context,
@@ -189,6 +187,7 @@ class NewsCardWidget extends StatelessWidget {
                                         .withOpacity(0.4),
                                   ),
                                 ),
+                                const SizedBox(height: 2),
                               ],
                             ),
                           ),

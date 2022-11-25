@@ -243,7 +243,7 @@ packages:
       name: flutter_inappwebview
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.7.1"
+    version: "5.7.2"
   flutter_launcher_icons:
     dependency: "direct main"
     description:

@@ -71,7 +71,6 @@ class ResetPassword extends StatelessWidget {
                             child: GetBuilder<ForgotPasswordController>(
                                 builder: (controller) {
                               return TextFormField(
-                                obscureText: true,
                                 controller: controller.passwordController,
                                 scrollPadding: EdgeInsets.zero,
                                 style: TextStyle(
@@ -103,7 +102,8 @@ class ResetPassword extends StatelessWidget {
                             child: GetBuilder<ForgotPasswordController>(
                                 builder: (controller) {
                               return TextFormField(
-                                obscureText: true,
+                                obscureText:
+                                    controller.forgetconfirmPasswordVisible!,
                                 controller:
                                     controller.confirmPasswordController,
                                 scrollPadding: EdgeInsets.zero,
@@ -118,6 +118,18 @@ class ResetPassword extends StatelessWidget {
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(
                                       bottom: 18 * SizeConfig().heightScale),
+                                  suffixIcon: InkWell(
+                                    onTap: () {
+                                      controller
+                                          .updatePasswordforgetPassConfirmHiddens(
+                                              !controller
+                                                  .forgetconfirmPasswordVisible!);
+                                    },
+                                    child: Icon(
+                                        controller.forgetconfirmPasswordVisible!
+                                            ? Icons.visibility_off
+                                            : Icons.visibility),
+                                  ),
                                 ),
                               );
                             })),
