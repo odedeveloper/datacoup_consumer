@@ -23,7 +23,7 @@ class ForgotPasswordController extends GetxController {
   bool isByEmail = true;
   String generatedOtp = '';
   String otp = '';
-  bool? forgetconfirmPasswordVisible = false;
+  bool? forgetconfirmPasswordVisible = true;
   String countryCodeSearchValue = '';
 
   TextEditingController emailController = TextEditingController();
