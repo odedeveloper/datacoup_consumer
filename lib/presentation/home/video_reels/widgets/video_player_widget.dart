@@ -36,6 +36,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.black,
+        iconTheme: const IconThemeData(color: deepOrangeColor),
       ),
       body: PageView.builder(
         controller: _pageController,

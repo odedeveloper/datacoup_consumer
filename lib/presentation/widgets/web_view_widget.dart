@@ -3,13 +3,13 @@ import 'dart:developer';
 import 'package:datacoup/export.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-class WebViewWidget extends StatelessWidget {
+class WebViewWidget extends StatefulWidget {
   final String? url;
   final bool? showAppbar;
   final bool? showFav;
   final String? title;
   final Item? data;
-  WebViewWidget(
+  const WebViewWidget(
       {super.key,
       this.showFav = true,
       this.title,
@@ -17,18 +17,30 @@ class WebViewWidget extends StatelessWidget {
       this.url,
       this.data});
 
+  @override
+  State<WebViewWidget> createState() => _WebViewWidgetState();
+}
+
+class _WebViewWidgetState extends State<WebViewWidget> {
   final newsController = Get.find<NewsController>();
+
+  @override
+  void dispose() {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     // InAppWebViewController? webViewController;
     return Scaffold(
-      appBar: showAppbar!
+      appBar: widget.showAppbar!
           ? AppBar(
               centerTitle: true,
-              title: title != null
+              title: widget.title != null
                   ? Text(
-                      title!,
+                      widget.title!,
                       style: themeTextStyle(
                         context: context,
                         fsize: klargeFont(context),
@@ -36,10 +48,34 @@ class WebViewWidget extends StatelessWidget {
                       ),
                     )
                   : null,
+              actions: [
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                      onPressed: () {
+                        var isPortrait = MediaQuery.of(context).orientation ==
+                            Orientation.portrait;
+                        if (isPortrait) {
+                          SystemChrome.setPreferredOrientations([
+                            DeviceOrientation.landscapeLeft,
+                            DeviceOrientation.landscapeLeft,
+                          ]);
+                        } else {
+                          SystemChrome.setPreferredOrientations([
+                            DeviceOrientation.portraitUp,
+                            DeviceOrientation.portraitDown
+                          ]);
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.screen_rotation_outlined,
+                      ),
+                    )),
+              ],
             )
           : null,
       body: InAppWebView(
-        initialUrlRequest: URLRequest(url: Uri.tryParse(url!)),
+        initialUrlRequest: URLRequest(url: Uri.tryParse(widget.url!)),
         initialOptions: InAppWebViewGroupOptions(
           crossPlatform: InAppWebViewOptions(
             useShouldOverrideUrlLoading: true,
@@ -54,25 +90,25 @@ class WebViewWidget extends StatelessWidget {
           log('page loaded on => $url');
         },
       ),
-      floatingActionButton: showFav!
+      floatingActionButton: widget.showFav!
           ? Obx(
               () => FloatingActionButton(
                 onPressed: () {
                   newsController.likeAndUnlikeNews(
-                    data: data,
-                    isLiked: newsController.allFavouriteNewsItem
-                            .any((element) => element.newsId == data!.newsId)
+                    data: widget.data,
+                    isLiked: newsController.allFavouriteNewsItem.any(
+                            (element) => element.newsId == widget.data!.newsId)
                         ? false
                         : true,
                   );
                 },
                 child: FaIcon(
-                  newsController.allFavouriteNewsItem
-                          .any((element) => element.newsId == data!.newsId)
+                  newsController.allFavouriteNewsItem.any(
+                          (element) => element.newsId == widget.data!.newsId)
                       ? FontAwesomeIcons.solidHeart
                       : FontAwesomeIcons.heart,
-                  color: newsController.allFavouriteNewsItem
-                          .any((element) => element.newsId == data!.newsId)
+                  color: newsController.allFavouriteNewsItem.any(
+                          (element) => element.newsId == widget.data!.newsId)
                       ? redOpacityColor
                       : Colors.white,
                 ),

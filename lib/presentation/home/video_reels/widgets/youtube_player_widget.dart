@@ -74,10 +74,10 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
   Widget build(BuildContext context) {
     return YoutubePlayerScaffold(
       backgroundColor: Colors.black,
-      defaultOrientations: const [
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.landscapeRight
-      ],
+      // defaultOrientations: const [
+      //   DeviceOrientation.landscapeLeft,
+      //   DeviceOrientation.landscapeRight
+      // ],
       controller: controller!,
       aspectRatio: 9 / 16,
       builder: (context, player) {
