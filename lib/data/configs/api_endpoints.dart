@@ -4,6 +4,7 @@ import 'package:datacoup/domain/model/news_model.dart';
 
 const String FETCH_PROFILE_URL = 'user/profile';
 const String CREATE_PROFILE_URL = 'user/profile';
+const String DELETE_PROFILE_URL = 'user/profile';
 const String PRIVACY_URL = 'https://www.odeinfinity.com/privacy-policy/';
 const String TERMS_URL = 'https://www.odeinfinity.com/terms-conditions/';
 const String HELP_URL = 'https://www.odeinfinity.com/';

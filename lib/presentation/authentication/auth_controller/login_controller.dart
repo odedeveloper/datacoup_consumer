@@ -62,6 +62,19 @@ class LoginController extends GetxController {
     update();
   }
 
+  Future<bool> deleteAccount() async {
+    try {
+      bool deleteAccountResponse = await deleteAccountApi();
+
+      if (deleteAccountResponse) {
+        return true;
+      }
+      return false;
+    } on Exception catch (e) {
+      rethrow;
+    }
+  }
+
   // updateCountryCode(String value) {
   //   countryCode = value;
   //   update();

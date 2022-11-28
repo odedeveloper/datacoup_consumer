@@ -66,6 +66,24 @@ Future<String> getPrimaryFromCognito(String username) async {
   } finally {}
 }
 
+Future<bool> deleteAccountApi() async {
+  try {
+    Response response = await DioInstance().dio.delete(DELETE_PROFILE_URL);
+    if (response.statusCode != 503) {
+      Map<String, dynamic> data = Map.from(response.data);
+      if (data['status'] == 'success') {
+        return true;
+      }
+      return false;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    log("error to delete user account $error");
+    rethrow;
+  } finally {}
+}
+
 Future<UserModel?> fetchUserProfileApi(String deviceId) async {
   try {
     Response response = await DioInstance().dio.get(FETCH_PROFILE_URL);

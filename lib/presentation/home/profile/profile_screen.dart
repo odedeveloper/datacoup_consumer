@@ -10,6 +10,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final controller = Get.find<HomeController>();
+  final loginController = Get.put<LoginController>;
 
   @override
   void initState() {
@@ -70,6 +71,61 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loginController = Get.put<LoginController>;
+    Future openDeleteAccountDialog() => showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) => AlertDialog(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            title: Column(
+              children: [
+                Center(
+                    child: CustomText(
+                  'Are you sure you want to Delete your Datacoup Account?',
+                  fontFamily: AssetConst.QUICKSAND_FONT,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColorDark,
+                  alignment: TextAlign.center,
+                )),
+              ],
+            ),
+            actionsAlignment: MainAxisAlignment.spaceEvenly,
+            actions: [
+              TextButton(
+                  onPressed: () async {
+                    Get.lazyPut(() => LoginController());
+                    final loginController = Get.find<LoginController>();
+                    await loginController.deleteAccount();
+                    Get.delete<LoginController>();
+                    Get.delete<HomeController>();
+                    Get.delete<NavigationController>();
+                    Get.delete<UserProfileController>();
+                    Get.offAll(() => Login());
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: darkSkyBlueColor,
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                  ),
+                  child: CustomText("Yes",
+                      color: whiteColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700)),
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: redOpacityColor,
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                  ),
+                  child: CustomText("No",
+                      color: whiteColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700)),
+            ],
+          ),
+        );
     Future openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -359,17 +415,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       InkWell(
                         onTap: () {
                           openDialog();
-                          // Get.to(WebViewWidget(
-                          //   showAppbar: true,
-                          //   title: "Help",
-                          //   showFav: false,
-                          //   url: HELP_URL,
-                          // ));
                         },
                         child: tileWithIcon(
                           context,
                           icon: Icons.help_center_outlined,
                           title: "Help",
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      InkWell(
+                        onTap: () {
+                          openDeleteAccountDialog();
+                        },
+                        child: tileWithIcon(
+                          context,
+                          icon: Icons.delete_forever_outlined,
+                          title: "Delete Account",
                         ),
                       ),
                       const SizedBox(height: 30),
