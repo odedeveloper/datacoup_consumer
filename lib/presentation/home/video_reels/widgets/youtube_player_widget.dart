@@ -22,6 +22,7 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
   var player = const YoutubePlayer();
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([]);
     controller = YoutubePlayerController()
       ..onInit = () {
         controller?.loadVideoById(
@@ -66,6 +67,8 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     controller!.close();
     super.dispose();
   }

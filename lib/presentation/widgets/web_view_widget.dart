@@ -25,6 +25,14 @@ class _WebViewWidgetState extends State<WebViewWidget> {
   final newsController = Get.find<NewsController>();
 
   @override
+  void initState() {
+    if (widget.showFav == true) {
+      SystemChrome.setPreferredOrientations([]);
+    }
+    super.initState();
+  }
+
+  @override
   void dispose() {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -48,30 +56,30 @@ class _WebViewWidgetState extends State<WebViewWidget> {
                       ),
                     )
                   : null,
-              actions: [
-                Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                      onPressed: () {
-                        var isPortrait = MediaQuery.of(context).orientation ==
-                            Orientation.portrait;
-                        if (isPortrait) {
-                          SystemChrome.setPreferredOrientations([
-                            DeviceOrientation.landscapeLeft,
-                            DeviceOrientation.landscapeLeft,
-                          ]);
-                        } else {
-                          SystemChrome.setPreferredOrientations([
-                            DeviceOrientation.portraitUp,
-                            DeviceOrientation.portraitDown
-                          ]);
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.screen_rotation_outlined,
-                      ),
-                    )),
-              ],
+              // actions: [
+              //   Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: IconButton(
+              //         onPressed: () {
+              //           var isPortrait = MediaQuery.of(context).orientation ==
+              //               Orientation.portrait;
+              //           if (isPortrait) {
+              //             SystemChrome.setPreferredOrientations([
+              //               DeviceOrientation.landscapeLeft,
+              //               DeviceOrientation.landscapeLeft,
+              //             ]);
+              //           } else {
+              //             SystemChrome.setPreferredOrientations([
+              //               DeviceOrientation.portraitUp,
+              //               DeviceOrientation.portraitDown
+              //             ]);
+              //           }
+              //         },
+              //         icon: const Icon(
+              //           Icons.screen_rotation_outlined,
+              //         ),
+              //       )),
+              // ],
             )
           : null,
       body: InAppWebView(

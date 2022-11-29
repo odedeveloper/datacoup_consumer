@@ -20,6 +20,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   void initState() {
     super.initState();
+
     _pageController = PageController(initialPage: widget.startIndex!);
   }
 
