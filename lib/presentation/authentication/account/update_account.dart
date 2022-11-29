@@ -126,9 +126,19 @@ class _UpdateAccountState extends State<UpdateAccount> {
                 actions: [
                   IconButton(
                     onPressed: () async {
-                      Get.to(() => EditProfileScreen(
-                            isAfterProfile: true,
-                          ));
+                      await Get.to(() => EditProfileScreen(
+                                isAfterProfile: true,
+                              ))!
+                          .then((_) async {
+                        if (homeController.updatePressed.value == true) {
+                         ProfileScreenState(). loadData();
+                        }
+                      });
+                      // Get.to(
+                      //   () => EditProfileScreen(
+                      //     isAfterProfile: true,
+                      //   ),
+                      // );
                     },
                     icon: const FaIcon(
                       FontAwesomeIcons.pen,

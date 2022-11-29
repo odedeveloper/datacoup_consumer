@@ -5,10 +5,10 @@ class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfileScreen> createState() => ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class ProfileScreenState extends State<ProfileScreen> {
   final controller = Get.find<HomeController>();
   final loginController = Get.put<LoginController>;
 
@@ -382,7 +382,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: 20),
                       InkWell(
                         onTap: () {
-                          Get.to(WebViewWidget(
+                          Get.to(const WebViewWidget(
                             showAppbar: true,
                             title: "Privacy Policy",
                             showFav: false,
@@ -398,7 +398,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(height: 20),
                       InkWell(
                         onTap: () {
-                          Get.to(WebViewWidget(
+                          Get.to(const WebViewWidget(
                             showAppbar: true,
                             title: "Terms and Conditions",
                             showFav: false,

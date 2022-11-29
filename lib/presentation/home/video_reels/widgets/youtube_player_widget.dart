@@ -77,6 +77,7 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
   Widget build(BuildContext context) {
     return YoutubePlayerScaffold(
       backgroundColor: Colors.black,
+      autoFullScreen: true,
       // defaultOrientations: const [
       //   DeviceOrientation.landscapeLeft,
       //   DeviceOrientation.landscapeRight
@@ -86,6 +87,7 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
       builder: (context, player) {
         return SafeArea(
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             backgroundColor: Colors.black,
             body: Stack(
               children: [
