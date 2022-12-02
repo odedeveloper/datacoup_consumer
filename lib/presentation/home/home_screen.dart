@@ -70,18 +70,18 @@ class AppBottomNavgationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-            color: Theme.of(context).appBarTheme.backgroundColor,
-            boxShadow: const [
-              BoxShadow(
-                color: Colors.black45,
-                blurRadius: 0.5,
-                spreadRadius: 0.5,
-                offset: Offset(0.0, 0.01),
-              ),
-            ]),
+    return Container(
+      decoration: BoxDecoration(
+          color: Theme.of(context).appBarTheme.backgroundColor,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black45,
+              blurRadius: 0.5,
+              spreadRadius: 0.5,
+              offset: Offset(0.0, 0.01),
+            ),
+          ]),
+      child: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

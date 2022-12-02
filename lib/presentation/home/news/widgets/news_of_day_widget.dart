@@ -89,13 +89,16 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                                         ),
                                       ),
                                       SizedBox(height: height(context)! * 0.02),
-                                      Text(
-                                        data.description!,
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: themeTextStyle(
-                                          context: context,
-                                          tColor: whiteColor,
+                                      SizedBox(
+                                        width: width(context)! * 0.5,
+                                        child: Text(
+                                          data.description!,
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: themeTextStyle(
+                                            context: context,
+                                            tColor: whiteColor,
+                                          ),
                                         ),
                                       ),
                                     ],
