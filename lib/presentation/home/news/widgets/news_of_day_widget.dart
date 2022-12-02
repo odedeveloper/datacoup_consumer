@@ -104,7 +104,7 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                               ),
                               Positioned(
                                 right: 10.0,
-                                bottom: 10.0,
+                                bottom: 20.0,
                                 child: ElevatedButton(
                                   onPressed: () {
                                     Get.to(() => WebViewWidget(
