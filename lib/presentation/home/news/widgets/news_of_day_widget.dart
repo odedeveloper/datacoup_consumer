@@ -20,6 +20,7 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
 
   loadNewofDay() async {
     newsController.newsOfDayLoader(true);
+    newsModel = null;
     newsModel = await newsController.getAllNews(
       type: StringConst.newsOfTheDay,
       count: newsController.newsOfDayCount.value,
@@ -67,6 +68,9 @@ class NewsOfTheDayWidgetState extends State<NewsOfTheDayWidget> {
                               CacheImageWidget(
                                 imageUrl: data.headerMultimedia,
                                 color: Colors.black54,
+                                cFit: BoxFit.cover,
+                                imgheight: double.infinity,
+                                imgwidth: double.infinity,
                                 colorBlendMode: BlendMode.darken,
                               ),
                               Positioned(
