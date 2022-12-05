@@ -98,7 +98,7 @@ class QuizQuestion extends StatelessWidget {
                                 .question,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 21.0,
+                              fontSize: 18.0,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               fontWeight: FontWeight.bold,
                             ),
