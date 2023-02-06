@@ -174,15 +174,21 @@ class ActivityResultListItem extends StatelessWidget {
                         )),
                   ),
                 ]),
-            const SizedBox(height: 10),
+            const SizedBox(height: 10,),
             Center(
               child: Text(
                 _quizController.quiz.questions[questionIndex].question,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                /*style: const TextStyle(
                   fontSize: 20.0,
                   // color: Colors.white,
                   fontWeight: FontWeight.w600,
+                ),*/
+                style: themeTextStyle(
+                  context: context,
+                  fsize: 16.0,
+                  // color: Colors.white,
+                  fweight: FontWeight.w600,
                 ),
               ),
             ),

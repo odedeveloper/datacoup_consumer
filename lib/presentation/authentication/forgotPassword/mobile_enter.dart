@@ -48,11 +48,12 @@ class ByMobile extends StatelessWidget {
                         ),
                       )),
                       child: Text(controller.countryCode,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: darkBlueGreyColor,
+                          style: themeTextStyle(
+                              context: context,
+                              fsize: 15,
+                              // tColor: darkBlueGreyColor,
                               fontFamily: AssetConst.QUICKSAND_FONT,
-                              fontWeight: FontWeight.w500))),
+                              fweight: FontWeight.w500))),
                 ),
                 Container(
                   width: 255 * SizeConfig().widthScale,
@@ -65,15 +66,19 @@ class ByMobile extends StatelessWidget {
                     // maxLength: 10,
                     keyboardType: TextInputType.number,
                     scrollPadding: EdgeInsets.zero,
-                    style: TextStyle(
+                    style: themeTextStyle(
+                      context: context,
                       letterSpacing: 0.9,
-                      color: Colors.grey.shade700,
-                      fontWeight: FontWeight.w500,
+                      // tColor: Colors.grey.shade700,
+                      fweight: FontWeight.w500,
                       fontFamily: AssetConst.RALEWAY_FONT,
                       fontStyle: FontStyle.normal,
-                      fontSize: 18,
+                      fsize: 18,
                     ),
                     decoration: InputDecoration(
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                      ),
                       contentPadding:
                           EdgeInsets.only(bottom: 5 * SizeConfig().heightScale),
                     ),

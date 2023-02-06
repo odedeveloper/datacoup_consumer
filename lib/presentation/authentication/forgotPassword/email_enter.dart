@@ -24,17 +24,21 @@ class ByEmail extends StatelessWidget {
                 controller: controller.emailController,
                 keyboardType: TextInputType.emailAddress,
                 scrollPadding: EdgeInsets.zero,
-                style: TextStyle(
+                style: themeTextStyle(
+                  context: context,
                   letterSpacing: 0.9,
-                  color: Colors.grey.shade700,
-                  fontWeight: FontWeight.w500,
+                  // color: Colors.grey.shade700,
+                  fweight: FontWeight.w500,
                   fontFamily: AssetConst.RALEWAY_FONT,
                   fontStyle: FontStyle.normal,
-                  fontSize: 16,
+                  fsize: 16,
                 ),
                 decoration: InputDecoration(
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                  ),
                   contentPadding:
-                      EdgeInsets.only(bottom: 18 * SizeConfig().heightScale),
+                      EdgeInsets.only(bottom: 18 * SizeConfig().heightScale,),
                 ),
               );
             })),

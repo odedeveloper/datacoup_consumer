@@ -108,19 +108,24 @@ class VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
                                       colorBlendMode: BlendMode.darken,
                                     ),
                                     Positioned(
-                                      bottom: 10.0,
-                                      left: 20,
+                                      bottom: 0.0,
+                                      left: 0,
                                       child: SizedBox(
-                                        width: width(context)! * 0.9,
-                                        child: Text(
-                                          data.title!,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: themeTextStyle(
-                                            context: context,
-                                            tColor: whiteColor,
-                                            fsize: ksmallFont(context),
-                                            fweight: FontWeight.bold,
+                                        width: width(context)! * 0.945,
+                                        child: Container(
+                                          color: Colors.grey.shade800,
+                                          padding: EdgeInsets.all(10),
+                                          child: Text(
+                                            data.title!,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.justify,
+                                            style: themeTextStyle(
+                                              context: context,
+                                              tColor: whiteColor,
+                                              fsize: ksmallFont(context),
+                                              fweight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                       ),

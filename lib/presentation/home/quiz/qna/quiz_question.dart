@@ -55,14 +55,20 @@ class QuizQuestion extends StatelessWidget {
                                 },
                                 child: const Icon(Icons.arrow_back_ios,
                                     color: darkBlueGreyColor))),
-                        const Spacer(),
-                        Text(
-                          quizController.quiz.name,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColorDark,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: AssetConst.QUICKSAND_FONT,
+                        const Spacer(
+                          flex: 5,
+                        ),
+                        Expanded(
+                          flex: 40,
+                          child: Text(
+                            quizController.quiz.name,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColorDark,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w800,
+                              fontFamily: AssetConst.QUICKSAND_FONT,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
                         const Spacer(),
@@ -81,7 +87,7 @@ class QuizQuestion extends StatelessWidget {
                       ),
                       Container(
                         width: double.infinity,
-                        height: 130.0,
+                        height: 150.0,
                         margin: const EdgeInsets.only(
                             bottom: 10.0, left: 30.0, right: 30.0),
                         padding: const EdgeInsets.symmetric(
@@ -97,10 +103,13 @@ class QuizQuestion extends StatelessWidget {
                                 .questions[quizController.questionIndex]
                                 .question,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 18.0,
+                            // style: const TextStyle(
+                            // ),
+                            style: themeTextStyle(
+                              context: context,
+                              fsize: 18.0, 
                               fontFamily: AssetConst.QUICKSAND_FONT,
-                              fontWeight: FontWeight.bold,
+                              fweight: FontWeight.bold,
                             ),
                           ),
                         ),

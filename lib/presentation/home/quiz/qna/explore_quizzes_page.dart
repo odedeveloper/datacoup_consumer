@@ -60,8 +60,8 @@ class QuizzesList extends StatelessWidget {
               return (qcontroller.isUpdating && qcontroller.quizzesList.isEmpty)
                   ? const Center(child: CircularProgressIndicator())
                   : qcontroller.quizzesList.isEmpty
-                      ? const Text('No Quizzes Available!',
-                          style: TextStyle(fontSize: 16))
+                      ? Text('No Quizzes Available!',
+                          style: themeTextStyle(context: context, fsize: 16))
                       : ListView.builder(
                           itemCount: qcontroller.quizzesList.length,
                           itemBuilder: (context, index) {

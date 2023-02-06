@@ -36,7 +36,8 @@ class ForgotPassword extends StatelessWidget {
                     size: 18,
                     color: darkBlueGreyColor,
                   ))),
-          backgroundColor: lightBlueGreyColor,
+          // backgroundColor: lightBlueGreyColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 0,
         ),
         body: Stack(children: [

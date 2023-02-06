@@ -67,7 +67,7 @@ class QuizResultOption extends StatelessWidget {
                   .quiz.questions[questionIndex].options[optionIndex].item,
               softWrap: true,
               maxLines: 2,
-              style: TextStyle(
+              /*style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
                 color: (status["selected"]!)
@@ -77,6 +77,19 @@ class QuizResultOption extends StatelessWidget {
                     : (status["correct"]!)
                         ? Colors.grey.shade900
                         : Theme.of(context).appBarTheme.backgroundColor,
+              ),*/
+              style: themeTextStyle(
+                context: context,
+                fsize: 16.0,
+                fweight: FontWeight.w500,
+                tColor: (status["selected"]!)
+                    ? (status["correct"]!)
+                        ? Colors.green.shade900
+                        : Colors.red
+                    : (status["correct"]!)
+                        ? Colors.grey.shade900
+                        // : Theme.of(context).appBarTheme.backgroundColor,
+                        : Theme.of(context).primaryColor,
               ),
             ),
           )

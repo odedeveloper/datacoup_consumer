@@ -68,15 +68,19 @@ class Login extends StatelessWidget {
                       controller: controller.usernameController,
                       keyboardType: TextInputType.text,
                       scrollPadding: EdgeInsets.zero,
-                      style: TextStyle(
-                        letterSpacing: 0.9,
-                        color: Colors.grey.shade700,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: AssetConst.RALEWAY_FONT,
-                        fontStyle: FontStyle.normal,
-                        fontSize: 16,
-                      ),
+                      // style: TextStyle(
+                      //   letterSpacing: 0.9,
+                      //   color: Colors.grey.shade700,
+                      //   fontWeight: FontWeight.w500,
+                      //   fontFamily: AssetConst.RALEWAY_FONT,
+                      //   fontStyle: FontStyle.normal,
+                      //   fontSize: 16,
+                      // ),
+                      style: themeTextStyle(context: context),
                       decoration: InputDecoration(
+                        enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                        ),
                         contentPadding: EdgeInsets.only(
                             bottom: 18 * SizeConfig().heightScale),
                       ),
@@ -102,15 +106,19 @@ class Login extends StatelessWidget {
                 autofocus: false,
                 controller: controller.passwordController,
                 scrollPadding: EdgeInsets.zero,
-                style: TextStyle(
-                  color: darkGreyColor,
-                  letterSpacing: 0.9,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: AssetConst.RALEWAY_FONT,
-                  fontStyle: FontStyle.normal,
-                  fontSize: 16,
-                ),
+                // style: TextStyle(
+                //   color: darkGreyColor,
+                //   letterSpacing: 0.9,
+                //   fontWeight: FontWeight.w500,
+                //   fontFamily: AssetConst.RALEWAY_FONT,
+                //   fontStyle: FontStyle.normal,
+                //   fontSize: 16,
+                // ),
+                style: themeTextStyle(context: context),
                 decoration: InputDecoration(
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                  ),
                   contentPadding: const EdgeInsets.only(bottom: 18),
                   suffixIcon: InkWell(
                     onTap: () {
@@ -119,7 +127,7 @@ class Login extends StatelessWidget {
                     },
                     child: Icon(controller.passwordHidden
                         ? Icons.visibility_off
-                        : Icons.visibility),
+                        : Icons.visibility, color: Colors.grey),
                   ),
                 ),
               )),

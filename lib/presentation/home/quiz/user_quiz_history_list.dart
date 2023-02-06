@@ -78,39 +78,54 @@ class QuizHistoryListItem extends StatelessWidget {
           },
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Text(item.topic == '' ? 'Privacy Laws' : item.topic,
-                // textAlign: alignment,
-
-                style: TextStyle(
-                  color: Theme.of(context).primaryColorDark,
-                  fontSize: width(context)! * 0.038,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: AssetConst.QUICKSAND_FONT,
-                )),
-            Text("${item.score}/100",
-                // textAlign: alignment,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColorDark,
-                  fontSize: width(context)! * 0.038,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: AssetConst.QUICKSAND_FONT,
-                )),
-            Text(getDate(item.timestamp),
-                // textAlign: alignment,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColorDark,
-                  fontSize: width(context)! * 0.038,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: AssetConst.QUICKSAND_FONT,
-                )),
-            Text(getTime(item.timestamp),
-                // textAlign: alignment,
-                style: TextStyle(
-                  color: Theme.of(context).primaryColorDark,
-                  fontSize: width(context)! * 0.038,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: AssetConst.QUICKSAND_FONT,
-                )),
+            SizedBox(
+              width: width(context)! * 0.15,
+              child: Text(item.topic == '' ? 'Privacy Laws' : item.topic,
+                  // textAlign: alignment,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorDark,
+                    fontSize: width(context)! * 0.038,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: AssetConst.QUICKSAND_FONT,
+                  )),
+            ),
+            SizedBox(
+              width: width(context)! * 0.15,
+              child: Text("${item.score}/100",
+                  // textAlign: alignment,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorDark,
+                    fontSize: width(context)! * 0.038,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: AssetConst.QUICKSAND_FONT,
+                  )),
+            ),
+            SizedBox(
+              width: width(context)! * 0.15,
+              child: Text(getDate(item.timestamp),
+                  // textAlign: alignment,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorDark,
+                    fontSize: width(context)! * 0.038,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: AssetConst.QUICKSAND_FONT,
+                  )),
+            ),
+            SizedBox(
+              width: width(context)! * 0.15,
+              child: Text(getTime(item.timestamp),
+                  // textAlign: alignment,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorDark,
+                    fontSize: width(context)! * 0.038,
+                    fontWeight: FontWeight.w800,
+                    fontFamily: AssetConst.QUICKSAND_FONT,
+                  )),
+            ),
           ]),
         ));
   }
@@ -123,6 +138,7 @@ class UserHistoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 20),
         child: GetBuilder<QnaHomePageController>(builder: (controller) {
       return Container(
           decoration: BoxDecoration(

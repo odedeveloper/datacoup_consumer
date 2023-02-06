@@ -10,6 +10,8 @@ import 'export.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+
+  // developers working on it should use only "appSettingsDev"
   GlobalConfiguration().loadFromMap(appSettingsProd);
   await configureAmplify();
   SystemChrome.setPreferredOrientations(
