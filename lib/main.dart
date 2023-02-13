@@ -12,7 +12,7 @@ Future<void> main() async {
   await GetStorage.init();
 
   // developers working on it should use only "appSettingsDev"
-  GlobalConfiguration().loadFromMap(appSettingsProd);
+  GlobalConfiguration().loadFromMap(appSettingsStage);
   await configureAmplify();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
