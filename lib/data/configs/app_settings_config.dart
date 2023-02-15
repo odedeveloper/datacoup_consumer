@@ -1,15 +1,14 @@
 final Map<String, dynamic> appSettingsDev = {
   "baseURL":
       "https://cy8d8jgj2g.execute-api.us-east-1.amazonaws.com/prod", // points to datacoup-dev environment
-  "awsUserPoolId": 'us-east-1_YJ4kKoJbH',
-  // us-east-1_YJ4kKoJbH
-  "awsClientId": '3dh4ohe0nr823docil8vqdl267',
+  "awsUserPoolId": 'us-east-1_9vTx00APR',
+  "awsClientId": '3apth5kr66t2o47rf7m3tojg1t',
   "awsPoolUrl": 'dev-ode-coconut.auth.us-east-1',
 };
 
 final Map<String, String> appSettingsQA = {
   "baseURL": "https://2wqkg74rri.execute-api.us-east-1.amazonaws.com/prod/",
-  "awsUserPoolId": 'us-east-1_JubmknPw3',
+  "awsUserPoolId": 'us-east-1_Lk9NcVB1v',
   "awsClientId": '3s3ddjt8m77ds2noolh0eee731',
   "awsPoolUrl": 'qa-ode-coconut.auth.us-east-1',
 };
