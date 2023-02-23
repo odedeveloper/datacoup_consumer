@@ -28,6 +28,7 @@ class NewsController extends GetxController {
   RxBool favouriteLoader = true.obs;
   RxBool reelVideosLoader = true.obs;
   String? lastEvaluatedKey;
+  RxBool shouldAllowScroll = false.obs;
 
   RxList<Item> allFavouriteNewsItem = <Item>[].obs;
 
@@ -47,11 +48,11 @@ class NewsController extends GetxController {
   Future refreshAll() async {
     NewsByInterestState().loadData();
     NewsOfTheDayWidgetState().loadNewofDay();
-    SocialMediaFeedWidgetState().laodData();
-    TrendingVideosWidgetState().laodData();
-    VideoOfTheDayWidgetState().laodData();
+    SocialMediaFeedWidgetState().loadData();
+    TrendingVideosWidgetState().loadData();
+    VideoOfTheDayWidgetState().loadData();
     VideoReelsScreenState().loadData();
-    VideoScreenState().laodData();
+    VideoScreenState().loadData();
   }
 
   Future<NewsModel?> getAllNews(
@@ -93,7 +94,7 @@ class NewsController extends GetxController {
         isLiked: isLiked, newsId: data.newsId);
   }
 
-  Future getAllFavouriteNes({required bool? type, required int? count}) async {
+  Future getAllFavouriteNews({required bool? type, required int? count}) async {
     try {
       NewsModel? newsModel = await apiRepositoryInterface.getFavouriteNews(
         type: type,

@@ -101,6 +101,7 @@ class StringConst {
 
   static const String YOUTUBE = 'Youtube';
   static const String SPLASH_TEXT = 'Your daily dose of privacy.';
+  static const String APP_NAME = "DATACOUP";
   static const List<String> NEWS_TYPE_LIST = [
     "Awareness",
     "Privacy",

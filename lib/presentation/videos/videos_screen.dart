@@ -14,11 +14,11 @@ class VideoScreenState extends State<VideoScreen> {
 
   @override
   void initState() {
-    laodData();
+    loadData();
     super.initState();
   }
 
-  laodData() async {
+  loadData() async {
     newsController.interestVideoLoader(true);
     Future.delayed(const Duration(seconds: 1), () async {
       newsModel = await newsController.getAllNews(
@@ -33,10 +33,6 @@ class VideoScreenState extends State<VideoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Videos"),
-        centerTitle: true,
-      ),
       body: Obx(
         () => Column(
           children: [
@@ -49,36 +45,30 @@ class VideoScreenState extends State<VideoScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: newsController.keyInterestAreas.length,
                 itemBuilder: (context, index) => InkWell(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(10),
                   onTap: () async {
                     newsController.selectedkeyInterestforVideo(
                         newsController.keyInterestAreas[index]);
-                    await laodData();
+                    await loadData();
                   },
                   child: Container(
                     width: width(context)! * 0.35,
                     decoration: BoxDecoration(
-                        color:
-                            newsController.selectedkeyInterestforVideo.value ==
-                                    newsController.keyInterestAreas[index]
-                                ? darkSkyBlueColor
-                                : whiteColor,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black45,
-                            spreadRadius: 0.4,
-                            blurRadius: 0.4,
-                          ),
-                        ]),
+                      color: newsController.selectedkeyInterestforVideo.value ==
+                              newsController.keyInterestAreas[index]
+                          ? deepOrangeColor
+                          : greyColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Center(
                       child: Text(
                         newsController.keyInterestAreas[index]
                             .replaceAll("_Article", ""),
                         style: themeTextStyle(
                           context: context,
-                          fsize: kminiFont(context)! + 1,
+                          fsize: ksmallFont(context)!,
                           fweight: FontWeight.bold,
+                          fontFamily: AssetConst.QUICKSAND_FONT,
                           tColor: newsController
                                       .selectedkeyInterestforVideo.value ==
                                   newsController.keyInterestAreas[index]
@@ -92,7 +82,7 @@ class VideoScreenState extends State<VideoScreen> {
               ),
             ),
             Expanded(
-              flex: 30,
+              flex: 25,
               child: newsController.interestVideoLoader.value
                   ? ListView.separated(
                       physics: const ClampingScrollPhysics(),
@@ -137,6 +127,9 @@ class VideoScreenState extends State<VideoScreen> {
                             );
                           },
                         ),
+            ),
+            SizedBox(
+              height: 80,
             ),
           ],
         ),

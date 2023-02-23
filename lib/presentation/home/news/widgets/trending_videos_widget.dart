@@ -15,11 +15,11 @@ class TrendingVideosWidgetState extends State<TrendingVideosWidget> {
 
   @override
   void initState() {
-    laodData();
+    loadData();
     super.initState();
   }
 
-  laodData() async {
+  loadData() async {
     newsController.trendingVideoLoader(true);
     String getRandomCategory() {
       Random random = Random();
@@ -57,7 +57,7 @@ class TrendingVideosWidgetState extends State<TrendingVideosWidget> {
               ),
               IconButton(
                 onPressed: () {
-                  laodData();
+                  loadData();
                 },
                 icon: const FaIcon(
                   FontAwesomeIcons.arrowRotateLeft,

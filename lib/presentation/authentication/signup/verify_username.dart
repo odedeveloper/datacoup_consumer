@@ -115,7 +115,7 @@ class VerifyUsername extends StatelessWidget {
                           .withOpacity(0.1)),
               child: Text(
                 controller.messageForUsernameVerification == ''
-                    ? 'Verify username!'
+                    ? 'Verify username !'
                     : controller.messageForUsernameVerification,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -145,12 +145,12 @@ class VerifyUsername extends StatelessWidget {
                         Get.to(() => SignUp());
                       } else {
                         showSnackBar(context,
-                            msg: 'Please Verify Username first!');
+                            msg: 'Please verify username first !');
                       }
                     },
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(redOpacityColor),
+                            MaterialStateProperty.all<Color>(deepOrangeColor),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(

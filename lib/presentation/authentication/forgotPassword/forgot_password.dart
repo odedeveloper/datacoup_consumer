@@ -135,7 +135,7 @@ class ForgotPassword extends StatelessWidget {
                                 style: ButtonStyle(
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
-                                            redOpacityColor),
+                                            deepOrangeColor),
                                     shape: MaterialStateProperty.all<
                                             RoundedRectangleBorder>(
                                         RoundedRectangleBorder(

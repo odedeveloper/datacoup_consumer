@@ -34,9 +34,11 @@ class QuizzesList extends StatelessWidget {
                       },
                       child: const Icon(Icons.arrow_back_ios,
                           color: darkBlueGreyColor))),
-              const Spacer(),
+              const SizedBox(
+                width: 20,
+              ),
               Text(
-                "Explore Quizzes",
+                "All Quizzes",
                 style: TextStyle(
                   // letterSpacing: 1.7,
                   color: Theme.of(context).primaryColorDark,
@@ -58,10 +60,13 @@ class QuizzesList extends StatelessWidget {
             // padding: const EdgeInsets.symmetric(horizontal: 15),
             child: GetBuilder<QuizListController>(builder: (qcontroller) {
               return (qcontroller.isUpdating && qcontroller.quizzesList.isEmpty)
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      color: deepOrangeColor,
+                    ))
                   : qcontroller.quizzesList.isEmpty
                       ? Text('No Quizzes Available!',
-                          style: themeTextStyle(context: context, fsize: 16))
+                          style: themeTextStyle(context: context, fsize: 18))
                       : ListView.builder(
                           itemCount: qcontroller.quizzesList.length,
                           itemBuilder: (context, index) {

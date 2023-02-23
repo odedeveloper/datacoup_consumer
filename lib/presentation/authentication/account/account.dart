@@ -191,7 +191,7 @@ class Account extends StatelessWidget {
                   },
                   child: Text("logOut".tr,
                       style: const TextStyle(
-                        color: redOpacityColor,
+                        color: deepOrangeColor,
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.9,

@@ -24,6 +24,9 @@ class AssetConst {
   static const String SCORE_GAINED = "assets/images/score-gained.png";
   static const String CORRECT_ANSWERS = "assets/images/correct-answers.png";
   static const String WRONG_ANSWERS = "assets/images/wrong-answers.png";
+  static const String QUIZ_LOGO = "assets/images/quiz.png";
+  static const String VIDEO_LOGO = "assets/images/video.png";
+  static const String FEED_LOGO = "assets/images/feed.png";
 
   static const String CIRCLES = "assets/images/circles.png";
   static const Map<String, String> BADGES = {

@@ -95,3 +95,5 @@ export 'package:get/get.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:global_configuration/global_configuration.dart';
 export 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';

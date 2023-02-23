@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/home/video_reels/widgets/youtube_player_widget.dart';
 
 class NewsCardWidget extends StatelessWidget {
   NewsCardWidget(
@@ -33,7 +34,7 @@ class NewsCardWidget extends StatelessWidget {
     return "just now";
   }
 
-  bool isVideo(String? newsType){
+  bool isVideo(String? newsType) {
     RegExp exp = RegExp("video", caseSensitive: false);
     return exp.hasMatch(newsType.toString());
   }
@@ -47,7 +48,7 @@ class NewsCardWidget extends StatelessWidget {
         : data!.newsType == "Feed"
             ? Container(
                 width: width(context)! * 0.45,
-                height: height(context)! * 0.3,
+                height: height(context)! * 0.25,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(kBorderRadius),
                   color: Colors.grey,
@@ -90,47 +91,48 @@ class NewsCardWidget extends StatelessWidget {
                           child: showFavButton!
                               ? IconButton(
                                   onPressed: () {
-
                                     showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: const Text("Warning!"),
-                                          content: const Text("This content would be removed from favourites."),
-                                          actions: [
-                                            TextButton(
-                                              child: const Text("Cancel"),
-                                              onPressed: (){
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                            TextButton(
-                                              child: const Text("Confirm"),
-                                              onPressed: (){
-                                                Navigator.of(context).pop();
-                                                newsController.likeAndUnlikeNews(
-                                                  data: data,
-                                                  isLiked: newsController
-                                                          .allFavouriteNewsItem
-                                                          .any((element) =>
-                                                              element.newsId ==
-                                                              data!.newsId)
-                                                      ? false
-                                                      : true,
-                                                );
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      }
-                                    );
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text("Warning!"),
+                                            content: const Text(
+                                                "This content would be removed from favourites."),
+                                            actions: [
+                                              TextButton(
+                                                child: const Text("Cancel"),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                              TextButton(
+                                                child: const Text("Confirm"),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                  newsController
+                                                      .likeAndUnlikeNews(
+                                                    data: data,
+                                                    isLiked: newsController
+                                                            .allFavouriteNewsItem
+                                                            .any((element) =>
+                                                                element
+                                                                    .newsId ==
+                                                                data!.newsId)
+                                                        ? false
+                                                        : true,
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        });
                                   },
                                   icon: FaIcon(
                                     data!.isFavourite!
                                         ? FontAwesomeIcons.solidHeart
                                         : FontAwesomeIcons.heart,
                                     color: data!.isFavourite!
-                                        ? redOpacityColor
+                                        ? deepOrangeColor
                                         : Theme.of(context).primaryColor,
                                   ),
                                 )
@@ -143,48 +145,55 @@ class NewsCardWidget extends StatelessWidget {
               )
             : InkWell(
                 onTap: () {
-                  Get.to(() => WebViewWidget(
-                        url: data!.content!.link,
-                        data: data,
-                        showAppbar: true,
-                      ));
+                  if (isVideo(data!.newsType)) {
+                    Get.to(() => YoutuberPlayerWidget(
+                          videoDetail: data!,
+                        ));
+                  } else {
+                    Get.to(() => WebViewWidget(
+                          url: data!.content!.link,
+                          title: "Article",
+                          data: data,
+                          showAppbar: true,
+                        ));
+                  }
                 },
                 child: Container(
-                  width: width(context)! * 0.45,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
-                      color: Theme.of(context).appBarTheme.backgroundColor,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black45,
-                          spreadRadius: 0.2,
-                          blurRadius: 0.2,
-                        )
-                      ]),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Theme.of(context).cardColor,
+                  ),
                   child: Stack(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(kBorderRadius),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30)),
                             child: Stack(
                               children: [
                                 CacheImageWidget(
                                   imageUrl: data!.headerMultimedia,
-                                  imgheight: imageHeight ?? height(context)! * 0.11,
+                                  imgheight:
+                                      imageHeight ?? height(context)! * 0.11,
                                 ),
-                                if(isVideo(data!.newsType))
-                                Positioned.fill(
-                                  // top: 20,
-                                  // left: MediaQuery.of(context).size.width * 0.05,
-                                  child: Align(
-                                    alignment: Alignment.center,
-                                    child: IconButton(
-                                      onPressed: (){},
-                                      icon: const Icon(Icons.play_circle_rounded, color: Colors.white,), iconSize: 50),
-                                  ),
-                                )
+                                if (isVideo(data!.newsType))
+                                  Positioned.fill(
+                                    // top: 20,
+                                    // left: MediaQuery.of(context).size.width * 0.05,
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            Icons.play_circle_rounded,
+                                            color: greyColor,
+                                          ),
+                                          iconSize: 60),
+                                    ),
+                                  )
                               ],
                             ),
                           ),
@@ -199,8 +208,9 @@ class NewsCardWidget extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: themeTextStyle(
                                     context: context,
-                                    fsize: kminiFont(context),
-                                    fweight: FontWeight.w600,
+                                    fontFamily: AssetConst.QUICKSAND_FONT,
+                                    fsize: ksmallFont(context)! + 2,
+                                    fweight: FontWeight.w800,
                                   ),
                                 ),
                                 const SizedBox(height: 2),
@@ -209,29 +219,27 @@ class NewsCardWidget extends StatelessWidget {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: themeTextStyle(
-                                    context: context,
-                                    fweight: FontWeight.w600,
-                                    fsize: kminiFont(context),
-                                    tColor: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(0.4),
-                                  ),
+                                      context: context,
+                                      fontFamily: AssetConst.QUICKSAND_FONT,
+                                      fweight: FontWeight.w800,
+                                      fsize: kminiFont(context)! + 1,
+                                      tColor: deepOrangeColor),
                                 ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  "by ${data!.content!.creator}",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: themeTextStyle(
-                                    context: context,
-                                    fweight: FontWeight.w500,
-                                    fsize: kminiFont(context),
-                                    tColor: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(0.4),
-                                  ),
-                                ),
-                                const SizedBox(height: 2),
+                                const SizedBox(height: 10),
+                                // Text(
+                                //   "by ${data!.content!.creator}",
+                                //   maxLines: 1,
+                                //   overflow: TextOverflow.ellipsis,
+                                //   style: themeTextStyle(
+                                //     context: context,
+                                //     fweight: FontWeight.w500,
+                                //     fsize: kminiFont(context),
+                                //     tColor: Theme.of(context)
+                                //         .primaryColor
+                                //         .withOpacity(0.4),
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 2),
                               ],
                             ),
                           ),
@@ -239,43 +247,44 @@ class NewsCardWidget extends StatelessWidget {
                       ),
                       Positioned(
                         right: 0.0,
-                        bottom: 0.0,
+                        bottom: 5.0,
                         child: showFavButton!
                             ? IconButton(
                                 onPressed: () {
                                   showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: const Text("Warning!"),
-                                        content: const Text("This content would be removed from favourites."),
-                                        actions: [
-                                          TextButton(
-                                            child: const Text("Cancel"),
-                                            onPressed: (){
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                          TextButton(
-                                            child: const Text("Confirm"),
-                                            onPressed: (){
-                                              Navigator.of(context).pop();
-                                              newsController.likeAndUnlikeNews(
-                                                data: data,
-                                                isLiked: newsController
-                                                        .allFavouriteNewsItem
-                                                        .any((element) =>
-                                                            element.newsId ==
-                                                            data!.newsId)
-                                                    ? false
-                                                    : true,
-                                              );
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    }
-                                  );
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: const Text("Warning!"),
+                                          content: const Text(
+                                              "This content would be removed from favourites."),
+                                          actions: [
+                                            TextButton(
+                                              child: const Text("Cancel"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: const Text("Confirm"),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                                newsController
+                                                    .likeAndUnlikeNews(
+                                                  data: data,
+                                                  isLiked: newsController
+                                                          .allFavouriteNewsItem
+                                                          .any((element) =>
+                                                              element.newsId ==
+                                                              data!.newsId)
+                                                      ? false
+                                                      : true,
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      });
                                   // newsController.likeAndUnlikeNews(
                                   //   data: data,
                                   //   isLiked: newsController.allFavouriteNewsItem
@@ -290,7 +299,7 @@ class NewsCardWidget extends StatelessWidget {
                                       ? FontAwesomeIcons.solidHeart
                                       : FontAwesomeIcons.heart,
                                   color: data!.isFavourite!
-                                      ? redOpacityColor
+                                      ? deepOrangeColor
                                       : Theme.of(context).primaryColor,
                                 ),
                               )

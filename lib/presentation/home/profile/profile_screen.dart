@@ -81,11 +81,11 @@ class ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Center(
                     child: CustomText(
-                  'Are you sure you want to Delete your Datacoup Account?',
+                  'Are you sure you want to delete your Datacoup account?',
                   fontFamily: AssetConst.QUICKSAND_FONT,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColorDark,
+                  color: Theme.of(context).primaryColor,
                   alignment: TextAlign.center,
                 )),
               ],
@@ -104,7 +104,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                     Get.offAll(() => Login());
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: darkSkyBlueColor,
+                    backgroundColor: deepOrangeColor,
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                   ),
                   child: CustomText("Yes",
@@ -116,7 +116,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                     Get.back();
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: redOpacityColor,
+                    backgroundColor: darkGreyColor,
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                   ),
                   child: CustomText("No",
@@ -129,9 +129,13 @@ class ProfileScreenState extends State<ProfileScreen> {
     Future openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               title: Column(
                 children: [
-                  Image.asset(AssetConst.FAQ_LOGO),
+                  Image.asset(
+                    AssetConst.FAQ_LOGO,
+                    color: deepOrangeColor,
+                  ),
                   const SizedBox(height: 10),
                   Center(
                       child: CustomText(
@@ -139,7 +143,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                     fontFamily: AssetConst.QUICKSAND_FONT,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColorLight,
+                    color: Theme.of(context).primaryColor,
                     alignment: TextAlign.center,
                   )),
                 ],
@@ -148,8 +152,11 @@ class ProfileScreenState extends State<ProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
-                  children: const [
-                    SelectableText('technology@odeinfinity.com')
+                  children: [
+                    SelectableText(
+                      'technology@odeinfinity.com',
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    )
                   ]),
               actionsAlignment: MainAxisAlignment.spaceEvenly,
               actions: [
@@ -158,7 +165,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       Get.back();
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: darkSkyBlueColor,
+                      backgroundColor: deepOrangeColor,
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                     ),
                     child: CustomText("OK",
@@ -232,7 +239,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                                     "${controller.user!.value.firstName!} ${controller.user!.value.lastName}",
                                     style: themeTextStyle(
                                       context: context,
-                                      fweight: FontWeight.bold,
+                                      fontFamily: AssetConst.QUICKSAND_FONT,
+                                      fweight: FontWeight.w900,
                                       fsize: kmaxExtraLargeFont(context),
                                     ),
                                   ),
@@ -283,7 +291,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         style: themeTextStyle(
                           context: context,
                           fsize: klargeFont(context),
-                          tColor: darkSkyBlueColor,
+                          tColor: Theme.of(context).primaryColor,
                           fweight: FontWeight.bold,
                         ),
                       ),
@@ -375,7 +383,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         style: themeTextStyle(
                           context: context,
                           fsize: klargeFont(context),
-                          tColor: darkSkyBlueColor,
+                          tColor: Theme.of(context).primaryColor,
                           fweight: FontWeight.bold,
                         ),
                       ),
@@ -392,7 +400,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                         child: tileWithIcon(
                           context,
                           icon: Icons.privacy_tip_outlined,
-                          title: "Policy and guidelines",
+                          title: "Policy and Guidelines",
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -475,7 +483,8 @@ class ProfileScreenState extends State<ProfileScreen> {
           title!,
           style: themeTextStyle(
             context: context,
-            fweight: FontWeight.w600,
+            fweight: FontWeight.w800,
+            fontFamily: AssetConst.QUICKSAND_FONT,
           ),
         )
       ],

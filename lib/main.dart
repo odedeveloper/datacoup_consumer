@@ -4,6 +4,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:datacoup/amplifyconfiguration.dart';
 import 'package:datacoup/languages.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'export.dart';
 
@@ -51,17 +52,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'DataCoup News',
-      theme: MyThemeData.lightTheme,
-      darkTheme: MyThemeData.darkTheme,
-      initialRoute: AppRoutes.splash,
-      getPages: AppPages.pages,
-      initialBinding: MainBinding(),
-      locale: initializeLanguage(),
-      translations: Languages(),
-      localizationsDelegates: const [CountryLocalizations.delegate],
-    );
+    return ScreenUtilInit(
+        designSize: const Size(428, 926),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'DataCoup News',
+            theme: MyThemeData.lightTheme,
+            darkTheme: MyThemeData.darkTheme,
+            initialRoute: AppRoutes.splash,
+            getPages: AppPages.pages,
+            initialBinding: MainBinding(),
+            locale: initializeLanguage(),
+            translations: Languages(),
+            localizationsDelegates: const [CountryLocalizations.delegate],
+          );
+        });
   }
 }

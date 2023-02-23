@@ -63,11 +63,11 @@ class QuizHistoryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(3),
-        padding: const EdgeInsets.all(5),
+        margin: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(5)),
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: Theme.of(context).cardColor,
         ),
         child: InkWell(
           onTap: () async {
@@ -138,36 +138,40 @@ class UserHistoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         child: GetBuilder<QnaHomePageController>(builder: (controller) {
-      return Container(
-          decoration: BoxDecoration(
-              color: Theme.of(context).appBarTheme.backgroundColor,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 0.3,
-                  spreadRadius: 0.2,
-                )
-              ]),
-          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-          child: SizedBox(
-              width: double.infinity,
-              child: controller.userHistory.isEmpty
-                  ? Center(
-                      child: Text('You have not taken any Quiz yet!',
-                          style: TextStyle(
-                              fontSize: width(context)! * 0.025,
-                              fontFamily: AssetConst.QUICKSAND_FONT,
-                              color: mediumGreyColor)),
-                    )
-                  : ListView.builder(
-                      itemCount: controller.userHistory.length,
-                      itemBuilder: (context, index) {
-                        return QuizHistoryListItem(
-                            controller.userHistory[index]);
-                      })));
-    }));
+          return Container(
+              // decoration: BoxDecoration(
+              //     color: Theme.of(context).appBarTheme.backgroundColor,
+              //     borderRadius: BorderRadius.circular(10),
+              //     boxShadow: const [
+              //       BoxShadow(
+              //         color: Colors.black,
+              //         blurRadius: 0.3,
+              //         spreadRadius: 0.2,
+              //       )
+              //     ]),
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child: SizedBox(
+                  width: double.infinity,
+                  child: controller.userHistory.isEmpty
+                      ? Center(
+                          child: Text('You have not taken any quiz yet !',
+                              style: TextStyle(
+                                  fontSize: width(context)! * 0.025,
+                                  fontFamily: AssetConst.QUICKSAND_FONT,
+                                  color: mediumGreyColor)),
+                        )
+                      : Column(
+                          children: List.generate(
+                              controller.userHistory.length,
+                              (index) => QuizHistoryListItem(
+                                  controller.userHistory[index])),
+                          // itemCount: controller.userHistory.length,
+                          // itemBuilder: (context, index) {
+                          //   return QuizHistoryListItem(
+                          //       controller.userHistory[index]);
+                        )));
+        }));
   }
 }

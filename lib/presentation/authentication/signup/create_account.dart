@@ -81,7 +81,7 @@ class CreateAccount extends StatelessWidget {
                         },
                         child: const Text("Select Profile Photo",
                             style: TextStyle(
-                              color: redOpacityColor,
+                              color: deepOrangeColor,
                               fontWeight: FontWeight.w500,
                             )))
                   ])),
@@ -446,7 +446,7 @@ class CreateAccount extends StatelessWidget {
                             style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        redOpacityColor),
+                                        deepOrangeColor),
                                 shape: MaterialStateProperty.all<
                                         RoundedRectangleBorder>(
                                     RoundedRectangleBorder(

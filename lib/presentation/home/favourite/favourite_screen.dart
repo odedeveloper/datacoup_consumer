@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
@@ -17,7 +18,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   }
 
   loadData({int? token}) async {
-    await newsController.getAllFavouriteNes(
+    await newsController.getAllFavouriteNews(
       type: true,
       count: token ?? newsController.newsOfDayCount.value,
     );
@@ -27,17 +28,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      // title: Text(
-      //   "Favourites",
-      //   style: themeTextStyle(
-      //     context: context,
-      //     fsize: klargeFont(context),
-      //     fweight: FontWeight.bold,
-      //   ),
-      // ),
-      // ),
       body: Obx(
         () => newsController.allFavouriteNewsItem.isEmpty
             ? Center(
@@ -48,6 +38,39 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               )
             : Column(
                 children: [
+                  // Container(
+                  //   margin: EdgeInsets.only(left: 20, right: 20),
+                  //   alignment: Alignment.centerLeft,
+                  //   height: 40,
+                  //   decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       border: Border.all(width: 2, color: greyColor)),
+                  //   child: Row(
+                  //     children: [
+                  //       SizedBox(
+                  //         width: 10,
+                  //       ),
+                  //       Icon(Icons.search),
+                  //       SizedBox(
+                  //         width: 10,
+                  //       ),
+                  //       Text(" Search your favourite items !",
+                  //           style: TextStyle(
+                  //               fontSize: 15,
+                  //               color: darkBlueGreyColor,
+                  //               fontFamily: AssetConst.QUICKSAND_FONT,
+                  //               fontWeight: FontWeight.w800)),
+                  //     ],
+                  //   ),
+                  // ),
+                  // Expanded(
+                  // flex: 1,
+                  // child: Container(
+                  //   margin: EdgeInsets.only(left: 20, right: 20),
+                  //   height: 40,
+                  //  child: Icon(Icons.),
+                  // ))
+
                   // Expanded(
                   //   child: Row(
                   //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,13 +93,16 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   //     ],
                   //   ),
                   // ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   Expanded(
                     flex: 10,
                     child: newsController.favouriteLoader.value
                         ? ListView.separated(
                             physics: const ClampingScrollPhysics(),
                             separatorBuilder: (context, index) =>
-                                const SizedBox(height: 10),
+                                const SizedBox(height: 30),
                             padding: const EdgeInsets.all(12),
                             itemCount: 8,
                             itemBuilder: (context, index) {
@@ -107,11 +133,14 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                               return NewsCardWidget(
                                 data:
                                     newsController.allFavouriteNewsItem[index],
-                                imageHeight: height(context)! * 0.2,
+                                imageHeight: 210,
                                 showFavButton: true,
                               );
                             },
                           ),
+                  ),
+                  SizedBox(
+                    height: 70,
                   ),
                 ],
               ),

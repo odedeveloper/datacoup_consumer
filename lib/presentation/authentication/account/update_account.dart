@@ -101,7 +101,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                       Get.back();
                     },
                     style: TextButton.styleFrom(
-                      backgroundColor: redOpacityColor,
+                      backgroundColor: deepOrangeColor,
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                     ),
                     child: CustomText("Cancel",
@@ -131,7 +131,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                               ))!
                           .then((_) async {
                         if (homeController.updatePressed.value == true) {
-                         ProfileScreenState(). loadData();
+                          ProfileScreenState().loadData();
                         }
                       });
                       // Get.to(
@@ -574,7 +574,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                                 backgroundColor:
                                                                     MaterialStateProperty.all<
                                                                             Color>(
-                                                                        redOpacityColor),
+                                                                        deepOrangeColor),
                                                                 shape: MaterialStateProperty.all<
                                                                         RoundedRectangleBorder>(
                                                                     RoundedRectangleBorder(
@@ -735,7 +735,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                                 backgroundColor:
                                                                     MaterialStateProperty.all<
                                                                             Color>(
-                                                                        redOpacityColor),
+                                                                        deepOrangeColor),
                                                                 shape: MaterialStateProperty.all<
                                                                         RoundedRectangleBorder>(
                                                                     RoundedRectangleBorder(
@@ -863,11 +863,11 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                           height: 30,
                                           child: TextFormField(
                                               onTap: () async {
-                                                String date =
-                                                    await selectDate(context);
-                                                print(date);
-                                                controller.dobController.text =
-                                                    date;
+                                                // String date =
+                                                //     await selectDate(context);
+                                                // print(date);
+                                                // controller.dobController.text =
+                                                //     date;
                                               },
                                               keyboardType: TextInputType.none,
                                               readOnly:

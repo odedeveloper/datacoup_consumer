@@ -48,12 +48,12 @@ class _QnaProfileState extends State<QnaProfile> {
                   child: CircularProgressIndicator(),
                 )
               : SingleChildScrollView(
-                  child: SizedBox(
-                    height: height(context)! * 0.84,
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 20),
-                        GetBuilder<QnaHomePageController>(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        height: 260,
+                        child: GetBuilder<QnaHomePageController>(
                             init: QnaHomePageController(),
                             builder: (controller) {
                               return Stack(
@@ -123,16 +123,23 @@ class _QnaProfileState extends State<QnaProfile> {
                                             padding: const EdgeInsets.fromLTRB(
                                                 20, 8, 20, 8),
                                             decoration: BoxDecoration(
-                                                color: darkSkyBlueColor,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: greyColor,
+                                                    blurRadius: 5,
+                                                    spreadRadius: 3,
+                                                  )
+                                                ],
+                                                color: whiteColor,
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             child: Text(
                                               "${controller.bestScore}/100",
                                               style: TextStyle(
                                                 // letterSpacing: 1.7,
-                                                color: Colors.white,
+                                                color: darkBlueGreyColor,
                                                 fontSize:
-                                                    width(context)! * 0.025,
+                                                    width(context)! * 0.03,
                                                 fontWeight: FontWeight.w800,
                                                 fontFamily:
                                                     AssetConst.QUICKSAND_FONT,
@@ -176,9 +183,15 @@ class _QnaProfileState extends State<QnaProfile> {
                                     child: Container(
                                         padding: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: greyColor,
+                                                  blurRadius: 4,
+                                                  spreadRadius: 3)
+                                            ],
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            color: darkSkyBlueColor),
+                                            color: whiteColor),
                                         // margin: const EdgeInsets.fromLTRB(180, 100, 0, 0),
                                         child: Text(
                                           controller.badge != ''
@@ -187,133 +200,134 @@ class _QnaProfileState extends State<QnaProfile> {
                                           style: TextStyle(
                                               fontFamily:
                                                   AssetConst.QUICKSAND_FONT,
-                                              fontSize: width(context)! * 0.025,
+                                              fontSize: width(context)! * 0.030,
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white),
+                                              color: darkBlueGreyColor),
                                         )),
                                   ),
                                 ],
                               );
                             }),
-                        const SizedBox(height: 10),
-                        Container(
-                          alignment: Alignment.center,
-                          child: GetBuilder<QnaHomePageController>(
-                              builder: (controller) {
-                            return Text(
-                                StringConst
-                                    .BADGE_WISE_CENTER_TEXT[controller.badge]
-                                    .toString(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  // letterSpacing: 1.7,
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: width(context)! * 0.035,
-                                  fontWeight: FontWeight.w800,
-                                  fontFamily: AssetConst.QUICKSAND_FONT,
-                                ));
-                          }),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GetBuilder<HomeController>(builder: (controller) {
-                                return controller.user == null
-                                    ? TextButton(
-                                        onPressed: () {},
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all<
-                                                    Color>(redOpacityColor),
-                                            shape: MaterialStateProperty.all<
-                                                    RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(18.0),
-                                              // side: BorderSide(color: Colors.red)
-                                            ))),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text("Explore Quizzes".tr,
-                                                style: TextStyle(
-                                                    letterSpacing: 0.9,
-                                                    fontSize:
-                                                        width(context)! * 0.028,
-                                                    color: Colors.white,
-                                                    fontFamily: AssetConst
-                                                        .QUICKSAND_FONT)),
-                                          ],
-                                        ))
-                                    : TextButton(
-                                        onPressed: () {
-                                          Get.to(() => QuizzesList(
-                                                odenId: controller
-                                                    .user!.value.odenId!,
-                                              ));
-                                        },
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all<
-                                                        Color>(
-                                                    Colors.orange.shade800),
-                                            shape: MaterialStateProperty.all<
-                                                    RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              // side: BorderSide(color: Colors.red)
-                                            ))),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text("Explore Quizzes".tr,
-                                                style: TextStyle(
-                                                    letterSpacing: 0.9,
-                                                    fontSize:
-                                                        width(context)! * 0.028,
-                                                    color: Colors.white,
-                                                    fontFamily: AssetConst
-                                                        .RALEWAY_FONT)),
-                                          ],
-                                        ));
-                              }),
-                            ]),
-                        const SizedBox(height: 10),
-                        Row(
+                      ),
+                      const SizedBox(height: 25),
+                      Container(
+                        height: 100,
+                        alignment: Alignment.center,
+                        child: GetBuilder<QnaHomePageController>(
+                            builder: (controller) {
+                          return Text(
+                              StringConst
+                                  .BADGE_WISE_CENTER_TEXT[controller.badge]
+                                  .toString(),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                // letterSpacing: 1.7,
+                                color: Theme.of(context).primaryColor,
+                                fontSize: width(context)! * 0.035,
+                                fontWeight: FontWeight.w800,
+                                fontFamily: AssetConst.QUICKSAND_FONT,
+                              ));
+                        }),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Recent Quizzes",
-                                style: TextStyle(
-                                  // letterSpacing: 1.7,
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: width(context)! * 0.035,
-                                  fontWeight: FontWeight.w800,
-                                  fontFamily: AssetConst.QUICKSAND_FONT,
-                                )),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        Expanded(
-                          child:
-                              GetBuilder<HomeController>(builder: (controller) {
-                            return controller.user == null
-                                ? Text("User History",
-                                    style: TextStyle(
-                                      // letterSpacing: 1.7,
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: width(context)! * 0.030,
-                                      fontWeight: FontWeight.w800,
-                                      fontFamily: AssetConst.QUICKSAND_FONT,
-                                    ))
-                                : UserHistoryList(
-                                    odenId: controller.user!.value.odenId!);
-                          }),
-                        ),
-                      ],
-                    ),
+                            GetBuilder<HomeController>(builder: (controller) {
+                              return controller.user == null
+                                  ? TextButton(
+                                      onPressed: () {},
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  deepOrangeColor),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18.0),
+                                            // side: BorderSide(color: Colors.red)
+                                          ))),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text("Explore Quizzes".tr,
+                                              style: TextStyle(
+                                                  letterSpacing: 0.9,
+                                                  fontSize:
+                                                      width(context)! * 0.038,
+                                                  color: Colors.white,
+                                                  fontFamily: AssetConst
+                                                      .QUICKSAND_FONT)),
+                                        ],
+                                      ))
+                                  : TextButton(
+                                      onPressed: () {
+                                        Get.to(() => QuizzesList(
+                                              odenId: controller
+                                                  .user!.value.odenId!,
+                                            ));
+                                      },
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  deepOrangeColor),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            // side: BorderSide(color: Colors.red)
+                                          ))),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text("Explore Quizzes".tr,
+                                              style: TextStyle(
+                                                  letterSpacing: 0.9,
+                                                  fontSize:
+                                                      width(context)! * 0.038,
+                                                  color: Colors.white,
+                                                  fontFamily:
+                                                      AssetConst.RALEWAY_FONT)),
+                                        ],
+                                      ));
+                            }),
+                          ]),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Text("Recent Quizzes",
+                              style: TextStyle(
+                                // letterSpacing: 1.7,
+                                color: Theme.of(context).primaryColor,
+                                fontSize: width(context)! * 0.035,
+                                fontWeight: FontWeight.w800,
+                                fontFamily: AssetConst.QUICKSAND_FONT,
+                              )),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        height: 500,
+                        child:
+                            GetBuilder<HomeController>(builder: (controller) {
+                          return controller.user == null
+                              ? Text("User History",
+                                  style: TextStyle(
+                                    // letterSpacing: 1.7,
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: width(context)! * 0.030,
+                                    fontWeight: FontWeight.w800,
+                                    fontFamily: AssetConst.QUICKSAND_FONT,
+                                  ))
+                              : UserHistoryList(
+                                  odenId: controller.user!.value.odenId!);
+                        }),
+                      ),
+                    ],
                   ),
                 ),
         ),

@@ -132,7 +132,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Get.back();
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: redOpacityColor,
+                  backgroundColor: deepOrangeColor,
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                 ),
                 child: CustomText("Cancel",

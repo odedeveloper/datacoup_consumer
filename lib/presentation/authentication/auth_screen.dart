@@ -104,7 +104,7 @@ class Login extends StatelessWidget {
                 },
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(redOpacityColor),
+                        MaterialStateProperty.all<Color>(deepOrangeColor),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),
@@ -140,7 +140,7 @@ class Login extends StatelessWidget {
                 },
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(redOpacityColor),
+                        MaterialStateProperty.all<Color>(deepOrangeColor),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18.0),

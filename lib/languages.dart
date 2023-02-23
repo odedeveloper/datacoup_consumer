@@ -46,7 +46,7 @@ class Languages extends Translations {
           "appSetting": "App Settings",
           "quizzes": "Quizzes",
           "darkMode": "Dark Mode",
-          "policyAndGuidelines": "Policy and guidelines",
+          "policyAndGuidelines": "Policy and Guidelines",
           "legal": "Legal",
           "help": "Help",
           "logOut": "Logout",

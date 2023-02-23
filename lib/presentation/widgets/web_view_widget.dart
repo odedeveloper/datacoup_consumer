@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/widgets/back_button.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class WebViewWidget extends StatefulWidget {
@@ -45,17 +46,54 @@ class _WebViewWidgetState extends State<WebViewWidget> {
     return Scaffold(
       appBar: widget.showAppbar!
           ? AppBar(
-              centerTitle: true,
-              title: widget.title != null
-                  ? Text(
-                      widget.title!,
-                      style: themeTextStyle(
-                        context: context,
-                        fsize: klargeFont(context),
-                        fweight: FontWeight.bold,
-                      ),
-                    )
-                  : null,
+              elevation: 0,
+              centerTitle: false,
+              // backgroundColor: whiteColor,
+              leading: CustomBackButton(),
+              title:
+                  // Row(children: [BackButton()]),
+
+                  widget.title != null
+                      ? Text(
+                          widget.title!,
+                          style: themeTextStyle(
+                            context: context,
+                            fsize: klargeFont(context),
+                            fweight: FontWeight.bold,
+                          ),
+                        )
+                      : null,
+
+              actions: widget.showFav!
+                  ? [
+                      Obx(
+                        () => IconButton(
+                          // backgroundColor: blueGreyLight,
+                          onPressed: () {
+                            newsController.likeAndUnlikeNews(
+                              data: widget.data,
+                              isLiked: newsController.allFavouriteNewsItem.any(
+                                      (element) =>
+                                          element.newsId == widget.data!.newsId)
+                                  ? false
+                                  : true,
+                            );
+                          },
+                          icon: FaIcon(
+                            newsController.allFavouriteNewsItem.any((element) =>
+                                    element.newsId == widget.data!.newsId)
+                                ? FontAwesomeIcons.solidHeart
+                                : FontAwesomeIcons.heart,
+                            color: newsController.allFavouriteNewsItem.any(
+                                    (element) =>
+                                        element.newsId == widget.data!.newsId)
+                                ? deepOrangeColor
+                                : darkBlueGreyColor,
+                          ),
+                        ),
+                      )
+                    ]
+                  : [],
               // actions: [
               //   Padding(
               //       padding: const EdgeInsets.all(8.0),
@@ -96,33 +134,42 @@ class _WebViewWidgetState extends State<WebViewWidget> {
         },
         onLoadStart: (controller, url) {
           log('page loaded on => $url');
+          controller.evaluateJavascript(
+              source:
+                  "document.getElementsByTagName('header')[0].style.display = 'none';document.body.style.fontFamily='cursive !important';");
+        },
+        onLoadStop: (controller, url) {
+          controller.evaluateJavascript(
+              source:
+                  "document.getElementsByTagName('header')[0].style.display = 'none';document.body.style.fontFamily='cursive !important';document.getElementsByTagName('nav')[0].style.display = 'none';document.getElementsByTagName('nav')[1].style.display = 'none';document.getElementsByTagName('nav')[2].style.display = 'none';document.getElementsByTagName('nav')[3].style.display = 'none'");
         },
       ),
-      floatingActionButton: widget.showFav!
-          ? Obx(
-              () => FloatingActionButton(
-                onPressed: () {
-                  newsController.likeAndUnlikeNews(
-                    data: widget.data,
-                    isLiked: newsController.allFavouriteNewsItem.any(
-                            (element) => element.newsId == widget.data!.newsId)
-                        ? false
-                        : true,
-                  );
-                },
-                child: FaIcon(
-                  newsController.allFavouriteNewsItem.any(
-                          (element) => element.newsId == widget.data!.newsId)
-                      ? FontAwesomeIcons.solidHeart
-                      : FontAwesomeIcons.heart,
-                  color: newsController.allFavouriteNewsItem.any(
-                          (element) => element.newsId == widget.data!.newsId)
-                      ? redOpacityColor
-                      : Colors.white,
-                ),
-              ),
-            )
-          : null,
+      // floatingActionButton: widget.showFav!
+      //     ? Obx(
+      //         () => FloatingActionButton(
+      //           backgroundColor: darkBlueGreyColor,
+      //           onPressed: () {
+      //             newsController.likeAndUnlikeNews(
+      //               data: widget.data,
+      //               isLiked: newsController.allFavouriteNewsItem.any(
+      //                       (element) => element.newsId == widget.data!.newsId)
+      //                   ? false
+      //                   : true,
+      //             );
+      //           },
+      //           child: FaIcon(
+      //             newsController.allFavouriteNewsItem.any(
+      //                     (element) => element.newsId == widget.data!.newsId)
+      //                 ? FontAwesomeIcons.solidHeart
+      //                 : FontAwesomeIcons.heart,
+      //             color: newsController.allFavouriteNewsItem.any(
+      //                     (element) => element.newsId == widget.data!.newsId)
+      //                 ? deepOrangeColor
+      //                 : Colors.white,
+      //           ),
+      //         ),
+      //       )
+      //     : null,
     );
   }
 }

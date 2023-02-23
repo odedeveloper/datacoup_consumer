@@ -1,6 +1,5 @@
 import 'package:datacoup/export.dart';
 
-
 final _userService = UserService(userPool);
 
 class VerifyOtp extends StatelessWidget {
@@ -123,7 +122,7 @@ class VerifyOtp extends StatelessWidget {
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  redOpacityColor),
+                                  deepOrangeColor),
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(

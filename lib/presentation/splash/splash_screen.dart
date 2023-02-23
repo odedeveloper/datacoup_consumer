@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,27 +15,59 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: Center(
+      body: SizedBox(
+        height: height(context),
+        width: width(context),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CacheImageWidget(
-              fromAsset: true,
-              imageUrl: AssetConst.LOGO_PNG,
-              imgheight: height(context)! * 0.12,
-              imgwidth: width(context)! * 0.25,
+            Container(
+              height: height(context)! * 0.8,
+              width: width(context),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(200.w),
+                    bottomRight: Radius.circular(200.w)),
+                color: greyColor,
+              ),
+              child: FittedBox(
+                fit: BoxFit.none,
+                child: CacheImageWidget(
+                  fromAsset: true,
+                  imageUrl: AssetConst.LOGO_PNG,
+                  imgheight: 200.h,
+                  imgwidth: 200.h,
+                  cFit: BoxFit.contain,
+                ),
+              ),
             ),
             const SizedBox(height: 25),
+            Spacer(),
+            Text(
+              StringConst.APP_NAME,
+              style: themeTextStyle(
+                context: context,
+                tColor: deepOrangeColor,
+                fsize: 30.h,
+                letterSpacing: 1,
+                fontFamily: AssetConst.QUICKSAND_FONT,
+                fweight: FontWeight.w900,
+              ),
+            ),
             Text(
               StringConst.SPLASH_TEXT,
               style: themeTextStyle(
                 context: context,
-                fsize: ksmallFont(context),
+                tColor: deepOrangeColor,
+                fsize: 14,
                 letterSpacing: 1,
                 fontStyle: FontStyle.italic,
-                fontFamily: AssetConst.RALEWAY_FONT,
-                fweight: FontWeight.w700,
+                fontFamily: AssetConst.QUICKSAND_FONT,
+                fweight: FontWeight.w800,
               ),
+            ),
+            SizedBox(
+              height: 50,
             ),
           ],
         ),

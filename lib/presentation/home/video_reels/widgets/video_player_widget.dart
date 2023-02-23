@@ -35,11 +35,11 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(color: deepOrangeColor),
-      ),
+      // appBar: AppBar(
+      //   elevation: 0.0,
+      //   backgroundColor: Colors.black,
+      //   iconTheme: const IconThemeData(color: deepOrangeColor),
+      // ),
       body: PageView.builder(
         controller: _pageController,
         itemBuilder: (context, index) => YoutuberPlayerWidget(

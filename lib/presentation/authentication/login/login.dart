@@ -79,7 +79,8 @@ class Login extends StatelessWidget {
                       style: themeTextStyle(context: context),
                       decoration: InputDecoration(
                         enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                          borderSide:
+                              BorderSide(color: Colors.grey, width: 1.0),
                         ),
                         contentPadding: EdgeInsets.only(
                             bottom: 18 * SizeConfig().heightScale),
@@ -125,9 +126,11 @@ class Login extends StatelessWidget {
                       controller
                           .updatePasswordHiddens(!controller.passwordHidden);
                     },
-                    child: Icon(controller.passwordHidden
-                        ? Icons.visibility_off
-                        : Icons.visibility, color: Colors.grey),
+                    child: Icon(
+                        controller.passwordHidden
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Colors.grey),
                   ),
                 ),
               )),
@@ -241,7 +244,7 @@ class Login extends StatelessWidget {
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  redOpacityColor),
+                                  deepOrangeColor),
                               shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
@@ -277,7 +280,7 @@ class Login extends StatelessWidget {
               },
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(redOpacityColor),
+                      MaterialStateProperty.all<Color>(deepOrangeColor),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),

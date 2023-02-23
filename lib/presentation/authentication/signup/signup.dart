@@ -296,7 +296,7 @@ class SignUp extends StatelessWidget {
                     },
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(redOpacityColor),
+                            MaterialStateProperty.all<Color>(deepOrangeColor),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(

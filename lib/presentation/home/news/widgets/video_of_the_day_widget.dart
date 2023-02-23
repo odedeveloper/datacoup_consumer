@@ -14,11 +14,11 @@ class VideoOfTheDayWidgetState extends State<VideoOfTheDayWidget> {
 
   @override
   void initState() {
-    laodData();
+    loadData();
     super.initState();
   }
 
-  laodData() async {
+  loadData() async {
     newsController.videoOfDayLoader(true);
     Future.delayed(const Duration(seconds: 1), () async {
       newsModel = await newsController.getAllNews(

@@ -84,56 +84,64 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                                   ],
                                 ),
                               )
-                            : GridView.builder(
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 1,
-                                  mainAxisSpacing: 1,
-                                  crossAxisSpacing: 1,
-                                  childAspectRatio: 2,
-                                ),
-                                scrollDirection: Axis.vertical,
-                                itemCount: newsModel!.items!.length,
-                                itemBuilder: (context, index) {
-                                  final data = newsModel!.items![index];
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    margin:
-                                        const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                                    child: InkWell(
-                                      customBorder: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      // borderRadius: BorderRadius.circular(100),
-                                      onTap: () {
-                                        Get.to(
-                                          () => VideoPlayerWidget(
-                                            startIndex: index,
-                                            items: newsModel!.items!,
-                                          ),
-                                        );
-                                      },
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: CacheImageWidget(
-                                          imageUrl: data.headerMultimedia,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
+                            : VideoPlayerWidget(
+                                startIndex: 0,
+                                items: newsModel!.items!,
                               ),
+
+                        // PageView.builder(
+                        //     // gridDelegate:
+                        //     //     const SliverGridDelegateWithFixedCrossAxisCount(
+                        //     //   crossAxisCount: 1,
+                        //     //   mainAxisSpacing: 1,
+                        //     //   crossAxisSpacing: 1,
+                        //     //   childAspectRatio: 2,
+                        //     // ),
+                        //     scrollDirection: Axis.vertical,
+                        //     itemCount: newsModel!.items!.length,
+                        //     itemBuilder: (context, index) {
+                        //       final data = newsModel!.items![index];
+                        //       return VideoPlayerWidget();
+
+                        //       Container(
+                        //         decoration: BoxDecoration(
+                        //             border: Border.all(color: Colors.grey),
+                        //             borderRadius:
+                        //                 BorderRadius.circular(15)),
+                        //         margin:
+                        //             const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                        //         child: InkWell(
+                        //           customBorder: RoundedRectangleBorder(
+                        //             borderRadius: BorderRadius.circular(15),
+                        //           ),
+                        //           // borderRadius: BorderRadius.circular(100),
+                        //           onTap: () {
+                        //             Get.to(
+                        //               () => VideoPlayerWidget(
+                        //                 startIndex: index,
+                        //                 items: newsModel!.items!,
+                        //               ),
+                        //             );
+                        //           },
+                        //           child: ClipRRect(
+                        //             borderRadius: BorderRadius.circular(15),
+                        //             child: CacheImageWidget(
+                        //               imageUrl: data.headerMultimedia,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       );
+                        //     },
+                        //   ),
                         Positioned(
-                          right: 10.0,
-                          bottom: 10.0,
+                          right: 15.0,
+                          bottom: 100.0,
                           child: ActionChip(
                             avatar: CircleAvatar(
-                                backgroundColor: Colors.grey.shade800,
+                                backgroundColor: Colors.grey,
                                 child: const FaIcon(
                                   FontAwesomeIcons.filter,
+                                  color: deepOrangeColor,
                                   size: 14,
                                 )),
                             label: Padding(
@@ -188,7 +196,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Filters",
+                          "Filter",
                           style: themeTextStyle(
                             context: context,
                             letterSpacing: 1.5,
@@ -200,7 +208,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                           onPressed: () => Get.back(),
                           icon: const FaIcon(
                             FontAwesomeIcons.xmark,
-                            color: redOpacityColor,
+                            color: deepOrangeColor,
                           ),
                         ),
                       ],
@@ -225,7 +233,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                           backgroundColor: newsController
                                       .selectedkeyInterestforReelVideo.value ==
                                   newsController.keyInterestAreas[index]
-                              ? darkSkyBlueColor
+                              ? deepOrangeColor
                               : Colors.grey,
                           labelStyle: themeTextStyle(
                             fsize: ksmallFont(context),
@@ -264,7 +272,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                           backgroundColor:
                               newsController.selectedReelVideoType.value ==
                                       newsController.reelVideosTypes[index]
-                                  ? darkSkyBlueColor
+                                  ? deepOrangeColor
                                   : Colors.grey,
                           labelStyle: themeTextStyle(
                             fsize: ksmallFont(context),
@@ -302,7 +310,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                           backgroundColor:
                               newsController.selectedReelVideoChannels.value ==
                                       newsController.reelVideosChannels[index]
-                                  ? darkSkyBlueColor
+                                  ? deepOrangeColor
                                   : Colors.grey,
                           labelStyle: themeTextStyle(
                             fsize: ksmallFont(context),
@@ -310,9 +318,10 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                             tColor: whiteColor,
                           ),
                           avatar: CircleAvatar(
-                            backgroundColor: Colors.grey.shade800,
+                            backgroundColor: Colors.white,
                             child: const FaIcon(
                               FontAwesomeIcons.youtube,
+                              color: redOpacityColor,
                               size: 14,
                             ),
                           ),
@@ -346,7 +355,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                           backgroundColor: newsController
                                       .selectedReelVideoTrending.value ==
                                   newsController.reelVideosTrendingTypes[index]
-                              ? darkSkyBlueColor
+                              ? deepOrangeColor
                               : Colors.grey,
                           labelStyle: themeTextStyle(
                             fsize: ksmallFont(context),
