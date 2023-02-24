@@ -118,7 +118,7 @@ class NewsCard extends StatelessWidget {
                                   .withOpacity(0.7),
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          const SizedBox(height: 0),
                         ],
                       ),
                     ),

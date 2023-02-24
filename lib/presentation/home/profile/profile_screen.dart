@@ -299,7 +299,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       Row(
                         children: [
                           Expanded(
-                            flex: 4,
+                            flex: 3,
                             child: tileWithIcon(
                               context,
                               icon: FontAwesomeIcons.language,
@@ -347,7 +347,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       Row(
                         children: [
                           Expanded(
-                            flex: 5,
+                            flex: 3,
                             child: tileWithIcon(
                               context,
                               icon: FontAwesomeIcons.moon,
