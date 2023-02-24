@@ -377,7 +377,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       //   icon: FontAwesomeIcons.bell,
                       //   title: "Notifiaction",
                       // ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20),
                       Text(
                         "General",
                         style: themeTextStyle(
@@ -387,7 +387,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           fweight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           Get.to(const WebViewWidget(
@@ -403,7 +403,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           title: "Policy and Guidelines",
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           Get.to(const WebViewWidget(
@@ -419,7 +419,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           title: "Legal",
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           openDialog();
@@ -430,7 +430,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           title: "Help",
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           openDeleteAccountDialog();
@@ -441,7 +441,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           title: "Delete Account",
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20),
                       Align(
                         alignment: Alignment.center,
                         child: SizedBox(

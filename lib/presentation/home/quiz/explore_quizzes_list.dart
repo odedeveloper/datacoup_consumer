@@ -1,6 +1,7 @@
 import 'package:datacoup/domain/model/quiz_item_model.dart';
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/home/quiz/qna/quiz_question.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExploreQuizListItem extends StatelessWidget {
   final QuizItemModel item;
@@ -27,12 +28,12 @@ class ExploreQuizListItem extends StatelessWidget {
                   width: 10,
                 ),
                 SizedBox(
-                  width: 260,
+                  width: 260.w,
                   child: Text(item.name.tr,
                       // textAlign: alignment,
                       style: TextStyle(
                         color: Theme.of(context).primaryColorDark,
-                        fontSize: 16,
+                        fontSize: 16.w,
                         fontWeight: FontWeight.w800,
                         fontFamily: AssetConst.QUICKSAND_FONT,
                       )),
@@ -52,7 +53,7 @@ class ExploreQuizListItem extends StatelessWidget {
                           // textAlign: alignment,
                           style: TextStyle(
                             color: whiteColor,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w800,
                             fontFamily: AssetConst.QUICKSAND_FONT,
                           )),
@@ -62,7 +63,7 @@ class ExploreQuizListItem extends StatelessWidget {
                         // textAlign: alignment,
                         style: TextStyle(
                           color: darkGreyColor,
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.w800,
                           fontFamily: AssetConst.QUICKSAND_FONT,
                         )),

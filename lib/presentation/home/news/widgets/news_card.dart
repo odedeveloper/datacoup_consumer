@@ -61,7 +61,7 @@ class NewsCard extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: 85.w,
-                    height: 80.h,
+                    height: 88.h,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(kBorderRadius),
                       child: CacheImageWidget(
@@ -86,7 +86,7 @@ class NewsCard extends StatelessWidget {
                               context: context,
                               tColor: Theme.of(context).primaryColor,
                               fontFamily: AssetConst.QUICKSAND_FONT,
-                              fsize: ksmallFont(context),
+                              fsize: ksmallFont(context)!.h,
                               fweight: FontWeight.w800,
                             ),
                           ),
