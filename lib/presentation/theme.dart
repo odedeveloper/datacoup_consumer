@@ -9,7 +9,7 @@ class MyThemeData {
     scaffoldBackgroundColor: const Color(0xFF1a1c1e),
     cardColor: Colors.grey.shade800,
     primaryColor: greyColor,
-    primaryColorDark: darkBlueGreyColor,
+    primaryColorDark: mediumBlueGreyColor,
     secondaryHeaderColor: const Color(0xFF2f3338),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     appBarTheme: const AppBarTheme(

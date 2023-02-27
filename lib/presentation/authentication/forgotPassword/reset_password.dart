@@ -5,6 +5,7 @@ final _userService = UserService(userPool);
 class ResetPassword extends StatelessWidget {
   const ResetPassword({Key? key}) : super(key: key);
   @override
+  
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
@@ -77,7 +78,7 @@ class ResetPassword extends StatelessWidget {
                                   letterSpacing: 0.9,
                                   color: Colors.grey.shade700,
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: AssetConst.RALEWAY_FONT,
+                                  fontFamily: AssetConst.QUICKSAND_FONT,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 16,
                                 ),
@@ -111,7 +112,7 @@ class ResetPassword extends StatelessWidget {
                                   letterSpacing: 0.9,
                                   color: Colors.grey.shade700,
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: AssetConst.RALEWAY_FONT,
+                                  fontFamily: AssetConst.QUICKSAND_FONT,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 16,
                                 ),
@@ -154,7 +155,7 @@ class ResetPassword extends StatelessWidget {
                                   letterSpacing: 0.9,
                                   color: Colors.grey.shade700,
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: AssetConst.RALEWAY_FONT,
+                                  fontFamily: AssetConst.QUICKSAND_FONT,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 16,
                                 ),

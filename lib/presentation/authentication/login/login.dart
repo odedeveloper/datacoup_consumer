@@ -76,7 +76,7 @@ class Login extends StatelessWidget {
                       //   fontStyle: FontStyle.normal,
                       //   fontSize: 16,
                       // ),
-                      style: themeTextStyle(context: context),
+                      style: themeTextStyle(context: context, fontFamily: AssetConst.QUICKSAND_FONT),
                       decoration: InputDecoration(
                         enabledBorder: const UnderlineInputBorder(
                           borderSide:
@@ -115,7 +115,7 @@ class Login extends StatelessWidget {
                 //   fontStyle: FontStyle.normal,
                 //   fontSize: 16,
                 // ),
-                style: themeTextStyle(context: context),
+                style: themeTextStyle(context: context, fontFamily: AssetConst.QUICKSAND_FONT),
                 decoration: InputDecoration(
                   enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey, width: 1.0),

@@ -57,6 +57,7 @@ themeTextStyle(
         FontStyle? fontStyle,
         double? letterSpacing,
         Color? tColor,
+        double? height,
         TextOverflow? ovrflow = TextOverflow.ellipsis}) =>
     TextStyle(
       color: tColor ?? Theme.of(context).primaryColor,
@@ -66,4 +67,5 @@ themeTextStyle(
       fontWeight: fweight,
       fontFamily: fontFamily ?? AssetConst.RALEWAY_FONT,
       letterSpacing: letterSpacing,
+      height: height,
     );

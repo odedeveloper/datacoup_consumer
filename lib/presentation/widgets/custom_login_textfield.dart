@@ -101,6 +101,7 @@ class CustomLoginTextField extends StatelessWidget {
                   fweight: FontWeight.w500,
                   fontFamily: AssetConst.RALEWAY_FONT,
                   fontStyle: FontStyle.normal,
+                  height: 1.0,
                 ),
                 onChanged: onChanged,
                 decoration: InputDecoration(

@@ -57,9 +57,10 @@ class Login extends StatelessWidget {
                           letterSpacing: 0.9,
                           color: Colors.grey.shade700,
                           fontWeight: FontWeight.w500,
-                          fontFamily: AssetConst.RALEWAY_FONT,
+                          fontFamily: AssetConst.QUICKSAND_FONT,
                           fontStyle: FontStyle.normal,
                           fontSize: 16,
+                          height: 1.0,
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(
@@ -87,9 +88,10 @@ class Login extends StatelessWidget {
                             color: darkGreyColor,
                             letterSpacing: 0.9,
                             fontWeight: FontWeight.w500,
-                            fontFamily: AssetConst.RALEWAY_FONT,
+                            fontFamily: AssetConst.QUICKSAND_FONT,
                             fontStyle: FontStyle.normal,
                             fontSize: 16,
+                            height: 1.0,
                           ),
                           decoration: const InputDecoration(
                             contentPadding: EdgeInsets.only(bottom: 18),

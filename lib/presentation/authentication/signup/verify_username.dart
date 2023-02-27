@@ -82,7 +82,7 @@ class VerifyUsername extends StatelessWidget {
                         letterSpacing: 0.9,
                         color: Colors.grey.shade400,
                         fontWeight: FontWeight.w500,
-                        fontFamily: AssetConst.RALEWAY_FONT,
+                        fontFamily: AssetConst.QUICKSAND_FONT,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
                       ),
