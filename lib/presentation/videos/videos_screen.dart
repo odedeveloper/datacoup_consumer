@@ -37,9 +37,9 @@ class VideoScreenState extends State<VideoScreen> {
         () => Column(
           children: [
             Expanded(
-              flex: 2,
+              flex: 3,
               child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(width: 10, height: 8),
+                separatorBuilder: (context, index) => const SizedBox(width: 10),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 scrollDirection: Axis.horizontal,
@@ -66,7 +66,7 @@ class VideoScreenState extends State<VideoScreen> {
                             .replaceAll("_Article", ""),
                         style: themeTextStyle(
                           context: context,
-                          fsize: ksmallFont(context)!,
+                          fsize: ksmallFont(context)! + 2,
                           fweight: FontWeight.bold,
                           fontFamily: AssetConst.QUICKSAND_FONT,
                           tColor: newsController
@@ -82,13 +82,13 @@ class VideoScreenState extends State<VideoScreen> {
               ),
             ),
             Expanded(
-              flex: 25,
+              flex: 30,
               child: newsController.interestVideoLoader.value
                   ? ListView.separated(
                       physics: const ClampingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       separatorBuilder: (context, index) =>
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 20),
                       itemCount: 3,
                       itemBuilder: (context, index) {
                         return Container(
@@ -119,7 +119,7 @@ class VideoScreenState extends State<VideoScreen> {
                           itemCount: newsModel!.items!.length,
                           itemBuilder: (context, index) {
                             return SizedBox(
-                              height: height(context)! * 0.3,
+                              height: height(context)! * 0.325,
                               child: NewsCardWidget(
                                 imageHeight: height(context)! * 0.2,
                                 data: newsModel!.items![index],

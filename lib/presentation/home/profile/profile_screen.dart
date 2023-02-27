@@ -71,6 +71,7 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     final loginController = Get.put<LoginController>;
     Future openDeleteAccountDialog() => showDialog(
           barrierDismissible: false,
@@ -295,7 +296,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           fweight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           Expanded(
@@ -343,7 +344,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           )
                         ],
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           Expanded(

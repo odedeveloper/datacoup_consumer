@@ -49,7 +49,7 @@ class NewsCard extends StatelessWidget {
                   ));
             },
             child: Container(
-              height: 110.h,
+              height: 120.h,
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10),
               margin: EdgeInsets.symmetric(vertical: 8.h),
               decoration: BoxDecoration(
