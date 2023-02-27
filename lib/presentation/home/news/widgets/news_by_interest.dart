@@ -58,7 +58,7 @@ class NewsByInterestState extends State<NewsByInterest> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
-                  child: Text(
+                  child: Text(newsController.keyInterestAreas[index] == "Protect yourself_Article" ? "Protect Yourself":
                     newsController.keyInterestAreas[index]
                         .replaceAll("_Article", ""),
                     style: themeTextStyle(

@@ -39,7 +39,7 @@ class VideoScreenState extends State<VideoScreen> {
             Expanded(
               flex: 2,
               child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(width: 10),
+                separatorBuilder: (context, index) => const SizedBox(width: 10, height: 8),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 scrollDirection: Axis.horizontal,
@@ -61,7 +61,7 @@ class VideoScreenState extends State<VideoScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                      child: Text(
+                      child: Text(newsController.keyInterestAreas[index] == "Protect yourself_Article" ? "Protect Yourself" : 
                         newsController.keyInterestAreas[index]
                             .replaceAll("_Article", ""),
                         style: themeTextStyle(

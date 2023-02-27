@@ -241,7 +241,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                             tColor: whiteColor,
                           ),
                           padding: const EdgeInsets.symmetric(horizontal: 12),
-                          label: Text(
+                          label: Text( newsController.keyInterestAreas[index] == "Protect yourself_Article" ? "Protect Yourself" : 
                             newsController.keyInterestAreas[index]
                                 .replaceAll("_Article", ""),
                           ),
