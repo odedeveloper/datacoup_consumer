@@ -80,9 +80,9 @@ class VerifyUsername extends StatelessWidget {
                       scrollPadding: EdgeInsets.zero,
                       style: new TextStyle(
                         letterSpacing: 0.9,
-                        color: Colors.grey.shade700,
+                        color: Colors.grey.shade400,
                         fontWeight: FontWeight.w500,
-                        fontFamily: AssetConst.RALEWAY_FONT,
+                        fontFamily: AssetConst.QUICKSAND_FONT,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
                       ),

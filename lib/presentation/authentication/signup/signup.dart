@@ -92,11 +92,12 @@ class SignUp extends StatelessWidget {
                             scrollPadding: EdgeInsets.zero,
                             style: TextStyle(
                               letterSpacing: 0.9,
-                              color: Colors.grey.shade700,
+                              color: Colors.grey.shade400,
                               fontWeight: FontWeight.w500,
-                              fontFamily: AssetConst.RALEWAY_FONT,
+                              fontFamily: AssetConst.QUICKSAND_FONT,
                               fontStyle: FontStyle.normal,
                               fontSize: 16,
+                              height: 1.0,
                             ),
                             decoration: InputDecoration(
                               contentPadding: EdgeInsets.only(
@@ -162,11 +163,12 @@ class SignUp extends StatelessWidget {
                                 scrollPadding: EdgeInsets.zero,
                                 style: TextStyle(
                                   letterSpacing: 0.9,
-                                  color: Colors.grey.shade700,
+                                  color: Colors.grey.shade400,
                                   fontWeight: FontWeight.w500,
-                                  fontFamily: AssetConst.RALEWAY_FONT,
+                                  fontFamily: AssetConst.QUICKSAND_FONT,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 18,
+                                  height: 1.0,
                                 ),
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(
@@ -200,9 +202,10 @@ class SignUp extends StatelessWidget {
                     color: darkGreyColor,
                     letterSpacing: 0.9,
                     fontWeight: FontWeight.w500,
-                    fontFamily: AssetConst.RALEWAY_FONT,
+                    fontFamily: AssetConst.QUICKSAND_FONT,
                     fontStyle: FontStyle.normal,
                     fontSize: 17,
+                    height: 1.0,
                   ),
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(bottom: 18),
@@ -236,9 +239,10 @@ class SignUp extends StatelessWidget {
                     color: darkGreyColor,
                     letterSpacing: 0.9,
                     fontWeight: FontWeight.w500,
-                    fontFamily: AssetConst.RALEWAY_FONT,
+                    fontFamily: AssetConst.QUICKSAND_FONT,
                     fontStyle: FontStyle.normal,
                     fontSize: 16,
+                    height: 1.0,
                   ),
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.only(bottom: 18),

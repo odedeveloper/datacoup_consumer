@@ -39,7 +39,8 @@ class QuizController extends GetxController {
   }
 
   updateTimeStamp() {
-    quiz.timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
+    quiz.timeStamp = DateTime.now().toLocal().toString();
+    print(quiz.timeStamp);
   }
 
   isAnswerSelected(QuestionOptionModel answer) {

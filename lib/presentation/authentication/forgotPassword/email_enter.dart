@@ -29,7 +29,7 @@ class ByEmail extends StatelessWidget {
                   letterSpacing: 0.9,
                   // color: Colors.grey.shade700,
                   fweight: FontWeight.w500,
-                  fontFamily: AssetConst.RALEWAY_FONT,
+                  fontFamily: AssetConst.QUICKSAND_FONT,
                   fontStyle: FontStyle.normal,
                   fsize: 16,
                 ),

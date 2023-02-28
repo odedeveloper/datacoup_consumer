@@ -209,7 +209,7 @@ class NewsCardWidget extends StatelessWidget {
                                   style: themeTextStyle(
                                     context: context,
                                     fontFamily: AssetConst.QUICKSAND_FONT,
-                                    fsize: (ksmallFont(context)! - 1),
+                                    fsize: (ksmallFont(context)!),
                                     fweight: FontWeight.w800,
                                   ),
                                 ),

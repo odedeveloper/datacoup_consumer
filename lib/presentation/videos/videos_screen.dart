@@ -37,7 +37,7 @@ class VideoScreenState extends State<VideoScreen> {
         () => Column(
           children: [
             Expanded(
-              flex: 2,
+              flex: 3,
               child: ListView.separated(
                 separatorBuilder: (context, index) => const SizedBox(width: 10),
                 padding:
@@ -61,12 +61,12 @@ class VideoScreenState extends State<VideoScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                      child: Text(
+                      child: Text(newsController.keyInterestAreas[index] == "Protect yourself_Article" ? "Protect Yourself" : 
                         newsController.keyInterestAreas[index]
                             .replaceAll("_Article", ""),
                         style: themeTextStyle(
                           context: context,
-                          fsize: ksmallFont(context)!,
+                          fsize: ksmallFont(context)! + 2,
                           fweight: FontWeight.bold,
                           fontFamily: AssetConst.QUICKSAND_FONT,
                           tColor: newsController
@@ -82,13 +82,13 @@ class VideoScreenState extends State<VideoScreen> {
               ),
             ),
             Expanded(
-              flex: 25,
+              flex: 30,
               child: newsController.interestVideoLoader.value
                   ? ListView.separated(
                       physics: const ClampingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       separatorBuilder: (context, index) =>
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 20),
                       itemCount: 3,
                       itemBuilder: (context, index) {
                         return Container(
@@ -119,7 +119,7 @@ class VideoScreenState extends State<VideoScreen> {
                           itemCount: newsModel!.items!.length,
                           itemBuilder: (context, index) {
                             return SizedBox(
-                              height: height(context)! * 0.3,
+                              height: height(context)! * 0.325,
                               child: NewsCardWidget(
                                 imageHeight: height(context)! * 0.2,
                                 data: newsModel!.items![index],

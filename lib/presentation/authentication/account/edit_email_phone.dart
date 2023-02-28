@@ -93,7 +93,7 @@ class EditEmailPhone extends StatelessWidget {
                                             letterSpacing: 0.9,
                                             color: Colors.grey.shade700,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: AssetConst.RALEWAY_FONT,
+                                            fontFamily: AssetConst.QUICKSAND_FONT,
                                             fontStyle: FontStyle.normal,
                                             fontSize: 16,
                                           ),
@@ -178,7 +178,7 @@ class EditEmailPhone extends StatelessWidget {
                                                 color: Colors.grey.shade700,
                                                 fontWeight: FontWeight.w500,
                                                 fontFamily:
-                                                    AssetConst.RALEWAY_FONT,
+                                                    AssetConst.QUICKSAND_FONT,
                                                 fontStyle: FontStyle.normal,
                                                 fontSize: 18,
                                               ),
