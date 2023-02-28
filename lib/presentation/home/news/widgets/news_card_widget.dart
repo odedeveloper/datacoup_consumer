@@ -1,5 +1,6 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/home/video_reels/widgets/youtube_player_widget.dart';
+import 'package:datacoup/presentation/home/video_reels/widgets/youtube_player_without_scroll.dart';
 
 class NewsCardWidget extends StatelessWidget {
   NewsCardWidget(
@@ -146,7 +147,7 @@ class NewsCardWidget extends StatelessWidget {
             : InkWell(
                 onTap: () {
                   if (isVideo(data!.newsType)) {
-                    Get.to(() => YoutuberPlayerWidget(
+                    Get.to(() => YoutubePlayerWithoutScroll(
                           videoDetail: data!,
                         ));
                   } else {

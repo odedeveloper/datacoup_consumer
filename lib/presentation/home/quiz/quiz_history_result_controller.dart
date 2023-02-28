@@ -35,6 +35,8 @@ class QuizHistoryResultController extends GetxController {
   }
 
   updateActivity(ActivityItemModel activity) async {
+
+    // problem in this fu
     quiz.questions = activity.questions;
     quiz.quizId = activity.quizId;
     quiz.topic = activity.topic;
@@ -54,7 +56,7 @@ class QuizHistoryResultController extends GetxController {
   }
 
   updateTimeStamp() {
-    quiz.timeStamp = DateTime.now().toLocal().toString();
+    quiz.timeStamp = DateTime.now().toUtc().toString();
   }
 
   getOptionColor(int optionIndex, int questionIndex) {

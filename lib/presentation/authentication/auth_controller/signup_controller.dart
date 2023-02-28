@@ -8,7 +8,7 @@ import 'package:datacoup/domain/model/user.dart';
 import 'package:datacoup/presentation/authentication/auth_controller/authentication_service.dart';
 import 'package:datacoup/presentation/authentication/auth_controller/user_profile_controller.dart';
 import 'package:datacoup/presentation/utils/constants/string.dart';
-
+import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,6 +25,7 @@ final RegExp _passwordRegExp = RegExp(
 
 class SignUpController extends GetxController {
   late UserModel user;
+
 
   String email = '';
   String password = '';

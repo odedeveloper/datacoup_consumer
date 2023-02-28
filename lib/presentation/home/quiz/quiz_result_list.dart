@@ -70,7 +70,7 @@ class QuizResultListItem extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 20.0,
-                    // color: Colors.white,
+                    color: mediumBlueGreyColor,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

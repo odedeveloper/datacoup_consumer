@@ -32,7 +32,7 @@ class ExploreQuizListItem extends StatelessWidget {
                   child: Text(item.name.tr,
                       // textAlign: alignment,
                       style: TextStyle(
-                        color: Theme.of(context).primaryColorDark,
+                        color: mediumBlueGreyColor,
                         fontSize: 16.w,
                         fontWeight: FontWeight.w800,
                         fontFamily: AssetConst.QUICKSAND_FONT,

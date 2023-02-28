@@ -79,7 +79,7 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
   Widget build(BuildContext context) {
     return YoutubePlayerScaffold(
       backgroundColor: Colors.black,
-      autoFullScreen: true,
+      autoFullScreen: false,
       // defaultOrientations: const [
       //   DeviceOrientation.landscapeLeft,
       //   DeviceOrientation.landscapeRight

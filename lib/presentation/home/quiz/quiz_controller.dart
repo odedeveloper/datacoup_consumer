@@ -39,7 +39,7 @@ class QuizController extends GetxController {
   }
 
   updateTimeStamp() {
-    quiz.timeStamp = DateTime.now().toLocal().toString();
+    quiz.timeStamp = DateTime.now().toUtc().toString();
     print(quiz.timeStamp);
   }
 

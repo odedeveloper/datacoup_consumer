@@ -92,7 +92,7 @@ class SignUp extends StatelessWidget {
                             scrollPadding: EdgeInsets.zero,
                             style: TextStyle(
                               letterSpacing: 0.9,
-                              color: Colors.grey.shade400,
+                              color: Colors.grey.shade600,
                               fontWeight: FontWeight.w500,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               fontStyle: FontStyle.normal,
@@ -163,7 +163,7 @@ class SignUp extends StatelessWidget {
                                 scrollPadding: EdgeInsets.zero,
                                 style: TextStyle(
                                   letterSpacing: 0.9,
-                                  color: Colors.grey.shade400,
+                                  color: Colors.grey.shade600,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: AssetConst.QUICKSAND_FONT,
                                   fontStyle: FontStyle.normal,

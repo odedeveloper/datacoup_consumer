@@ -176,11 +176,10 @@ class ForgotPasswordController extends GetxController {
       if (mobile == '' || mobile.isEmpty) {
         return MethodResponse(errorMessage: StringConst.ENTER_MOBILE);
       }
-      if (mobile.length < 10) {
-        return MethodResponse(errorMessage: StringConst.VALID_MOBILE);
+      if (mobile.length < 8) {
+        return MethodResponse(errorMessage: StringConst.CHECK_MOBILE_LENGTH);
       }
-      // will need condition to check for all countries - each country may have different number of digits
-      if (mobile.length > 10){
+      if (mobile.length > 15) {
         return MethodResponse(errorMessage: StringConst.VALID_MOBILE);
       }
     }

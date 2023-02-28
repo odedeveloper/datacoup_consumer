@@ -11,6 +11,18 @@ class QuizHistoryListItem extends StatelessWidget {
 
   String getDate(String timestamp) {
 // String year = timestamp.year.toString();
+
+    // final dateTimeUTC = DateTime.parse(timestamp).toUtc();
+    // print("Date in utc: ${dateTimeUTC}");
+    // final dateTimeLocal = dateTimeUTC.toLocal();
+    // print("Date in local: ${dateTimeLocal}");
+    // print("Date in string utc: ${dateTimeUTC.toString()}");
+    // print("Date in string local: ${dateTimeLocal.toString()}");
+    // // convert to local time
+    // final dateTimeString = dateTimeLocal.toString();
+    // print("The local time is: ${dateTimeString}");
+    // convert to local time
+    // final dateTimeLocal = dateTimeUTC.toLocal();
     List<String> unformattedDateTime = timestamp.split(' ');
     List<String> unformattedDate = unformattedDateTime[0].split('-');
 
@@ -45,6 +57,17 @@ class QuizHistoryListItem extends StatelessWidget {
   }
 
   String getTime(String timestamp) {
+
+    // final dateTimeUTC = DateTime.parse(timestamp).toUtc();
+    // print("Date in utc: ${dateTimeUTC}");
+    // final dateTimeLocal = dateTimeUTC.toLocal();
+    // print("Date in local: ${dateTimeLocal}");
+    // print("Date in string utc: ${dateTimeUTC.toString()}");
+    // print("Date in string local: ${dateTimeLocal.toString()}");
+    // // convert to local time
+    // final dateTimeString = dateTimeLocal.toString();
+    // print("The local time is: ${dateTimeString}");
+
     List<String> unformattedDateTime = timestamp.split(' ');
     List<String> unformattedTime = unformattedDateTime[1].split(':');
 

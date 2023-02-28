@@ -76,7 +76,7 @@ class StringConst {
   static const String VALID_USERNAME =
       "Please enter valid username without spaces.";
   static const String VALID_MOBILE =
-      "Please enter valid mobile number with country code without space.";
+      "Please enter a valid mobile number";
 
   static const String ENTER_COUNTRY_CODE =
       "Please enter country code with phone number.";

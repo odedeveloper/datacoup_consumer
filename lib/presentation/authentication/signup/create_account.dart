@@ -111,8 +111,7 @@ class CreateAccount extends StatelessWidget {
                                     child: TextFormField(
                                       textCapitalization:
                                           TextCapitalization.words,
-                                      controller:
-                                          controller.firstNameController,
+                                      controller: controller.firstNameController,
                                       scrollPadding: EdgeInsets.zero,
                                       style: TextStyle(
                                         letterSpacing: 0.9,
@@ -436,11 +435,17 @@ class CreateAccount extends StatelessWidget {
                         const SizedBox(height: 30),
                         TextButton(
                             onPressed: () async {
-                              bool value =
-                                  await controller.updateUserUsingController();
-                              if (value) {
-                                // Get.delete<LoginController>();
-                                Get.offAll(() => Login());
+                              if (controller.firstNameController.text.isEmpty || controller.lastNameController.text.isEmpty){
+                                showSnackBar(context, msg: "Enter your first and last name");
+                              }
+
+                              if(controller.firstNameController.text.isNotEmpty && controller.lastNameController.text.isNotEmpty){
+                                bool value =
+                                    await controller.updateUserUsingController();
+                                if (value) {
+                                  // Get.delete<LoginController>();
+                                  Get.offAll(() => Login());
+                                }
                               }
                             },
                             style: ButtonStyle(
