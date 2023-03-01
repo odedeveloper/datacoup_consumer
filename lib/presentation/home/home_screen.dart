@@ -19,7 +19,7 @@ class HomeScreen extends GetWidget<HomeController> {
             child: controller.onIndexSelected.value == 1
                 ? NewsScreenAppBar(
                     image: AssetConst.FEED_LOGO,
-                    title: "Favorites ",
+                    title: "Favorites",
                     subTitle: "Find your liked items here !",
                   )
                 : controller.onIndexSelected.value == 2

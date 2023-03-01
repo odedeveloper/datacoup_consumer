@@ -26,7 +26,6 @@ final RegExp _passwordRegExp = RegExp(
 class SignUpController extends GetxController {
   late UserModel user;
 
-
   String email = '';
   String password = '';
   String confirmPassword = '';
@@ -411,7 +410,6 @@ class SignUpController extends GetxController {
       //       CognitoUserAttributeKey.email: emailController.text,
       //       CognitoUserAttributeKey.phoneNumber: '+919718081100'
       //     }));
-
     } catch (e) {
       print('by mistake----');
       print(e);
@@ -464,7 +462,7 @@ class SignUpController extends GetxController {
       isUpdating = false;
       isProfileCreated = false;
       update();
-      print(error.toString());
+      rethrow;
     }
   }
 
@@ -533,7 +531,7 @@ class SignUpController extends GetxController {
       await createUserProfile(user);
       return true;
     } catch (e) {
-      return false;
+      rethrow;
     }
   }
 }

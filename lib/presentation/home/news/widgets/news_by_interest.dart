@@ -49,7 +49,7 @@ class NewsByInterestState extends State<NewsByInterest> {
                 await loadData();
               },
               child: Container(
-                width: 130.w,
+                padding: EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
                   color: newsController.selectedkeyInterest.value ==
                           newsController.keyInterestAreas[index]
@@ -58,12 +58,15 @@ class NewsByInterestState extends State<NewsByInterest> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
-                  child: Text(newsController.keyInterestAreas[index] == "Protect yourself_Article" ? "Protect Yourself":
-                    newsController.keyInterestAreas[index]
-                        .replaceAll("_Article", ""),
+                  child: Text(
+                    newsController.keyInterestAreas[index] ==
+                            "Protect yourself_Article"
+                        ? "Protect Yourself"
+                        : newsController.keyInterestAreas[index]
+                            .replaceAll("_Article", ""),
                     style: themeTextStyle(
                       context: context,
-                      fsize: 14.w,
+                      fsize: 14,
                       fweight: FontWeight.w800,
                       fontFamily: AssetConst.QUICKSAND_FONT,
                       tColor: newsController.selectedkeyInterest.value ==
@@ -99,10 +102,14 @@ class NewsByInterestState extends State<NewsByInterest> {
                   : newsModel != null &&
                           newsModel!.items != null &&
                           newsModel!.items![index] != null
-                      ? NewsCard(data: newsModel!.items![index])
+                      ? Padding(
+                          padding: (newsModel!.items!.length == index + 1)
+                              ? const EdgeInsets.only(bottom: 50)
+                              : EdgeInsets.zero,
+                          child: NewsCard(data: newsModel!.items![index]),
+                        )
                       : Container();
             },
-
           ),
         ),
       ]),

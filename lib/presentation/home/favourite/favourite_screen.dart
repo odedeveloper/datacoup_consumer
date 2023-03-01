@@ -31,9 +31,12 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
       body: Obx(
         () => newsController.allFavouriteNewsItem.isEmpty
             ? Center(
-                child: Text(
-                  "Empty!",
-                  style: themeTextStyle(context: context),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 100.h),
+                  child: Text(
+                    "Haven't liked anything yet !",
+                    style: themeTextStyle(context: context),
+                  ),
                 ),
               )
             : Column(

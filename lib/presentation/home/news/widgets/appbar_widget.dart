@@ -27,7 +27,7 @@ class NewsScreenAppBar extends StatelessWidget {
               Text(title,
                   style: themeTextStyle(
                     tColor: Theme.of(context).primaryColor,
-                    fsize: 24.h,
+                    fsize: 23.h,
                     fweight: FontWeight.w800,
                     fontFamily: AssetConst.QUICKSAND_FONT,
                     context: context,
@@ -37,7 +37,7 @@ class NewsScreenAppBar extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: themeTextStyle(
                   tColor: Colors.grey.shade500,
-                  fsize: 16.h,
+                  fsize: 15.h,
                   fweight: FontWeight.w700,
                   fontFamily: AssetConst.QUICKSAND_FONT,
                   context: context,

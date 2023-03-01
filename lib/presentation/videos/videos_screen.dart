@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class VideoScreen extends StatefulWidget {
   const VideoScreen({super.key});
@@ -52,7 +53,8 @@ class VideoScreenState extends State<VideoScreen> {
                     await loadData();
                   },
                   child: Container(
-                    width: width(context)! * 0.35,
+                    // width: width(context)! * 0.35,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                       color: newsController.selectedkeyInterestforVideo.value ==
                               newsController.keyInterestAreas[index]
@@ -61,12 +63,15 @@ class VideoScreenState extends State<VideoScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                      child: Text(newsController.keyInterestAreas[index] == "Protect yourself_Article" ? "Protect Yourself" : 
-                        newsController.keyInterestAreas[index]
-                            .replaceAll("_Article", ""),
+                      child: Text(
+                        newsController.keyInterestAreas[index] ==
+                                "Protect yourself_Article"
+                            ? "Protect Yourself"
+                            : newsController.keyInterestAreas[index]
+                                .replaceAll("_Article", ""),
                         style: themeTextStyle(
                           context: context,
-                          fsize: ksmallFont(context)! + 2,
+                          fsize: 15,
                           fweight: FontWeight.bold,
                           fontFamily: AssetConst.QUICKSAND_FONT,
                           tColor: newsController

@@ -57,17 +57,7 @@ class QuizHistoryListItem extends StatelessWidget {
   }
 
   String getTime(String timestamp) {
-
-    // final dateTimeUTC = DateTime.parse(timestamp).toUtc();
-    // print("Date in utc: ${dateTimeUTC}");
-    // final dateTimeLocal = dateTimeUTC.toLocal();
-    // print("Date in local: ${dateTimeLocal}");
-    // print("Date in string utc: ${dateTimeUTC.toString()}");
-    // print("Date in string local: ${dateTimeLocal.toString()}");
-    // // convert to local time
-    // final dateTimeString = dateTimeLocal.toString();
-    // print("The local time is: ${dateTimeString}");
-
+    timestamp = DateTime.parse(timestamp + "Z").toLocal().toString();
     List<String> unformattedDateTime = timestamp.split(' ');
     List<String> unformattedTime = unformattedDateTime[1].split(':');
 
@@ -76,11 +66,6 @@ class QuizHistoryListItem extends StatelessWidget {
     if (hour[0] == '0') hour = hour.substring(1);
 
     return '$hour:$minutes';
-    // final DateTime date =
-    //     DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp) * 1000);
-    // var formattedTime = DateFormat.jm().format(date);
-    // // var date = DateTime.fromMicrosecondsSinceEpoch(int.parse(timestamp));
-    // return formattedTime;
   }
 
   @override
@@ -178,13 +163,7 @@ class UserHistoryList extends StatelessWidget {
               child: SizedBox(
                   width: double.infinity,
                   child: controller.userHistory.isEmpty
-                      ? Center(
-                          child: Text('You have not taken any quiz yet !',
-                              style: TextStyle(
-                                  fontSize: width(context)! * 0.025,
-                                  fontFamily: AssetConst.QUICKSAND_FONT,
-                                  color: mediumGreyColor)),
-                        )
+                      ? Container()
                       : Column(
                           children: List.generate(
                               controller.userHistory.length,

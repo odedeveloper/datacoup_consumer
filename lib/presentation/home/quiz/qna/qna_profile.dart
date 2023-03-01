@@ -29,23 +29,14 @@ class _QnaProfileState extends State<QnaProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(
-      //     "Quizzes",
-      //     style: themeTextStyle(
-      //       context: context,
-      //       fsize: klargeFont(context),
-      //       fweight: FontWeight.bold,
-      //     ),
-      //   ),
-      // ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Obx(
           () => qnaHomePageController.quizMainLoader.value
               ? const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: deepOrangeColor,
+                  ),
                 )
               : SingleChildScrollView(
                   child: Column(
@@ -150,8 +141,10 @@ class _QnaProfileState extends State<QnaProfile> {
                                   ),
                                   Positioned(
                                     top: height(context)! * 0.23,
-                                    left:
-                                        MediaQuery.of(context).size.width * 0.3,
+                                    left: MediaQuery.of(context).size.width *
+                                        (controller.bestScore == ''
+                                            ? 0.22
+                                            : 0.3),
                                     child: controller.bestScore == ''
                                         ? Container(
                                             padding: const EdgeInsets.all(5),
@@ -165,8 +158,8 @@ class _QnaProfileState extends State<QnaProfile> {
                                                 // letterSpacing: 1.7,
                                                 color: Theme.of(context)
                                                     .primaryColor,
-                                                fontSize:
-                                                    width(context)! * 0.025,
+                                                fontSize: 14,
+
                                                 fontWeight: FontWeight.w800,
                                                 fontFamily:
                                                     AssetConst.QUICKSAND_FONT,

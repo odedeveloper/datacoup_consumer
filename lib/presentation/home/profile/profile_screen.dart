@@ -1,5 +1,6 @@
 import 'package:datacoup/export.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -71,7 +72,6 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
     final loginController = Get.put<LoginController>;
     Future openDeleteAccountDialog() => showDialog(
           barrierDismissible: false,
@@ -247,7 +247,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   Text(
                                     controller.user!.value.email!,
-                                    style: themeTextStyle(context: context),
+                                    style: themeTextStyle(
+                                        context: context,
+                                        fsize: 15.w,
+                                        fontFamily: AssetConst.QUICKSAND_FONT),
                                   )
                                 ],
                               ),

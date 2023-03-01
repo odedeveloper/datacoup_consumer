@@ -34,14 +34,24 @@ class QuizHistoryResultController extends GetxController {
     update();
   }
 
-  updateActivity(ActivityItemModel activity) async {
+  reinit() {
+    noOfCorrectAnswers = 0;
+    noOfWrongAnswers = 0;
+    totalScore = 0;
+    answersSelected = [];
+    correctlyAnsweredQuestions = [];
+    selectedAnswersPerQuestion = [];
+    correctAnswersPerQuestion = [];
+    correctAnswerSelected = false;
+  }
 
+  updateActivity(ActivityItemModel activity) async {
     // problem in this fu
     quiz.questions = activity.questions;
     quiz.quizId = activity.quizId;
     quiz.topic = activity.topic;
     selectedAnswersPerQuestionString = activity.selectedAnswers;
-    selectedAnswersPerQuestion = [];
+    reinit();
 
     for (int i = 0; i < selectedAnswersPerQuestionString.length; i++) {
       List<int> temp = [];
