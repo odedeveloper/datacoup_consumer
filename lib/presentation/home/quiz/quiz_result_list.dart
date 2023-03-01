@@ -68,9 +68,9 @@ class QuizResultListItem extends StatelessWidget {
                 child: Text(
                   quizController.quiz.questions[questionIndex].question,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 20.0,
-                    color: mediumBlueGreyColor,
+                    color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

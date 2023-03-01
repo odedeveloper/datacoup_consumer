@@ -80,7 +80,7 @@ class NewsByInterestState extends State<NewsByInterest> {
         SizedBox(
           height: 415.h,
           child: ListView.builder(
-            physics: const ClampingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             controller: _horizontal,
             padding: EdgeInsets.only(left: 12, right: 12, bottom: 27.h),
             scrollDirection: Axis.vertical,
@@ -102,6 +102,7 @@ class NewsByInterestState extends State<NewsByInterest> {
                       ? NewsCard(data: newsModel!.items![index])
                       : Container();
             },
+
           ),
         ),
       ]),

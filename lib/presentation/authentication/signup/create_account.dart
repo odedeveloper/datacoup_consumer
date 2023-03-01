@@ -103,7 +103,7 @@ class CreateAccount extends StatelessWidget {
                                           letterSpacing: 0.9,
                                           fontFamily: AssetConst.RALEWAY_FONT,
                                           fontSize: 14,
-                                          color: Colors.grey[400],
+                                          color: Theme.of(context).primaryColor,
                                           fontWeight: FontWeight.w500)),
                                   Container(
                                     alignment: Alignment.center,
@@ -115,7 +115,7 @@ class CreateAccount extends StatelessWidget {
                                       scrollPadding: EdgeInsets.zero,
                                       style: TextStyle(
                                         letterSpacing: 0.9,
-                                        color: Colors.grey.shade700,
+                                        color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.w500,
                                         fontFamily: AssetConst.QUICKSAND_FONT,
                                         fontStyle: FontStyle.normal,
@@ -141,7 +141,7 @@ class CreateAccount extends StatelessWidget {
                                           letterSpacing: 0.9,
                                           fontFamily: AssetConst.RALEWAY_FONT,
                                           fontSize: 14,
-                                          color: Colors.grey[400],
+                                          color: Theme.of(context).primaryColor,
                                           fontWeight: FontWeight.w500)),
                                   Container(
                                     alignment: Alignment.center,
@@ -153,7 +153,7 @@ class CreateAccount extends StatelessWidget {
                                       scrollPadding: EdgeInsets.zero,
                                       style: TextStyle(
                                         letterSpacing: 0.9,
-                                        color: Colors.grey.shade700,
+                                        color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.w500,
                                         fontFamily: AssetConst.QUICKSAND_FONT,
                                         fontStyle: FontStyle.normal,
@@ -176,7 +176,7 @@ class CreateAccount extends StatelessWidget {
                                 letterSpacing: 0.9,
                                 fontFamily: AssetConst.RALEWAY_FONT,
                                 fontSize: 15,
-                                color: Colors.grey[400],
+                                color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w500)),
                         Container(
                           alignment: Alignment.center,
@@ -188,7 +188,7 @@ class CreateAccount extends StatelessWidget {
                             scrollPadding: EdgeInsets.zero,
                             style: TextStyle(
                               letterSpacing: 0.9,
-                              color: Colors.grey.shade700,
+                              color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w500,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               fontStyle: FontStyle.normal,
@@ -205,7 +205,7 @@ class CreateAccount extends StatelessWidget {
                                 letterSpacing: 0.9,
                                 fontFamily: AssetConst.RALEWAY_FONT,
                                 fontSize: 15,
-                                color: Colors.grey[400],
+                                color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w500)),
                         Container(
                           alignment: Alignment.center,
@@ -217,7 +217,7 @@ class CreateAccount extends StatelessWidget {
                             scrollPadding: EdgeInsets.zero,
                             style: TextStyle(
                               letterSpacing: 0.9,
-                              color: Colors.grey.shade700,
+                              color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w500,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               fontStyle: FontStyle.normal,
@@ -242,7 +242,7 @@ class CreateAccount extends StatelessWidget {
                                           letterSpacing: 0.9,
                                           fontFamily: AssetConst.RALEWAY_FONT,
                                           fontSize: 14,
-                                          color: Colors.grey[400],
+                                          color: Theme.of(context).primaryColor,
                                           fontWeight: FontWeight.w500)),
                                   Container(
                                       decoration: BoxDecoration(
@@ -274,7 +274,7 @@ class CreateAccount extends StatelessWidget {
                                                     color: val ==
                                                             controller
                                                                 .user.gender
-                                                        ? Colors.grey.shade700
+                                                        ? Theme.of(context).primaryColor
                                                         : Colors.grey.shade300,
                                                     fontFamily: AssetConst
                                                         .RALEWAY_FONT),
@@ -302,7 +302,7 @@ class CreateAccount extends StatelessWidget {
                                           letterSpacing: 0.9,
                                           fontFamily: AssetConst.RALEWAY_FONT,
                                           fontSize: 14,
-                                          color: Colors.grey[400],
+                                          color: Theme.of(context).primaryColor,
                                           fontWeight: FontWeight.w500)),
                                   Container(
                                     alignment: Alignment.center,
@@ -318,7 +318,7 @@ class CreateAccount extends StatelessWidget {
                                       scrollPadding: EdgeInsets.zero,
                                       style: TextStyle(
                                         letterSpacing: 0.9,
-                                        color: Colors.grey.shade700,
+                                        color: Theme.of(context).primaryColor,
                                         fontWeight: FontWeight.w500,
                                         fontFamily: AssetConst.QUICKSAND_FONT,
                                         fontStyle: FontStyle.normal,
@@ -341,7 +341,7 @@ class CreateAccount extends StatelessWidget {
                                 letterSpacing: 0.9,
                                 fontFamily: AssetConst.RALEWAY_FONT,
                                 fontSize: 15,
-                                color: Colors.grey[400],
+                                color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w500)),
                         Container(
                           alignment: Alignment.center,
@@ -408,7 +408,7 @@ class CreateAccount extends StatelessWidget {
                                 letterSpacing: 0.9,
                                 fontFamily: AssetConst.RALEWAY_FONT,
                                 fontSize: 15,
-                                color: Colors.grey[400],
+                                color: Theme.of(context).primaryColor,
                                 fontWeight: FontWeight.w500)),
                         Container(
                           alignment: Alignment.center,
@@ -421,7 +421,7 @@ class CreateAccount extends StatelessWidget {
                             scrollPadding: EdgeInsets.zero,
                             style: TextStyle(
                               letterSpacing: 0.9,
-                              color: Colors.grey.shade700,
+                              color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w500,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               fontStyle: FontStyle.normal,

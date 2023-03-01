@@ -59,7 +59,7 @@ class VerifyUsername extends StatelessWidget {
                         letterSpacing: 0.9,
                         fontFamily: AssetConst.RALEWAY_FONT,
                         fontSize: 15,
-                        color: Colors.grey[400],
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w500)),
                 Container(
                     alignment: Alignment.center,
@@ -80,7 +80,7 @@ class VerifyUsername extends StatelessWidget {
                       scrollPadding: EdgeInsets.zero,
                       style: new TextStyle(
                         letterSpacing: 0.9,
-                        color: Colors.grey.shade600,
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w500,
                         fontFamily: AssetConst.QUICKSAND_FONT,
                         fontStyle: FontStyle.normal,
