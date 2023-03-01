@@ -442,7 +442,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                           title: "Delete Account",
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Align(
                         alignment: Alignment.center,
                         child: SizedBox(

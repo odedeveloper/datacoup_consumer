@@ -18,7 +18,7 @@ class ByMobile extends StatelessWidget {
                 letterSpacing: 0.9,
                 fontFamily: AssetConst.RALEWAY_FONT,
                 fontSize: 15,
-                color: Colors.grey[400],
+                color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.w500)),
         GetBuilder<ForgotPasswordController>(builder: (controller) {
           return Container(

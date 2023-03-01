@@ -80,7 +80,7 @@ class SignUp extends StatelessWidget {
                               letterSpacing: 0.9,
                               fontFamily: AssetConst.RALEWAY_FONT,
                               fontSize: 15,
-                              color: Colors.grey[400],
+                              color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w500)),
                       const SizedBox(height: 13),
                       Container(
@@ -92,7 +92,7 @@ class SignUp extends StatelessWidget {
                             scrollPadding: EdgeInsets.zero,
                             style: TextStyle(
                               letterSpacing: 0.9,
-                              color: Colors.grey.shade600,
+                              color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w500,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               fontStyle: FontStyle.normal,
@@ -114,7 +114,7 @@ class SignUp extends StatelessWidget {
                               letterSpacing: 0.9,
                               fontFamily: AssetConst.RALEWAY_FONT,
                               fontSize: 15,
-                              color: Colors.grey[400],
+                              color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w500)),
                       Container(
                         alignment: Alignment.bottomCenter,
@@ -163,7 +163,7 @@ class SignUp extends StatelessWidget {
                                 scrollPadding: EdgeInsets.zero,
                                 style: TextStyle(
                                   letterSpacing: 0.9,
-                                  color: Colors.grey.shade600,
+                                  color: Theme.of(context).primaryColor,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: AssetConst.QUICKSAND_FONT,
                                   fontStyle: FontStyle.normal,
@@ -188,7 +188,7 @@ class SignUp extends StatelessWidget {
                   letterSpacing: 0.9,
                   fontFamily: AssetConst.RALEWAY_FONT,
                   fontSize: 15,
-                  color: Colors.grey[400],
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w500)),
           Container(
               alignment: Alignment.center,
@@ -199,7 +199,7 @@ class SignUp extends StatelessWidget {
                   obscureText: controller.passwordHidden,
                   scrollPadding: EdgeInsets.zero,
                   style: TextStyle(
-                    color: darkGreyColor,
+                    color: Theme.of(context).primaryColor,
                     letterSpacing: 0.9,
                     fontWeight: FontWeight.w500,
                     fontFamily: AssetConst.QUICKSAND_FONT,
@@ -225,7 +225,7 @@ class SignUp extends StatelessWidget {
                   letterSpacing: 0.9,
                   fontFamily: AssetConst.RALEWAY_FONT,
                   fontSize: 15,
-                  color: Colors.grey[400],
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w500)),
           Container(
               alignment: Alignment.center,
@@ -236,7 +236,7 @@ class SignUp extends StatelessWidget {
                   obscureText: controller.confirmPasswordHidden,
                   scrollPadding: EdgeInsets.zero,
                   style: TextStyle(
-                    color: darkGreyColor,
+                    color: Theme.of(context).primaryColor,
                     letterSpacing: 0.9,
                     fontWeight: FontWeight.w500,
                     fontFamily: AssetConst.QUICKSAND_FONT,

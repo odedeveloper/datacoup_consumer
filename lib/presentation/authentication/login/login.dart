@@ -58,7 +58,7 @@ class Login extends StatelessWidget {
                         letterSpacing: 0.9,
                         fontFamily: AssetConst.RALEWAY_FONT,
                         fontSize: 15,
-                        color: Colors.grey[400],
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w500)),
                 const SizedBox(height: 13),
                 Container(
@@ -95,7 +95,7 @@ class Login extends StatelessWidget {
                   letterSpacing: 0.9,
                   fontFamily: AssetConst.RALEWAY_FONT,
                   fontSize: 15,
-                  color: Colors.grey[400],
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w500)),
           const SizedBox(height: 10),
           Container(

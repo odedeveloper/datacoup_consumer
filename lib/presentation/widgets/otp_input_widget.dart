@@ -71,6 +71,7 @@ class OtpInputSingle extends StatelessWidget {
         style: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.w500,
+          fontFamily: AssetConst.QUICKSAND_FONT,
           color: Theme.of(context).colorScheme.secondary,
         ),
         // controller: controller,

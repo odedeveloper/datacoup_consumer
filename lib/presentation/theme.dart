@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class MyThemeData {
   static final darkTheme = ThemeData(
+    hintColor: Colors.grey[400],
     fontFamily: AssetConst.RALEWAY_FONT,
     brightness: Brightness.light,
     scaffoldBackgroundColor: const Color(0xFF1a1c1e),
@@ -24,9 +25,11 @@ class MyThemeData {
     iconTheme: const IconThemeData(color: Color(0xffFFFFFF)),
     listTileTheme: const ListTileThemeData(iconColor: Colors.white),
     unselectedWidgetColor: Colors.white,
+     
   );
 
   static final lightTheme = ThemeData(
+    hintColor: Colors.grey[600],
     fontFamily: AssetConst.RALEWAY_FONT,
     brightness: Brightness.light,
     cardColor: greyColor,
