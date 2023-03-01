@@ -56,7 +56,7 @@ class QuizHistoryResultController extends GetxController {
   }
 
   updateTimeStamp() {
-    quiz.timeStamp = DateTime.now().toUtc().toString();
+    quiz.timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
   }
 
   getOptionColor(int optionIndex, int questionIndex) {

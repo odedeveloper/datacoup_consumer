@@ -88,7 +88,7 @@ class _WebViewWidgetState extends State<WebViewWidget> {
                                     (element) =>
                                         element.newsId == widget.data!.newsId)
                                 ? deepOrangeColor
-                                : whiteColor,
+                                : deepOrangeColor,
                           ),
                         ),
                       )
