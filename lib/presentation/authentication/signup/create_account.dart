@@ -34,6 +34,16 @@ class CreateAccount extends StatelessWidget {
                               Get.offAll(() => Login());
                             },
                             child: const Icon(Icons.arrow_back_ios))),
+                    Spacer(),
+                    Text(
+                      "Create your profile !      ",
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          fontFamily: AssetConst.QUICKSAND_FONT),
+                    ),
+                    Spacer(),
                   ],
                 ),
                 SizedBox(height: 10 * SizeConfig().heightScale),
@@ -51,40 +61,42 @@ class CreateAccount extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 30 * SizeConfig().heightScale),
-                Container(
-                    alignment: Alignment.center,
-                    child: Column(children: [
-                      GetBuilder<ImagePickerController>(
-                          builder: (imageController) {
-                        return imageController.imagePath == ""
-                            ? Container(
-                                height: 110,
-                                width: 110,
-                                decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.circular(55)))
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(55.0),
-                                child: Image.file(
-                                  File(imageController.imagePath),
-                                  height: 110.0,
-                                  width: 110.0,
-                                  fit: BoxFit.fill,
-                                ),
-                              );
-                      }),
-                      TextButton(
-                          onPressed: () async {
-                            var imagePath = await showImagePickerModal(context);
-                            controller.updateDeviceImagePath(imagePath);
-                          },
-                          child: const Text("Select Profile Photo",
-                              style: TextStyle(
-                                color: deepOrangeColor,
-                                fontWeight: FontWeight.w500,
-                              )))
-                    ])),
+                SizedBox(height: 10 * SizeConfig().heightScale),
+
+                // SizedBox(height: 50 * SizeConfig().heightScale),
+                // Container(
+                //     alignment: Alignment.center,
+                //     child: Column(children: [
+                //       GetBuilder<ImagePickerController>(
+                //           builder: (imageController) {
+                //         return imageController.imagePath == ""
+                //             ? Container(
+                //                 height: 110,
+                //                 width: 110,
+                //                 decoration: BoxDecoration(
+                //                     color: Colors.grey,
+                //                     borderRadius: BorderRadius.circular(55)))
+                //             : ClipRRect(
+                //                 borderRadius: BorderRadius.circular(55.0),
+                //                 child: Image.file(
+                //                   File(imageController.imagePath),
+                //                   height: 110.0,
+                //                   width: 110.0,
+                //                   fit: BoxFit.fill,
+                //                 ),
+                //               );
+                //       }),
+                //       TextButton(
+                //           onPressed: () async {
+                //             var imagePath = await showImagePickerModal(context);
+                //             controller.updateDeviceImagePath(imagePath);
+                //           },
+                //           child: const Text("Select Profile Photo",
+                //               style: TextStyle(
+                //                 color: deepOrangeColor,
+                //                 fontWeight: FontWeight.w500,
+                //               )))
+                //     ])),
                 Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Column(
