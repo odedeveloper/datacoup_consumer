@@ -19,7 +19,7 @@ class Answer extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5.0),
       width: 360,
       decoration: BoxDecoration(
-        color: isSelected ? Colors.blue : Colors.blueGrey.shade50,
+        color: isSelected ? deepOrangeColor : Colors.blueGrey.shade50,
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: InkWell(

@@ -80,6 +80,8 @@ class QuizQuestion extends StatelessWidget {
                       SizedBox(
                         height: 10,
                         child: LinearProgressIndicator(
+                          color: deepOrangeColor,
+                          backgroundColor: deepOrangeColor.withOpacity(0.2),
                           value: (quizController.questionIndex + 1) /
                               quizController.quiz.questions.length,
                           semanticsLabel: 'Linear progress indicator',
@@ -107,7 +109,7 @@ class QuizQuestion extends StatelessWidget {
                             // ),
                             style: themeTextStyle(
                               context: context,
-                              fsize: 18.0, 
+                              fsize: 18.0,
                               fontFamily: AssetConst.QUICKSAND_FONT,
                               fweight: FontWeight.bold,
                             ),
@@ -135,8 +137,9 @@ class QuizQuestion extends StatelessWidget {
                             margin: const EdgeInsets.fromLTRB(10, 10, 10, 50),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                minimumSize: const Size(double.infinity, 50.0),
-                              ),
+                                  minimumSize:
+                                      const Size(double.infinity, 50.0),
+                                  backgroundColor: deepOrangeColor),
                               onPressed:
                                   quizController.answersSelected.isNotEmpty
                                       ? () {

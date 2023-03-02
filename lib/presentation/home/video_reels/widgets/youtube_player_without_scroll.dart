@@ -251,43 +251,42 @@ class _YoutubePlayerWithoutScrollState
                 //   width: double.infinity,
                 //   color: Colors.transparent,
                 // ),
-                OrientationBuilder(builder: (context, orientation) {
-                  return orientation == Orientation.portrait
-                      ? Positioned(
-                          right: 20.0,
-                          bottom: 150,
-                          child: Obx(
-                            () => InkWell(
-                              onTap: () {
-                                newsController.likeAndUnlikeNews(
-                                  data: widget.videoDetail!,
-                                  isLiked: newsController.allFavouriteNewsItem
+                Positioned(
+                    right: 20.0,
+                    bottom: 150,
+                    child: OrientationBuilder(builder: (context, orientation) {
+                      return orientation == Orientation.portrait
+                          ? Obx(
+                              () => InkWell(
+                                onTap: () {
+                                  newsController.likeAndUnlikeNews(
+                                    data: widget.videoDetail!,
+                                    isLiked: newsController.allFavouriteNewsItem
+                                            .any((element) =>
+                                                element.newsId ==
+                                                widget.videoDetail!.newsId)
+                                        ? false
+                                        : true,
+                                  );
+                                },
+                                child: FaIcon(
+                                  newsController.allFavouriteNewsItem.any(
+                                          (element) =>
+                                              element.newsId ==
+                                              widget.videoDetail!.newsId)
+                                      ? FontAwesomeIcons.solidHeart
+                                      : FontAwesomeIcons.heart,
+                                  color: newsController.allFavouriteNewsItem
                                           .any((element) =>
                                               element.newsId ==
                                               widget.videoDetail!.newsId)
-                                      ? false
-                                      : true,
-                                );
-                              },
-                              child: FaIcon(
-                                newsController.allFavouriteNewsItem.any(
-                                        (element) =>
-                                            element.newsId ==
-                                            widget.videoDetail!.newsId)
-                                    ? FontAwesomeIcons.solidHeart
-                                    : FontAwesomeIcons.heart,
-                                color: newsController.allFavouriteNewsItem.any(
-                                        (element) =>
-                                            element.newsId ==
-                                            widget.videoDetail!.newsId)
-                                    ? deepOrangeColor
-                                    : Colors.white,
+                                      ? deepOrangeColor
+                                      : Colors.white,
+                                ),
                               ),
-                            ),
-                          ),
-                        )
-                      : Container();
-                }),
+                            )
+                          : Container();
+                    })),
               ]),
             )));
   }
