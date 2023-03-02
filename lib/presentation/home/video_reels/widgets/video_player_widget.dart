@@ -21,11 +21,11 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   final newsController = Get.find<NewsController>();
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     super.initState();
-
     _pageController = PageController(initialPage: widget.startIndex!);
-    
-  } 
+  }
 
   String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
@@ -70,89 +70,111 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         controller: _pageController,
         itemCount: widget.items!.length,
-        itemBuilder: (context, index) => Stack(
-          children: [
-            YoutuberPlayerWidget(
-              videoDetail: widget.items![index],
-            ),
-            Positioned(
+        itemBuilder: (context, index) => Stack(children: [
+          YoutuberPlayerWidget(
+            playFull: true,
+            videoDetail: widget.items![index],
+          ),
+          Positioned(
               left: 0,
               top: 0,
-            child: Container(
+              child: Container(
                 color: Colors.transparent,
                 height: height(context)! * 0.6,
                 width: width(context),
-            )),
-            Positioned(
-                left: 0,
-                top: 10.0,
-                child: BackButton(
-                  color: deepOrangeColor,
-                )),
-            Positioned(
-              left: 10.0,
-              bottom: 190.0,
-              child: textTile(
-                context: context,
-                data: widget.items![index].content!.creator!,
-              ),
-            ),
-            Positioned(
-              left: 10.0,
-              bottom: 155.0,
-              child: textTile(
-                context: context,
-                data: timeAgo(widget.items![index].timeStamp!),
-              ),
-            ),
-            Positioned(
-              left: 10.0,
-              bottom: 120.0,
-              child: textTile(
-                context: context,
-                data:
-                    widget.items![index].newsType!.split("_").join(" "),
-              ),
-            ),
-            // Container(
-            //   height: double.infinity,
-            //   width: double.infinity,
-            //   color: Colors.transparent,
-            // ),
-            Positioned(
-              right: 20.0,
-              bottom: 180,
-              child: Obx(
-                () => InkWell(
-                  onTap: () {
-                    newsController.likeAndUnlikeNews(
-                      data: widget.items![index],
-                      isLiked: newsController.allFavouriteNewsItem.any(
-                              (element) =>
-                                  element.newsId ==
-                                  widget.items![index].newsId)
-                          ? false
-                          : true,
-                    );
-                  },
-                  child: FaIcon(
-                    newsController.allFavouriteNewsItem.any((element) =>
-                            element.newsId ==
-                            widget.items![index].newsId)
-                        ? FontAwesomeIcons.solidHeart
-                        : FontAwesomeIcons.heart,
-                    color: newsController.allFavouriteNewsItem.any(
+              )),
+          Positioned(
+              left: 0,
+              top: 10.0,
+              child: BackButton(
+                color: deepOrangeColor,
+              )),
+
+          OrientationBuilder(builder: (context, orientation) {
+            return orientation == Orientation.portrait
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 10, bottom: 100),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Spacer(),
+                        textTile(
+                          context: context,
+                          data: widget.items![index].content!.creator!,
+                        ),
+                        textTile(
+                          context: context,
+                          data: timeAgo(widget.items![index].timeStamp!),
+                        ),
+                        textTile(
+                          context: context,
+                          data: widget.items![index].newsType!
+                              .split("_")
+                              .join(" "),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container();
+          }),
+          // Positioned(
+          //   left: 10.0,
+          //   bottom: 190.0,
+          //   child: textTile(
+          //     context: context,
+          //     data: widget.items![index].content!.creator!,
+          //   ),
+          // ),
+          // Positioned(
+          //   left: 10.0,
+          //   bottom: 155.0,
+          //   child: textTile(
+          //     context: context,
+          //     data: timeAgo(widget.items![index].timeStamp!),
+          //   ),
+          // ),
+          // Positioned(
+          //   left: 10.0,
+          //   bottom: 120.0,
+          //   child: textTile(
+          //     context: context,
+          //     data: widget.items![index].newsType!.split("_").join(" "),
+          //   ),
+          // ),
+          // Container(
+          //   height: double.infinity,
+          //   width: double.infinity,
+          //   color: Colors.transparent,
+          // ),
+          Positioned(
+            right: 20.0,
+            bottom: 180,
+            child: Obx(
+              () => InkWell(
+                onTap: () {
+                  newsController.likeAndUnlikeNews(
+                    data: widget.items![index],
+                    isLiked: newsController.allFavouriteNewsItem.any(
                             (element) =>
-                                element.newsId ==
-                                widget.items![index].newsId)
-                        ? deepOrangeColor
-                        : Colors.white,
-                  ),
+                                element.newsId == widget.items![index].newsId)
+                        ? false
+                        : true,
+                  );
+                },
+                child: FaIcon(
+                  newsController.allFavouriteNewsItem.any((element) =>
+                          element.newsId == widget.items![index].newsId)
+                      ? FontAwesomeIcons.solidHeart
+                      : FontAwesomeIcons.heart,
+                  color: newsController.allFavouriteNewsItem.any((element) =>
+                          element.newsId == widget.items![index].newsId)
+                      ? deepOrangeColor
+                      : Colors.white,
                 ),
               ),
             ),
-          ]
-        ),
+          ),
+        ]),
         scrollDirection: Axis.vertical,
         onPageChanged: (i) {},
       ),
@@ -160,14 +182,13 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 }
 
-
 Text textTile({BuildContext? context, String? data}) {
-    return Text(
-      data!,
-      style: themeTextStyle(
-        context: context,
-        fweight: FontWeight.w500,
-        tColor: whiteColor,
-      ),
-    );
-  }
+  return Text(
+    data!,
+    style: themeTextStyle(
+      context: context,
+      fweight: FontWeight.w500,
+      tColor: whiteColor,
+    ),
+  );
+}

@@ -34,19 +34,9 @@ class CreateAccount extends StatelessWidget {
                               Get.offAll(() => Login());
                             },
                             child: const Icon(Icons.arrow_back_ios))),
-                    Spacer(),
-                    Text(
-                      "Create your profile !      ",
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                          fontFamily: AssetConst.QUICKSAND_FONT),
-                    ),
-                    Spacer(),
                   ],
                 ),
-                SizedBox(height: 10 * SizeConfig().heightScale),
+                SizedBox(height: 20 * SizeConfig().heightScale),
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -54,14 +44,14 @@ class CreateAccount extends StatelessWidget {
                     StringConst.CREATE_ACCOUNT,
                     style: TextStyle(
                       letterSpacing: 0.9,
-                      color: Theme.of(context).secondaryHeaderColor,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 24,
                       fontWeight: FontWeight.w800,
                       fontFamily: AssetConst.RALEWAY_FONT,
                     ),
                   ),
                 ),
-                SizedBox(height: 10 * SizeConfig().heightScale),
+                SizedBox(height: 50 * SizeConfig().heightScale),
 
                 // SizedBox(height: 50 * SizeConfig().heightScale),
                 // Container(

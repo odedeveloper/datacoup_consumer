@@ -125,6 +125,15 @@ class SignUp extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   showCountryPicker(
+                                    countryListTheme: CountryListThemeData(
+                                        backgroundColor:
+                                            Theme.of(context).cardColor,
+                                        searchTextStyle: TextStyle(
+                                            color:
+                                                Theme.of(context).primaryColor),
+                                        textStyle: TextStyle(
+                                            color: Theme.of(context)
+                                                .primaryColor)),
                                     context: context,
                                     showPhoneCode:
                                         true, // optional. Shows phone code before the country name.
@@ -148,7 +157,8 @@ class SignUp extends StatelessWidget {
                                     child: Text(controller.countryCode,
                                         style: TextStyle(
                                             fontSize: 15,
-                                            color: darkBlueGreyColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             fontFamily:
                                                 AssetConst.QUICKSAND_FONT,
                                             fontWeight: FontWeight.w500))),

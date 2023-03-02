@@ -85,6 +85,7 @@ class _YoutubePlayerWithoutScrollState
               height: height(context),
               child: Stack(children: [
                 YoutuberPlayerWidget(
+                  playFull: false,
                   videoDetail: widget.videoDetail,
                 ),
                 // Positioned(
@@ -251,42 +252,57 @@ class _YoutubePlayerWithoutScrollState
                 //   width: double.infinity,
                 //   color: Colors.transparent,
                 // ),
-                Positioned(
-                    right: 20.0,
-                    bottom: 150,
-                    child: OrientationBuilder(builder: (context, orientation) {
-                      return orientation == Orientation.portrait
-                          ? Obx(
-                              () => InkWell(
-                                onTap: () {
-                                  newsController.likeAndUnlikeNews(
-                                    data: widget.videoDetail!,
-                                    isLiked: newsController.allFavouriteNewsItem
-                                            .any((element) =>
-                                                element.newsId ==
-                                                widget.videoDetail!.newsId)
-                                        ? false
-                                        : true,
-                                  );
-                                },
-                                child: FaIcon(
-                                  newsController.allFavouriteNewsItem.any(
-                                          (element) =>
-                                              element.newsId ==
-                                              widget.videoDetail!.newsId)
-                                      ? FontAwesomeIcons.solidHeart
-                                      : FontAwesomeIcons.heart,
-                                  color: newsController.allFavouriteNewsItem
-                                          .any((element) =>
-                                              element.newsId ==
-                                              widget.videoDetail!.newsId)
-                                      ? deepOrangeColor
-                                      : Colors.white,
+                OrientationBuilder(builder: (context, orientation) {
+                  return orientation == Orientation.portrait
+                      ? Obx(
+                          () => Padding(
+                            padding:
+                                const EdgeInsets.only(bottom: 80, right: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        newsController.likeAndUnlikeNews(
+                                          data: widget.videoDetail!,
+                                          isLiked: newsController
+                                                  .allFavouriteNewsItem
+                                                  .any((element) =>
+                                                      element.newsId ==
+                                                      widget
+                                                          .videoDetail!.newsId)
+                                              ? false
+                                              : true,
+                                        );
+                                      },
+                                      child: FaIcon(
+                                        newsController.allFavouriteNewsItem.any(
+                                                (element) =>
+                                                    element.newsId ==
+                                                    widget.videoDetail!.newsId)
+                                            ? FontAwesomeIcons.solidHeart
+                                            : FontAwesomeIcons.heart,
+                                        color: newsController
+                                                .allFavouriteNewsItem
+                                                .any((element) =>
+                                                    element.newsId ==
+                                                    widget.videoDetail!.newsId)
+                                            ? deepOrangeColor
+                                            : Colors.white,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            )
-                          : Container();
-                    })),
+                              ],
+                            ),
+                          ),
+                        )
+                      : Container();
+                }),
               ]),
             )));
   }

@@ -15,6 +15,8 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
   @override
   void initState() {
     loadData();
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     super.initState();
   }
 
@@ -241,9 +243,12 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                             tColor: whiteColor,
                           ),
                           padding: const EdgeInsets.symmetric(horizontal: 12),
-                          label: Text( newsController.keyInterestAreas[index] == "Protect yourself_Article" ? "Protect Yourself" : 
-                            newsController.keyInterestAreas[index]
-                                .replaceAll("_Article", ""),
+                          label: Text(
+                            newsController.keyInterestAreas[index] ==
+                                    "Protect yourself_Article"
+                                ? "Protect Yourself"
+                                : newsController.keyInterestAreas[index]
+                                    .replaceAll("_Article", ""),
                           ),
                           onPressed: () async {
                             newsController.selectedkeyInterestforReelVideo(

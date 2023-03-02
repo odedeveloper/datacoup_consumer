@@ -4,8 +4,10 @@ import 'package:flutter/gestures.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class YoutuberPlayerWidget extends StatefulWidget {
-  const YoutuberPlayerWidget({super.key, this.videoDetail});
+  const YoutuberPlayerWidget(
+      {super.key, this.videoDetail, required this.playFull});
   final Item? videoDetail;
+  final bool playFull;
 
   @override
   State<YoutuberPlayerWidget> createState() => _YoutuberPlayerWidgetState();
@@ -23,7 +25,12 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
   var player = const YoutubePlayer();
   @override
   void initState() {
-    SystemChrome.setPreferredOrientations([]);
+    if (widget.playFull) {
+      SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    } else {
+      SystemChrome.setPreferredOrientations([]);
+    }
     controller = YoutubePlayerController(
         params: YoutubePlayerParams(
             showVideoAnnotations: false, loop: true, playsInline: false))
@@ -213,7 +220,7 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
       //         ),
       //       ),
       //     ),
-        // );
+      // );
       // },
     );
   }

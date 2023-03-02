@@ -42,7 +42,7 @@ class VerifyOtp extends StatelessWidget {
                       style: TextStyle(
                           letterSpacing: 1,
                           fontSize: 24,
-                          color: Theme.of(context).secondaryHeaderColor,
+                          color: Theme.of(context).primaryColor,
                           fontFamily: AssetConst.RALEWAY_FONT,
                           fontWeight: FontWeight.w600)),
                   SizedBox(height: 20 * SizeConfig().heightScale),

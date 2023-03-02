@@ -55,8 +55,9 @@ class OtpInputSingle extends StatelessWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(5),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
+              color: Theme.of(context).primaryColor,
               blurRadius: 0.2,
               spreadRadius: 0.1,
             )
