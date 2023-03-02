@@ -123,18 +123,20 @@ class VideoScreenState extends State<VideoScreen> {
                               const SizedBox(height: 10),
                           itemCount: newsModel!.items!.length,
                           itemBuilder: (context, index) {
-                            return SizedBox(
-                              height: height(context)! * 0.325,
-                              child: NewsCardWidget(
-                                imageHeight: height(context)! * 0.2,
-                                data: newsModel!.items![index],
+                            return Padding(
+                              padding: (newsModel!.items!.length == index + 1)
+                                  ? EdgeInsets.only(bottom: 80)
+                                  : EdgeInsets.zero,
+                              child: SizedBox(
+                                height: height(context)! * 0.325,
+                                child: NewsCardWidget(
+                                  imageHeight: height(context)! * 0.2,
+                                  data: newsModel!.items![index],
+                                ),
                               ),
                             );
                           },
                         ),
-            ),
-            SizedBox(
-              height: 80,
             ),
           ],
         ),

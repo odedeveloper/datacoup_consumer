@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class MyThemeData {
   static final darkTheme = ThemeData(
+    tooltipTheme: TooltipThemeData(textStyle: TextStyle(color: whiteColor)),
     hintColor: Colors.grey[400],
     fontFamily: AssetConst.RALEWAY_FONT,
     brightness: Brightness.light,
@@ -25,10 +26,11 @@ class MyThemeData {
     iconTheme: const IconThemeData(color: Color(0xffFFFFFF)),
     listTileTheme: const ListTileThemeData(iconColor: Colors.white),
     unselectedWidgetColor: Colors.white,
-     
   );
 
   static final lightTheme = ThemeData(
+    tooltipTheme:
+        TooltipThemeData(textStyle: TextStyle(color: darkBlueGreyColor)),
     hintColor: Colors.grey[600],
     fontFamily: AssetConst.RALEWAY_FONT,
     brightness: Brightness.light,

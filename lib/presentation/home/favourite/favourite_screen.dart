@@ -133,17 +133,21 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                               //   loadData(
                               //       token: newsController.newsOfDayCount.value + 5);
                               // }
-                              return NewsCardWidget(
-                                data:
-                                    newsController.allFavouriteNewsItem[index],
-                                imageHeight: 210,
-                                showFavButton: true,
+                              return Padding(
+                                padding: (newsController
+                                            .allFavouriteNewsItem.length ==
+                                        index + 1)
+                                    ? EdgeInsets.only(bottom: 70)
+                                    : EdgeInsets.zero,
+                                child: NewsCardWidget(
+                                  data: newsController
+                                      .allFavouriteNewsItem[index],
+                                  imageHeight: 210,
+                                  showFavButton: true,
+                                ),
                               );
                             },
                           ),
-                  ),
-                  SizedBox(
-                    height: 70,
                   ),
                 ],
               ),

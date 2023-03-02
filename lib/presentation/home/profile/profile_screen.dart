@@ -154,9 +154,25 @@ class ProfileScreenState extends State<ProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SelectableText(
-                      'technology@odeinfinity.com',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    InkWell(
+                      onTap: () {
+                        Clipboard.setData(
+                            ClipboardData(text: 'technology@odeinfinity.com'));
+                        showSnackBar(context,
+                            msg: "Copied to clipboard!",
+                            backgroundColor: Colors.grey.shade900);
+                      },
+                      onDoubleTap: () {
+                        Clipboard.setData(
+                            ClipboardData(text: 'technology@odeinfinity.com'));
+                        showSnackBar(context,
+                            msg: "Copied to clipboard!",
+                            backgroundColor: Colors.grey.shade900);
+                      },
+                      child: Text(
+                        'technology@odeinfinity.com',
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ),
                     )
                   ]),
               actionsAlignment: MainAxisAlignment.spaceEvenly,
