@@ -8,10 +8,12 @@ class YoutubePlayerWithoutScroll extends StatefulWidget {
   final Item? videoDetail;
 
   @override
-  State<YoutubePlayerWithoutScroll> createState() => _YoutubePlayerWithoutScrollState();
+  State<YoutubePlayerWithoutScroll> createState() =>
+      _YoutubePlayerWithoutScrollState();
 }
 
-class _YoutubePlayerWithoutScrollState extends State<YoutubePlayerWithoutScroll> {
+class _YoutubePlayerWithoutScrollState
+    extends State<YoutubePlayerWithoutScroll> {
   final newsController = Get.find<NewsController>();
   @override
   final vrontroller = Get.put(VideoReelsController());
@@ -76,183 +78,218 @@ class _YoutubePlayerWithoutScrollState extends State<YoutubePlayerWithoutScroll>
 
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.black,
-      body: SizedBox(
-        height: height(context),
-        child: Stack(
-          children: [
-            YoutuberPlayerWidget(
-                videoDetail: widget.videoDetail,
-              ),
-              // Positioned(
-              //       left: 10.0,
-              //       bottom: 190.0,
-              //       child: textTile(
-              //         context: context,
-              //         data: widget.videoDetail!.content!.creator!,
-              //       ),
-              //     ),
-              //     Positioned(
-              //       left: 10.0,
-              //       bottom: 155.0,
-              //       child: textTile(
-              //         context: context,
-              //         data: timeAgo(widget.videoDetail!.timeStamp!),
-              //       ),
-              //     ),
-              //     Positioned(
-              //       left: 10.0,
-              //       bottom: 120.0,
-              //       child: textTile(
-              //         context: context,
-              //         data: widget.videoDetail!.newsType,
-              //       ),
-              //     ),
-              //     // Container(
-              //     //   height: double.infinity,
-              //     //   width: double.infinity,
-              //     //   color: Colors.transparent,
-              //     // ),
-              //     Positioned(
-              //       right: 20.0,
-              //       bottom: 210,
-              //       child: Obx(
-              //         () => InkWell(
-              //           onTap: () {
-              //             newsController.likeAndUnlikeNews(
-              //               data: widget.videoDetail,
-              //               isLiked: newsController.allFavouriteNewsItem.any(
-              //                       (element) =>
-              //                           element.newsId ==
-              //                           widget.videoDetail!.newsId)
-              //                   ? false
-              //                   : true,
-              //             );
-              //           },
-              //           child: FaIcon(
-              //             newsController.allFavouriteNewsItem.any((element) =>
-              //                     element.newsId == widget.videoDetail!.newsId)
-              //                 ? FontAwesomeIcons.solidHeart
-              //                 : FontAwesomeIcons.heart,
-              //             color: newsController.allFavouriteNewsItem.any(
-              //                     (element) =>
-              //                         element.newsId ==
-              //                         widget.videoDetail!.newsId)
-              //                 ? redOpacityColor
-              //                 : Colors.white,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //     Positioned(
-              //       right: 10.0,
-              //       bottom: 150,
-              //       child: IconButton(
-              //         onPressed: () {
-              //           controller!.toggleFullScreen();
-              //         },
-              //         icon: const FaIcon(
-              //           FontAwesomeIcons.expand,
-              //           color: deepOrangeColor,
-              //         ),
-              //       ),
-              //     ),
-              //     Align(
-              //       alignment: Alignment.bottomCenter,
-              //       child: Obx(
-              //         () => IconButton(
-              //           onPressed: () {
-              //             if (vrController.isVideoPlaying.value == true) {
-              //               controller!.pauseVideo();
-              //             } else {
-              //               controller!.playVideo();
-              //             }
-              //           },
-              //           icon: FaIcon(
-              //             vrController.isVideoPlaying.value
-              //                 ? FontAwesomeIcons.pause
-              //                 : FontAwesomeIcons.play,
-              //             color: deepOrangeColor,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-      
-              Positioned(
-                  left: 0,
-                  top: 30.0,
-                  child: BackButton(
-                    color: deepOrangeColor,
-                  )),
-              Positioned(
-                left: 10.0,
-                bottom: 180.0,
-                child: textTile(
-                  context: context,
-                  data: widget.videoDetail!.content!.creator!,
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.black,
+            body: SizedBox(
+              height: height(context),
+              child: Stack(children: [
+                YoutuberPlayerWidget(
+                  videoDetail: widget.videoDetail,
                 ),
-              ),
-              Positioned(
-                left: 10.0,
-                bottom: 155.0,
-                child: textTile(
-                  context: context,
-                  data: timeAgo(widget.videoDetail!.timeStamp!),
-                ),
-              ),
-              Positioned(
-                left: 10.0,
-                bottom: 120.0,
-                child: textTile(
-                  context: context,
-                  data:
-                      widget.videoDetail!.newsType!.split("_").join(" "),
-                ),
-              ),
-              // Container(
-              //   height: double.infinity,
-              //   width: double.infinity,
-              //   color: Colors.transparent,
-              // ),
-              Positioned(
-                right: 20.0,
-                bottom: 150,
-                child: Obx(
-                  () => InkWell(
-                    onTap: () {
-                      newsController.likeAndUnlikeNews(
-                        data: widget.videoDetail!,
-                        isLiked: newsController.allFavouriteNewsItem.any(
-                                (element) =>
-                                    element.newsId ==
-                                    widget.videoDetail!.newsId)
-                            ? false
-                            : true,
-                      );
-                    },
-                    child: FaIcon(
-                      newsController.allFavouriteNewsItem.any((element) =>
-                              element.newsId ==
-                              widget.videoDetail!.newsId)
-                          ? FontAwesomeIcons.solidHeart
-                          : FontAwesomeIcons.heart,
-                      color: newsController.allFavouriteNewsItem.any(
-                              (element) =>
-                                  element.newsId ==
-                                  widget.videoDetail!.newsId)
-                          ? deepOrangeColor
-                          : Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-          ]
-        ),
-      )
-      )
-    );
+                // Positioned(
+                //       left: 10.0,
+                //       bottom: 190.0,
+                //       child: textTile(
+                //         context: context,
+                //         data: widget.videoDetail!.content!.creator!,
+                //       ),
+                //     ),
+                //     Positioned(
+                //       left: 10.0,
+                //       bottom: 155.0,
+                //       child: textTile(
+                //         context: context,
+                //         data: timeAgo(widget.videoDetail!.timeStamp!),
+                //       ),
+                //     ),
+                //     Positioned(
+                //       left: 10.0,
+                //       bottom: 120.0,
+                //       child: textTile(
+                //         context: context,
+                //         data: widget.videoDetail!.newsType,
+                //       ),
+                //     ),
+                //     // Container(
+                //     //   height: double.infinity,
+                //     //   width: double.infinity,
+                //     //   color: Colors.transparent,
+                //     // ),
+                //     Positioned(
+                //       right: 20.0,
+                //       bottom: 210,
+                //       child: Obx(
+                //         () => InkWell(
+                //           onTap: () {
+                //             newsController.likeAndUnlikeNews(
+                //               data: widget.videoDetail,
+                //               isLiked: newsController.allFavouriteNewsItem.any(
+                //                       (element) =>
+                //                           element.newsId ==
+                //                           widget.videoDetail!.newsId)
+                //                   ? false
+                //                   : true,
+                //             );
+                //           },
+                //           child: FaIcon(
+                //             newsController.allFavouriteNewsItem.any((element) =>
+                //                     element.newsId == widget.videoDetail!.newsId)
+                //                 ? FontAwesomeIcons.solidHeart
+                //                 : FontAwesomeIcons.heart,
+                //             color: newsController.allFavouriteNewsItem.any(
+                //                     (element) =>
+                //                         element.newsId ==
+                //                         widget.videoDetail!.newsId)
+                //                 ? redOpacityColor
+                //                 : Colors.white,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     Positioned(
+                //       right: 10.0,
+                //       bottom: 150,
+                //       child: IconButton(
+                //         onPressed: () {
+                //           controller!.toggleFullScreen();
+                //         },
+                //         icon: const FaIcon(
+                //           FontAwesomeIcons.expand,
+                //           color: deepOrangeColor,
+                //         ),
+                //       ),
+                //     ),
+                //     Align(
+                //       alignment: Alignment.bottomCenter,
+                //       child: Obx(
+                //         () => IconButton(
+                //           onPressed: () {
+                //             if (vrController.isVideoPlaying.value == true) {
+                //               controller!.pauseVideo();
+                //             } else {
+                //               controller!.playVideo();
+                //             }
+                //           },
+                //           icon: FaIcon(
+                //             vrController.isVideoPlaying.value
+                //                 ? FontAwesomeIcons.pause
+                //                 : FontAwesomeIcons.play,
+                //             color: deepOrangeColor,
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                OrientationBuilder(builder: (context, orientation) {
+                  return orientation == Orientation.portrait
+                      ? Container(
+                          height: 100,
+                          color: blackColor,
+                        )
+                      : Container();
+                }),
+                Positioned(
+                    left: 0,
+                    top: 10.0,
+                    child: BackButton(
+                      color: deepOrangeColor,
+                    )),
+                OrientationBuilder(builder: (context, orientation) {
+                  return orientation == Orientation.portrait
+                      ? Padding(
+                          padding: EdgeInsets.only(left: 20, bottom: 90),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Spacer(),
+                              textTile(
+                                context: context,
+                                data: widget.videoDetail!.content!.creator!,
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              textTile(
+                                context: context,
+                                data: timeAgo(widget.videoDetail!.timeStamp!),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              textTile(
+                                context: context,
+                                data: widget.videoDetail!.newsType!
+                                    .split("_")
+                                    .join(" "),
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container();
+                }),
+
+                // Medi ?
+                // Positioned(
+                //   left: 10.0,
+                //   bottom: 155.0,
+                //   child: textTile(
+                //     context: context,
+                //     data: timeAgo(widget.videoDetail!.timeStamp!),
+                //   ),
+                // ),
+                // Positioned(
+                //   left: 10.0,
+                //   bottom: 120.0,
+                //   child: textTile(
+                //     context: context,
+                //     data:
+                //         widget.videoDetail!.newsType!.split("_").join(" "),
+                //   ),
+                // ),
+                // Container(
+                //   height: double.infinity,
+                //   width: double.infinity,
+                //   color: Colors.transparent,
+                // ),
+                OrientationBuilder(builder: (context, orientation) {
+                  return orientation == Orientation.portrait
+                      ? Positioned(
+                          right: 20.0,
+                          bottom: 150,
+                          child: Obx(
+                            () => InkWell(
+                              onTap: () {
+                                newsController.likeAndUnlikeNews(
+                                  data: widget.videoDetail!,
+                                  isLiked: newsController.allFavouriteNewsItem
+                                          .any((element) =>
+                                              element.newsId ==
+                                              widget.videoDetail!.newsId)
+                                      ? false
+                                      : true,
+                                );
+                              },
+                              child: FaIcon(
+                                newsController.allFavouriteNewsItem.any(
+                                        (element) =>
+                                            element.newsId ==
+                                            widget.videoDetail!.newsId)
+                                    ? FontAwesomeIcons.solidHeart
+                                    : FontAwesomeIcons.heart,
+                                color: newsController.allFavouriteNewsItem.any(
+                                        (element) =>
+                                            element.newsId ==
+                                            widget.videoDetail!.newsId)
+                                    ? deepOrangeColor
+                                    : Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container();
+                }),
+              ]),
+            )));
   }
 }
 

@@ -9,8 +9,8 @@ class HomeScreen extends GetWidget<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    // SystemChrome.setPreferredOrientations(
+    //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return Obx(
       () => Scaffold(
         appBar: PreferredSize(
