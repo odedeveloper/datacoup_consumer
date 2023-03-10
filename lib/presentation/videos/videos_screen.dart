@@ -125,14 +125,11 @@ class VideoScreenState extends State<VideoScreen> {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: (newsModel!.items!.length == index + 1)
-                                  ? EdgeInsets.only(bottom: 80)
+                                  ? const EdgeInsets.only(bottom: 80)
                                   : EdgeInsets.zero,
-                              child: SizedBox(
-                                height: height(context)! * 0.325,
-                                child: NewsCardWidget(
-                                  imageHeight: height(context)! * 0.2,
-                                  data: newsModel!.items![index],
-                                ),
+                              child: NewsCardWidget(
+                                imageHeight: height(context)! * 0.2,
+                                data: newsModel!.items![index],
                               ),
                             );
                           },

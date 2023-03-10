@@ -76,9 +76,8 @@ class QuizHistoryResult extends StatelessWidget {
                   ),
                 ),
               ]),
-              const SizedBox(height: 20),
               Container(
-                  child: Text("Results of ${controller.quiz.topic} Quiz",
+                  child: Text("Results of ${controller.quiz.topic} quiz",
                       style: TextStyle(
                         // letterSpacing: 1.7,
                         color: Theme.of(context).primaryColorDark,
@@ -92,7 +91,9 @@ class QuizHistoryResult extends StatelessWidget {
                 margin:
                     const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
                 decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
+                    color: Theme.of(context)
+                        .scaffoldBackgroundColor
+                        .withOpacity(0.5),
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                     children: List.generate(3, (index) {
@@ -114,7 +115,7 @@ class QuizHistoryResult extends StatelessWidget {
                           const SizedBox(width: 20),
                           Text(quizResultText[index],
                               style: TextStyle(
-                                color: Theme.of(context).primaryColorLight,
+                                color: Theme.of(context).primaryColor,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700,
                                 letterSpacing: 0.9,
@@ -123,7 +124,7 @@ class QuizHistoryResult extends StatelessWidget {
                           const Spacer(),
                           Text(quizResultScore[index].toString(),
                               style: TextStyle(
-                                color: Theme.of(context).primaryColorLight,
+                                color: Theme.of(context).primaryColor,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w700,
                                 letterSpacing: 0.9,
@@ -146,7 +147,7 @@ class QuizHistoryResult extends StatelessWidget {
                       style: TextStyle(
                         // letterSpacing: 1.7,
                         color: Theme.of(context).primaryColorDark,
-                        fontSize: 20,
+                        fontSize: 17,
                         fontWeight: FontWeight.w600,
                         fontFamily: AssetConst.QUICKSAND_FONT,
                       ))),

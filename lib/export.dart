@@ -54,7 +54,7 @@ export 'package:datacoup/presentation/home/news/widgets/video_of_the_day_widget.
 export 'package:datacoup/presentation/home/profile/edit_profile/edit_profile_screen.dart';
 export 'package:datacoup/presentation/home/profile/profile_controller.dart';
 export 'package:datacoup/presentation/home/profile/profile_screen.dart';
-export 'package:datacoup/presentation/home/quiz/qna/qna_profile.dart';
+export 'package:datacoup/presentation/home/quiz/quiz_screen.dart';
 export 'package:datacoup/presentation/home/quiz/quiz_binding.dart';
 export 'package:datacoup/presentation/home/quiz/quiz_controller.dart';
 export 'package:datacoup/presentation/home/video_reels/video_reels_screen.dart';
@@ -95,5 +95,4 @@ export 'package:get/get.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:global_configuration/global_configuration.dart';
 export 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:flutter_screenutil/flutter_screenutil.dart';

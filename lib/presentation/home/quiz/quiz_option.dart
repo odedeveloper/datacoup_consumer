@@ -40,9 +40,8 @@ class Answer extends StatelessWidget {
               child: Text(
                 answerText,
                 softWrap: true,
-                maxLines: 2,
                 style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                     fontFamily: AssetConst.QUICKSAND_FONT,
                     color: isSelected ? Colors.white : Colors.grey.shade900),

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:datacoup/export.dart';
 
 class SplachController extends GetxController {
@@ -22,15 +21,17 @@ class SplachController extends GetxController {
     await authController.initializeUser();
   }
 
+  // getting the theme selected by user
   void validateTheme() async {
     final isDark = await localRepositoryInterface.isDarkMode();
     if (isDark != null) {
       Get.changeThemeMode(isDark ? ThemeMode.dark : ThemeMode.light);
     } else {
-      Get.changeThemeMode(ThemeMode.light);
+      Get.changeThemeMode(ThemeMode.system);
     }
   }
 
+  // handling auth flow
   void validateSession() async {
     await getProperDataLoad();
     await apiRepositoryInterface.cogintoRegister();

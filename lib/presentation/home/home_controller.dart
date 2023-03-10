@@ -16,7 +16,7 @@ class HomeController extends GetxController {
   RxBool updatePressed = false.obs;
   RxBool editEmailOrPhonePressed = false.obs;
   String language = "English";
-  List<String> supportedLanguages = ["English", "Hindi"];
+  List<String> supportedLanguages = ["English"];
   final Map<String, Locale> _locales = {
     "English": const Locale('en', 'US'),
     "Hindi": const Locale('hi', 'IN')

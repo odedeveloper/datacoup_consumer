@@ -32,8 +32,11 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
       SystemChrome.setPreferredOrientations([]);
     }
     controller = YoutubePlayerController(
-        params: YoutubePlayerParams(
-            showVideoAnnotations: false, loop: true, playsInline: false))
+        params: const YoutubePlayerParams(
+            enableCaption: false,
+            showVideoAnnotations: false,
+            loop: true,
+            playsInline: false))
       ..onInit = () {
         controller?.loadVideoById(
           videoId: widget.videoDetail!.content!.link!
@@ -87,6 +90,7 @@ class _YoutuberPlayerWidgetState extends State<YoutuberPlayerWidget> {
   Widget build(BuildContext context) {
     return YoutubePlayer(
       backgroundColor: Colors.black,
+      enableFullScreenOnVerticalDrag: false,
       // autoFullScreen: true,
 
       // defaultOrientations: const [

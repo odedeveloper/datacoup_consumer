@@ -4,7 +4,7 @@ import 'package:datacoup/data/datasource/qna_api.dart';
 import 'package:datacoup/domain/model/activity_item_model.dart';
 import 'package:datacoup/export.dart';
 
-class QnaHomePageController extends GetxController {
+class QuizScreenController extends GetxController {
   List<ActivityItemModel> userHistory = [];
   RxBool quizMainLoader = true.obs;
   String bestScore = '';
@@ -24,14 +24,14 @@ class QnaHomePageController extends GetxController {
   loadUserDataFirst() async {
     quizMainLoader(true);
     Future.delayed(
-      const Duration(seconds: 4),
+      const Duration(seconds: 2),
       () async {
         await ApiRepositoryImpl().fetchUserProfile().then(
           (_) async {
-            quizMainLoader(false);
             odenId = Get.find<HomeController>().user!.value.odenId!;
             await fetchUserHistory(odenId, '');
             await fetchBestScore(odenId);
+            quizMainLoader(false);
           },
         );
       },
@@ -54,7 +54,9 @@ class QnaHomePageController extends GetxController {
   fetchUserHistory(String odenId, String topic) async {
     try {
       List<ActivityItemModel> data = await getHistory(odenId, topic = '');
-
+      data.sort((a, b) =>
+          DateTime.parse(a.timestamp).compareTo(DateTime.parse(b.timestamp)));
+      data = data.reversed.toList();
       userHistory = data;
 
       isUpdating = false;
@@ -73,7 +75,7 @@ class QnaHomePageController extends GetxController {
       Map<String, dynamic>? data = await getBestScore(odenId);
 
       if (data != null || data!.isNotEmpty) {
-        bestScore = data['score'];
+        bestScore = data['score'].toString().split(".")[0];
 
         badge = data['badge'];
       }

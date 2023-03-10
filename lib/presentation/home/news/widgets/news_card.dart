@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewsCard extends StatelessWidget {
   NewsCard({
@@ -30,7 +29,7 @@ class NewsCard extends StatelessWidget {
     if (diff.inMinutes > 0) {
       return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"} ago";
     }
-    return "just now";
+    return "Just now";
   }
 
   final newsController = Get.find<NewsController>();
@@ -90,7 +89,7 @@ class NewsCard extends StatelessWidget {
                               fweight: FontWeight.w800,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          SizedBox(height: 8.h),
                           Text(
                             timeAgo(data!.timeStamp!),
                             maxLines: 2,
@@ -104,7 +103,7 @@ class NewsCard extends StatelessWidget {
                                   .withOpacity(0.6),
                             ),
                           ),
-                          const SizedBox(height: 2),
+                          SizedBox(height: 3.h),
                           Text(
                             "by ${data!.content!.creator}",
                             maxLines: 1,
@@ -118,7 +117,6 @@ class NewsCard extends StatelessWidget {
                                   .withOpacity(0.7),
                             ),
                           ),
-                          const SizedBox(height: 0),
                         ],
                       ),
                     ),

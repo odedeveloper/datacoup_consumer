@@ -1,7 +1,7 @@
 import 'dart:developer';
-
 import 'package:datacoup/export.dart';
 
+// user service for authentication
 final _userService = UserService(userPool);
 
 class Login extends StatelessWidget {
@@ -11,7 +11,6 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -27,7 +26,7 @@ class Login extends StatelessWidget {
                     height: 80 * SizeConfig().heightScale),
                 SizedBox(height: 30 * SizeConfig().heightScale),
                 Text(
-                  "DATACOUP NEWS",
+                  "DATACOUP",
                   style: themeTextStyle(
                     context: context,
                     fsize: kextraLargeFont(context),
@@ -37,7 +36,7 @@ class Login extends StatelessWidget {
                 ),
                 SizedBox(height: 10 * SizeConfig().heightScale),
                 Text(
-                  "Because Privacy matters !",
+                  "Because privacy matters",
                   style: themeTextStyle(
                     context: context,
                     fontStyle: FontStyle.italic,
@@ -211,7 +210,6 @@ class Login extends StatelessWidget {
                                   bool isValid =
                                       await bcontroller.login(_userService);
                                   if (isValid) {
-                                    print("yon");
                                     acontroller.updateLoggedIn(true);
                                     acontroller.updateAuthInProgress(false);
                                     acontroller.updateLoggedIn(true);

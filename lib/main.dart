@@ -14,7 +14,10 @@ Future<void> main() async {
 
   // developers working on it should use only "appSettingsDev"
   GlobalConfiguration().loadFromMap(appSettingsProd);
+
   await configureAmplify();
+
+  // sets portrait mode for app
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MyApp());
@@ -25,9 +28,9 @@ Future<void> configureAmplify() async {
   Amplify.addPlugins([AmplifyAuthCognito()]);
   try {
     await Amplify.configure(amplifyconfig);
-    log('amplify configured -------');
+    log('Amplify configured -------');
   } catch (e) {
-    log('Amplify is configured.');
+    log('Amplify not configured.');
   }
 }
 
@@ -53,13 +56,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+        // design size of figma
         designSize: const Size(428, 926),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'DataCoup News',
+            title: 'DataCoup',
             theme: MyThemeData.lightTheme,
             darkTheme: MyThemeData.darkTheme,
             initialRoute: AppRoutes.splash,

@@ -36,7 +36,7 @@ class VerifyUsername extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Text(
-                "Create and Verify Username".tr,
+                "Create and verify username".tr,
                 textAlign: TextAlign.center,
                 style: themeTextStyle(
                   context: context,
@@ -56,7 +56,7 @@ class VerifyUsername extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 45 * SizeConfig().heightScale),
-                  Text("Verify Username",
+                  Text("Verify username",
                       style: TextStyle(
                           letterSpacing: 0.9,
                           fontFamily: AssetConst.RALEWAY_FONT,
@@ -147,7 +147,7 @@ class VerifyUsername extends StatelessWidget {
                           Get.to(() => SignUp());
                         } else {
                           showSnackBar(context,
-                              msg: 'Please verify username first !');
+                              msg: 'Please verify username first');
                         }
                       },
                       style: ButtonStyle(

@@ -51,7 +51,7 @@ class VerifyOtp extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
-                            "Please enter the number code send to your ${isEmail ? "email address" : "mobile number"}",
+                            "Please enter the number code sent to your ${isEmail ? "email address" : "mobile number"}",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 letterSpacing: 0.9,
@@ -103,14 +103,14 @@ class VerifyOtp extends StatelessWidget {
                                   } else {
                                     if (isSecondVerification && isEmail) {
                                       showSnackBar(context,
-                                          msg: "EMAIL_NOT_CONFIRMED");
+                                          msg: "Email not confirmed");
                                     } else if (isSecondVerification &&
                                         !isEmail) {
                                       showSnackBar(context,
-                                          msg: "PHONE_NOT_CONFIRMED");
+                                          msg: "Phone not confirmed");
                                     } else {
                                       showSnackBar(context,
-                                          msg: "ACCOUNT_NOT_CONFIRMED");
+                                          msg: "Account not confirmed");
                                     }
                                   }
                                 } catch (e) {
@@ -157,8 +157,9 @@ class VerifyOtp extends StatelessWidget {
                               //TODO: re use verification api and generate otp
                               showSnackBar(
                                 context,
-                                msg: "OTP_HAS_BEEN_SENT_SUCCESSFULLY",
-                                backgroundColor: Colors.greenAccent,
+                                msg: "OTP has been sent successfully",
+                                backgroundColor:
+                                    Color.fromARGB(255, 48, 193, 123),
                               );
                             } catch (e) {
                               showSnackBar(context,
@@ -184,7 +185,7 @@ class VerifyOtp extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                  "Did not receive the code?${isEmail ? "Check the mail in your spam filter , or" : "Wait for some time ,"}",
+                                  "Did not receive the code?${isEmail ? "\nCheck the mail in your spam.\n" : "Wait for some time\n"}",
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       letterSpacing: 0.9,
@@ -208,8 +209,8 @@ class VerifyOtp extends StatelessWidget {
                                 },
                                 child: Text(
                                     controller.isByEmail
-                                        ? "try another email address"
-                                        : "try another phone number",
+                                        ? "Try another email address"
+                                        : "Try another phone number",
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         letterSpacing: 0.9,

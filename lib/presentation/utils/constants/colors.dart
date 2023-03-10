@@ -17,5 +17,5 @@ const Color blueGreyLight = Color(0xffe3e9f0);
 const Color mediumBlueGreyColor = Color(0xff6d7989);
 const Color darkBlueGreyColor = Color(0xff192E51);
 const Color lightBlueGreyColor = Color(0xfffefeff);
-const Color deepOrangeColor = Color.fromARGB(255, 247, 146, 37);
+const Color deepOrangeColor = Color.fromARGB(255, 255, 141, 20);
 const Color scaffoldDarkBackgroundColor = Color(0x00ff4444);

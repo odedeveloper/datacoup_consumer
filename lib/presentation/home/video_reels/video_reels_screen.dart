@@ -33,17 +33,6 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(
-      //     "Videos",
-      //     style: themeTextStyle(
-      //       fsize: klargeFont(context),
-      //       context: context,
-      //       fweight: FontWeight.bold,
-      //     ),
-      //   ),
-      // ),
       body: SafeArea(
         child: Obx(
           () => newsController.reelVideosLoader.value
@@ -198,7 +187,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Filter",
+                          "Video category",
                           style: themeTextStyle(
                             context: context,
                             letterSpacing: 1.5,
@@ -215,17 +204,17 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    Text(
-                      "Category",
-                      style: themeTextStyle(
-                        context: context,
-                        letterSpacing: 1.5,
-                        fsize: klargeFont(context),
-                        fweight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
+                    // const SizedBox(height: 20),
+                    // Text(
+                    //   "Video category",
+                    //   style: themeTextStyle(
+                    //     context: context,
+                    //     letterSpacing: 1.5,
+                    //     fsize: klargeFont(context),
+                    //     fweight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 10),
                     Wrap(
                       runSpacing: 5,
                       spacing: 5,
@@ -258,44 +247,44 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      "Type",
-                      style: themeTextStyle(
-                        context: context,
-                        letterSpacing: 1.5,
-                        fsize: klargeFont(context),
-                        fweight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Wrap(
-                      runSpacing: 5,
-                      spacing: 5,
-                      children: List.generate(
-                        newsController.reelVideosTypes.length,
-                        (index) => ActionChip(
-                          backgroundColor:
-                              newsController.selectedReelVideoType.value ==
-                                      newsController.reelVideosTypes[index]
-                                  ? deepOrangeColor
-                                  : Colors.grey,
-                          labelStyle: themeTextStyle(
-                            fsize: ksmallFont(context),
-                            context: context,
-                            tColor: whiteColor,
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          label: Text(
-                            newsController.reelVideosTypes[index],
-                          ),
-                          onPressed: () async {
-                            newsController.selectedReelVideoType(
-                                newsController.reelVideosTypes[index]);
-                          },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
+                    // Text(
+                    //   "Type",
+                    //   style: themeTextStyle(
+                    //     context: context,
+                    //     letterSpacing: 1.5,
+                    //     fsize: klargeFont(context),
+                    //     fweight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 10),
+                    // Wrap(
+                    //   runSpacing: 5,
+                    //   spacing: 5,
+                    //   children: List.generate(
+                    //     newsController.reelVideosTypes.length,
+                    //     (index) => ActionChip(
+                    //       backgroundColor:
+                    //           newsController.selectedReelVideoType.value ==
+                    //                   newsController.reelVideosTypes[index]
+                    //               ? deepOrangeColor
+                    //               : Colors.grey,
+                    //       labelStyle: themeTextStyle(
+                    //         fsize: ksmallFont(context),
+                    //         context: context,
+                    //         tColor: whiteColor,
+                    //       ),
+                    //       padding: const EdgeInsets.symmetric(horizontal: 12),
+                    //       label: Text(
+                    //         newsController.reelVideosTypes[index],
+                    //       ),
+                    //       onPressed: () async {
+                    //         newsController.selectedReelVideoType(
+                    //             newsController.reelVideosTypes[index]);
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 20),
                     Text(
                       "Popular channels",
                       style: themeTextStyle(
@@ -341,58 +330,58 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      "Trending",
-                      style: themeTextStyle(
-                        context: context,
-                        letterSpacing: 1.5,
-                        fsize: klargeFont(context),
-                        fweight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Wrap(
-                      runSpacing: 5,
-                      spacing: 5,
-                      children: List.generate(
-                        newsController.reelVideosTrendingTypes.length,
-                        (index) => ActionChip(
-                          backgroundColor: newsController
-                                      .selectedReelVideoTrending.value ==
-                                  newsController.reelVideosTrendingTypes[index]
-                              ? deepOrangeColor
-                              : Colors.grey,
-                          labelStyle: themeTextStyle(
-                            fsize: ksmallFont(context),
-                            context: context,
-                            tColor: whiteColor,
-                          ),
-                          label: Text(
-                            newsController.reelVideosTrendingTypes[index],
-                          ),
-                          onPressed: () async {
-                            newsController.selectedReelVideoTrending(
-                                newsController.reelVideosTrendingTypes[index]);
-                          },
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: ActionChip(
-                        backgroundColor: deepOrangeColor,
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        labelStyle: themeTextStyle(
-                            fsize: ksmallFont(context),
-                            context: context,
-                            tColor: whiteColor),
-                        label: const Text("Apply"),
-                        onPressed: () {
-                          Get.back();
-                          loadData();
-                        },
-                      ),
-                    ),
+                    // Text(
+                    //   "Trending",
+                    //   style: themeTextStyle(
+                    //     context: context,
+                    //     letterSpacing: 1.5,
+                    //     fsize: klargeFont(context),
+                    //     fweight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 10),
+                    // Wrap(
+                    //   runSpacing: 5,
+                    //   spacing: 5,
+                    //   children: List.generate(
+                    //     newsController.reelVideosTrendingTypes.length,
+                    //     (index) => ActionChip(
+                    //       backgroundColor: newsController
+                    //                   .selectedReelVideoTrending.value ==
+                    //               newsController.reelVideosTrendingTypes[index]
+                    //           ? deepOrangeColor
+                    //           : Colors.grey,
+                    //       labelStyle: themeTextStyle(
+                    //         fsize: ksmallFont(context),
+                    //         context: context,
+                    //         tColor: whiteColor,
+                    //       ),
+                    //       label: Text(
+                    //         newsController.reelVideosTrendingTypes[index],
+                    //       ),
+                    //       onPressed: () async {
+                    //         newsController.selectedReelVideoTrending(
+                    //             newsController.reelVideosTrendingTypes[index]);
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
+                    // Align(
+                    //   alignment: Alignment.bottomRight,
+                    //   child: ActionChip(
+                    //     backgroundColor: deepOrangeColor,
+                    //     padding: const EdgeInsets.symmetric(horizontal: 24),
+                    //     labelStyle: themeTextStyle(
+                    //         fsize: ksmallFont(context),
+                    //         context: context,
+                    //         tColor: whiteColor),
+                    //     label: const Text("Apply"),
+                    //     onPressed: () {
+                    //       Get.back();
+                    //       loadData();
+                    //     },
+                    //   ),
+                    // ),
                     const SizedBox(height: 30),
                   ],
                 ),

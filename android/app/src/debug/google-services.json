@@ -1,0 +1,46 @@
+{
+    "project_info": {
+      "project_number": "487672294607",
+      "project_id": "datacoup--ios-and-android",
+      "storage_bucket": "datacoup--ios-and-android.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:487672294607:android:dd428c38f84002a9ac9bba",
+          "android_client_info": {
+            "package_name": "com.ode.datacoup"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "487672294607-n2nkhfd3lf258orf8u5520opkgcenh6j.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyAvABWScFA6iOajbbDtRU_8NgsPe7a43uM"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "487672294607-n2nkhfd3lf258orf8u5520opkgcenh6j.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "487672294607-cn5kg3fm1l267stu60hv3uc00eh7lc9g.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "com.datacoup"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

@@ -100,14 +100,25 @@ class CreateAccount extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(StringConst.FIRST_NAME,
+                                    RichText(
+                                      text: TextSpan(
+                                        text: StringConst.FIRST_NAME,
                                         style: TextStyle(
                                             letterSpacing: 0.9,
                                             fontFamily: AssetConst.RALEWAY_FONT,
-                                            fontSize: 14,
+                                            fontSize: 15,
                                             color:
                                                 Theme.of(context).primaryColor,
-                                            fontWeight: FontWeight.w500)),
+                                            fontWeight: FontWeight.w500),
+                                        children: const [
+                                          TextSpan(
+                                              text: '*',
+                                              style: TextStyle(
+                                                  color: redOpacityColor,
+                                                  fontSize: 18)),
+                                        ],
+                                      ),
+                                    ),
                                     Container(
                                       alignment: Alignment.center,
                                       height: 30,
@@ -140,14 +151,25 @@ class CreateAccount extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(StringConst.LAST_NAME,
+                                    RichText(
+                                      text: TextSpan(
+                                        text: StringConst.LAST_NAME,
                                         style: TextStyle(
                                             letterSpacing: 0.9,
                                             fontFamily: AssetConst.RALEWAY_FONT,
-                                            fontSize: 14,
+                                            fontSize: 15,
                                             color:
                                                 Theme.of(context).primaryColor,
-                                            fontWeight: FontWeight.w500)),
+                                            fontWeight: FontWeight.w500),
+                                        children: const [
+                                          TextSpan(
+                                              text: '*',
+                                              style: TextStyle(
+                                                  color: redOpacityColor,
+                                                  fontSize: 18)),
+                                        ],
+                                      ),
+                                    ),
                                     Container(
                                       alignment: Alignment.center,
                                       height: 30,
@@ -177,13 +199,23 @@ class CreateAccount extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 27),
-                          Text(StringConst.EMAIL_ADDRESS,
+                          RichText(
+                            text: TextSpan(
+                              text: StringConst.EMAIL_ADDRESS,
                               style: TextStyle(
                                   letterSpacing: 0.9,
                                   fontFamily: AssetConst.RALEWAY_FONT,
                                   fontSize: 15,
                                   color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.w500)),
+                                  fontWeight: FontWeight.w500),
+                              children: const [
+                                TextSpan(
+                                    text: '*',
+                                    style: TextStyle(
+                                        color: redOpacityColor, fontSize: 18)),
+                              ],
+                            ),
+                          ),
                           Container(
                             alignment: Alignment.center,
                             height: 30,
@@ -206,13 +238,23 @@ class CreateAccount extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 27),
-                          Text(StringConst.PHONE_NUMBER,
+                          RichText(
+                            text: TextSpan(
+                              text: StringConst.PHONE_NUMBER,
                               style: TextStyle(
                                   letterSpacing: 0.9,
                                   fontFamily: AssetConst.RALEWAY_FONT,
                                   fontSize: 15,
                                   color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.w500)),
+                                  fontWeight: FontWeight.w500),
+                              children: const [
+                                TextSpan(
+                                    text: '*',
+                                    style: TextStyle(
+                                        color: redOpacityColor, fontSize: 18)),
+                              ],
+                            ),
+                          ),
                           Container(
                             alignment: Alignment.center,
                             height: 30,
@@ -243,14 +285,25 @@ class CreateAccount extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(StringConst.GENDER,
+                                    RichText(
+                                      text: TextSpan(
+                                        text: StringConst.GENDER,
                                         style: TextStyle(
                                             letterSpacing: 0.9,
                                             fontFamily: AssetConst.RALEWAY_FONT,
-                                            fontSize: 14,
+                                            fontSize: 15,
                                             color:
                                                 Theme.of(context).primaryColor,
-                                            fontWeight: FontWeight.w500)),
+                                            fontWeight: FontWeight.w500),
+                                        children: const [
+                                          TextSpan(
+                                              text: '*',
+                                              style: TextStyle(
+                                                  color: redOpacityColor,
+                                                  fontSize: 18)),
+                                        ],
+                                      ),
+                                    ),
                                     Container(
                                         decoration: BoxDecoration(
                                           border: Border(
@@ -307,14 +360,25 @@ class CreateAccount extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(StringConst.DOB,
+                                    RichText(
+                                      text: TextSpan(
+                                        text: StringConst.DOB,
                                         style: TextStyle(
                                             letterSpacing: 0.9,
                                             fontFamily: AssetConst.RALEWAY_FONT,
-                                            fontSize: 14,
+                                            fontSize: 15,
                                             color:
                                                 Theme.of(context).primaryColor,
-                                            fontWeight: FontWeight.w500)),
+                                            fontWeight: FontWeight.w500),
+                                        children: const [
+                                          TextSpan(
+                                              text: '*',
+                                              style: TextStyle(
+                                                  color: redOpacityColor,
+                                                  fontSize: 18)),
+                                        ],
+                                      ),
+                                    ),
                                     Container(
                                       alignment: Alignment.center,
                                       height: 30,
@@ -453,12 +517,17 @@ class CreateAccount extends StatelessWidget {
                                         .lastNameController.text.isEmpty) {
                                   showSnackBar(context,
                                       msg: "Enter your first and last name");
+                                } else if (controller
+                                    .dobController.text.isEmpty) {
+                                  showSnackBar(context,
+                                      msg: "Enter your Date of Birth");
                                 }
 
                                 if (controller
                                         .firstNameController.text.isNotEmpty &&
                                     controller
-                                        .lastNameController.text.isNotEmpty) {
+                                        .lastNameController.text.isNotEmpty &&
+                                    controller.dobController.text.isNotEmpty) {
                                   try {
                                     bool value = await controller
                                         .updateUserUsingController();
@@ -500,9 +569,10 @@ class CreateAccount extends StatelessWidget {
                 Container(
                     alignment: Alignment.center,
                     width: 320,
-                    child: Wrap(
-                      direction: Axis.horizontal,
-                      alignment: WrapAlignment.center,
+                    child: Column(
+                      // direction: Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text("By clicking \"CONTINUE\" you agree to our ",
                             textAlign: TextAlign.center,

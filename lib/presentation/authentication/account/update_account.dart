@@ -1001,7 +1001,7 @@ class _UpdateAccountState extends State<UpdateAccount> {
                                                 ),
                                         ),
                                         const SizedBox(height: 27),
-                                        Text("Zip-code".tr,
+                                        Text("Zipcode".tr,
                                             style: TextStyle(
                                                 letterSpacing: 0.9,
                                                 fontFamily:

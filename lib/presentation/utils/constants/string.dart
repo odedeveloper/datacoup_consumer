@@ -36,7 +36,7 @@ class StringConst {
   static const String DOB = "Date of Birth";
   static const String EMAIL_ADDRESS = "Email Address";
   static const String PHONE_NUMBER = "Phone Number";
-  static const String zipCode = "Zip-code";
+  static const String zipCode = "Zipcode";
   static const String COUNTRY = "Country";
   static const String WE_WILL_SEND_NOTIFICATION =
       "We will send a confirmation code on the above {} to verify your account";
@@ -70,13 +70,12 @@ class StringConst {
   static const String ENTER_EMAIL = "Please enter email.";
   static const String MOBILE_LENGTH = "Mobile no. should be of 10 digits.";
   static const String CHECK_MOBILE_LENGTH =
-      "Minimum Mobile no. length should be of 8 digits.";
+      "Minimum mobile no. length should be of 8 digits.";
   static const String CHECK_USERNAME_LENGTH =
       "Minimum Username length should be of 8 characters.";
   static const String VALID_USERNAME =
       "Please enter valid username without spaces.";
-  static const String VALID_MOBILE =
-      "Please enter a valid mobile number";
+  static const String VALID_MOBILE = "Please enter a valid mobile number";
 
   static const String ENTER_COUNTRY_CODE =
       "Please enter country code with phone number.";
@@ -100,7 +99,7 @@ class StringConst {
   static const String INTERNET_NOT_AVAILABLE = "Network Not Available";
 
   static const String YOUTUBE = 'Youtube';
-  static const String SPLASH_TEXT = 'Your daily dose of privacy.';
+  static const String SPLASH_TEXT = 'Your daily dose of privacy';
   static const String APP_NAME = "DATACOUP";
   static const List<String> NEWS_TYPE_LIST = [
     "Awareness",

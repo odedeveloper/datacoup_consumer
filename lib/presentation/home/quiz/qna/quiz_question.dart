@@ -22,6 +22,8 @@ class QuizQuestion extends StatelessWidget {
     quizController.updateQuiz(quiz);
     quizController.updateTimeStamp();
 
+    // return Container();
+
     return GetBuilder<QuizController>(builder: (quizController) {
       return quizController.quiz.topic == ''
           ? Text(StringConst.SPLASH_TEXT,
@@ -86,6 +88,20 @@ class QuizQuestion extends StatelessWidget {
                               quizController.quiz.questions.length,
                           semanticsLabel: 'Linear progress indicator',
                         ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "${quizController.questionIndex + 1}/${quizController.quiz.questions.length}",
+                            textAlign: TextAlign.end,
+                            style: themeTextStyle(
+                                context: context,
+                                tColor: Theme.of(context).primaryColor,
+                                fsize: 15,
+                                fweight: FontWeight.w600),
+                          ),
+                        ],
                       ),
                       Container(
                         width: double.infinity,

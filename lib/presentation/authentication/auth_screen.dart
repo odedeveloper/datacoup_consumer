@@ -25,7 +25,7 @@ class Login extends StatelessWidget {
                 Image.asset(AssetConst.LOGO_PNG,
                     height: 80 * SizeConfig().heightScale),
                 SizedBox(height: 50 * SizeConfig().heightScale),
-                Text("DATACOUP NEWS",
+                Text("DATACOUP",
                     style: TextStyle(
                         letterSpacing: 0.9,
                         fontSize: 18,

@@ -1,7 +1,6 @@
 import 'package:datacoup/domain/model/quiz_item_model.dart';
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/home/quiz/qna/quiz_question.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ExploreQuizListItem extends StatelessWidget {
   final QuizItemModel item;

@@ -444,7 +444,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         const SizedBox(height: 10),
                         CustomLoginTextField(
                           controller: controller.zipCodeTextContoller,
-                          label: "Zip-code",
+                          label: "Zipcode",
                           onChanged: (p0) => showUpdageButton(),
                         ),
                         const SizedBox(height: 50),

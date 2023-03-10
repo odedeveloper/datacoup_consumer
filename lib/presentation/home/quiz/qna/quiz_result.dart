@@ -65,11 +65,11 @@ class QuizResult extends StatelessWidget {
                               onTap: () {
                                 // var profileController =
                                 //     Get.find<UserProfileController>();
-                                // var qnaHomePageController =
-                                //     Get.find<QnaHomePageController>();
-                                // await qnaHomePageController.fetchUserHistory(
+                                // var QuizScreenController =
+                                //     Get.find<QuizScreenController>();
+                                // await QuizScreenController.fetchUserHistory(
                                 //     profileController.user!.odenId, '');
-                                // await qnaHomePageController.fetchBestScore(
+                                // await QuizScreenController.fetchBestScore(
                                 //     profileController.user!.odenId);
                                 Navigator.pop(context);
                                 Navigator.pop(context);
@@ -92,15 +92,14 @@ class QuizResult extends StatelessWidget {
                   ]),
                   const SizedBox(height: 20),
                   Container(
-                      child:
-                          Text("Results of ${quizController.quiz.topic} Quiz",
-                              style: TextStyle(
-                                // letterSpacing: 1.7,
-                                color: Theme.of(context).primaryColorDark,
-                                fontSize: 22,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: AssetConst.QUICKSAND_FONT,
-                              ))),
+                      child: Text("Results of ${quizController.quiz.topic}",
+                          style: TextStyle(
+                            // letterSpacing: 1.7,
+                            color: Theme.of(context).primaryColorDark,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: AssetConst.QUICKSAND_FONT,
+                          ))),
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.all(15),
@@ -129,7 +128,7 @@ class QuizResult extends StatelessWidget {
                               const SizedBox(width: 20),
                               Text(quizResultText[index],
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
+                                    color: Theme.of(context).primaryColor,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                     letterSpacing: 0.9,
@@ -138,7 +137,7 @@ class QuizResult extends StatelessWidget {
                               const Spacer(),
                               Text(quizResultScore[index].toString(),
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColorLight,
+                                    color: Theme.of(context).primaryColor,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700,
                                     letterSpacing: 0.9,

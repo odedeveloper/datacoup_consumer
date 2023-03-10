@@ -24,15 +24,15 @@ class QuizResultOption extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.symmetric(vertical: 5.0),
-      width: 360,
+      width: 370.w,
       decoration: BoxDecoration(
           color: (status["selected"]!)
               ? (status["correct"]!)
                   ? Colors.greenAccent.shade400
                   : Colors.red.shade100
               : (status["correct"]!)
-                  ? Colors.greenAccent.shade100
-                  : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
+                  ? Color.fromARGB(255, 198, 248, 212)
+                  : Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [BoxShadow(blurRadius: 0.2, spreadRadius: 0.5)]),
       child: Row(
@@ -49,9 +49,10 @@ class QuizResultOption extends StatelessWidget {
                 ? (status["correct"]!)
                     ? Icon(
                         Icons.check,
+                        size: 15,
                         color: Colors.green.shade600,
                       )
-                    : const Icon(Icons.close, color: Colors.white)
+                    : const Icon(Icons.close, size: 15, color: Colors.white)
                 : Text(
                     String.fromCharCode(optionIndex + 65),
                     style: TextStyle(
@@ -66,7 +67,7 @@ class QuizResultOption extends StatelessWidget {
               controller
                   .quiz.questions[questionIndex].options[optionIndex].item,
               softWrap: true,
-              maxLines: 2,
+              // maxLines: 2,
               /*style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
@@ -80,7 +81,7 @@ class QuizResultOption extends StatelessWidget {
               ),*/
               style: themeTextStyle(
                 context: context,
-                fsize: 16.0,
+                fsize: 15.0,
                 fweight: FontWeight.w500,
                 tColor: (status["selected"]!)
                     ? (status["correct"]!)

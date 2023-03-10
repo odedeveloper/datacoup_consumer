@@ -1,13 +1,13 @@
 import 'package:datacoup/domain/model/activity_item_model.dart';
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/home/quiz/qna/quiz_result_generic.dart';
-import 'package:datacoup/presentation/home/quiz/qna_homepage_controller.dart';
+import 'package:datacoup/presentation/home/quiz/quiz_screen_controller.dart';
 import 'package:datacoup/presentation/home/quiz/quiz_history_result_controller.dart';
 
 class QuizHistoryListItem extends StatelessWidget {
   final ActivityItemModel item;
   QuizHistoryListItem(this.item, {Key? key}) : super(key: key);
-  final _QnaHomePageController = Get.put(QnaHomePageController());
+  final _QuizScreenController = Get.put(QuizScreenController());
 
   String getDate(String timestamp) {
 // String year = timestamp.year.toString();
@@ -47,7 +47,7 @@ class QuizHistoryListItem extends StatelessWidget {
 
     // dynamic namedMonth = DateFormat.M().format(month);
 
-    return '$day ${monthsInName[month]}';
+    return '${monthsInName[month]} $day';
 
     // final DateTime date =
     //     DateTime.fromMillisecondsSinceEpoch(int.parse(timestamp) * 1000);
@@ -85,12 +85,12 @@ class QuizHistoryListItem extends StatelessWidget {
             Get.to(() => QuizHistoryResult(activity: item));
           },
           child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             SizedBox(
-              width: width(context)! * 0.15,
+              width: width(context)! * 0.25,
               child: Text(item.topic == '' ? 'Privacy Laws' : item.topic,
                   // textAlign: alignment,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Theme.of(context).primaryColorDark,
                     fontSize: width(context)! * 0.038,
@@ -102,7 +102,7 @@ class QuizHistoryListItem extends StatelessWidget {
               width: width(context)! * 0.15,
               child: Text("${item.score}/100",
                   // textAlign: alignment,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Theme.of(context).primaryColorDark,
                     fontSize: width(context)! * 0.038,
@@ -111,33 +111,40 @@ class QuizHistoryListItem extends StatelessWidget {
                   )),
             ),
             SizedBox(
-              width: width(context)! * 0.15,
-              child: Text(getDate(item.timestamp),
-                  // textAlign: alignment,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColorDark,
-                    fontSize: width(context)! * 0.038,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: AssetConst.QUICKSAND_FONT,
-                  )),
+              width: width(context)! * 0.25,
+              child:
+                  Text(getDate(item.timestamp) + "," + getTime(item.timestamp),
+                      // textAlign: alignment,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColorDark,
+                        fontSize: width(context)! * 0.038,
+                        fontWeight: FontWeight.w800,
+                        fontFamily: AssetConst.QUICKSAND_FONT,
+                      )),
             ),
-            SizedBox(
-              width: width(context)! * 0.15,
-              child: Text(getTime(item.timestamp),
-                  // textAlign: alignment,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColorDark,
-                    fontSize: width(context)! * 0.038,
-                    fontWeight: FontWeight.w800,
-                    fontFamily: AssetConst.QUICKSAND_FONT,
-                  )),
-            ),
+            // SizedBox(
+            //   width: width(context)! * 0.15,
+            //   child: Text(getTime(item.timestamp),
+            //       // textAlign: alignment,
+            //       textAlign: TextAlign.center,
+            //       style: TextStyle(
+            //         color: Theme.of(context).primaryColorDark,
+            //         fontSize: width(context)! * 0.038,
+            //         fontWeight: FontWeight.w800,
+            //         fontFamily: AssetConst.QUICKSAND_FONT,
+            //       )),
+            // ),
           ]),
         ));
   }
 }
+
+List<String> quizListHeading = [
+  "Quiz name",
+  "Score",
+  "Time",
+];
 
 class UserHistoryList extends StatelessWidget {
   final String odenId;
@@ -147,7 +154,7 @@ class UserHistoryList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.only(bottom: 20),
-        child: GetBuilder<QnaHomePageController>(builder: (controller) {
+        child: GetBuilder<QuizScreenController>(builder: (controller) {
           return Container(
               // decoration: BoxDecoration(
               //     color: Theme.of(context).appBarTheme.backgroundColor,
@@ -165,14 +172,48 @@ class UserHistoryList extends StatelessWidget {
                   child: controller.userHistory.isEmpty
                       ? Container()
                       : Column(
-                          children: List.generate(
-                              controller.userHistory.length,
-                              (index) => QuizHistoryListItem(
-                                  controller.userHistory[index])),
-                          // itemCount: controller.userHistory.length,
-                          // itemBuilder: (context, index) {
-                          //   return QuizHistoryListItem(
-                          //       controller.userHistory[index]);
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 13),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: List.generate(
+                                    3,
+                                    (index) => SizedBox(
+                                        width: width(context)! *
+                                            (index == 1 ? 0.15 : 0.25),
+                                        child: Text(quizListHeading[index],
+                                            style: themeTextStyle(
+                                                context: context,
+                                                fweight: FontWeight.w700,
+                                                tColor: Theme.of(context)
+                                                    .primaryColor)))),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Column(
+                              children: List.generate(
+                                  controller.userHistory.length,
+                                  (index) => Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: (index + 1 ==
+                                                    controller
+                                                        .userHistory.length)
+                                                ? 70.0
+                                                : 0),
+                                        child: QuizHistoryListItem(
+                                            controller.userHistory[index]),
+                                      )),
+                              // itemCount: controller.userHistory.length,
+                              // itemBuilder: (context, index) {
+                              //   return QuizHistoryListItem(
+                              //       controller.userHistory[index]);
+                            ),
+                          ],
                         )));
         }));
   }

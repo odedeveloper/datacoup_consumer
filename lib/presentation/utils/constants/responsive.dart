@@ -65,7 +65,7 @@ themeTextStyle(
           fsize != null ? fontSize(context)! * fsize : kmediumFont(context),
       fontStyle: fontStyle,
       fontWeight: fweight,
-      fontFamily: fontFamily ?? AssetConst.RALEWAY_FONT,
+      fontFamily: fontFamily ?? AssetConst.QUICKSAND_FONT,
       letterSpacing: letterSpacing,
       height: height,
     );

@@ -1,5 +1,6 @@
 import 'package:datacoup/export.dart';
 
+// defining routes
 class AppRoutes {
   static const String splash = "/splash";
   static const String login = "/login";
@@ -13,11 +14,13 @@ class AppRoutes {
 }
 
 class AppPages {
+  //pages list
   static final pages = [
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashScreen(),
       bindings: [MainBinding(), SplashBinding(), AuthenticationBinding()],
+      //defines what controller we have to use
     ),
     GetPage(
       name: AppRoutes.login,
@@ -29,7 +32,6 @@ class AppPages {
       page: () => SignUp(),
       bindings: [MainBinding(), SignupBinding(), AuthenticationBinding()],
     ),
-
     GetPage(
       name: AppRoutes.home,
       page: () => HomeScreen(),
@@ -39,19 +41,5 @@ class AppPages {
       name: AppRoutes.videoScreen,
       page: () => const VideoScreen(),
     ),
-    // GetPage(
-    //   name: AppRoutes.quizScreen,
-    //   page: () => const QuizScreen(),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.allQuizScreen,
-    //   page: () => const AllQuizWidget(),
-    //   binding: QuizBinding(),
-    // ),
-    // GetPage(
-    //   name: AppRoutes.editProfile,
-    //   page: () => const EditProfileScreen(),
-    //   // bindings: [MainBinding(), HomeBinding()],
-    // ),
   ];
 }

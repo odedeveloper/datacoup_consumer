@@ -64,15 +64,13 @@ class QuizResultListItem extends StatelessWidget {
                     ),
                   ]),
               const SizedBox(height: 10),
-              Center(
-                child: Text(
-                  quizController.quiz.questions[questionIndex].question,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+              Text(
+                quizController.quiz.questions[questionIndex].question,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 10),
@@ -123,12 +121,13 @@ class ActivityResultListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 370,
-        margin: const EdgeInsets.all(5),
+        width: 370.w,
+        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -174,22 +173,22 @@ class ActivityResultListItem extends StatelessWidget {
                         )),
                   ),
                 ]),
-            const SizedBox(height: 10,),
-            Center(
-              child: Text(
-                _quizController.quiz.questions[questionIndex].question,
-                textAlign: TextAlign.center,
-                /*style: const TextStyle(
-                  fontSize: 20.0,
-                  // color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),*/
-                style: themeTextStyle(
-                  context: context,
-                  fsize: 16.0,
-                  // color: Colors.white,
-                  fweight: FontWeight.w600,
-                ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              _quizController.quiz.questions[questionIndex].question,
+              textAlign: TextAlign.start,
+              /*style: const TextStyle(
+                fontSize: 20.0,
+                // color: Colors.white,
+                fontWeight: FontWeight.w600,
+              ),*/
+              style: themeTextStyle(
+                context: context,
+                fsize: 18.0,
+                // color: Colors.white,
+                fweight: FontWeight.w800,
               ),
             ),
             const SizedBox(height: 10),

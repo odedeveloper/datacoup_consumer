@@ -9,8 +9,6 @@ class HomeScreen extends GetWidget<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setPreferredOrientations(
-    //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return Obx(
       () => Scaffold(
         appBar: PreferredSize(
@@ -20,19 +18,19 @@ class HomeScreen extends GetWidget<HomeController> {
                 ? NewsScreenAppBar(
                     image: AssetConst.FEED_LOGO,
                     title: "Favorites",
-                    subTitle: "Find your liked items here !",
+                    subTitle: "Find your liked items here",
                   )
                 : controller.onIndexSelected.value == 2
                     ? NewsScreenAppBar(
                         image: AssetConst.QUIZ_LOGO,
                         title: "Quizzes",
-                        subTitle: "Test your knowledge !",
+                        subTitle: "Test your knowledge",
                       )
                     : controller.onIndexSelected.value == 3
                         ? NewsScreenAppBar(
                             image: AssetConst.VIDEO_LOGO,
                             title: "Videos",
-                            subTitle: "Watch and take action !",
+                            subTitle: "Watch and take action",
                           )
                         : controller.onIndexSelected.value == 4
                             ? Container()
@@ -67,7 +65,7 @@ class HomeScreen extends GetWidget<HomeController> {
                   NewsScreen(),
                   FavouriteScreen(),
                   // Container(),
-                  QnaProfile(),
+                  QuizScreen(),
                   VideoScreen(),
                   ProfileScreen(),
                 ],
@@ -170,16 +168,6 @@ class AppBottomNavgationBar extends StatelessWidget {
     required Color color,
     required bool isSelected,
   }) =>
-      // Container(
-      //   padding:
-      //       EdgeInsets.symmetric(horizontal: isSelected ? 5 : 0, vertical: 0),
-      //   decoration: isSelected
-      //       ? BoxDecoration(
-      //           border: Border.all(width: 2, color: greyColor),
-      //           borderRadius: BorderRadius.circular(25))
-      //       : null,
-      //   child:
-
       IconButton(
         onPressed: onClicked,
         icon: FaIcon(

@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/widgets/simple_loader.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SocialMediaFeedWidget extends StatefulWidget {
@@ -73,16 +74,12 @@ class SocialMediaFeedWidgetState extends State<SocialMediaFeedWidget> {
           child: NewsScreenAppBar(
             image: AssetConst.FEED_LOGO,
             title: "Feeds",
-            subTitle: "From all across social media !",
+            subTitle: "From all across social media",
           ),
         ),
         body: Obx(
           () => newsController.socialMediaLoader.value
-              ? const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: ShimmerBox(
-                      height: double.infinity, width: double.infinity),
-                )
+              ? const SimpleLoader()
               : newsModel == null
                   ? Center(
                       child: Text(

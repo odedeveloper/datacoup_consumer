@@ -1,5 +1,4 @@
 import 'package:datacoup/export.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -42,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const SizedBox(height: 25),
-            Spacer(),
+            const Spacer(),
             Text(
               StringConst.APP_NAME,
               style: themeTextStyle(
@@ -66,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 fweight: FontWeight.w800,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
           ],

@@ -6,7 +6,7 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class QuizListController extends GetxController {
-  List<QuizItemModel> quizzesList = [];
+  List<QuizItemModel> QuizList = [];
 
   bool isUpdating = false;
   bool isProcess = false;
@@ -15,7 +15,7 @@ class QuizListController extends GetxController {
 
   @override
   onInit() {
-    fetchQuizzesList(odenId, '');
+    fetchQuizList(odenId, '');
     super.onInit();
   }
 
@@ -24,13 +24,13 @@ class QuizListController extends GetxController {
     update();
   }
 
-  fetchQuizzesList(String odenId, String topic) async {
+  fetchQuizList(String odenId, String topic) async {
     try {
       isUpdating = true;
 
       List<QuizItemModel> data = await getActivity(odenId, topic = '');
-      quizzesList = data;
-      print(quizzesList);
+      QuizList = data;
+      print(QuizList);
       isUpdating = false;
       isProcess = false;
       update();

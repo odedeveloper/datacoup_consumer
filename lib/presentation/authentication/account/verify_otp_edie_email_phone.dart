@@ -114,7 +114,7 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
-                          "Please enter the number code send to your ${isEmail ? "email address" : "mobile number"}",
+                          "Please enter the number code sent to your ${isEmail ? "email address" : "mobile number"}",
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               letterSpacing: 0.9,
@@ -151,10 +151,10 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                             } else {
                               if (isEmail) {
                                 showSnackBar(context,
-                                    msg: "EMAIL_NOT_CONFIRMED");
+                                    msg: "Email not confirmed");
                               } else {
                                 showSnackBar(context,
-                                    msg: "PHONE_NOT_CONFIRMED");
+                                    msg: "Phone number not confirmed");
                               }
                             }
                           } catch (e) {
@@ -204,7 +204,7 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                                             controller.mobileController.text);
                             showSnackBar(
                               context,
-                              msg: "OTP_HAS_BEEN_SENT_SUCCESSFULLY",
+                              msg: "OTP has been sent successfully",
                               backgroundColor: Colors.greenAccent,
                             );
                           } catch (e) {
@@ -228,7 +228,7 @@ class VerifyOtpEditEmailPassword extends StatelessWidget {
                     child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
-                            "Did not receive the code? ${isEmail ? "Check the mail in your spam filter , or" : "Wait for some time ,"}",
+                            "Did not receive the code? ${isEmail ? "\nCheck the mail in your spam filter , or" : "Wait for some time ,"}",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 letterSpacing: 0.9,

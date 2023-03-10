@@ -2,7 +2,7 @@ import 'package:datacoup/data/datasource/qna_api.dart';
 import 'package:datacoup/domain/model/question_option_model.dart';
 import 'package:datacoup/domain/model/quiz_item_model.dart';
 import 'package:datacoup/presentation/home/home_controller.dart';
-import 'package:datacoup/presentation/home/quiz/qna_homepage_controller.dart';
+import 'package:datacoup/presentation/home/quiz/quiz_screen_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -163,8 +163,8 @@ class QuizController extends GetxController {
         profileController.user!.value.odenId!,
       );
 
-      var qnaHomePageController = Get.find<QnaHomePageController>();
-      qnaHomePageController.fetchData();
+      var quizScreenController = Get.find<QuizScreenController>();
+      quizScreenController.fetchData();
     } catch (error) {
       print(error.toString());
     }
