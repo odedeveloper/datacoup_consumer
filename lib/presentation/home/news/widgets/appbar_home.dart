@@ -240,7 +240,7 @@ class HomeAppBar extends StatelessWidget {
           // const SizedBox(
           //   width: 20,
           // ),
-          user.firstName == null
+          user?.firstName == null
               ? const Center(
                   child: SpinKitThreeBounce(
                   size: 25,
