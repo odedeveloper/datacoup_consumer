@@ -19,7 +19,7 @@ class SignUp extends StatelessWidget {
         Image.asset(AssetConst.LOGO_PNG, height: 60 * SizeConfig().heightScale),
         SizedBox(height: 20 * SizeConfig().heightScale),
         Text(
-          "DATACOUP NEWS",
+          "DATACOUP",
           style: themeTextStyle(
             context: context,
             fsize: klargeFont(context),

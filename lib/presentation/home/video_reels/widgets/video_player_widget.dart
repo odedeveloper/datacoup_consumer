@@ -72,14 +72,14 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             playFull: true,
             videoDetail: widget.items![index],
           ),
-          // Positioned(
-          //     left: 0,
-          //     top: 0,
-          //     child: Container(
-          //       color: Colors.red,
-          //       height: 70,
-          //       width: width(context),
-          //     )),
+          Positioned(
+              left: 0,
+              top: 0,
+              child: Container(
+                color: Colors.black,
+                height: 55,
+                width: width(context),
+              )),
           Positioned(left: 0, top: 10.0, child: CustomBackButton()),
           OrientationBuilder(builder: (context, orientation) {
             return orientation == Orientation.portrait

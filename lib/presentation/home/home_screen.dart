@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/authentication/signup/profile_success.dart';
 import 'package:datacoup/presentation/home/news/widgets/appbar_home.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

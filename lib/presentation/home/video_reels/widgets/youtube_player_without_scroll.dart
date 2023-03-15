@@ -1,6 +1,7 @@
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/home/video_reels/widgets/youtube_player_widget.dart';
 import 'package:datacoup/presentation/home/video_reels/video_reels_controller.dart';
+import 'package:datacoup/presentation/widgets/back_button.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class YoutubePlayerWithoutScroll extends StatefulWidget {
@@ -189,12 +190,7 @@ class _YoutubePlayerWithoutScrollState
                         )
                       : Container();
                 }),
-                Positioned(
-                    left: 0,
-                    top: 10.0,
-                    child: BackButton(
-                      color: deepOrangeColor,
-                    )),
+                Positioned(left: 0, top: 10.0, child: CustomBackButton()),
                 OrientationBuilder(builder: (context, orientation) {
                   return orientation == Orientation.portrait
                       ? Padding(

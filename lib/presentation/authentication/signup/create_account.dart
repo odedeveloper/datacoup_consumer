@@ -1,9 +1,38 @@
 import 'dart:io';
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/authentication/signup/profile_success.dart';
 
 class CreateAccount extends StatelessWidget {
   CreateAccount({Key? key}) : super(key: key);
   final _imagePickerController = Get.put(ImagePickerController());
+
+  _verifyPhone(String no) {
+    return (double.tryParse(no) != null) && no.length > 8 && no.length < 16;
+  }
+
+  _verifyUserForm(SignUpController controller, BuildContext context) async {
+    if (controller.firstNameController.text.isEmpty ||
+        controller.lastNameController.text.isEmpty) {
+      showSnackBar(context, msg: "Enter your first and last name");
+    } else if (controller.dobController.text.isEmpty) {
+      showSnackBar(context, msg: "Enter your Date of Birth");
+    } else if (controller.phoneController.text.isEmpty) {
+      showSnackBar(context, msg: "Enter your mobile number");
+    } else if (!_verifyPhone(controller.phoneController.text)) {
+      showSnackBar(context, msg: "Check your mobile number");
+    } else {
+      try {
+        bool value = await controller.updateUserUsingController();
+        if (value) {
+          // Get.delete<LoginController>();
+          Get.offAll(() => const ProfileSucess());
+        }
+      } catch (e) {
+        showSnackBar(context, msg: "Something went wrong please try again !");
+        print(e.toString());
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -511,37 +540,7 @@ class CreateAccount extends StatelessWidget {
                           const SizedBox(height: 30),
                           TextButton(
                               onPressed: () async {
-                                if (controller
-                                        .firstNameController.text.isEmpty ||
-                                    controller
-                                        .lastNameController.text.isEmpty) {
-                                  showSnackBar(context,
-                                      msg: "Enter your first and last name");
-                                } else if (controller
-                                    .dobController.text.isEmpty) {
-                                  showSnackBar(context,
-                                      msg: "Enter your Date of Birth");
-                                }
-
-                                if (controller
-                                        .firstNameController.text.isNotEmpty &&
-                                    controller
-                                        .lastNameController.text.isNotEmpty &&
-                                    controller.dobController.text.isNotEmpty) {
-                                  try {
-                                    bool value = await controller
-                                        .updateUserUsingController();
-                                    if (value) {
-                                      // Get.delete<LoginController>();
-                                      Get.offAll(() => Login());
-                                    }
-                                  } catch (e) {
-                                    showSnackBar(context,
-                                        msg:
-                                            "Something went wrong please try again !");
-                                    print(e.toString());
-                                  }
-                                }
+                                _verifyUserForm(controller, context);
                               },
                               style: ButtonStyle(
                                   backgroundColor:

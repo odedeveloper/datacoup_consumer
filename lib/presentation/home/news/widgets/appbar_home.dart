@@ -12,136 +12,130 @@ class HomeAppBar extends StatelessWidget {
 
   void openDialog(BuildContext context) {
     Get.dialog(
-      GestureDetector(
-        onTap: () {
-          Get.back();
-        },
-        child: Center(
-          child: SingleChildScrollView(
-            child: AlertDialog(
-              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-              content: SizedBox(
-                width: width(context)!,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CacheImageWidget(
-                      fromAsset: true,
-                      imageUrl: AssetConst.LOCATION,
-                      imgheight: height(context)! * 0.07,
-                      imgwidth: width(context)! * 0.15,
+      Center(
+        child: SingleChildScrollView(
+          child: AlertDialog(
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            content: SizedBox(
+              width: width(context)!,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CacheImageWidget(
+                    fromAsset: true,
+                    imageUrl: AssetConst.LOCATION,
+                    imgheight: height(context)! * 0.07,
+                    imgwidth: width(context)! * 0.15,
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    StringConst.LOCATION,
+                    textAlign: TextAlign.center,
+                    style: themeTextStyle(
+                        context: context,
+                        fsize: klargeFont(context),
+                        fweight: FontWeight.w900,
+                        fontFamily: AssetConst.QUICKSAND_FONT),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          "Country",
+                          style: themeTextStyle(
+                            context: context,
+                            tColor:
+                                Theme.of(context).primaryColor.withOpacity(0.6),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          "State",
+                          style: themeTextStyle(
+                            context: context,
+                            tColor:
+                                Theme.of(context).primaryColor.withOpacity(0.6),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: CSCPicker(
+                      layout: Layout.horizontal,
+                      showCities: false,
+                      currentCountry: newsController.selectedcountry.value,
+                      stateDropdownLabel: newsController.selectedState.value,
+                      dropdownDecoration: BoxDecoration(
+                        color: Theme.of(context).appBarTheme.backgroundColor,
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        boxShadow: const [
+                          BoxShadow(spreadRadius: 0.4, blurRadius: 0.4)
+                        ],
+                      ),
+                      disabledDropdownDecoration: BoxDecoration(
+                        color: Theme.of(context).appBarTheme.backgroundColor,
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                        boxShadow: const [
+                          BoxShadow(spreadRadius: 0.4, blurRadius: 0.4)
+                        ],
+                      ),
+                      flagState: CountryFlag.DISABLE,
+                      disableCountry: false,
+                      selectedItemStyle: themeTextStyle(context: context),
+                      onCountryChanged: (value) {
+                        controller.selectedreturnCountry!(value);
+                        newsController.selectedcountry(value);
+                      },
+                      onStateChanged: (value) {
+                        controller.selectedreturnState!(value);
+                        newsController.selectedState(value);
+                      },
+                      onCityChanged: (value) {},
                     ),
-                    const SizedBox(height: 20),
-                    Text(
-                      StringConst.LOCATION,
-                      textAlign: TextAlign.center,
-                      style: themeTextStyle(
-                          context: context,
-                          fsize: klargeFont(context),
-                          fweight: FontWeight.w900,
-                          fontFamily: AssetConst.QUICKSAND_FONT),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
+                  ),
+                  // const SizedBox(height: 20),
+                  // CustomLoginTextField(
+                  //   controller: controller.zipCodeTextContoller,
+                  //   label: "Zipcode",
+                  // ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
                       children: [
                         Expanded(
-                          child: Text(
-                            "Country",
-                            style: themeTextStyle(
-                              context: context,
-                              tColor: Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(0.6),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              newsController.selectedcountry(
+                                  controller.user!.value.country);
+                              newsController
+                                  .selectedState(controller.user!.value.state);
+                              newsController.selectedzipCode(
+                                  controller.user!.value.zipCode);
+                              Get.back();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shape: const StadiumBorder(
+                                  side: BorderSide(color: Colors.grey)),
+                            ),
+                            child: const Text(
+                              "Cancel",
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
+                        const SizedBox(width: 10),
                         Expanded(
-                          child: Text(
-                            "State",
-                            style: themeTextStyle(
-                              context: context,
-                              tColor: Theme.of(context)
-                                  .primaryColor
-                                  .withOpacity(0.6),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 0),
-                      child: CSCPicker(
-                        layout: Layout.horizontal,
-                        showCities: false,
-                        currentCountry: newsController.selectedcountry.value,
-                        stateDropdownLabel: newsController.selectedState.value,
-                        dropdownDecoration: BoxDecoration(
-                          color: Theme.of(context).appBarTheme.backgroundColor,
-                          borderRadius: BorderRadius.circular(kBorderRadius),
-                          boxShadow: const [
-                            BoxShadow(spreadRadius: 0.4, blurRadius: 0.4)
-                          ],
-                        ),
-                        disabledDropdownDecoration: BoxDecoration(
-                          color: Theme.of(context).appBarTheme.backgroundColor,
-                          borderRadius: BorderRadius.circular(kBorderRadius),
-                          boxShadow: const [
-                            BoxShadow(spreadRadius: 0.4, blurRadius: 0.4)
-                          ],
-                        ),
-                        flagState: CountryFlag.DISABLE,
-                        disableCountry: false,
-                        selectedItemStyle: themeTextStyle(context: context),
-                        onCountryChanged: (value) {
-                          controller.selectedreturnCountry!(value);
-                          newsController.selectedcountry(value);
-                        },
-                        onStateChanged: (value) {
-                          controller.selectedreturnState!(value);
-                          newsController.selectedState(value);
-                        },
-                        onCityChanged: (value) {},
-                      ),
-                    ),
-                    // const SizedBox(height: 20),
-                    // CustomLoginTextField(
-                    //   controller: controller.zipCodeTextContoller,
-                    //   label: "Zipcode",
-                    // ),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
+                          child: TextButton(
                               onPressed: () {
-                                newsController.selectedcountry(
-                                    controller.user!.value.country);
-                                newsController.selectedState(
-                                    controller.user!.value.state);
-                                newsController.selectedzipCode(
-                                    controller.user!.value.zipCode);
-                                Get.back();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
-                                shape: const StadiumBorder(
-                                    side: BorderSide(color: Colors.grey)),
-                              ),
-                              child: const Text(
-                                "Cancel",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: RoundedElevatedButton(
-                              onClicked: () async {
                                 newsController.selectedcountry(
                                     controller.selectedreturnCountry!.value);
                                 newsController.selectedState(
@@ -151,16 +145,49 @@ class HomeAppBar extends StatelessWidget {
                                 Get.back();
                                 newsController.refreshAll();
                               },
-                              color: deepOrangeColor,
-                              title: "Apply",
-                            ),
-                          ),
-                        ],
-                      ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          deepOrangeColor),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    // side: BorderSide(color: Colors.red)
+                                  ))),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text("Apply",
+                                      style: TextStyle(
+                                          letterSpacing: 0.9,
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                          fontFamily: AssetConst.RALEWAY_FONT)),
+                                ],
+                              )),
+                        ),
+                        // Expanded(
+                        //   child: RoundedElevatedButton(
+                        //     onClicked: () async {
+                        //       newsController.selectedcountry(
+                        //           controller.selectedreturnCountry!.value);
+                        //       newsController.selectedState(
+                        //           controller.selectedreturnState!.value);
+                        //       newsController.selectedzipCode(
+                        //           controller.zipCodeTextContoller!.text);
+                        //       Get.back();
+                        //       newsController.refreshAll();
+                        //     },
+                        //     color: deepOrangeColor,
+                        //     title: "Apply",
+                        //   ),
+                        // ),
+                      ],
                     ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 10),
+                ],
               ),
             ),
           ),
@@ -179,7 +206,7 @@ class HomeAppBar extends StatelessWidget {
         toolbarHeight: 80,
         title: Row(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text("Welcome Back !",
+            Text("Welcome ${user!.firstName!}",
                 style: themeTextStyle(
                   tColor: Theme.of(context).primaryColor,
                   fsize: 24,

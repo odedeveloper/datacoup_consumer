@@ -57,7 +57,7 @@ class EditEmailPhone extends StatelessWidget {
                   const SizedBox(height: 10),
                   LogoContainer(
                       title:
-                          'Edit ${isEmail ? 'Email' : 'Mobile number'} associated with your account',
+                          'Edit ${isEmail ? 'email' : 'mobile number'} associated with your account',
                       height: 300),
                   const SizedBox(height: 20),
                   Padding(
@@ -93,7 +93,8 @@ class EditEmailPhone extends StatelessWidget {
                                             letterSpacing: 0.9,
                                             color: Colors.grey.shade700,
                                             fontWeight: FontWeight.w500,
-                                            fontFamily: AssetConst.QUICKSAND_FONT,
+                                            fontFamily:
+                                                AssetConst.QUICKSAND_FONT,
                                             fontStyle: FontStyle.normal,
                                             fontSize: 16,
                                           ),

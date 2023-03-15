@@ -113,6 +113,11 @@ class SignUpController extends GetxController {
     update();
   }
 
+  updateIsLoading(bool value) {
+    isLoading = value;
+    update();
+  }
+
   updateIsEmailVerified(bool value) async {
     isEmailVerified = true;
 
@@ -318,7 +323,7 @@ class SignUpController extends GetxController {
     try {
       isLoading = true;
       update();
-
+      await Future.delayed(const Duration(seconds: 1));
       if (isByEmail) {
         isEmailVerified = otp == generatedOTP;
       } else {

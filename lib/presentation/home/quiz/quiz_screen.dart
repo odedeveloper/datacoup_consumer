@@ -154,7 +154,7 @@ class _QuizScreenState extends State<QuizScreen> {
                               color: whiteColor,
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
-                            "${controller.bestScore}/100",
+                            "${(controller.bestScore == 'null' ? '0' : controller.bestScore)}/100",
                             style: TextStyle(
                               // letterSpacing: 1.7,
                               color: darkBlueGreyColor,

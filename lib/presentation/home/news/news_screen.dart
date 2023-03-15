@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/home/digital_score/digital_score_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewsScreen extends GetWidget<NewsController> {
@@ -16,6 +17,36 @@ class NewsScreen extends GetWidget<NewsController> {
             height: 248.h,
             child: const NewsOfTheDayWidget(),
           ),
+          // SizedBox(height: 15.h),
+          // Container(
+          //   margin: EdgeInsets.symmetric(horizontal: 15.h),
+          //   height: 50,
+          //   decoration: BoxDecoration(
+          //     border: Border.all(color: greyColor, width: 2),
+          //     borderRadius: BorderRadius.circular(10),
+          //   ),
+          //   child: InkWell(
+          //     onTap: () {
+          //       Get.to(() => DigitalSoreScreen());
+          //     },
+          //     child: Row(children: [
+          //       Icon(
+          //         FontAwesomeIcons.boltLightning,
+          //         color: deepOrangeColor,
+          //       ),
+          //       SizedBox(
+          //         width: 10.w,
+          //       ),
+          //       Text(
+          //         "Digital Score",
+          //         style: TextStyle(
+          //           color: Theme.of(context).primaryColor,
+          //           fontFamily: AssetConst.QUICKSAND_FONT,
+          //         ),
+          //       )
+          //     ]),
+          //   ),
+          // ),
           SizedBox(height: 15.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.h),

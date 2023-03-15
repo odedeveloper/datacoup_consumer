@@ -34,7 +34,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 100.h),
                   child: Text(
-                    "Haven't liked anything yet !",
+                    "Haven't liked anything yet!",
                     style: themeTextStyle(context: context),
                   ),
                 ),

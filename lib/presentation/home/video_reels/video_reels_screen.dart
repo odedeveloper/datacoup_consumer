@@ -138,7 +138,7 @@ class VideoReelsScreenState extends State<VideoReelsScreen> {
                             label: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: Text(
-                                'Filter',
+                                'Category',
                                 style: themeTextStyle(
                                     context: context, tColor: Colors.black),
                               ),

@@ -86,28 +86,28 @@ class QuizResultListItem extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              if (quizController.quiz.questions[questionIndex].message != '')
-                Center(
-                  child: Container(
-                    width: 370,
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      border: Border.all(color: Colors.red.shade500, width: 1),
-                      color: Colors.red.shade100,
-                    ),
-                    child: Text(
-                      quizController.quiz.questions[questionIndex].message,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.red.shade400,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
+              // if (quizController.quiz.questions[questionIndex].message != '')
+              //   Center(
+              //     child: Container(
+              //       width: 370,
+              //       padding: const EdgeInsets.all(10),
+              //       margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              //       decoration: BoxDecoration(
+              //         borderRadius: const BorderRadius.all(Radius.circular(5)),
+              //         border: Border.all(color: Colors.red.shade500, width: 1),
+              //         color: Colors.red.shade100,
+              //       ),
+              //       child: Text(
+              //         quizController.quiz.questions[questionIndex].message,
+              //         textAlign: TextAlign.center,
+              //         style: TextStyle(
+              //           fontSize: 14.0,
+              //           color: Colors.red.shade400,
+              //           fontWeight: FontWeight.w500,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
             ],
           ));
     });
@@ -205,28 +205,28 @@ class ActivityResultListItem extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            if (_quizController.quiz.questions[questionIndex].message != '')
-              Center(
-                child: Container(
-                  width: 370,
-                  padding: const EdgeInsets.all(10),
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(color: Colors.red.shade500, width: 1),
-                    color: Colors.red.shade100,
-                  ),
-                  child: Text(
-                    _quizController.quiz.questions[questionIndex].message,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.red.shade400,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ),
+            // if (_quizController.quiz.questions[questionIndex].message != '')
+            //   Center(
+            //     child: Container(
+            //       width: 370,
+            //       padding: const EdgeInsets.all(10),
+            //       margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            //       decoration: BoxDecoration(
+            //         borderRadius: const BorderRadius.all(Radius.circular(5)),
+            //         border: Border.all(color: Colors.red.shade500, width: 1),
+            //         color: Colors.red.shade100,
+            //       ),
+            //       child: Text(
+            //         _quizController.quiz.questions[questionIndex].message,
+            //         textAlign: TextAlign.center,
+            //         style: TextStyle(
+            //           fontSize: 14.0,
+            //           color: Colors.red.shade400,
+            //           fontWeight: FontWeight.w500,
+            //         ),
+            //       ),
+            //     ),
+            //   ),
           ],
         ));
   }

@@ -82,7 +82,7 @@ class VerifyOtp extends StatelessWidget {
                               MethodResponse result =
                                   await controller.verifyOTPRequest();
                               if (result.isSuccess) {
-                                bool accountConfirmed;
+                                bool accountConfirmed = false;
                                 try {
                                   accountConfirmed =
                                       await controller.confirmOTP();
@@ -98,9 +98,11 @@ class VerifyOtp extends StatelessWidget {
 
                                     Get.back();
                                   } else if (accountConfirmed) {
+                                    // otp enetered is correct and user is authenticated
                                     controller.initUserProfile();
                                     Get.to(() => (CreateAccount()));
                                   } else {
+                                    controller.updateIsLoading(false);
                                     if (isSecondVerification && isEmail) {
                                       showSnackBar(context,
                                           msg: "Email not confirmed");
@@ -110,15 +112,17 @@ class VerifyOtp extends StatelessWidget {
                                           msg: "Phone not confirmed");
                                     } else {
                                       showSnackBar(context,
-                                          msg: "Account not confirmed");
+                                          msg: "OTP entered is wrong");
                                     }
                                   }
                                 } catch (e) {
                                   showSnackBar(context,
                                       msg: controller.errorMessage);
+                                  controller.updateIsLoading(false);
                                 }
                               } else {
                                 showSnackBar(context, msg: result.errorMessage);
+                                controller.updateIsLoading(false);
                               }
                               // }
                               // print(_controller.otp);
@@ -159,7 +163,7 @@ class VerifyOtp extends StatelessWidget {
                                 context,
                                 msg: "OTP has been sent successfully",
                                 backgroundColor:
-                                    Color.fromARGB(255, 48, 193, 123),
+                                    const Color.fromARGB(255, 48, 193, 123),
                               );
                             } catch (e) {
                               showSnackBar(context,

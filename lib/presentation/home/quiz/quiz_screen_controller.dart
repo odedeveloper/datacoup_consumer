@@ -24,7 +24,7 @@ class QuizScreenController extends GetxController {
   loadUserDataFirst() async {
     quizMainLoader(true);
     Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 3),
       () async {
         await ApiRepositoryImpl().fetchUserProfile().then(
           (_) async {

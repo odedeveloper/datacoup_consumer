@@ -18,7 +18,7 @@ class LogoContainer extends StatelessWidget {
             Image.asset(AssetConst.LOGO_PNG,
                 height: 80 * SizeConfig().heightScale),
             SizedBox(height: 30 * SizeConfig().heightScale),
-            Text("DATACOUP NEWS",
+            Text("DATACOUP",
                 style: themeTextStyle(
                   context: context,
                   fweight: FontWeight.bold,
