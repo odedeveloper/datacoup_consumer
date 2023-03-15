@@ -206,7 +206,7 @@ class HomeAppBar extends StatelessWidget {
         toolbarHeight: 80,
         title: Row(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text("Welcome ${user!.firstName!}",
+            Text("Welcome Back!",
                 style: themeTextStyle(
                   tColor: Theme.of(context).primaryColor,
                   fsize: 24,
