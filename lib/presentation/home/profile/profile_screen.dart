@@ -1,4 +1,5 @@
 import 'package:datacoup/export.dart';
+import 'package:datacoup/presentation/home/profile/account_delete/account_deleted_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -102,7 +103,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                     Get.delete<HomeController>();
                     Get.delete<NavigationController>();
                     Get.delete<UserProfileController>();
-                    Get.offAll(() => Login());
+                    Get.offAll(() => AccountDeletedScreen());
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: deepOrangeColor,
