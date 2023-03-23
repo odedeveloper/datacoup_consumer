@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:datacoup/domain/model/quiz_item_model.dart';
 import 'package:datacoup/export.dart';
 import 'package:datacoup/presentation/home/quiz/qna/quiz_result.dart';
@@ -105,30 +107,26 @@ class QuizQuestion extends StatelessWidget {
                       ),
                       Container(
                         width: double.infinity,
-                        height: 150.0,
                         margin: const EdgeInsets.only(
-                            bottom: 10.0, left: 30.0, right: 30.0),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 50.0, vertical: 20.0),
+                          bottom: 10.0,
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 30.w, vertical: 20.0),
                         decoration: BoxDecoration(
                           // color: Colors.deepOrange,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        child: Center(
-                          child: Text(
-                            quizController
-                                .quiz
-                                .questions[quizController.questionIndex]
-                                .question,
-                            textAlign: TextAlign.center,
-                            // style: const TextStyle(
-                            // ),
-                            style: themeTextStyle(
-                              context: context,
-                              fsize: 18.0,
-                              fontFamily: AssetConst.QUICKSAND_FONT,
-                              fweight: FontWeight.bold,
-                            ),
+                        child: Text(
+                          quizController.quiz
+                              .questions[quizController.questionIndex].question,
+                          textAlign: TextAlign.center,
+                          // style: const TextStyle(
+                          // ),
+                          style: themeTextStyle(
+                            context: context,
+                            fsize: 15,
+                            fontFamily: AssetConst.QUICKSAND_FONT,
+                            fweight: FontWeight.bold,
                           ),
                         ),
                       ),

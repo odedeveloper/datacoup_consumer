@@ -15,9 +15,9 @@ class Answer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.symmetric(vertical: 5.0),
-      width: 360,
+      width: 360.w,
       decoration: BoxDecoration(
         color: isSelected ? deepOrangeColor : Colors.blueGrey.shade50,
         borderRadius: BorderRadius.circular(5.0),
